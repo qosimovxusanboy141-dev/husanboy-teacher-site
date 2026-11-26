@@ -228,15 +228,59 @@
     stage.querySelector('#lis-reset').onclick = () => { lisAns = {}; lisChecked = false; renderListening(); };
   }
 
-  // -------------------- 4. CEFR READING --------------------
-  let rdIdx = 0, rdAns = {}, rdChecked = false;
+  // -------------------- 4. CEFR & IELTS READING LIBRARY --------------------
+  let rdIdx = 0, rdAns = {}, rdChecked = false, rdTrack = 'cefr', rdLib = 'intermediate';
+  const RD_IELTS = [
+    { id: 'starter', label: 'Starter', file: 'library/reading/starter.html' },
+    { id: 'beginner', label: 'Beginner', file: 'library/reading/beginner.html' },
+    { id: 'elementary', label: 'Elementary', file: 'library/reading/elementary.html' },
+    { id: 'pre-intermediate', label: 'Pre-Int', file: 'library/reading/pre-intermediate.html' },
+    { id: 'intermediate', label: 'Intermediate (50)', file: 'library/reading/intermediate.html' },
+    { id: 'upper-intermediate', label: 'Upper-Int', file: 'library/reading/upper-intermediate.html' },
+  ];
+  const RD_CEFR = [
+    { id: 'starter', label: 'Starter', file: 'library/cefr-reading/starter.html' },
+    { id: 'elementary', label: 'Elementary', file: 'library/cefr-reading/elementary.html' },
+    { id: 'pre-intermediate', label: 'Pre-Int', file: 'library/cefr-reading/pre-intermediate.html' },
+    { id: 'intermediate', label: 'Intermediate', file: 'library/cefr-reading/intermediate.html' },
+    { id: 'upper-intermediate', label: 'Upper-Int', file: 'library/cefr-reading/upper-intermediate.html' },
+  ];
   function renderReading() {
+    const list = rdTrack === 'ielts' ? RD_IELTS : RD_CEFR;
+    const activeLib = rdTrack === 'quick' ? { id: 'quick', label: 'Tezkor CEFR', file: '' } : (list.find((x) => x.id === rdLib) || list[0]);
+    const barHtml = `
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;">
+        <div>
+          <span class="pill">📖 CEFR / MULTILEVEL (5) + IELTS READING (6)</span>
+          <h3 style="margin-top:8px;font-size:21px;">📖 ${rdTrack === 'ielts' ? 'IELTS Reading' : rdTrack === 'cefr' ? 'CEFR / Multilevel Reading' : 'Tezkor CEFR Reading'}: ${esc(activeLib.label)}</h3>
+        </div>
+        ${activeLib.file ? `<a class="btn btn-gold btn-sm" href="${activeLib.file}" target="_blank" rel="noopener">↗ To‘liq ekranda ochish</a>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+        <button class="btn btn-sm ${rdTrack === 'cefr' ? 'btn-gold' : 'btn-ghost'}" data-rdtrack="cefr">🇺🇿 CEFR / Multilevel (5 daraja)</button>
+        <button class="btn btn-sm ${rdTrack === 'ielts' ? 'btn-gold' : 'btn-ghost'}" data-rdtrack="ielts">🎓 IELTS Reading (6 daraja)</button>
+        <button class="btn btn-sm ${rdTrack === 'quick' ? 'btn-gold' : 'btn-ghost'}" data-rdtrack="quick">⚡ Tezkor mashq</button>
+      </div>
+      ${rdTrack !== 'quick' ? `
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          ${list.map((x) => `<button class="btn btn-sm ${x.id === activeLib.id ? 'btn-primary' : 'btn-ghost'}" data-rdlib="${x.id}">${esc(x.label)}</button>`).join('')}
+        </div>
+      ` : ''}
+    `;
+    if (activeLib.file) {
+      stage.innerHTML = barHtml + `<iframe src="${activeLib.file}" title="Reading ${esc(activeLib.label)}" style="width:100%;height:760px;border:1px solid var(--border);border-radius:16px;background:#fff;"></iframe>`;
+      stage.querySelectorAll('[data-rdtrack]').forEach((b) => b.onclick = () => { rdTrack = b.dataset.rdtrack; renderReading(); });
+      stage.querySelectorAll('[data-rdtrack]').forEach((b) => b.onclick = () => { rdTrack = b.dataset.rdtrack; renderReading(); });
+    stage.querySelectorAll('[data-rdlib]').forEach((b) => b.onclick = () => { rdLib = b.dataset.rdlib; renderReading(); });
+      return;
+    }
+
     const item = window.HT_READING[rdIdx];
-    stage.innerHTML = `
+    stage.innerHTML = barHtml + `
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
         <div>
           <span class="pill">${esc(item.level)}</span>
-          <h3 style="margin-top:8px;font-size:21px;">📖 ${esc(item.title)}</h3>
+          <h3 style="margin-top:8px;font-size:19px;">${esc(item.title)}</h3>
         </div>
         <div style="display:flex;gap:6px;">
           ${window.HT_READING.map((_, i) => `<button class="btn btn-sm ${i === rdIdx ? 'btn-primary' : 'btn-ghost'}" data-rd="${i}">Matn ${i + 1}</button>`).join('')}
@@ -268,6 +312,8 @@
         <button class="btn btn-ghost" id="rd-reset">🔄 Qayta</button>
       </div>
     `;
+    stage.querySelectorAll('[data-rdtrack]').forEach((b) => b.onclick = () => { rdTrack = b.dataset.rdtrack; renderReading(); });
+    stage.querySelectorAll('[data-rdlib]').forEach((b) => b.onclick = () => { rdLib = b.dataset.rdlib; renderReading(); });
     stage.querySelectorAll('[data-rd]').forEach((b) => b.onclick = () => {
       rdIdx = Number(b.dataset.rd); rdAns = {}; rdChecked = false; renderReading();
     });
@@ -365,19 +411,47 @@
     a.click();
   }
 
-  // -------------------- 8. MULTILEVEL WRITING LAB --------------------
-  let wrIdx = 0, wrText = '', wrShowModel = false, wrTimerSec = 40 * 60, wrInterval = null;
+  // -------------------- 8. MULTILEVEL & IELTS WRITING LIBRARY --------------------
+  let wrIdx = 0, wrText = '', wrShowModel = false, wrTimerSec = 40 * 60, wrInterval = null, wrLib = 'multilevel';
+  const WR_LIBS = [
+    { id: 'starter', label: 'Starter', file: 'library/writing/starter.html' },
+    { id: 'elementary', label: 'Elementary', file: 'library/writing/elementary.html' },
+    { id: 'pre-intermediate', label: 'Pre-Int', file: 'library/writing/pre-intermediate.html' },
+    { id: 'intermediate', label: 'Intermediate', file: 'library/writing/intermediate.html' },
+    { id: 'upper-intermediate', label: 'Upper-Int', file: 'library/writing/upper-intermediate.html' },
+    { id: 'multilevel', label: 'Multilevel Full', file: 'library/writing/multilevel.html' },
+    { id: 'quick', label: 'Tezkor Lab', file: '' },
+  ];
   function renderWriting() {
+    const activeW = WR_LIBS.find((x) => x.id === wrLib) || WR_LIBS[5];
+    const barHtml = `
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
+        <div>
+          <span class="pill">📝 IELTS & MULTILEVEL WRITING KUTUBXONASI • 6 DARAJA</span>
+          <h3 style="margin-top:8px;font-size:21px;">📝 Writing: ${esc(activeW.label)}</h3>
+        </div>
+        ${activeW.file ? `<a class="btn btn-gold btn-sm" href="${activeW.file}" target="_blank" rel="noopener">↗ To‘liq ekranda ochish</a>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+        ${WR_LIBS.map((x) => `<button class="btn btn-sm ${x.id === wrLib ? 'btn-primary' : 'btn-ghost'}" data-wrlib="${x.id}">${esc(x.label)}</button>`).join('')}
+      </div>
+    `;
+    if (activeW.file) {
+      stage.innerHTML = barHtml + `<iframe src="${activeW.file}" title="IELTS Writing ${esc(activeW.label)}" style="width:100%;height:760px;border:1px solid var(--border);border-radius:16px;background:#fff;"></iframe>`;
+      stage.querySelectorAll('[data-wrlib]').forEach((b) => b.onclick = () => { wrLib = b.dataset.wrlib; renderWriting(); });
+      return;
+    }
+
     const w = window.HT_WRITING[wrIdx];
     const words = wrText.trim() ? wrText.trim().split(/\s+/).length : 0;
     const pct = Math.min(100, Math.round((words / w.minWords) * 100));
     const mm = String(Math.floor(wrTimerSec / 60)).padStart(2, '0');
     const ss = String(wrTimerSec % 60).padStart(2, '0');
-    stage.innerHTML = `
+    stage.innerHTML = barHtml + `
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
         <div>
           <span class="pill">${esc(w.task)}</span>
-          <h3 style="margin-top:8px;font-size:21px;">📝 ${esc(w.title)}</h3>
+          <h3 style="margin-top:8px;font-size:19px;">${esc(w.title)}</h3>
         </div>
         <div style="display:flex;gap:6px;">
           ${window.HT_WRITING.map((x, i) => `<button class="btn btn-sm ${i === wrIdx ? 'btn-primary' : 'btn-ghost'}" data-wr="${i}">Task ${i + 1}</button>`).join('')}
@@ -404,6 +478,7 @@
       </div>
       ${wrShowModel ? `<div class="fb-box ok" style="margin-top:12px;white-space:pre-line;"><b>⭐ Band 8.0 Model Answer:</b>\n\n${esc(w.model)}</div>` : ''}
     `;
+    stage.querySelectorAll('[data-wrlib]').forEach((b) => b.onclick = () => { wrLib = b.dataset.wrlib; renderWriting(); });
     stage.querySelectorAll('[data-wr]').forEach((b) => b.onclick = () => { wrIdx = Number(b.dataset.wr); wrShowModel = false; renderWriting(); });
     stage.querySelector('#wr-area').oninput = (e) => { wrText = e.target.value; renderWriting(); const a = stage.querySelector('#wr-area'); a.focus(); a.setSelectionRange(a.value.length, a.value.length); };
     stage.querySelectorAll('[data-lw]').forEach((b) => b.onclick = () => { wrText = (wrText ? wrText + ' ' : '') + b.dataset.lw + ' '; renderWriting(); });

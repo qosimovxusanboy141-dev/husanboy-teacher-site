@@ -1,0 +1,1273 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="author" content="Qosimov Husanboy Madaminjon oʻgʻli">
+<meta name="copyright" content="© 2026 Qosimov Husanboy Madaminjon oʻgʻli">
+<meta name="theme-color" content="#e9edf1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+<style>body{margin:0;font-size:15px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Starter Writing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Onest:wght@400;500;600;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+
+/* Layout: a five-step level ladder over an exam-sheet workspace; passage on the left, questions on the right, sticky action bar below */
+:root{
+  --bg:#e9edf1; --paper:#ffffff; --ink:#16202b; --muted:#5a6672; --line:#d3dae2; --soft:#f4f6f8;
+  --ok:#17704a; --ok-bg:#e1f2e8; --bad:#ae3228; --bad-bg:#fbe6e3; --mark:#ffec9e;
+  --l1:#b27a00; --l2:#c9561a; --l3:#b02e3c; --l4:#3949a8; --l5:#6a2c7a;
+  --lvl:var(--l1);
+  --f-ui:"Onest", "Segoe UI", system-ui, sans-serif;
+  --f-read:"Literata", Georgia, "Times New Roman", serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10151c; --paper:#19202a; --ink:#e5e9ee; --muted:#9aa5b1; --line:#2d3746; --soft:#1f2731;
+    --ok:#5fd09a; --ok-bg:#16352a; --bad:#ff9186; --bad-bg:#3e1d1b; --mark:#5c4b0c;
+    --l1:#e6b23c; --l2:#f08d50; --l3:#ef7380; --l4:#8f9ff3; --l5:#c792d8;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10151c; --paper:#19202a; --ink:#e5e9ee; --muted:#9aa5b1; --line:#2d3746; --soft:#1f2731;
+  --ok:#5fd09a; --ok-bg:#16352a; --bad:#ff9186; --bad-bg:#3e1d1b; --mark:#5c4b0c;
+  --l1:#e6b23c; --l2:#f08d50; --l3:#ef7380; --l4:#8f9ff3; --l5:#c792d8;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--lvl);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:22px 8px;display:flex;flex-direction:column;gap:18px}
+
+/* header */
+.brand h1{margin:0;font-weight:800;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.02em;text-wrap:balance}
+.brand p{margin:4px 0 0;color:var(--muted);max-width:70ch}
+
+/* ladder */
+.ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:end}
+.step{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;text-align:left;
+  min-height:calc(66px + var(--i) * 16px);padding:10px 12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);cursor:pointer;
+  transition:border-color .2s, background .2s}
+.step::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--c)}
+.step:hover{border-color:var(--c)}
+.step[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 13%,var(--paper))}
+.step .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.step .nm{font-weight:700;line-height:1.2}
+.step .cf{font-size:12px;color:var(--c);font-weight:600}
+.step .done{position:absolute;top:8px;right:10px;font-size:11px;color:var(--muted)}
+
+/* info */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 20px;margin:0;padding:14px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.facts dt{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:2px 0 0;font-weight:600}
+.facts dd .mono{color:var(--lvl);font-size:13px}
+
+/* results */
+.results{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px 28px;align-items:center;padding:18px 20px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.score{display:flex;flex-direction:column;align-items:flex-start}
+.score .big{font-size:52px;font-weight:800;line-height:1;color:var(--lvl);font-variant-numeric:tabular-nums}
+.score .of{color:var(--muted);font-weight:600}
+.score .pct{font-family:var(--f-mono);font-size:13px;margin-top:4px}
+.rbody{display:flex;flex-direction:column;gap:12px;min-width:0}
+.rmsg{margin:0;font-weight:500;max-width:62ch}
+.pbars{display:grid;gap:6px}
+.prow{display:grid;grid-template-columns:56px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:13px}
+.track{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;border:1px solid var(--line)}
+.track span{display:block;height:100%;background:var(--lvl)}
+.rbody .btn{align-self:flex-start}
+
+/* tabs */
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.tab{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 14px;font-weight:600;white-space:nowrap;cursor:pointer;display:flex;gap:8px;align-items:center}
+.tab .cnt{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab[aria-selected="true"] .cnt{color:var(--paper);opacity:.75}
+
+/* exam head */
+.qhead{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.qrange{font-weight:800;font-style:italic;font-size:16px}
+.qhead .instr{margin:0;font-style:italic;font-weight:600;max-width:80ch}
+.qhead .uzinstr{margin:0;color:var(--muted);font-size:13.5px;max-width:80ch}
+
+.paper{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px 24px}
+.ttl{margin:0 0 12px;font-family:var(--f-read);font-weight:600;text-align:center;color:var(--lvl);letter-spacing:.05em;text-transform:uppercase;font-size:17px;text-wrap:balance}
+.reading p{font-family:var(--f-read);font-size:16.5px;line-height:1.85;margin:0 0 12px;max-width:70ch}
+.reading p:last-child{margin-bottom:0}
+
+/* gaps */
+.gapwrap{display:inline-flex;align-items:baseline;gap:4px;white-space:nowrap}
+.gn{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--lvl)}
+.gi{width:7.2em;border:none;border-bottom:2px dotted var(--muted);background:var(--soft);border-radius:3px 3px 0 0;padding:0 4px;font-family:var(--f-ui);font-size:15px;line-height:1.5}
+select.gi{width:auto;min-width:6.5em;cursor:pointer}
+.gi:focus{outline:none;border-bottom:2px solid var(--lvl);background:color-mix(in srgb,var(--lvl) 12%,var(--paper))}
+.gi.ok{border-bottom:2px solid var(--ok);background:var(--ok-bg)}
+.gi.bad{border-bottom:2px solid var(--bad);background:var(--bad-bg);text-decoration:line-through;text-decoration-color:var(--bad)}
+.gi:disabled{opacity:1;color:var(--ink)}
+.corr{font-family:var(--f-ui);font-size:13px;font-weight:700;color:var(--ok)}
+.corr::before{content:"→ "}
+.bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 16px;padding:10px;border:1.5px solid var(--ink);border-radius:4px}
+.bank span{font-weight:600;padding:2px 10px;border-radius:99px;background:var(--soft)}
+
+/* glossary + evidence */
+.gl{background:none;border:none;padding:0;border-bottom:1.5px dashed color-mix(in srgb,var(--lvl) 75%,transparent);cursor:help;font-family:inherit;font-size:inherit;line-height:inherit}
+.gl.open::after{content:" (" attr(data-t) ")";font-family:var(--f-ui);font-size:.8em;font-weight:600;color:var(--lvl)}
+mark.ev{background:transparent;color:inherit;border-radius:2px}
+mark.ev.on{background:var(--mark);box-shadow:0 0 0 2px var(--mark)}
+mark.ev.flash{animation:flash 1.8s ease-out}
+@keyframes flash{0%,55%{background:var(--mark);box-shadow:0 0 0 4px var(--mark)}100%{background:transparent;box-shadow:none}}
+
+/* split */
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
+.pane-text{position:sticky;top:12px;max-height:calc(100vh - 110px);overflow:auto;border-radius:6px}
+.pane-side{position:sticky;top:12px}
+.pane-q{min-width:0}
+
+.optbox{border:1.5px solid var(--ink);border-radius:4px;padding:12px 14px;background:var(--paper);display:flex;flex-direction:column;gap:6px}
+.obh{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.orow{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px}
+.orow .k{font-family:var(--f-mono);font-weight:600;color:var(--lvl)}
+
+.num{font-family:var(--f-mono);font-weight:600;font-size:13px;min-width:24px;height:24px;padding:0 4px;display:inline-flex;align-items:center;justify-content:center;border-radius:5px;background:var(--ink);color:var(--paper);flex:none}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;padding:14px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:none;padding-top:0}
+.notice{font-family:var(--f-read);font-size:15.5px;line-height:1.7;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.pick{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13.5px;color:var(--muted)}
+.si{padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);min-width:72px;cursor:pointer;font-weight:600}
+.si.ok{border-color:var(--ok);background:var(--ok-bg)}
+.si.bad{border-color:var(--bad);background:var(--bad-bg)}
+.si:disabled{opacity:1;cursor:default}
+
+.para{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.paras{display:flex;flex-direction:column;gap:12px}
+.phead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.rom{font-family:var(--f-read);font-weight:600;color:var(--lvl);min-width:26px}
+.para p{margin:0;font-family:var(--f-read);font-size:15.5px;line-height:1.75}
+
+.ghead{margin:0 0 6px;font-style:italic;font-weight:600}
+.ghead b{font-style:italic}
+.ghead + .q{border-top:none}
+.q{padding:14px 0;border-top:1px solid var(--line)}
+.qgroup{margin-bottom:20px}
+.qt{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.opts{display:grid;gap:6px;margin-top:10px;padding-left:34px}
+.opts.tf{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--paper);transition:border-color .15s}
+.opt:hover{border-color:var(--muted)}
+.opt input{accent-color:var(--lvl);margin:3px 0 0}
+.opt .ol{font-family:var(--f-mono);font-weight:600;color:var(--lvl)}
+.opt:has(input:checked){border-color:var(--lvl);background:color-mix(in srgb,var(--lvl) 10%,var(--paper))}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt:has(input:disabled){cursor:default}
+
+.summary{background:var(--paper);border:1.5px solid var(--ink);border-radius:4px;padding:14px 16px;margin:6px 0 4px}
+.summary p{margin:0;font-family:var(--f-read);font-size:15.5px;line-height:2}
+
+.qlist{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.qrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start}
+.qrow:empty{display:none}
+
+.fb{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:14px}
+.qrow .fb{margin-top:0}
+.fb.ok{background:var(--ok-bg)}
+.fb.bad{background:var(--bad-bg)}
+.fb > b:first-child{color:var(--ok)}
+.fb.bad > b:first-child{color:var(--bad)}
+.fb p{margin:4px 0 0}
+.seeev,.hint{background:none;border:1px dashed var(--lvl);color:var(--lvl);border-radius:999px;padding:3px 11px;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px}
+.qt + .hint,.opts + .hint{margin-left:34px}
+.hinted{margin-top:8px;font-size:13.5px;color:var(--muted)}
+.opts + .hinted,.opts + .fb{margin-left:34px}
+
+/* bar */
+.bar{position:sticky;bottom:0;margin-top:24px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.bar-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.bar-l{color:var(--muted)}
+.bar-l b{color:var(--ink)}
+.bar-r{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.warn{font-weight:600;color:var(--bad)}
+.btn{font-weight:600;border-radius:10px;padding:10px 16px;border:1px solid var(--line);background:var(--paper);cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+@media (max-width:860px){
+  .split{grid-template-columns:1fr}
+  .pane-text,.pane-side{position:static;max-height:none;overflow:visible}
+  .pane-side{order:-1}
+}
+@media (max-width:560px){
+  .step{padding:8px 7px 12px;min-height:calc(56px + var(--i) * 11px)}
+  .step .lbl{display:none}
+  .step .nm{font-size:12.5px;word-break:break-word}
+  .step .done{position:static;font-size:10.5px}
+  .paper{padding:16px}
+  .results{grid-template-columns:1fr}
+  .opts{padding-left:0}
+  .qt + .hint,.opts + .hint,.opts + .hinted,.opts + .fb{margin-left:0}
+  .reading p{font-size:16px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+
+  .author{margin:0 0 22px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--paper);display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:4px;grid-template-rows:auto auto auto 1fr;align-content:start;align-items:start}
+  .author .ph{grid-column:1;grid-row:1/span 4;width:72px;height:72px;border-radius:50%;background:var(--lvl,#888);color:#fff;display:grid;place-items:center;font-weight:700;font-size:22px;border:2px solid var(--line)}
+  .author img.ph{width:150px;height:auto;border-radius:12px;object-fit:contain;background:var(--soft);display:block}
+  .author .lb,.author .an,.author ul,.author .cr{grid-column:2}
+  .author .lb{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .author .an{font-weight:700;font-size:20px;line-height:1.3}
+  .author ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+  .author li a{display:inline-flex;gap:6px;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:14px;background:var(--soft)}
+  .author li a:hover{border-color:var(--lvl)}
+  .author .cr{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.5;border-top:1px solid var(--line);padding-top:10px;max-width:70ch}
+  .aumini{margin:0 0 12px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);font-size:12.5px;color:var(--muted);line-height:1.6;text-align:center}
+  .aumini a{color:var(--ink);text-decoration:none;white-space:nowrap}
+  .aumini[hidden]{display:none}
+  @media (max-width:520px){.author{grid-template-columns:1fr;grid-template-rows:none;justify-items:center;text-align:center}.author .ph,.author .lb,.author .an,.author ul,.author .cr{grid-column:1;grid-row:auto}.author img.ph{width:min(190px,52vw);margin-bottom:8px}.author .an{font-size:17px}.author ul{justify-content:center}}
+
+/* ---- writing course ---- */
+body{margin:0}
+[hidden]{display:none!important}
+.brand{display:flex;flex-direction:column;gap:6px}
+.brand .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--lvl);font-weight:600}
+.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 20px;margin:0;padding:14px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.overview dt{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.overview dd{margin:2px 0 0;font-weight:600}
+.howto{margin:0;padding:14px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 20px}
+.howto div{display:flex;gap:10px;align-items:flex-start}
+.howto .n{font-family:var(--f-mono);font-weight:600;color:var(--paper);background:var(--lvl);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;flex:none;font-size:13px}
+.howto b{display:block}
+.howto span{color:var(--muted);font-size:14px}
+.band{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.bandh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.bandh h2{margin:0;font-size:18px;font-weight:800}
+.bandh .rng{font-family:var(--f-mono);font-size:12px;color:var(--lvl);font-weight:600}
+.bandh p{margin:0;color:var(--muted);flex-basis:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.lcard{display:flex;flex-direction:column;gap:3px;text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);cursor:pointer;min-height:104px}
+.lcard:hover{border-color:var(--lvl)}
+.lcard .tn{font-family:var(--f-mono);font-size:12px;color:var(--lvl);font-weight:600}
+.lcard .tt{font-weight:700;line-height:1.3}
+.lcard .tu{font-size:13px;color:var(--muted);line-height:1.35}
+.lcard .st{margin-top:auto;padding-top:6px;font-size:12px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.lcard .st i{font-style:normal}
+.lcard .st .ok{color:var(--ok);font-weight:600}
+.tvhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.tvhead h2{margin:0;font-size:22px;font-weight:800;flex-basis:100%;text-wrap:balance}
+.tvhead h2 .mono{color:var(--lvl);font-size:16px;margin-right:6px}
+.tvhead .sub{flex-basis:100%;color:var(--muted);margin-top:-4px}
+.back{background:none;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer}
+.back:hover{border-color:var(--muted)}
+.tabs{position:sticky;top:0;z-index:4;background:var(--bg);padding:6px 0}
+.tab .n{font-family:var(--f-mono);font-size:12px;opacity:.7}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:18px}
+.sheet h3{margin:0;font-size:18px;font-weight:800}
+.tb{display:flex;flex-direction:column;gap:10px}
+.tb + .tb{border-top:1px solid var(--line);padding-top:18px}
+.tb p{margin:0;max-width:72ch}
+.tb .en{font-family:var(--f-read);font-size:16.5px}
+.exs{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.exs li{display:flex;gap:10px;align-items:baseline;padding:8px 12px;border-radius:8px;background:var(--soft)}
+.exs li .mk{font-weight:800;flex:none;width:1.2em;text-align:center}
+.exs li.y .mk{color:var(--ok)} .exs li.x .mk{color:var(--bad)}
+.exs li.x .en{text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--bad) 60%,transparent)}
+.exs li .uz{display:block;font-size:13px;color:var(--muted)}
+.exs li .en{white-space:pre-line}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tblw{overflow-x:auto}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft);font-weight:700}
+.tbl td.en{font-family:var(--f-read)}
+.phr{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.phr li{padding:6px 11px;border:1px solid var(--line);border-radius:999px;font-family:var(--f-read);background:var(--soft)}
+.tip{padding:10px 14px;border-left:4px solid var(--lvl);background:color-mix(in srgb,var(--lvl) 9%,var(--paper));border-radius:6px}
+.tip b{color:var(--lvl)}
+.frame{font-family:var(--f-read);white-space:pre-wrap;padding:12px 14px;border:1px dashed var(--line);border-radius:8px;background:var(--soft);line-height:1.7}
+.frame .sl{background:color-mix(in srgb,var(--lvl) 18%,transparent);border-radius:4px;padding:0 4px;font-family:var(--f-ui);font-size:13px}
+.qlist{display:flex;flex-direction:column;gap:0}
+.qx{display:flex;flex-direction:column;gap:8px;padding:16px 0;border-top:1px solid var(--line)}
+.qx:first-child{border-top:none;padding-top:0}
+.qh{display:flex;gap:10px;align-items:baseline}
+.qh .num{font-family:var(--f-mono);font-weight:600;font-size:12.5px;background:var(--ink);color:var(--paper);border-radius:6px;padding:1px 7px;flex:none}
+.qh .ins{font-weight:600}
+.qbody{padding-left:34px;display:flex;flex-direction:column;gap:8px}
+.qtext{font-family:var(--f-read);font-size:17px;line-height:1.9}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid var(--line);border-radius:9px;cursor:pointer;background:var(--paper)}
+.opt input{margin-top:4px;accent-color:var(--lvl)}
+.opt span{font-family:var(--f-read);font-size:16px}
+.opt:has(input:checked){border-color:var(--lvl);background:color-mix(in srgb,var(--lvl) 7%,var(--paper))}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+input.gi{font-family:var(--f-read);font-size:16px;width:7.5em;padding:3px 8px;border:none;border-bottom:2px solid var(--muted);background:var(--soft);border-radius:4px 4px 0 0}
+input.gi:focus{outline:none;border-bottom-color:var(--lvl)}
+input.gi.right,textarea.ri.right,.ans.right,select.mi.right{border-color:var(--ok);background:var(--ok-bg)}
+input.gi.wrong,textarea.ri.wrong,.ans.wrong,select.mi.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--f-read);font-size:16px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);cursor:pointer;min-height:38px}
+.chip:hover{border-color:var(--lvl)}
+.chip.used{visibility:hidden}
+.ans{min-height:50px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px;border:2px dashed var(--line);border-radius:10px;background:var(--soft)}
+.ans:empty::before{content:attr(data-ph);color:var(--muted);font-size:14px;padding-left:6px}
+.ans .chip{background:color-mix(in srgb,var(--lvl) 10%,var(--paper));border-color:color-mix(in srgb,var(--lvl) 40%,var(--line))}
+.words{display:flex;flex-wrap:wrap;gap:4px 2px;font-family:var(--f-read);font-size:17px}
+.wd{border:1px solid transparent;background:none;border-radius:6px;padding:3px 6px;cursor:pointer;font:inherit}
+.wd:hover{border-color:var(--line);background:var(--soft)}
+.wd.sel{border-color:var(--lvl);background:color-mix(in srgb,var(--lvl) 15%,var(--paper))}
+.wd.right{border-color:var(--ok);background:var(--ok-bg)}
+.wd.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.wd.miss{border-color:var(--ok);border-style:dashed}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 12px;align-items:center;padding:6px 0}
+.mrow .ml{font-family:var(--f-read);font-size:16px}
+select.mi{font-size:15px;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);width:100%}
+textarea.ri{width:100%;font-family:var(--f-read);font-size:16px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--paper);resize:vertical;min-height:52px}
+.fb{font-size:14px;padding:8px 12px;border-radius:8px;background:var(--soft);display:flex;flex-direction:column;gap:2px}
+.fb .ca{font-weight:600}
+.fb .ca.ok{color:var(--ok)} .fb .ca.no{color:var(--bad)}
+.fb .ca .en{font-family:var(--f-read)}
+.result{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:16px 18px;border-radius:12px;border:1px solid var(--line);background:var(--paper)}
+.result .big{font-size:40px;font-weight:800;font-family:var(--f-mono);line-height:1}
+.result p{margin:0;max-width:60ch}
+/* writing */
+.task{display:flex;flex-direction:column;gap:12px}
+.task + .task{border-top:1px solid var(--line);padding-top:20px}
+.task h3 .mono{color:var(--lvl);font-size:14px;margin-right:6px}
+.prompt{font-family:var(--f-read);font-size:16.5px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--soft)}
+.prompt p{margin:0 0 8px} .prompt p:last-child{margin:0}
+.prompt ul{margin:6px 0;padding-left:22px}
+.stim{font-family:var(--f-read);font-size:16px;white-space:pre-wrap;padding:14px 16px;border-left:4px solid var(--muted);background:var(--paper);border-radius:6px;box-shadow:0 0 0 1px var(--line)}
+.wbox{display:flex;flex-direction:column;gap:8px}
+textarea.wa{width:100%;min-height:240px;font-family:var(--f-read);font-size:17px;line-height:1.7;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--paper);resize:vertical}
+textarea.wa:focus{outline:2px solid var(--lvl);outline-offset:1px}
+.wmeta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.wc{font-family:var(--f-mono);font-weight:600}
+.wc.low{color:var(--muted)} .wc.ok{color:var(--ok)} .wc.hi{color:var(--bad)}
+.checks{display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none}
+.checks li{display:flex;gap:8px;align-items:baseline;font-size:14px}
+.checks li::before{content:"○";font-weight:800;color:var(--muted);width:1em;flex:none;text-align:center}
+.checks li.y::before{content:"✔";color:var(--ok)}
+.checks li.x::before{content:"✘";color:var(--bad)}
+.checks li .det{color:var(--muted)}
+details.dd{border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+details.dd summary{cursor:pointer;padding:11px 14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:8px}
+details.dd summary::after{content:"+";font-family:var(--f-mono);color:var(--lvl)}
+details.dd[open] summary::after{content:"–"}
+details.dd .in{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px}
+.model{font-family:var(--f-read);font-size:16.5px;white-space:pre-wrap;line-height:1.7;padding:12px 14px;background:var(--soft);border-radius:8px}
+.model .note{font-family:var(--f-ui);font-size:13px;color:var(--muted)}
+.self{display:flex;flex-direction:column;gap:6px}
+.self label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:6px 8px;border-radius:8px}
+.self label:hover{background:var(--soft)}
+.self input{margin-top:4px;accent-color:var(--ok);width:17px;height:17px;flex:none}
+.timer{font-family:var(--f-mono);font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+.timer.end{color:var(--bad);border-color:var(--bad)}
+.bar .btn:disabled{opacity:.5;cursor:default}
+@media (max-width:560px){
+  .wrap{padding-block:14px 8px;gap:14px}
+  .brand h1{font-size:24px}
+  .tvhead h2{font-size:19px}
+  .overview{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;gap:10px 14px}
+  .grid{grid-template-columns:1fr 1fr}
+  .lcard{padding:10px;min-height:96px}
+  .lcard .tu{display:none}
+  .sheet{padding:16px 14px;border-radius:10px}
+  .qbody{padding-left:0}
+  .mrow{grid-template-columns:1fr;gap:4px;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .bar{padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px))}
+  .bar-l{font-size:13px;flex-basis:100%}
+  .bar-r{width:100%}
+  .bar-r .btn{flex:1;padding:11px 10px}
+  textarea.wa{min-height:220px;font-size:16px;padding:12px}
+  .tab{padding:8px 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="app">
+<section class="author" id="author" aria-label="Muallif"><img class="ph" src="data:image/jpeg;base64,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" alt="Qosimov Husanboy"><div class="lb">Muallif</div><div class="an">Qosimov Husanboy Madaminjon oʻgʻli</div><ul><li><a href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">Telegram: @Qosimov_Xusanboy</a></li><li><a href="https://instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">Instagram: xusanboy__qosimov</a></li><li><a href="tel:+998889977746">Tel: +998 88 997 77 46</a></li></ul><p class="cr">© 2026 Qosimov Husanboy Madaminjon oʻgʻli. Barcha huquqlar himoyalangan. Ushbu materiallarni muallifning ruxsatisiz nusxalash, tarqatish, sotish yoki oʻz nomidan foydalanish taqiqlanadi.</p></section><div class="aumini" id="aumini" hidden>© Qosimov Husanboy Madaminjon oʻgʻli · <a href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">Telegram @Qosimov_Xusanboy</a> · <a href="https://instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">Instagram</a> · <a href="tel:+998889977746">+998 88 997 77 46</a> · Ruxsatsiz tarqatish taqiqlanadi</div>
+<header class="brand" id="brand"></header>
+<main id="main" class="vstack" style="display:flex;flex-direction:column;gap:18px"></main>
+</div>
+<div class="bar" id="bar" hidden><div class="bar-in"><div class="bar-l" id="barL"></div><div class="bar-r" id="barR"></div></div></div>
+<script>
+const LEVEL = {"key": "starter", "name": "Starter", "cefr": "Pre-A1 – A1", "color": 1, "planned": 20, "words": "15–50 soʻz", "exam": "Asos: gap tuzish", "intro": "Inglizcha yozishni noldan boshlaydiganlar uchun. Bosh harf, tinish belgilari, soʻz tartibi va oddiy gaplardan boshlab oʻzingiz haqingizda qisqa matn yozishgacha.", "bands": [{"name": "Gap qurilishi", "from": 1, "to": 7, "desc": "Bosh harf, nuqta va soʻroq belgisi, soʻz tartibi, «to be», oʻzini tanishtirish."}, {"name": "Kundalik hayot", "from": 8, "to": 14, "desc": "Odamlarni tasvirlash, kun tartibi, inkor va soʻroq gaplar, uy va joylar."}, {"name": "Qisqa matnlar", "from": 15, "to": 20, "desc": "Vaqt, yoqtirish, qobiliyat, imlo, otkritka va 35–50 soʻzli paragraf."}]};
+const LESSONS = [];
+/* STARTER WRITING · 1–7 */
+LESSONS.push({ title:"Capital Letters", uz:"Bosh harflar: qachon katta harf yoziladi",
+  theory:[
+    {h:"1. Gap doim bosh harf bilan boshlanadi", p:"Ingliz tilida har bir gapning birinchi soʻzi katta harf bilan yoziladi – xuddi oʻzbek tilidagidek.",
+     ex:[[1,"My name is Dilnoza.","Mening ismim Dilnoza."],[0,"my name is Dilnoza."],[1,"She is a student.","U talaba."]]},
+    {h:"2. «I» (men) – doim katta harf", p:"«I» soʻzi gapning qayerida boʻlmasin, <b>doim katta</b> yoziladi. Bu oʻzbek oʻquvchilarining eng koʻp qiladigan xatosi.",
+     ex:[[1,"Aziz and I are friends.","Aziz va men doʻstmiz."],[0,"Aziz and i are friends."],[1,"I think I am right.","Menimcha, men haqman."]]},
+    {h:"3. Atoqli otlar ham katta harf bilan", p:"Quyidagilar har doim bosh harf bilan yoziladi. Diqqat: oʻzbek tilidan farqli ravishda <b>hafta kunlari, oylar, tillar va millatlar</b> ham katta yoziladi!",
+     enCol:1, tbl:[["Nima?","Misol","Oʻzbekcha"],["Ismlar","Aziz, Malika, Mr Karimov","Aziz, Malika"],["Shahar, davlat","Tashkent, Samarkand, Uzbekistan","Toshkent, Oʻzbekiston"],["Hafta kunlari","Monday, Friday, Sunday","dushanba (kichik!)"],["Oylar","January, May, September","yanvar (kichik!)"],["Tillar, millatlar","English, Uzbek, Russian","ingliz tili (kichik!)"]]},
+    {h:"4. Qaysi soʻzlar kichik yoziladi?", p:"Oddiy soʻzlar gapning oʻrtasida kichik harf bilan yoziladi: fasllar ham (<span class='en'>spring, summer, autumn, winter</span>).",
+     ex:[[1,"I go to school on Monday."],[0,"I go to School on monday."],[1,"We visit Bukhara in summer."],[0,"We visit bukhara in Summer."]],
+     tip:"Yozib boʻlgach, har bir gapning boshiga va har bir «I» ga qarab chiqing. Bu 10 soniya oladi, lekin koʻp ball saqlab qoladi."}],
+  ex:[
+    {k:"spot", t:"My brother and i live in Fergana.", bad:3, fix:"I", why:"«I» (men) doim katta harf bilan yoziladi."},
+    {k:"mc", q:"Qaysi gap toʻgʻri yozilgan?", o:["we speak uzbek at home.","We speak Uzbek at home.","We speak uzbek at Home."], a:1, why:"Gap boshi va til nomi (Uzbek) katta harf bilan, «home» esa oddiy soʻz."},
+    {k:"spot", t:"My birthday is in april.", bad:4, fix:"April.", why:"Oylar ingliz tilida doim katta harf bilan yoziladi."},
+    {k:"rewrite", t:"my name is aziz.", a:["My name is Aziz."], why:"Gap boshi (My) va ism (Aziz) katta harf bilan yoziladi."},
+    {k:"spot", t:"We have English on tuesday and Friday.", bad:4, fix:"Tuesday", why:"Hafta kunlari katta harf bilan yoziladi."},
+    {k:"mc", q:"Qaysi soʻz katta harf bilan yozilishi <b>shart emas</b>?", o:["london","winter","russian","sunday"], a:1, why:"Fasllar (winter, summer…) kichik harf bilan yoziladi. London, Russian, Sunday – katta."},
+    {k:"rewrite", t:"i am from samarkand.", a:["I am from Samarkand."], why:"«I» va shahar nomi katta harf bilan."},
+    {k:"order", w:["Tashkent.","in","I","live"], a:["I live in Tashkent."], why:"Gap «I» bilan boshlanadi, shahar nomi katta harf bilan, oxirida nuqta."},
+    {k:"spot", t:"Malika is from uzbekistan.", bad:3, fix:"Uzbekistan.", why:"Davlat nomlari katta harf bilan yoziladi."},
+    {k:"rewrite", t:"my friend and i study english on monday.", a:["My friend and I study English on Monday."], why:"My (gap boshi), I, English (til), Monday (hafta kuni) – hammasi katta."}],
+  task:{parts:[{words:[15,35],
+    prompt:"<p>Oʻzingiz haqingizda <b>4–5 ta gap</b> yozing:</p><ul><li>ismingiz</li><li>qaysi shahar va davlatdan ekansiz</li><li>qaysi tillarda gapirasiz</li><li>dam olish kuningiz qaysi kun</li></ul><p>Bosh harflarga alohida eʼtibor bering!</p>",
+    frame:"My name is ____.\nI am from ____, ____.\nI speak ____ and ____.\nMy favourite day is ____.",
+    checks:["caps","end","hasC::\\b(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\\b::Hafta kuni katta harf bilan yozilgan","hasC::\\b(Uzbek|English|Russian|Tajik|Kazakh|Korean|Turkish|Arabic|German|French|Chinese|Karakalpak)\\b::Til nomi katta harf bilan yozilgan"],
+    model:"My name is Dilnoza.\nI am from Namangan, Uzbekistan.\nI speak Uzbek and Russian.\nI am learning English now.\nMy favourite day is Sunday because I can sleep late.",
+    modelNote:"Diqqat: Dilnoza, Namangan, Uzbekistan, Uzbek, Russian, English, Sunday va har bir «I» – katta harf bilan."}],
+    self:["Har bir gap bosh harf bilan boshlanadi","«I» hamma joyda katta yozilgan","Ism, shahar, davlat katta harf bilan","Til va hafta kuni katta harf bilan","Har bir gap nuqta bilan tugaydi"]}
+});
+
+LESSONS.push({ title:"Full Stops and Question Marks", uz:"Nuqta, soʻroq va undov belgisi",
+  theory:[
+    {h:"1. Nuqta (.) – oddiy gap oxirida", p:"Darak gap (xabar beruvchi gap) nuqta bilan tugaydi. Nuqtadan keyin bitta boʻsh joy qoldiriladi va yangi gap katta harf bilan boshlanadi.",
+     ex:[[1,"I have a cat. Her name is Mimi."],[0,"I have a cat her name is Mimi."],[0,"I have a cat.her name is Mimi."]]},
+    {h:"2. Soʻroq belgisi (?) – savol oxirida", p:"Savol gap doim <b>?</b> bilan tugaydi. Savol koʻpincha <span class='en'>What, Where, When, Who, How, Do, Are, Is, Can</span> bilan boshlanadi.",
+     ex:[[1,"Where do you live?","Qayerda yashaysiz?"],[0,"Where do you live."],[1,"Are you a student?","Siz talabamisiz?"]]},
+    {h:"3. Undov belgisi (!) – kuchli his-tuygʻu", p:"Hayrat, quvonch yoki buyruqni kuchli ifodalash uchun ishlatiladi. Lekin ehtiyot boʻling: yozma ishda undovni juda koʻp ishlatmang.",
+     ex:[[1,"Happy birthday!"],[1,"What a beautiful city!"],[0,"I like football!!! It is great!!!"]]},
+    {h:"4. Boʻsh joy qoidasi", p:"Ingliz tilida tinish belgisidan <b>oldin</b> boʻsh joy qoʻyilmaydi, <b>keyin</b> esa bitta boʻsh joy qoʻyiladi.",
+     ex:[[1,"How are you? I am fine."],[0,"How are you ? I am fine ."]],
+     tip:"Har bir gapni oʻqib chiqing va oʻzingizdan soʻrang: «Bu savolmi yoki xabarmi?» Shunga qarab ? yoki . qoʻying."}],
+  ex:[
+    {k:"mc", q:"Qaysi belgi kerak? <span class='en'>What is your name__</span>", o:[".","?","!"], a:1, why:"«What» bilan boshlangan savol – soʻroq belgisi bilan tugaydi."},
+    {k:"mc", q:"Qaysi belgi kerak? <span class='en'>My sister is ten years old__</span>", o:[".","?","!"], a:0, why:"Bu oddiy xabar beruvchi gap – nuqta qoʻyiladi."},
+    {k:"rewrite", t:"i like apples they are sweet", a:["I like apples. They are sweet."], why:"Bu ikki alohida gap: har biri katta harf bilan boshlanib, nuqta bilan tugaydi."},
+    {k:"spot", t:"Do you like music.", bad:3, fix:"music?", why:"«Do» bilan boshlangan savol – oxirida ? boʻlishi kerak."},
+    {k:"mc", q:"Qaysi yozuv toʻgʻri?", o:["How old are you ?","How old are you?","How old are you."], a:1, why:"Savol belgisi soʻzga yopishib yoziladi, oldidan boʻsh joy qoʻyilmaydi."},
+    {k:"order", w:["you","Where","from?","are"], a:["Where are you from?"], why:"Savol soʻzi (Where) boshida, oxirida soʻroq belgisi."},
+    {k:"rewrite", t:"where is the bus station", a:["Where is the bus station?"], why:"Savol: bosh harf + soʻroq belgisi."},
+    {k:"match", items:[["What a nice day","!"],["Can you swim","?"],["We live in a big house","."]], why:"Hayrat – !, savol – ?, oddiy xabar – nuqta."},
+    {k:"rewrite", t:"hello my name is Bobur i am twelve", a:["Hello! My name is Bobur. I am twelve.","Hello. My name is Bobur. I am twelve."], why:"Uchta gap: Hello! (yoki Hello.) / My name is Bobur. / I am twelve."},
+    {k:"spot", t:"I have two brothers.They are students.", bad:3, fix:"brothers. They", why:"Nuqtadan keyin bitta boʻsh joy qoldiriladi."}],
+  task:{parts:[{words:[20,40],
+    prompt:"<p>Yangi sinfdoshingiz bilan tanishmoqchisiz. Unga <b>3 ta savol</b> va oʻzingiz haqingizda <b>3 ta gap</b> yozing.</p><p>Har bir savol <b>?</b>, har bir xabar <b>.</b> bilan tugasin.</p>",
+    frame:"Hello! My name is ____. I am ____ years old. I live in ____.\nWhat is your name? Where do you live? Do you like ____?",
+    checks:["caps","end","has::\\?[\\s\\S]*\\?[\\s\\S]*\\?::Kamida 3 ta savol belgisi (?)","has::\\.[\\s\\S]*\\.[\\s\\S]*\\.::Kamida 3 ta nuqta (.)","has::^(?![\\s\\S]*\\s[?.!])::Belgidan oldin boʻsh joy yoʻq"],
+    model:"Hello! My name is Sardor. I am thirteen years old. I live in Andijan with my family.\nWhat is your name? Where do you live? Do you like football?",
+    modelNote:"3 ta xabar gap (nuqta bilan) va 3 ta savol (soʻroq belgisi bilan). «Hello!» – salomlashishda undov ishlatish mumkin."}],
+    self:["Savollar ? bilan tugaydi","Xabar gaplar nuqta bilan tugaydi","Nuqtadan keyin yangi gap katta harf bilan boshlangan","Belgilardan oldin boʻsh joy yoʻq","Undov belgisini koʻp ishlatmadim"]}
+});
+
+LESSONS.push({ title:"Word Order", uz:"Soʻz tartibi: Ega + Kesim + Toʻldiruvchi",
+  theory:[
+    {h:"1. Eng muhim qoida: S + V + O", p:"Oʻzbek tilida fe'l odatda gap oxirida keladi: <i>Men olma yeyman</i>. Ingliz tilida esa fe'l <b>egadan keyin darhol</b> keladi:",
+     tbl:[["Ega (Subject)","Fe'l (Verb)","Toʻldiruvchi (Object)"],["I","eat","apples."],["My mother","cooks","plov."],["We","play","football."]], enCol:"all"},
+    {ex:[[1,"I eat apples.","Men olma yeyman."],[0,"I apples eat."],[1,"Aziz reads books.","Aziz kitob oʻqiydi."],[0,"Aziz books reads."]]},
+    {h:"2. Joy va vaqt – gap oxirida", p:"Joy (qayerda?) va vaqt (qachon?) odatda gap oxiriga qoʻyiladi. Tartib: <b>Kim + nima qiladi + nimani + qayerda + qachon</b>.",
+     ex:[[1,"I play football in the park on Sunday."],[0,"I on Sunday in the park football play."],[1,"She studies English at school every day."]]},
+    {h:"3. Egasiz gap boʻlmaydi", p:"Oʻzbek tilida «Talabaman» deyish mumkin, lekin ingliz tilida ega <b>albatta</b> boʻlishi kerak.",
+     ex:[[1,"I am a student."],[0,"Am a student."],[1,"It is cold today."],[0,"Is cold today."]],
+     tip:"Har bir gapda oʻzingizdan soʻrang: «Kim?» (ega) va «Nima qiladi?» (fe'l). Ikkalasi ham boʻlishi va yonma-yon turishi kerak."}],
+  ex:[
+    {k:"order", w:["like","I","tea."], a:["I like tea."], why:"Ega (I) + fe'l (like) + toʻldiruvchi (tea)."},
+    {k:"mc", q:"Qaysi gap toʻgʻri?", o:["My father a car drives.","My father drives a car.","Drives my father a car."], a:1, why:"S + V + O: My father + drives + a car."},
+    {k:"order", w:["plays","the","Malika","piano."], a:["Malika plays the piano."], why:"Kim? Malika. Nima qiladi? plays. Nimani? the piano."},
+    {k:"spot", t:"We English study at school.", bad:1, fix:"study English", why:"Fe'l (study) egadan keyin darhol keladi: We study English at school."},
+    {k:"order", w:["every","I","school","go","day.","to"], a:["I go to school every day."], why:"Kim + nima qiladi + qayerga + qachon."},
+    {k:"mc", q:"Qaysi gapda ega yetishmaydi?", o:["Is very hot today.","It is very hot today.","The sun is very hot."], a:0, why:"Ingliz tilida ega shart: «It is very hot today»."},
+    {k:"order", w:["in","lives","Bukhara.","My","grandmother"], a:["My grandmother lives in Bukhara."], why:"Ega (My grandmother) + fe'l (lives) + joy (in Bukhara)."},
+    {k:"rewrite", t:"I milk drink every morning.", a:["I drink milk every morning."], why:"Fe'l (drink) egadan keyin, vaqt (every morning) oxirida."},
+    {k:"order", w:["watch","on","We","TV","Saturday."], a:["We watch TV on Saturday."], why:"Ega + fe'l + toʻldiruvchi + vaqt."},
+    {k:"spot", t:"My brother football plays in the park.", bad:2, fix:"plays football", why:"Toʻgʻri tartib: My brother plays football in the park."}],
+  task:{parts:[{words:[20,40],
+    prompt:"<p>Oilangizdagi <b>4–5 kishi</b> nima qilishini yozing. Har bir gap <b>Kim + nima qiladi + nimani/qayerda</b> tartibida boʻlsin.</p><p>Masalan: <i>My mother cooks dinner.</i></p>",
+    frame:"My mother ____.\nMy father ____.\nMy brother / sister ____.\nI ____.",
+    checks:["caps","end","para::4::Kamida 4 ta gap (har biri yangi qatorda)"],
+    model:"My mother cooks dinner every evening.\nMy father works in a hospital.\nMy sister studies at university.\nMy little brother plays games on his phone.\nI read books in my room.",
+    modelNote:"Har bir gapda: ega (My mother) → fe'l (cooks) → toʻldiruvchi (dinner) → vaqt yoki joy."}],
+    self:["Har bir gapda ega bor","Fe'l egadan keyin darhol keladi","Joy va vaqt gap oxirida","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"The Verb «to be»", uz:"am / is / are – «boʻlmoq» fe'li",
+  theory:[
+    {h:"1. Oʻzbek tilida yoʻq, ingliz tilida shart", p:"Oʻzbek tilida «Men talabaman» deymiz – alohida fe'l kerak emas. Ingliz tilida esa <b>am / is / are</b> albatta yoziladi.",
+     ex:[[1,"I am a student.","Men talabaman."],[0,"I student."],[1,"She is happy.","U xursand."],[0,"She happy."]]},
+    {h:"2. Qaysi biri qachon?", tbl:[["Ega","Fe'l","Misol"],["I","am","I am tired."],["he / she / it","is","He is a doctor. It is big."],["you / we / they","are","We are friends. They are at home."]], enCol:"all"},
+    {h:"3. Koʻplikdagi otlar", p:"Bitta narsa – <b>is</b>, bir nechta narsa – <b>are</b>.",
+     ex:[[1,"My cat is black."],[1,"My cats are black."],[0,"My parents is teachers."]]},
+    {h:"4. Inkor va soʻroq", p:"Inkor: <b>not</b> qoʻshiladi. Soʻroq: am/is/are gap boshiga chiqadi.",
+     ex:[[1,"I am not hungry."],[1,"Is she your sister?"],[1,"Are they from Khiva?"],[0,"She is your sister?"]],
+     tip:"Sifat (happy, tall) yoki kasb (teacher) oldidan «am/is/are» qoʻyishni unutmang – bu Starter darajasidagi eng koʻp uchraydigan xato."}],
+  ex:[
+    {k:"gap", t:"I <gap/> fourteen years old.", a:[["am"]], why:"I bilan doim «am»."},
+    {k:"gap", t:"My sister <gap/> a nurse.", a:[["is"]], why:"My sister = she → «is»."},
+    {k:"gap", t:"Aziz and Bobur <gap/> in the same class.", a:[["are"]], why:"Ikki kishi = they → «are»."},
+    {k:"spot", t:"My grandfather very kind.", bad:1, fix:"grandfather is", why:"Sifat oldidan «is» kerak: My grandfather is very kind."},
+    {k:"mc", q:"Toʻgʻri variantni tanlang.", o:["The apples is red.","The apples are red.","The apples am red."], a:1, why:"Apples – koʻplik → are."},
+    {k:"order", w:["teacher?","your","Is","mother","a"], a:["Is your mother a teacher?"], why:"Soʻroqda «Is» gap boshiga chiqadi."},
+    {k:"gap", t:"We <gap/> not at home now. We <gap/> at the park.", a:[["are"],["are"]], why:"We → are."},
+    {k:"rewrite", t:"My city big and beautiful.", a:["My city is big and beautiful."], why:"«is» tushib qolgan: My city is big and beautiful."},
+    {k:"spot", t:"They is my best friends.", bad:1, fix:"are", why:"They → are."},
+    {k:"match", items:[["I","am"],["The weather","is"],["My parents","are"],["You","are not"]], why:"I – am; bitta narsa – is; koʻplik va you – are."}],
+  task:{parts:[{words:[20,40],
+    prompt:"<p>Eng yaqin doʻstingizni tasvirlang: ismi, yoshi, qayerdan ekani, qanday odam ekani. Har bir gapda <b>am / is / are</b> ishlating.</p>",
+    frame:"My best friend is ____.\nHe / She is ____ years old.\nHe / She is from ____.\nHe / She is very ____ and ____.\nWe are ____.",
+    checks:["caps","end","link::is|are|am@2::«am / is / are» ishlatilgan (kamida 2 xil)"],
+    model:"My best friend is Kamola. She is fifteen years old. She is from Jizzakh. She is very clever and funny. Her brothers are tall. We are classmates, and we are always together.",
+    modelNote:"is (she, her brother…), are (we, her brothers) – egaga qarab tanlangan."}],
+    self:["Har bir sifat yoki kasb oldida am/is/are bor","I – am, he/she – is, we/they – are","Koʻplik otlar bilan are ishlatdim","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"Introducing Yourself", uz:"Oʻzini tanishtirish: tayyor qoliplar",
+  theory:[
+    {h:"1. Tanishtirishning asosiy iboralari", p:"Quyidagi qoliplarni yod oling – ular deyarli har bir yozma topshiriqda kerak boʻladi.",
+     enCol:0, tbl:[["Ibora","Oʻzbekcha"],["My name is …","Mening ismim …"],["I am … years old.","Men … yoshdaman."],["I am from … / I live in …","Men …danman / …da yashayman."],["I am a student at …","Men … da oʻqiyman."],["My hobby is … / I like …","Mening sevimli mashgʻulotim …"],["I want to be a …","Men … boʻlmoqchiman."]]},
+    {h:"2. Ehtiyot boʻling: tipik xatolar", ex:[[1,"I am 15 years old."],[0,"I have 15 years."],[1,"I live in Tashkent."],[0,"I live at Tashkent."],[1,"I want to be a doctor."],[0,"I want to be doctor."]]},
+    {h:"3. Gaplarni bogʻlash", p:"Gaplar bir xil boshlanmasin («I… I… I…»). Turli boshlanishlar ishlating: <span class='en'>My…, In my free time…, Also…</span>",
+     ex:[[0,"I am Ali. I am 14. I am from Navoi. I like chess."],[1,"My name is Ali and I am 14. I am from Navoi. In my free time, I play chess."]],
+     tip:"Kasb nomidan oldin <b>a / an</b> qoʻyiladi: a teacher, an engineer, an artist (unli tovushdan oldin – an)."}],
+  ex:[
+    {k:"mc", q:"Yoshingizni qanday aytasiz?", o:["I have 16 years.","I am 16 years old.","I am 16 years."], a:1, why:"Ingliz tilida yosh «to be» bilan: I am 16 years old (yoki I am 16)."},
+    {k:"gap", t:"I live <gap/> Samarkand.", a:[["in"]], why:"Shahar va davlat oldidan – in."},
+    {k:"gap", t:"I want to be <gap/> engineer.", a:[["an"]], why:"Unli tovush (e) oldidan – an."},
+    {k:"spot", t:"My father is pilot.", bad:3, fix:"a pilot.", why:"Kasb oldidan «a»: My father is a pilot."},
+    {k:"order", w:["free","I","In","time,","my","draw."], a:["In my free time, I draw."], why:"«In my free time,» – vergul bilan gap boshida keladi."},
+    {k:"match", items:[["My name","is Laylo."],["I am","a student at School 21."],["I want to be","a lawyer."],["My hobby","is reading."]], why:"Har bir qolip toʻgʻri davomi bilan."},
+    {k:"rewrite", t:"I have 13 years.", a:["I am 13 years old.","I am 13."], why:"Yosh «have» bilan emas, «am» bilan aytiladi."},
+    {k:"gap", t:"She is <gap/> student <gap/> Tashkent State University.", a:[["a"],["at"]], why:"a student; oʻquv joyi oldidan – at."},
+    {k:"mc", q:"Qaysi variant yaxshiroq yozilgan?", o:["I am Nodir. I am 15. I like football. I like music.","My name is Nodir and I am 15. I like football and music."], a:1, why:"Ikkinchisida gaplar bogʻlangan (and), takror kam."},
+    {k:"spot", t:"I want to be a artist.", bad:4, fix:"an artist.", why:"«artist» unli tovush bilan boshlanadi → an."}],
+  task:{parts:[{words:[25,40],
+    prompt:"<p>Xorijdagi tengdoshingizga oʻzingizni tanishtiring. Yozing:</p><ul><li>ismingiz va yoshingiz</li><li>qayerda yashaysiz va oʻqiysiz</li><li>sevimli mashgʻulotingiz</li><li>kim boʻlmoqchisiz</li></ul>",
+    frame:"Hi! My name is ____ and I am ____ years old.\nI live in ____. I am a student at ____.\nIn my free time, I ____.\nI want to be a / an ____.",
+    checks:["caps","end","has::my name is|I am [A-Z]::Ismingiz yozilgan","has::years old|I am \\d+|I am [a-z]+teen::Yoshingiz yozilgan","has::want to be (a|an) ::«want to be a/an …» toʻgʻri yozilgan"],
+    model:"Hi! My name is Jasur and I am fourteen years old. I live in Termez with my family. I am a student at School 5. In my free time, I play the guitar. I want to be an architect.",
+    modelNote:"Gaplar turlicha boshlanadi (My name…, I live…, In my free time…). «an architect» – unli oldidan an."}],
+    self:["Ism va yosh toʻgʻri qolipda","in + shahar, at + maktab","Kasb oldida a / an bor","Gaplar bir xil boshlanmaydi","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"Commas and «and»", uz:"Vergul va «and»: roʻyxat yozish",
+  theory:[
+    {h:"1. Ikki narsa – faqat «and»", ex:[[1,"I like tea and coffee."],[0,"I like tea, and coffee."]]},
+    {h:"2. Uch va undan koʻp narsa – vergul + and", p:"Roʻyxatda narsalar vergul bilan ajratiladi, oxirgisidan oldin <b>and</b> qoʻyiladi.",
+     ex:[[1,"I have a pen, a book and a ruler."],[0,"I have a pen a book a ruler."],[0,"I have a pen, and a book, and a ruler."]]},
+    {h:"3. Ikki gapni «and» bilan bogʻlash", p:"Ikki qisqa gapni bitta qilish mumkin. Bu matnni silliqroq qiladi.",
+     ex:[[0,"I have a sister. I have a brother."],[1,"I have a sister and a brother."],[1,"My mother is a teacher and my father is a driver."]]},
+    {h:"4. «or» – inkor va savollarda", p:"Inkor gapda va tanlov soʻrashda <b>or</b> ishlatiladi.",
+     ex:[[1,"I don't like milk or cheese."],[1,"Do you want tea or juice?"]],
+     tip:"Vergul ham boʻsh joy qoidasiga boʻysunadi: soʻzga yopishadi, keyin bitta boʻsh joy: <span class='en'>apples, bananas and grapes</span>."}],
+  ex:[
+    {k:"rewrite", t:"I like apples bananas and grapes.", a:["I like apples, bananas and grapes.","I like apples, bananas, and grapes."], why:"Uch narsa: birinchi ikkitasi orasida vergul, oxirgisidan oldin and."},
+    {k:"mc", q:"Qaysi gap toʻgʻri?", o:["I speak Uzbek, and English.","I speak Uzbek and English.","I speak Uzbek English."], a:1, why:"Ikki narsa – vergulsiz, faqat and."},
+    {k:"spot", t:"We need eggs , milk and bread.", bad:3, fix:"eggs,", why:"Verguldan oldin boʻsh joy qoʻyilmaydi."},
+    {k:"gap", t:"Do you like summer <gap/> winter?", a:[["or"]], why:"Tanlov soʻrashda – or."},
+    {k:"order", w:["and","My","Fergana.","is","from","teacher","kind,","clever"], a:["My teacher is kind, clever and from Fergana."], why:"Uch sifat: kind, clever and from Fergana."},
+    {k:"rewrite", t:"I play football. I play chess.", a:["I play football and chess."], why:"Takror (I play) olib tashlanib, and bilan bogʻlanadi."},
+    {k:"gap", t:"My brother doesn't eat meat <gap/> fish.", a:[["or"]], why:"Inkor gapda – or."},
+    {k:"mc", q:"Roʻyxat qaysi gapda toʻgʻri?", o:["In my bag there is a phone, a notebook and a bottle of water.","In my bag there is a phone a notebook and a bottle of water.","In my bag there is a phone, and a notebook, and a bottle of water."], a:0, why:"Vergul + oxirida and."},
+    {k:"spot", t:"I have two cats, and a dog.", bad:2, fix:"cats", why:"Ikki narsa: «two cats and a dog» – vergul kerak emas."},
+    {k:"rewrite", t:"my favourite colours are red blue and green", a:["My favourite colours are red, blue and green.","My favourite colours are red, blue, and green."], why:"Bosh harf, vergullar, and va nuqta."}],
+  task:{parts:[{words:[20,40],
+    prompt:"<p>Sumkangizda nima borligini, sevimli taomlaringizni va sevimli ranglaringizni yozing. Kamida <b>2 ta roʻyxat</b> (3 tadan narsa) ishlating.</p>",
+    frame:"In my bag, there is ____, ____ and ____.\nMy favourite foods are ____, ____ and ____.\nI like ____ and ____, but I don't like ____ or ____.",
+    checks:["caps","end","has::\\w+, [\\w ]+ and [\\w ]+[\\s\\S]*\\w+, [\\w ]+ and::Kamida 2 ta roʻyxat (vergul + and)","has::^(?![\\s\\S]* ,)::Verguldan oldin boʻsh joy yoʻq"],
+    model:"In my bag, there is a pencil case, two notebooks and a bottle of water. My favourite foods are plov, manti and somsa. I like blue and white, but I don't like brown or grey.",
+    modelNote:"Roʻyxat: a pencil case, two notebooks and a bottle of water. Ikki narsa: blue and white. Inkorda: brown or grey."}],
+    self:["Uch narsali roʻyxatda vergul + and","Ikki narsa orasida vergul yoʻq","Inkor gapda or ishlatdim","Vergul soʻzga yopishgan","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"My Family: have got / has got", uz:"Oilam haqida: have / has",
+  theory:[
+    {h:"1. have va has", p:"«Mening … bor» degan maʼno <b>have</b> bilan beriladi. He / she / it bilan <b>has</b> ishlatiladi.",
+     tbl:[["Ega","Fe'l","Misol"],["I / you / we / they","have (got)","I have two sisters."],["he / she / it","has (got)","She has a cat."]], enCol:"all"},
+    {ex:[[1,"My uncle has three children."],[0,"My uncle have three children."],[1,"We have a big garden."]]},
+    {h:"2. Egalik soʻzlari", p:"Oilani tasvirlashda kerak boʻladi: <b>my</b> (mening), <b>his</b> (uning – erkak), <b>her</b> (uning – ayol), <b>our</b> (bizning), <b>their</b> (ularning).",
+     ex:[[1,"My sister is a doctor. Her name is Nigora."],[0,"My sister is a doctor. His name is Nigora."],[1,"My brother has a son. His name is Timur."]]},
+    {h:"3. Oila aʼzolari", phr:["parents – ota-ona","mother / father","brother / sister","grandmother / grandfather","uncle – amaki, togʻa","aunt – xola, amma","cousin – amakivachcha","son / daughter"]},
+    {h:"4. Koʻplik shakllari", p:"Ikki va undan koʻp: <b>-s</b> qoʻshiladi: brothers, sisters, cousins. Lekin istisno: <b>child → children</b>.",
+     ex:[[1,"I have two brothers."],[0,"I have two brother."],[1,"They have four children."]],
+     tip:"«Uning ismi» deganda avval kim haqida gapirayotganingizni tekshiring: erkak – his, ayol – her."}],
+  ex:[
+    {k:"gap", t:"My grandmother <gap/> six grandchildren.", a:[["has","has got"]], why:"Grandmother = she → has."},
+    {k:"gap", t:"We <gap/> a small flat in Chilanzar.", a:[["have","have got"]], why:"We → have."},
+    {k:"spot", t:"My father have a brown car.", bad:2, fix:"has", why:"My father = he → has."},
+    {k:"mc", q:"<span class='en'>My aunt is a teacher. ___ school is near our house.</span>", o:["His","Her","Their"], a:1, why:"Aunt (ayol) → her."},
+    {k:"gap", t:"I have three <gap/>: two boys and a girl. (cousin)", a:[["cousins"]], why:"Uchta → koʻplik: cousins."},
+    {k:"spot", t:"My parents has two cars.", bad:2, fix:"have", why:"Parents = they → have."},
+    {k:"gap", t:"My uncle has two <gap/>. (child)", a:[["children"]], why:"child → children (istisno)."},
+    {k:"order", w:["Zarina.","name","is","Her"], a:["Her name is Zarina."], why:"Sister (ayol) haqida gapirganda – Her name is …"},
+    {k:"match", items:[["my brother's wife","her"],["my father's car","his"],["my parents' house","their"],["our family's dog","our"]], why:"Ayol – her, erkak – his, ular – their, biz – our."},
+    {k:"rewrite", t:"My brother have a son. Her name is Ali.", a:["My brother has a son. His name is Ali."], why:"Brother → has; son (oʻgʻil) → his."}],
+  task:{parts:[{words:[25,40],
+    prompt:"<p>Oilangiz haqida yozing: oilada necha kishi borsiz, ular kim, ularning ismlari va kasblari.</p><p><b>have / has</b> va <b>his / her</b> soʻzlarini ishlating.</p>",
+    frame:"There are ____ people in my family.\nI have ____ and ____.\nMy father is a ____. His name is ____.\nMy mother ____. Her ____.",
+    checks:["caps","end","link::have|has@2::«have» va «has» ikkalasi ham ishlatilgan","link::his|her@1::his / her ishlatilgan"],
+    model:"There are five people in my family. I have one brother and one sister. My father is a driver. His name is Rustam. My mother is a nurse. Her name is Saida. My brother has a bike.",
+    modelNote:"has (my brother), have (I, we); his (father), her (mother)."}],
+    self:["he/she bilan has, boshqalar bilan have","Erkak – his, ayol – her","Koʻplikda -s (brothers) yoki children","Bosh harf va nuqta toʻgʻri"]}
+});
+
+/* STARTER WRITING · 8–14 */
+LESSONS.push({ title:"Describing People", uz:"Odamlarni tasvirlash: sifatlar",
+  theory:[
+    {h:"1. Sifat otdan OLDIN keladi", p:"Ingliz tilida sifat (qanday?) otdan oldin turadi – xuddi oʻzbek tilidagidek: <i>baland odam</i> → <span class='en'>a tall man</span>.",
+     ex:[[1,"She has long black hair.","Uning uzun qora sochi bor."],[0,"She has hair long black."],[1,"He is a friendly boy."]]},
+    {h:"2. Sifat koʻplikda oʻzgarmaydi", p:"Sifatga hech qachon <b>-s</b> qoʻshilmaydi.",
+     ex:[[1,"They are tall boys."],[0,"They are talls boys."],[1,"I have two big brothers."]]},
+    {h:"3. Tashqi koʻrinish va xarakter", enCol:0, tbl:[["Soʻz","Maʼnosi"],["tall / short","baland / past boʻyli"],["slim / strong","ozgʻin / baquvvat"],["long / short / curly hair","uzun / kalta / jingalak soch"],["brown / blue / green eyes","jigarrang / koʻk / yashil koʻz"],["kind / friendly / funny","mehribon / samimiy / quvnoq"],["clever / hard-working / quiet","aqlli / mehnatkash / kamgap"]]},
+    {h:"4. «is» va «has» farqi", p:"Xarakter va boʻy – <b>is</b>: <span class='en'>He is tall.</span> Soch va koʻz – <b>has</b>: <span class='en'>He has brown eyes.</span>",
+     ex:[[1,"My sister is short and she has curly hair."],[0,"My sister has short and she is curly hair."]],
+     tip:"Bir nechta sifatni «and» bilan bogʻlang: <span class='en'>kind and funny</span>, uchtasi boʻlsa – vergul: <span class='en'>tall, slim and friendly</span>."}],
+  ex:[
+    {k:"order", w:["has","eyes.","brown","She","big"], a:["She has big brown eyes."], why:"Sifatlar (big brown) otdan (eyes) oldin."},
+    {k:"spot", t:"My uncle is a man very kind.", bad:4, fix:"a very kind man", why:"Sifat otdan oldin: a very kind man."},
+    {k:"mc", q:"Qaysi gap toʻgʻri?", o:["They are clevers students.","They are clever students.","They are students clevers."], a:1, why:"Sifat oʻzgarmaydi va otdan oldin keladi."},
+    {k:"gap", t:"My grandfather <gap/> grey hair and he <gap/> very wise.", a:[["has"],["is"]], why:"Soch – has, xarakter – is."},
+    {k:"match", items:[["He is","tall and slim."],["She has","long curly hair."],["My best friend is","very funny."],["The baby has","blue eyes."]], why:"is – boʻy va xarakter; has – soch, koʻz."},
+    {k:"spot", t:"My sisters are smarts and friendly.", bad:3, fix:"smart", why:"Sifatga -s qoʻshilmaydi."},
+    {k:"rewrite", t:"She has hair long and eyes green.", a:["She has long hair and green eyes."], why:"Sifat otdan oldin: long hair, green eyes."},
+    {k:"gap", t:"My teacher is kind, patient <gap/> very clever.", a:[["and"]], why:"Roʻyxatning oxirgisi oldidan – and."},
+    {k:"order", w:["a","boy.","is","Timur","hard-working"], a:["Timur is a hard-working boy."], why:"a + sifat + ot."},
+    {k:"mc", q:"<span class='en'>«Uning qisqa jingalak sochi bor»</span> inglizchasi:", o:["He has short curly hair.","He is short curly hair.","He has hair short curly."], a:0, why:"Soch – has; sifatlar otdan oldin."}],
+  task:{parts:[{words:[25,40],
+    prompt:"<p>Oila aʼzolaringizdan birini tasvirlang: tashqi koʻrinishi (boʻyi, sochi, koʻzlari) va xarakteri. Kamida <b>4 ta sifat</b> ishlating.</p>",
+    frame:"My ____ is ____ years old.\nHe / She is ____ and ____.\nHe / She has ____ hair and ____ eyes.\nHe / She is very ____.",
+    checks:["caps","end","link::is|has@2::«is» va «has» ikkalasi ishlatilgan","link::tall|short|slim|strong|long|curly|brown|blue|green|black|kind|friendly|funny|clever|quiet|hard-working|patient@4::Kamida 4 ta sifat"],
+    model:"My grandmother is seventy years old. She is short and slim. She has short grey hair and brown eyes. She is very kind and patient. She tells us funny stories every evening.",
+    modelNote:"Sifatlar: short, slim, grey, brown, kind, patient, funny – hammasi otdan oldin yoki «is» dan keyin."}],
+    self:["Sifatlar otdan oldin","Sifatlarga -s qoʻshmadim","Boʻy va xarakter – is, soch va koʻz – has","Kamida 4 ta sifat","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"My Daily Routine", uz:"Kun tartibim: Present Simple va ketma-ketlik",
+  theory:[
+    {h:"1. Har kuni takrorlanadigan ishlar – Present Simple", p:"Odat va kun tartibi haqida gapirganda fe'lning oddiy shakli ishlatiladi: <span class='en'>I get up, I have breakfast, I go to school</span>.",
+     ex:[[1,"I get up at seven o'clock."],[0,"I am get up at seven o'clock."],[0,"I getting up at seven."]]},
+    {h:"2. Kundalik iboralar", phr:["get up – turmoq","have breakfast / lunch / dinner","go to school / work","come home","do my homework","watch TV","go to bed"]},
+    {h:"3. Ketma-ketlik soʻzlari", p:"Matnni tartibli qilish uchun: <b>First, Then, After that, Finally</b>. Ulardan keyin vergul qoʻyiladi.",
+     ex:[[1,"First, I wash my face. Then, I have breakfast."],[1,"After that, I go to school. Finally, I go to bed at ten."],[0,"First I wash my face then I have breakfast after that I go to school."]]},
+    {h:"4. Vaqtni yozish", p:"<span class='en'>at seven o'clock, at 7:30, at half past seven, in the morning, in the evening, at night</span>",
+     tip:"«at» – aniq soat, «in» – kun qismi (in the morning), lekin <b>at night</b>."}],
+  ex:[
+    {k:"spot", t:"I am go to school at eight.", bad:1, fix:"(olib tashlang) I go to school at eight.", why:"Present Simple'da «am» kerak emas: I go to school."},
+    {k:"gap", t:"I have breakfast <gap/> 7:30 <gap/> the morning.", a:[["at"],["in"]], why:"at + soat; in the morning."},
+    {k:"order", w:["After","do","I","homework.","my","that,"], a:["After that, I do my homework."], why:"Ketma-ketlik soʻzi + vergul + gap."},
+    {k:"mc", q:"Qaysi variant toʻgʻri?", o:["I go to bed at night.","I go to bed in night.","I go to the bed on night."], a:0, why:"at night – istisno ibora."},
+    {k:"match", items:[["have","breakfast"],["do","my homework"],["go","to bed"],["watch","TV"]], why:"Kundalik turgʻun birikmalar."},
+    {k:"rewrite", t:"first i get up then i wash my face", a:["First, I get up. Then, I wash my face.","First, I get up. Then I wash my face.","First I get up. Then I wash my face."], why:"Bosh harflar, vergul, nuqta va ikkita alohida gap."},
+    {k:"gap", t:"<gap/>, I go to bed at half past ten. (oxirida)", a:[["Finally"]], why:"Oxirgi ish – Finally."},
+    {k:"spot", t:"I watching TV in the evening.", bad:1, fix:"watch", why:"Odat – Present Simple: I watch TV."},
+    {k:"order", w:["home","I","at","come","three","o'clock."], a:["I come home at three o'clock."], why:"Ega + fe'l + qayerga + qachon."},
+    {k:"mc", q:"Matn boshlanishi uchun eng mos soʻz:", o:["Finally,","First,","After that,"], a:1, why:"Birinchi ish – First."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Odatiy maktab kuningizni tasvirlang. Kamida <b>4 ta ish</b> va vaqtini yozing. <b>First, Then, After that, Finally</b> soʻzlarini ishlating.</p>",
+    frame:"First, I get up at ____.\nThen, I ____.\nAfter that, I ____.\nIn the evening, I ____.\nFinally, I go to bed at ____.",
+    checks:["caps","end","link::First|Then|After that|Finally@3::Kamida 3 ta ketma-ketlik soʻzi","has::\\bat (\\d|seven|eight|six|nine|ten|half)::Vaqt «at» bilan yozilgan"],
+    model:"First, I get up at half past six. Then, I have breakfast with my family. After that, I go to school at eight. In the evening, I do my homework. Finally, I go to bed at ten.",
+    modelNote:"Har bir gap ketma-ketlik soʻzi bilan boshlanadi; vaqt «at» bilan."}],
+    self:["Fe'llar oddiy shaklda (am / -ing yoʻq)","Ketma-ketlik soʻzlaridan keyin vergul","Vaqt at bilan","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"He Works, She Goes: the -s ending", uz:"He / She / It bilan fe'lga -s qoʻshish",
+  theory:[
+    {h:"1. Asosiy qoida", p:"Present Simple'da <b>he, she, it</b> (yoki bitta odam: <i>my mother, Aziz</i>) bilan fe'lga <b>-s</b> qoʻshiladi.",
+     ex:[[1,"My mother works in a bank."],[0,"My mother work in a bank."],[1,"Aziz plays the dutar."]]},
+    {h:"2. Imlo qoidalari", enCol:"all", tbl:[["Oxiri","Qoʻshimcha","Misol"],["koʻp fe'llar","+ s","work → works, play → plays"],["-s, -sh, -ch, -x, -o","+ es","watch → watches, go → goes, do → does"],["undosh + y","y → ies","study → studies, fly → flies"],["have","istisno","have → has"]]},
+    {h:"3. I / you / we / they – -s yoʻq", ex:[[1,"My parents work every day."],[0,"My parents works every day."],[1,"I study English."]]},
+    {tip:"Yozib boʻlgach, har bir «he / she / my mother / Aziz» dan keyingi fe'lga qarang: oxirida -s bormi?"}],
+  ex:[
+    {k:"gap", t:"My father <gap/> TV after dinner. (watch)", a:[["watches"]], why:"-ch → -es: watches."},
+    {k:"gap", t:"Nodira <gap/> medicine at university. (study)", a:[["studies"]], why:"undosh + y → ies: studies."},
+    {k:"gap", t:"He <gap/> to the gym on Mondays. (go)", a:[["goes"]], why:"go → goes."},
+    {k:"spot", t:"My sister speak three languages.", bad:2, fix:"speaks", why:"My sister = she → speaks."},
+    {k:"spot", t:"My brothers plays basketball.", bad:2, fix:"play", why:"Brothers – koʻplik (they) → play."},
+    {k:"gap", t:"She <gap/> her homework in the evening. (do)", a:[["does"]], why:"do → does."},
+    {k:"mc", q:"Toʻgʻri variant:", o:["The shop open at nine.","The shop opens at nine.","The shop opennes at nine."], a:1, why:"The shop = it → opens."},
+    {k:"gap", t:"My grandfather <gap/> a big garden. (have)", a:[["has"]], why:"have → has (istisno)."},
+    {k:"rewrite", t:"My mother get up early and cook breakfast.", a:["My mother gets up early and cooks breakfast."], why:"Ikkala fe'l ham -s oladi: gets, cooks."},
+    {k:"match", items:[["fly","flies"],["wash","washes"],["say","says"],["fix","fixes"]], why:"undosh+y → ies; unli+y → s (says); -sh, -x → es."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Oila aʼzolaringizdan birining (onangiz, otangiz, akangiz…) odatiy kunini tasvirlang. Har bir gap <b>He</b> yoki <b>She</b> bilan.</p>",
+    frame:"My ____ gets up at ____.\nHe / She ____ breakfast and ____.\nHe / She works / studies ____.\nIn the evening, he / she ____.",
+    checks:["caps","end","has::\\b(he|she|my \\w+)\\b \\w+(s|es)\\b::He / She + fe'l-s ishlatilgan","link::gets|goes|works|studies|watches|does|has|cooks|reads|comes|plays|drinks|helps|drives@4::Kamida 4 ta -s li fe'l"],
+    model:"My father gets up at six o'clock. He drinks green tea and reads the news. He drives to work at half past seven. He works in a factory. In the evening, he watches football and helps me with maths.",
+    modelNote:"gets, drinks, reads, drives, works, watches, helps – hammasi -s/-es bilan."}],
+    self:["He/She dan keyin har bir fe'lda -s","go → goes, watch → watches, study → studies","have → has","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"Negative Sentences", uz:"Inkor gaplar: don't, doesn't, isn't, aren't",
+  theory:[
+    {h:"1. «to be» bilan inkor", enCol:"all", tbl:[["Toʻliq","Qisqa"],["I am not","I'm not"],["he / she / it is not","isn't"],["you / we / they are not","aren't"]]},
+    {h:"2. Boshqa fe'llar bilan – do not / does not", p:"Oddiy fe'llar inkor boʻlishi uchun <b>don't</b> (do not) yoki <b>doesn't</b> (does not) qoʻyiladi. <b>doesn't</b> dan keyin fe'lga -s qoʻshilmaydi!",
+     ex:[[1,"I don't like coffee."],[1,"She doesn't eat meat."],[0,"She doesn't eats meat."],[0,"I not like coffee."]]},
+    {h:"3. Ikkita inkor ishlatilmaydi", ex:[[1,"I don't have any money."],[0,"I don't have no money."]]},
+    {h:"4. Qachon qisqartma ishlatiladi?", p:"<b>don't, isn't</b> – doʻstga xat va oddiy matnlarda. Rasmiy xatlarda (keyingi darajalarda) toʻliq shakl yoziladi: <span class='en'>do not, is not</span>.",
+     tip:"Apostrof (') toʻgʻri joyda boʻlsin: <span class='en'>don't</span>, <span class='en'>doesn't</span> – «dont» yoki «does'nt» emas."}],
+  ex:[
+    {k:"gap", t:"I <gap/> like horror films.", a:[["don't","do not"]], why:"I + don't + fe'l."},
+    {k:"gap", t:"My brother <gap/> play computer games.", a:[["doesn't","does not"]], why:"He → doesn't."},
+    {k:"spot", t:"Malika doesn't speaks French.", bad:2, fix:"speak", why:"doesn't dan keyin fe'l -s siz: doesn't speak."},
+    {k:"gap", t:"We <gap/> at home now. We are at school.", a:[["aren't","are not"]], why:"We + are not / aren't."},
+    {k:"mc", q:"Toʻgʻri inkor:", o:["He not work on Sundays.","He doesn't work on Sundays.","He don't work on Sundays."], a:1, why:"He → doesn't + work."},
+    {k:"spot", t:"I not have a smartphone.", bad:1, fix:"don't have", why:"Oddiy fe'l bilan don't kerak: I don't have."},
+    {k:"rewrite", t:"She likes milk. (inkor qiling)", a:["She doesn't like milk.","She does not like milk."], why:"likes → doesn't like (-s yoʻqoladi)."},
+    {k:"gap", t:"The test <gap/> difficult. It is easy.", a:[["isn't","is not"]], why:"The test = it → isn't."},
+    {k:"spot", t:"We dont have lessons on Sunday.", bad:1, fix:"don't", why:"Apostrof kerak: don't."},
+    {k:"rewrite", t:"They play tennis. (inkor qiling)", a:["They don't play tennis.","They do not play tennis."], why:"They → don't play."}],
+  task:{parts:[{words:[25,40],
+    prompt:"<p>Oʻzingiz va oilangiz <b>nimani qilmasligi</b> va <b>nimani yoqtirmasligi</b> haqida yozing. Kamida <b>4 ta inkor gap</b> boʻlsin.</p>",
+    frame:"I don't like ____.\nMy father doesn't ____.\nMy sister isn't ____.\nWe don't ____ on Sundays.",
+    checks:["caps","end","link::don't|doesn't|isn't|aren't|do not|does not|is not|are not|am not|I'm not@3::Kamida 3 xil inkor shakli"],
+    model:"I don't like spicy food. My father doesn't drink coffee because he loves tea. My little sister isn't afraid of dogs. My parents aren't strict. We don't watch TV on Sundays because we visit our grandparents.",
+    modelNote:"don't, doesn't, isn't, aren't – egaga qarab tanlangan; doesn't drink (-s yoʻq)."}],
+    self:["I/we/they – don't, he/she – doesn't","doesn't dan keyin fe'lda -s yoʻq","be bilan isn't / aren't","Apostrof toʻgʻri","Ikkita inkor yoʻq"]}
+});
+
+LESSONS.push({ title:"Asking Questions", uz:"Savol tuzish: Do / Does / Wh- soʻzlari",
+  theory:[
+    {h:"1. Ha / yoʻq savollari", p:"«be» bilan: fe'l oldinga chiqadi. Boshqa fe'llar bilan: gap boshiga <b>Do</b> yoki <b>Does</b> qoʻyiladi.",
+     ex:[[1,"Are you hungry?"],[1,"Do you like music?"],[1,"Does your sister work?"],[0,"Does your sister works?"],[0,"You like music?"]]},
+    {h:"2. Savol soʻzlari", enCol:0, tbl:[["Soʻz","Maʼnosi","Misol"],["What","Nima?","What is your name?"],["Where","Qayerda?","Where do you live?"],["When","Qachon?","When does the film start?"],["Who","Kim?","Who is your teacher?"],["Why","Nega?","Why are you sad?"],["How","Qanday?","How do you go to school?"],["How old / How many","Necha yosh / Nechta","How many brothers do you have?"]]},
+    {h:"3. Tartib: Savol soʻzi + do/does + ega + fe'l", ex:[[1,"Where do you live?"],[0,"Where you live?"],[1,"What does he do?"],[0,"What he does?"]],
+     tip:"Savoldan keyin doim <b>?</b> qoʻying va «Does» bilan fe'lga -s qoʻshmang."}],
+  ex:[
+    {k:"order", w:["you","Where","live?","do"], a:["Where do you live?"], why:"Savol soʻzi + do + ega + fe'l."},
+    {k:"gap", t:"<gap/> your brother play the piano?", a:[["Does"]], why:"Your brother = he → Does."},
+    {k:"mc", q:"Toʻgʻri savol:", o:["What time you get up?","What time do you get up?","What time do you gets up?"], a:1, why:"What time + do + you + get up?"},
+    {k:"spot", t:"Does she speaks English?", bad:2, fix:"speak", why:"Does bilan fe'l -s siz."},
+    {k:"match", items:[["Where","in Tashkent"],["When","on Monday"],["Who","my teacher"],["How many","three"]], why:"Savol soʻzi va mos javob."},
+    {k:"gap", t:"<gap/> old is your grandmother?", a:[["How"]], why:"How old – necha yosh."},
+    {k:"order", w:["does","What","father","your","do?"], a:["What does your father do?"], why:"«Otangiz nima ish qiladi?» – What does … do?"},
+    {k:"rewrite", t:"you like football", a:["Do you like football?"], why:"Do + you + like + ?"},
+    {k:"gap", t:"<gap/> are you late? – Because the bus was slow.", a:[["Why"]], why:"Because javobi – Why savoliga."},
+    {k:"spot", t:"Where you go on holiday?", bad:1, fix:"do you", why:"Where do you go on holiday?"}],
+  task:{parts:[{words:[20,40],
+    prompt:"<p>Yangi xorijlik doʻstingizga <b>6 ta savol</b> yozing: ismi, yoshi, yashash joyi, oilasi, sevimli mashgʻuloti va maktabi haqida. Kamida 3 xil savol soʻzi ishlating.</p>",
+    frame:"What is ____?\nHow old ____?\nWhere do ____?\nDo you have ____?\nWhat do you like ____?",
+    checks:["caps","has::(\\?[\\s\\S]*){5}::Kamida 5 ta savol belgisi","link::What|Where|When|Who|Why|How@3::Kamida 3 xil savol soʻzi","has::\\b(do|does)\\b::Do / does ishlatilgan"],
+    model:"What is your name?\nHow old are you?\nWhere do you live?\nDo you have any brothers or sisters?\nWhat do you like doing in your free time?\nWhich school do you go to?",
+    modelNote:"Har bir savol ? bilan; do + you + fe'l tartibi saqlangan."}],
+    self:["Har bir savol ? bilan tugaydi","Savol soʻzi + do/does + ega + fe'l","Does bilan fe'lda -s yoʻq","be bilan: Are you…? / Is he…?"]}
+});
+
+LESSONS.push({ title:"There Is / There Are", uz:"Uyim: there is / there are",
+  theory:[
+    {h:"1. «… bor» – there is / there are", p:"Biror joyda nimadir borligini aytish uchun: bitta narsa – <b>There is</b>, bir nechta – <b>There are</b>.",
+     ex:[[1,"There is a sofa in the living room."],[1,"There are three bedrooms in our flat."],[0,"There is three bedrooms."],[0,"In our flat have three bedrooms."]]},
+    {h:"2. Inkor va savol", ex:[[1,"There isn't a garage."],[1,"There aren't any shops near my house."],[1,"Is there a park near your home?"],[1,"Are there any trees in your street?"]]},
+    {h:"3. some / any", p:"Koʻplikda darak gapda <b>some</b>, inkor va savolda <b>any</b>.",
+     ex:[[1,"There are some books on the shelf."],[1,"There aren't any chairs."]]},
+    {h:"4. Uy soʻzlari", phr:["flat / house","living room","bedroom","kitchen","bathroom","balcony","garden","yard – hovli"],
+     tip:"Oʻzbekcha «Uyimizda … bor» deb tarjima qilganda «have» ishlatmang – <b>There is / There are</b> yozing."}],
+  ex:[
+    {k:"gap", t:"There <gap/> a big carpet in our living room.", a:[["is"]], why:"Bitta narsa – is."},
+    {k:"gap", t:"There <gap/> two windows in my bedroom.", a:[["are"]], why:"Ikki narsa – are."},
+    {k:"spot", t:"In my room have a desk and a bed.", bad:3, fix:"there is", why:"«… bor» – There is a desk and a bed in my room."},
+    {k:"mc", q:"Toʻgʻri savol:", o:["Is there a lift in your building?","There is a lift in your building?","Are there a lift in your building?"], a:0, why:"Bitta narsa haqida savol: Is there…?"},
+    {k:"gap", t:"There aren't <gap/> flowers in our garden.", a:[["any"]], why:"Inkorda – any."},
+    {k:"order", w:["are","the","There","some","kitchen.","plates","in"], a:["There are some plates in the kitchen."], why:"There are + some + ot + joy."},
+    {k:"spot", t:"There is four chairs in the kitchen.", bad:1, fix:"are", why:"Four chairs – koʻplik → are."},
+    {k:"rewrite", t:"Our house has a garden.", ins:"Gapni «There is» bilan qayta yozing.", a:["There is a garden in our house.","There is a garden at our house."], why:"There is a garden in/at our house."},
+    {k:"gap", t:"Are there <gap/> shops in your street? – Yes, there are.", a:[["any"]], why:"Savolda – any."},
+    {k:"match", items:[["There is","a TV."],["There are","two sofas."],["There isn't","a balcony."],["There aren't","any pictures."]], why:"is/isn't – bitta; are/aren't – koʻp."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Uyingiz yoki xonangizni tasvirlang: unda nima bor, nima yoʻq. <b>There is, There are, There isn't</b> iboralarini ishlating.</p>",
+    frame:"I live in a ____.\nThere are ____ rooms.\nIn my bedroom, there is ____ and there are ____.\nThere isn't ____.",
+    checks:["caps","end","has::there is|there's::«There is» ishlatilgan","has::there are::«There are» ishlatilgan","has::there isn't|there aren't|there is not|there are not::Inkor shakl ishlatilgan"],
+    model:"I live in a flat. There are four rooms. In my bedroom, there is a bed, a desk and a big window. There are some posters on the wall. There isn't a balcony, but I like my room.",
+    modelNote:"There is – bitta narsa, There are – koʻplik, There isn't – inkor; some – darak gapda."}],
+    self:["Bitta – There is, koʻp – There are","«have» oʻrniga There is ishlatdim","some / any toʻgʻri","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"Prepositions of Place", uz:"Joy predloglari: in, on, under, next to…",
+  theory:[
+    {h:"1. Asosiy predloglar", enCol:0, tbl:[["Predlog","Maʼnosi","Misol"],["in","ichida","The keys are in my bag."],["on","ustida","The book is on the table."],["under","ostida","The cat is under the bed."],["next to","yonida","The bank is next to the school."],["between","orasida","The shop is between the bank and the café."],["opposite","qarshisida","The park is opposite my house."],["behind / in front of","orqasida / oldida","There is a garden behind the house."]]},
+    {h:"2. Oʻzbekcha qoʻshimcha → inglizcha predlog", p:"Oʻzbek tilida joy <b>qoʻshimcha</b> bilan bildiriladi (<i>stol<b>da</b></i>), ingliz tilida esa soʻzdan <b>oldin</b> predlog qoʻyiladi.",
+     ex:[[1,"on the table","stolda"],[0,"the table on"],[1,"in the kitchen","oshxonada"]]},
+    {h:"3. Shahar va manzil", ex:[[1,"I live in Tashkent."],[1,"I live on Amir Temur Street."],[1,"The museum is in the city centre."]],
+     tip:"Shahar, davlat, xona – <b>in</b>; koʻcha – <b>on</b>; stol, devor, pol – <b>on</b>."}],
+  ex:[
+    {k:"gap", t:"My phone is <gap/> the table.", a:[["on"]], why:"Stol ustida – on."},
+    {k:"gap", t:"The milk is <gap/> the fridge.", a:[["in"]], why:"Muzlatkich ichida – in."},
+    {k:"gap", t:"The pharmacy is <gap/> the bank and the bakery.", a:[["between"]], why:"Ikki narsa orasida – between."},
+    {k:"mc", q:"<span class='en'>«Mushuk divan ostida.»</span>", o:["The cat is on the sofa.","The cat is under the sofa.","The cat is in the sofa."], a:1, why:"Ostida – under."},
+    {k:"spot", t:"We live in Navoi Street.", bad:2, fix:"on", why:"Koʻcha – on: on Navoi Street."},
+    {k:"order", w:["to","is","The","next","school.","mosque","the"], a:["The mosque is next to the school."], why:"next to – yonida."},
+    {k:"gap", t:"There is a beautiful picture <gap/> the wall.", a:[["on"]], why:"Devorda – on the wall."},
+    {k:"spot", t:"The bus stop is opposite of my house.", bad:5, fix:"(olib tashlang) opposite my house", why:"«opposite» dan keyin «of» kerak emas."},
+    {k:"match", items:[["oldida","in front of"],["orqasida","behind"],["qarshisida","opposite"],["yonida","next to"]], why:"Joy predloglarining maʼnolari."},
+    {k:"rewrite", t:"The shoes are the bed under.", a:["The shoes are under the bed."], why:"Predlog otdan oldin: under the bed."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Uyingiz atrofini tasvirlang: uyingiz qayerda, uning yonida, qarshisida va orqasida nima bor. Kamida <b>4 xil predlog</b> ishlating.</p>",
+    frame:"I live on ____ Street in ____.\nNext to my house, there is ____.\nOpposite my house, there is ____.\nBehind ____.",
+    checks:["caps","end","link::in|on|under|next to|between|opposite|behind|in front of|near@4::Kamida 4 xil predlog"],
+    model:"I live on Bobur Street in Andijan. Next to my house, there is a shop. Opposite my house, there is a big park. Behind our building, there is a school. The bus stop is between the shop and the park.",
+    modelNote:"on (koʻcha), in (shahar), next to, opposite, behind, between."}],
+    self:["Predlog otdan oldin","Koʻcha – on, shahar – in","opposite dan keyin of yoʻq","Kamida 4 xil predlog"]}
+});
+
+/* STARTER WRITING · 15–20 */
+LESSONS.push({ title:"Time: at, on, in", uz:"Vaqt predloglari: at, on, in",
+  theory:[
+    {h:"1. Uchta asosiy predlog", enCol:"all", tbl:[["at","on","in"],["soat: at 8 o'clock, at 7:30","hafta kuni: on Monday","oy: in May"],["at night, at noon","sana: on 5 June","yil: in 2010"],["at the weekend","on my birthday","fasl: in summer"],["at lunchtime","on Friday morning","kun qismi: in the morning"]]},
+    {h:"2. Misollar", ex:[[1,"I was born in 2011."],[0,"I was born on 2011."],[1,"The lesson starts at nine."],[0,"The lesson starts in nine."],[1,"We have a party on Saturday."]]},
+    {h:"3. Predlogsiz iboralar", p:"<b>every, next, last, this, today, tomorrow, yesterday</b> oldidan predlog qoʻyilmaydi.",
+     ex:[[1,"I play football every Sunday."],[0,"I play football on every Sunday."],[1,"See you next week!"]],
+     tip:"Eslab qolish uchun: <b>at</b> – nuqta (aniq soat), <b>on</b> – kun, <b>in</b> – uzunroq davr (oy, yil, fasl)."}],
+  ex:[
+    {k:"gap", t:"My birthday is <gap/> October.", a:[["in"]], why:"Oy – in."},
+    {k:"gap", t:"The shop closes <gap/> 9 p.m.", a:[["at"]], why:"Soat – at."},
+    {k:"gap", t:"We don't go to school <gap/> Sunday.", a:[["on"]], why:"Hafta kuni – on."},
+    {k:"gap", t:"It is very hot here <gap/> summer.", a:[["in"]], why:"Fasl – in."},
+    {k:"spot", t:"I visit my grandparents on every weekend.", bad:4, fix:"(olib tashlang) every weekend", why:"every oldidan predlog qoʻyilmaydi."},
+    {k:"mc", q:"<span class='en'>«Navroʻz 21-martda nishonlanadi.»</span>", o:["Navruz is on 21 March.","Navruz is in 21 March.","Navruz is at 21 March."], a:0, why:"Aniq sana – on."},
+    {k:"gap", t:"I usually read a book <gap/> night.", a:[["at"]], why:"at night (istisno)."},
+    {k:"match", items:[["at","half past six"],["on","Wednesday"],["in","2008"],["(predlogsiz)","next month"]], why:"soat – at, kun – on, yil – in, next oldidan predlog yoʻq."},
+    {k:"spot", t:"My brother was born at 2015.", bad:4, fix:"in 2015.", why:"Yil – in."},
+    {k:"rewrite", t:"we have lunch in 1 o'clock on the afternoon", a:["We have lunch at 1 o'clock in the afternoon."], why:"soat – at, kun qismi – in the afternoon."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Sevimli bayramingiz yoki oilaviy tadbiringiz haqida yozing: u qachon (oy, kun, soat), qanday oʻtadi. <b>at, on, in</b> uchalasini ham ishlating.</p>",
+    frame:"My favourite holiday is ____.\nIt is in ____ / on ____.\nIn the morning, we ____.\nAt ____ o'clock, we ____.",
+    checks:["caps","end","has::\\bat \\w::«at» ishlatilgan","has::\\bon \\w::«on» ishlatilgan","has::\\bin \\w::«in» ishlatilgan"],
+    model:"My favourite holiday is Navruz. It is in spring, on 21 March. In the morning, we cook sumalak with our neighbours. At two o'clock, we have a big lunch. In the evening, we visit our relatives.",
+    modelNote:"in spring, on 21 March, in the morning, at two o'clock, in the evening."}],
+    self:["Soat – at","Kun va sana – on","Oy, yil, fasl, kun qismi – in","every / next oldidan predlog yoʻq"]}
+});
+
+LESSONS.push({ title:"Likes and Dislikes", uz:"Yoqtirish va yoqtirmaslik: like + -ing, but",
+  theory:[
+    {h:"1. like / love / hate + fe'l-ing", p:"Yoqtirgan <b>ish-harakat</b> haqida gapirganda fe'lga <b>-ing</b> qoʻshiladi.",
+     ex:[[1,"I like reading books."],[0,"I like read books."],[1,"My sister loves dancing."],[1,"I don't like getting up early."]]},
+    {h:"2. Daraja soʻzlari", enCol:0, tbl:[["Ibora","Maʼnosi"],["I love …","juda yaxshi koʻraman"],["I really like …","juda yoqtiraman"],["I like …","yoqtiraman"],["I don't mind …","menga farqi yoʻq"],["I don't like …","yoqtirmayman"],["I hate …","umuman yoqtirmayman"]]},
+    {h:"3. Qarama-qarshi fikr – but", p:"Ikkita qarama-qarshi fikrni <b>but</b> (lekin) bilan bogʻlang. <b>but</b> dan oldin odatda vergul qoʻyiladi.",
+     ex:[[1,"I like swimming, but I don't like running."],[0,"I like swimming. But I don't like running."],[1,"My brother loves football, but I prefer chess."]]},
+    {h:"4. -ing imlosi", p:"<span class='en'>dance → dancing</span> (e tushadi), <span class='en'>swim → swimming, run → running</span> (undosh ikkilanadi).",
+     tip:"Yozma ishda faqat «I like…» deb takrorlamang: <span class='en'>love, really like, don't mind, hate</span> – turli iboralar baho oshiradi."}],
+  ex:[
+    {k:"gap", t:"I love <gap/> to music. (listen)", a:[["listening"]], why:"love + -ing: listening."},
+    {k:"gap", t:"My father hates <gap/> shopping. (go)", a:[["going"]], why:"hate + -ing: going."},
+    {k:"gap", t:"Do you like <gap/>? (swim)", a:[["swimming"]], why:"swim → swimming (m ikkilanadi)."},
+    {k:"spot", t:"I enjoy cook with my mother.", bad:2, fix:"cooking", why:"enjoy + -ing: enjoy cooking."},
+    {k:"gap", t:"I like cats, <gap/> I don't like dogs.", a:[["but"]], why:"Qarama-qarshi fikr – but."},
+    {k:"mc", q:"Qaysi gap toʻgʻri?", o:["She likes danceing.","She likes dancing.","She likes dance."], a:1, why:"dance → dancing (e tushadi)."},
+    {k:"order", w:["mind","I","washing","don't","dishes.","the"], a:["I don't mind washing the dishes."], why:"don't mind + -ing."},
+    {k:"rewrite", t:"I like tea. I don't like coffee.", ins:"Ikki gapni «but» bilan bitta qiling.", a:["I like tea, but I don't like coffee.","I like tea but I don't like coffee."], why:"Vergul + but."},
+    {k:"match", items:[["juda yaxshi koʻraman","I love"],["menga farqi yoʻq","I don't mind"],["umuman yoqtirmayman","I hate"],["yoqtirmayman","I don't like"]], why:"Daraja iboralari."},
+    {k:"spot", t:"My friends like play football after school.", bad:3, fix:"playing", why:"like + -ing: like playing."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Boʻsh vaqtingizda nimalarni yoqtirasiz va nimalarni yoqtirmaysiz? Kamida <b>3 xil ibora</b> (love, like, don't mind, hate…) va <b>but</b> ishlating.</p>",
+    frame:"In my free time, I love ____.\nI really like ____, but I don't like ____.\nI don't mind ____.\nI hate ____.",
+    checks:["caps","end","link::love|like|don't mind|hate|enjoy|don't like@3::Kamida 3 xil yoqtirish iborasi","has::, but::«, but» bilan bogʻlangan gap","has::\\b(love|like|mind|hate|enjoy) \\w+ing\\b::like / love + fe'l-ing"],
+    model:"In my free time, I love playing volleyball with my friends. I really like watching films, but I don't like reading long books. I don't mind cleaning my room. I hate waiting for the bus in winter.",
+    modelNote:"love playing, like watching, don't mind cleaning, hate waiting – hammasi -ing bilan; «, but» bilan qarama-qarshi fikr."}],
+    self:["like / love / hate dan keyin fe'l-ing","Kamida 3 xil ibora","«but» dan oldin vergul","-ing imlosi toʻgʻri (swimming, dancing)"]}
+});
+
+LESSONS.push({ title:"Can and Can't", uz:"Qobiliyat: can / can't",
+  theory:[
+    {h:"1. can + fe'lning oddiy shakli", p:"<b>can</b> dan keyin fe'l <b>oʻzgarmaydi</b>: <i>to</i>, <i>-s</i> yoki <i>-ing</i> qoʻshilmaydi. He / she bilan ham <b>can</b> (cans emas).",
+     ex:[[1,"I can swim."],[0,"I can to swim."],[1,"She can speak English."],[0,"She can speaks English."],[0,"He cans drive."]]},
+    {h:"2. Inkor va savol", ex:[[1,"I can't (cannot) play the piano."],[1,"Can you ride a bike?"],[0,"Do you can ride a bike?"]]},
+    {h:"3. Qanchalik yaxshi?", p:"Qobiliyatni aniqroq tasvirlash uchun: <span class='en'>very well, well, a little, not very well</span>. Ular gap oxirida turadi.",
+     ex:[[1,"I can cook very well."],[0,"I can very well cook."],[1,"My brother can speak Russian a little."]],
+     tip:"Rasmiy yozuvda <b>cannot</b> bitta soʻz qilib yoziladi: <span class='en'>cannot</span> (can not emas)."}],
+  ex:[
+    {k:"spot", t:"My sister can sings beautifully.", bad:3, fix:"sing", why:"can dan keyin fe'l oʻzgarmaydi."},
+    {k:"spot", t:"I can to draw animals.", bad:2, fix:"(olib tashlang) can draw", why:"can dan keyin «to» qoʻyilmaydi."},
+    {k:"mc", q:"Toʻgʻri savol:", o:["Do you can swim?","Can you swim?","Can you to swim?"], a:1, why:"Can + ega + fe'l?"},
+    {k:"gap", t:"Babies <gap/> walk. They are too young. (inkor)", a:[["can't","cannot"]], why:"Inkor – can't / cannot."},
+    {k:"order", w:["very","can","Kamila","well.","dance"], a:["Kamila can dance very well."], why:"«very well» gap oxirida."},
+    {k:"rewrite", t:"He cans play chess.", a:["He can play chess."], why:"can – he bilan ham oʻzgarmaydi."},
+    {k:"gap", t:"<gap/> your father speak Turkish?", a:[["Can"]], why:"Savol: Can + ega + fe'l."},
+    {k:"spot", t:"I can very well play the guitar.", bad:2, fix:"(oxiriga) I can play the guitar very well.", why:"very well – gap oxirida."},
+    {k:"match", items:[["I can","ride a horse."],["Can you","help me?"],["She cannot","come today."],["We can speak","three languages."]], why:"can + fe'l."},
+    {k:"rewrite", t:"i can speak uzbek and english but i cant speak french", a:["I can speak Uzbek and English, but I can't speak French.","I can speak Uzbek and English but I can't speak French.","I can speak Uzbek and English, but I cannot speak French."], why:"Bosh harflar (I, Uzbek, English, French), can't, vergul + but, nuqta."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Nimalar qila olasiz va nimalar qila olmaysiz? Kamida <b>3 ta can</b> va <b>2 ta can't</b> gap yozing. <span class='en'>very well, a little</span> iboralarini ham qoʻshing.</p>",
+    frame:"I can ____ very well.\nI can ____ a little.\nI can't ____, but I want to learn.\nMy friend can ____.",
+    checks:["caps","end","has::(\\bcan [a-z]+[\\s\\S]*){3}::Kamida 3 ta «can»","has::(can't|cannot)[\\s\\S]*(can't|cannot)::Kamida 2 ta «can't / cannot»","has::^(?![\\s\\S]*\\bcan to\\b)(?![\\s\\S]*\\bcans\\b)::«can to» / «cans» xatosi yoʻq"],
+    model:"I can speak Uzbek and Russian very well. I can play the dutar a little. I can't swim, but I want to learn this summer. I can't cook plov yet. My best friend can ride a horse.",
+    modelNote:"can speak, can play, can ride; can't swim, can't cook – fe'l oddiy shaklda."}],
+    self:["can dan keyin fe'l oʻzgarmagan","can to / cans yoʻq","very well / a little gap oxirida","Bosh harf va nuqta toʻgʻri"]}
+});
+
+LESSONS.push({ title:"Spelling Matters", uz:"Imlo: koʻplik, -ing va koʻp xato qilinadigan soʻzlar",
+  theory:[
+    {h:"1. Otlarning koʻplik shakli", enCol:"all", tbl:[["Qoida","Misol"],["+ s","book → books, friend → friends"],["-s, -sh, -ch, -x + es","bus → buses, dish → dishes, box → boxes"],["undosh + y → ies","city → cities, family → families"],["unli + y → s","day → days, boy → boys"],["istisnolar","man → men, woman → women, child → children, person → people"]]},
+    {h:"2. -ing qoʻshish", enCol:"all", tbl:[["Qoida","Misol"],["oddiy","read → reading, play → playing"],["-e tushadi","write → writing, make → making"],["qisqa soʻz: undosh ikkilanadi","sit → sitting, swim → swimming, get → getting"]]},
+    {h:"3. Koʻp xato yoziladigan soʻzlar", phr:["friend (frend emas)","because","beautiful","different","Wednesday","favourite","people","which","their / there","really"],
+     ex:[[1,"My friend is very beautiful."],[0,"My frend is very beutiful."],[1,"I like it because it is different."],[0,"I like it becouse it is diferent."]]},
+    {tip:"Yozib boʻlgach, matnni bir marta faqat <b>imlo uchun</b> oʻqing: har bir soʻzga alohida qarang."}],
+  ex:[
+    {k:"gap", t:"There are many beautiful <gap/> in Uzbekistan. (city)", a:[["cities"]], why:"undosh + y → ies."},
+    {k:"gap", t:"Three <gap/> are waiting at the door. (woman)", a:[["women"]], why:"woman → women (istisno)."},
+    {k:"gap", t:"I am <gap/> a letter to my aunt. (write)", a:[["writing"]], why:"write → writing (e tushadi)."},
+    {k:"gap", t:"The children are <gap/> in the garden. (run)", a:[["running"]], why:"run → running (n ikkilanadi)."},
+    {k:"spot", t:"My best frend lives in Gulistan.", bad:2, fix:"friend", why:"friend – i va e tartibiga eʼtibor bering."},
+    {k:"spot", t:"I stayed home becouse I was ill.", bad:3, fix:"because", why:"because – toʻgʻri imlo."},
+    {k:"mc", q:"Qaysi soʻz toʻgʻri yozilgan?", o:["Wensday","Wednesday","Wendsday"], a:1, why:"Wednesday – «d» eshitilmaydi, lekin yoziladi."},
+    {k:"mc", q:"Qaysi soʻz toʻgʻri yozilgan?", o:["beautiful","beutiful","beatiful"], a:0, why:"beau-ti-ful."},
+    {k:"match", items:[["box","boxes"],["day","days"],["baby","babies"],["person","people"]], why:"Koʻplik qoidalari."},
+    {k:"rewrite", t:"My favorit food is plov becouse it is realy tasty.", a:["My favourite food is plov because it is really tasty.","My favorite food is plov because it is really tasty."], why:"favourite (yoki favorite), because, really."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Eng yaxshi doʻstingiz va u bilan nima qilishni yoqtirishingiz haqida yozing. Quyidagi soʻzlardan kamida <b>3 tasini</b> toʻgʻri yozib ishlating: <span class='en'>friend, because, beautiful, different, favourite, people, really</span>.</p>",
+    frame:"My best friend is ____.\nWe are really good friends because ____.\nOur favourite ____ is ____.",
+    checks:["caps","end","link::friend|because|beautiful|different|favourite|favorite|people|really@3::Roʻyxatdagi soʻzlardan kamida 3 tasi","has::^(?![\\s\\S]*\\b(frend|becouse|beutiful|diferent|favorit|realy|peaple)\\b)::Koʻp uchraydigan imlo xatolari yoʻq"],
+    model:"My best friend is Shahzoda. We are really good friends because we are both funny and kind. Our favourite place is a beautiful park near our school. We like different things, but we always help each other.",
+    modelNote:"friend, really, because, favourite, beautiful, different – toʻgʻri imlo."}],
+    self:["Matnni faqat imlo uchun bir marta oʻqidim","Koʻplik shakllari toʻgʻri","-ing imlosi toʻgʻri","Roʻyxatdagi soʻzlar toʻgʻri yozilgan"]}
+});
+
+LESSONS.push({ title:"A Postcard to a Friend", uz:"Doʻstga otkritka yoki qisqa xabar",
+  theory:[
+    {h:"1. Otkritka tuzilishi", p:"Qisqa norasmiy xat 5 qismdan iborat. Bu tuzilma keyingi darajalarda imtihondagi <b>Task 1.1</b> (doʻstga xat) uchun asos boʻladi.",
+     frame:"<span class='sl'>Salomlashish</span>  Hi Aziz,\n<span class='sl'>Qayerdasiz</span>  I am in Samarkand with my family.\n<span class='sl'>Nima qilyapsiz / tasvir</span>  The weather is sunny and the city is beautiful. Yesterday we visited the Registan.\n<span class='sl'>Xayrlashish</span>  See you soon!\n<span class='sl'>Imzo</span>  Bobur"},
+    {h:"2. Boshlash va tugatish iboralari", enCol:"all", tbl:[["Boshlash","Tugatish"],["Hi Malika, / Dear Malika,","See you soon! / Love, / Best wishes,"],["How are you?","Write soon!"]]},
+    {h:"3. Tipik xatolar", ex:[[1,"Hi Aziz,"],[0,"Hi, dear Aziz!!!"],[1,"Best wishes,\nNilufar"],[0,"Best wishes Nilufar."]],
+     tip:"Salomlashishdan keyin <b>vergul</b> qoʻyiladi va xat yangi qatordan boshlanadi. Imzo ham alohida qatorda."}],
+  ex:[
+    {k:"mc", q:"Doʻstga xatni qanday boshlaysiz?", o:["Dear Sir,","Hi Kamron,","Hello Mr Kamron!!!"], a:1, why:"Doʻstga: Hi + ism + vergul."},
+    {k:"mc", q:"Otkritkani qanday tugatasiz?", o:["Yours faithfully,","See you soon!","Regards from the company,"], a:1, why:"Norasmiy xat – See you soon! / Love, / Best wishes,"},
+    {k:"order", w:["Bukhara","am","with","I","in","my","parents."], a:["I am in Bukhara with my parents."], why:"Qayerdasiz: I am in … with …"},
+    {k:"gap", t:"The weather <gap/> hot and sunny.", a:[["is"]], why:"The weather = it → is."},
+    {k:"spot", t:"Hi Dilshod. How are you?", bad:1, fix:"Dilshod,", why:"Salomlashishdan keyin vergul: Hi Dilshod,"},
+    {k:"match", items:[["Salomlashish","Hi Nodira,"],["Joy","I am in Khiva."],["Tasvir","The old town is amazing."],["Xayrlashish","See you next week!"]], why:"Otkritka qismlari tartibi."},
+    {k:"gap", t:"Yesterday we <gap/> the Ark fortress. (visit – oʻtgan zamon)", a:[["visited"]], why:"Kecha – oʻtgan zamon: visited."},
+    {k:"rewrite", t:"best wishes laylo", a:["Best wishes,\nLaylo","Best wishes, Laylo"], why:"Best wishes + vergul, ism katta harf bilan (alohida qatorda)."},
+    {k:"mc", q:"Qaysi gap otkritkaga mos <b>emas</b>?", o:["The food here is delicious.","I hope you are well.","I am writing to complain about your service."], a:2, why:"«I am writing to complain…» – rasmiy xat iborasi."},
+    {k:"spot", t:"We are having a great time hear.", bad:6, fix:"here.", why:"here (bu yerda), hear – eshitmoq."}],
+  task:{parts:[{words:[30,40],
+    prompt:"<p>Siz taʼtilda boshqa shahardasiz. Doʻstingizga <b>otkritka</b> yozing:</p><ul><li>qayerdasiz va kim bilan</li><li>ob-havo va joy qanday</li><li>nima qildingiz / nima qilyapsiz</li></ul><p>Salomlashish, xayrlashish va imzoni alohida qatorlarda yozing.</p>",
+    frame:"Hi ____,\nI am in ____ with ____.\nThe weather is ____ and ____.\nYesterday we ____.\nSee you soon!\n____",
+    checks:["caps","end::letter","has::^\\s*(Hi|Hello|Dear) [A-Z][a-z]+,::Salomlashish: Hi / Dear + ism + vergul","has::(See you|Love,|Best wishes|Write soon|Take care)::Xayrlashish iborasi bor","para::4::Kamida 4 qator (salom, matn, xayrlashish, imzo)"],
+    model:"Hi Sevara,\nI am in Khiva with my family. The weather is hot, but the old town is amazing. Yesterday we climbed a minaret and took lots of photos. Tomorrow we are going to the market.\nSee you soon!\nMadina",
+    modelNote:"Salomlashish (Hi Sevara,) → joy → tasvir → reja → xayrlashish → imzo."}],
+    self:["Salomlashishdan keyin vergul","Joy, ob-havo va nima qilganim yozilgan","Xayrlashish va imzo alohida qatorda","Norasmiy, samimiy uslub"]}
+});
+
+LESSONS.push({ title:"My Favourite Place: a Paragraph", uz:"Paragraf yozish: asosiy gap + tafsilotlar + yakun",
+  theory:[
+    {h:"1. Paragraf nima?", p:"Paragraf – <b>bitta mavzu</b> haqidagi bir nechta bogʻliq gaplar. Yaxshi paragraf 3 qismdan iborat:",
+     frame:"<span class='sl'>Asosiy gap</span>  My favourite place is my grandmother's garden in Fergana.\n<span class='sl'>Tafsilotlar</span>  There are many apple and cherry trees. In summer, we sit under the trees and drink tea. It is quiet and beautiful.\n<span class='sl'>Yakun</span>  I love this garden because it makes me happy."},
+    {h:"2. Asosiy gap (topic sentence)", p:"Birinchi gap paragraf nima haqida ekanini aytadi. Oʻquvchi faqat shu gapni oʻqib, mavzuni tushunishi kerak.",
+     ex:[[1,"My favourite place is the Chorsu Bazaar."],[0,"I go there sometimes."],[1,"Sunday is the best day of the week for me."]]},
+    {h:"3. Tafsilotlar va bogʻlovchilar", p:"Tafsilot gaplarda <b>nima bor, nima qilasiz, qanday his qilasiz</b> deb yozing. Gaplarni bogʻlang: <span class='en'>and, but, because, also, in summer…</span>",
+     ex:[[0,"It is big. It is nice. It is green."],[1,"It is big, green and very peaceful."]]},
+    {h:"4. Yakuniy gap", p:"Oxirgi gap asosiy fikrni boshqa soʻzlar bilan takrorlaydi yoki sababini aytadi: <span class='en'>That is why I love…, I think it is the best place…</span>",
+     tip:"Barcha oʻtgan darslarni eslang: bosh harf, nuqta, soʻz tartibi, am/is/are, -s, predloglar. Bu paragraf – Starter darajasining yakuniy ishi."}],
+  ex:[
+    {k:"mc", q:"Qaysi gap asosiy gap (topic sentence) boʻla oladi?", o:["There are many trees.","My favourite place is the park near my house.","I go there with my friends."], a:1, why:"U paragraf mavzusini aniq aytadi."},
+    {k:"mc", q:"Qaysi gap yakuniy gap sifatida mos?", o:["There is a café too.","That is why the park is my favourite place.","My name is Olim."], a:1, why:"Asosiy fikrni yakunlaydi."},
+    {k:"mc", q:"Paragrafga mos <b>kelmaydigan</b> gapni toping: <span class='en'>My favourite place is our school library. It is quiet and bright. My uncle has a new car. I read books there every day.</span>", o:["It is quiet and bright.","My uncle has a new car.","I read books there every day."], a:1, why:"Bu gap kutubxona mavzusiga aloqasi yoʻq."},
+    {k:"rewrite", t:"The beach is hot. The beach is sandy. The beach is beautiful.", ins:"Uch gapni bitta qiling.", a:["The beach is hot, sandy and beautiful.","The beach is hot, sandy, and beautiful."], why:"Takror olib tashlanadi, vergul + and."},
+    {k:"gap", t:"I love this place <gap/> it is quiet and peaceful.", a:[["because"]], why:"Sabab – because."},
+    {k:"order", w:["is","place","Charvak","My","Lake.","favourite"], a:["My favourite place is Charvak Lake."], why:"Asosiy gap: My favourite place is …"},
+    {k:"spot", t:"In summer we swims in the lake.", bad:3, fix:"swim", why:"We → swim (-s yoʻq)."},
+    {k:"match", items:[["Asosiy gap","My favourite place is the cinema."],["Tafsilot","It has big screens and soft seats."],["Tafsilot","I go there with my cousins on Fridays."],["Yakun","For me, it is the best place to relax."]], why:"Paragraf tuzilishi: asosiy gap → tafsilotlar → yakun."},
+    {k:"spot", t:"There are a big fountain in the centre.", bad:1, fix:"is", why:"a big fountain – bitta → There is."},
+    {k:"gap", t:"I go there <gap/> my family <gap/> Sundays.", a:[["with"],["on"]], why:"with my family; on Sundays."}],
+  task:{parts:[{words:[35,50],
+    prompt:"<p>Sevimli joyingiz haqida <b>bitta paragraf</b> yozing (35–50 soʻz):</p><ul><li><b>Asosiy gap:</b> sevimli joyingiz qaysi</li><li><b>Tafsilotlar:</b> u qayerda, u yerda nima bor, u yerda nima qilasiz</li><li><b>Yakun:</b> nega uni yaxshi koʻrasiz</li></ul>",
+    frame:"My favourite place is ____.\nIt is in / near ____.\nThere is / There are ____.\nI go there ____ and I ____.\nI love this place because ____.",
+    checks:["caps","end","has::^\\s*My favourite place|^\\s*My favorite place|^\\s*The best place|^\\s*[A-Z][\\w\\s']+ is my favourite::Asosiy gap mavzuni aytadi","link::and|but|because|also|so@2::Kamida 2 xil bogʻlovchi","has::because|That is why|That's why|For me::Yakunda sabab yoki xulosa bor"],
+    model:"My favourite place is my grandfather's house near Samarkand. There is a big garden with apricot trees and a river behind the house. In summer, I swim in the river and help in the garden. I love this place because it is quiet, green and full of happy memories.",
+    modelNote:"Asosiy gap → 2 ta tafsilot gap (There is…, In summer…) → yakun (because…)."}],
+    self:["Birinchi gap mavzuni aytadi","Barcha gaplar bitta mavzu haqida","Gaplar bogʻlovchilar bilan bogʻlangan","Oxirgi gap xulosa yoki sabab beradi","Bosh harf, nuqta, -s va predloglar toʻgʻri"]}
+});
+
+(function(){
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.documentElement.style.setProperty("--lvl", `var(--l${LEVEL.color})`);
+const KEY = "wr_" + LEVEL.key;
+let store = {done:{}, drafts:{}, self:{}};
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) store = Object.assign(store, s); } catch(e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e) {} };
+let view = "list", cur = 0, tab = 0, checked = false, timerId = null, timeLeft = 0;
+const answers = {}; // per exercise state
+
+/* ---------- helpers ---------- */
+const norm = s => String(s).replace(/[‘’ʼ`]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
+const normGap = s => norm(s).toLowerCase().replace(/[.!?,]+$/, "");
+function seeded(n, seed){ const a = [...Array(n).keys()]; let x = seed * 9301 + 49297; for (let i = n - 1; i > 0; i--){ x = (x * 9301 + 49297) % 233280; const j = Math.floor(x / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const countWords = t => (norm(t).match(/[A-Za-z0-9]+(?:['\-][A-Za-z0-9]+)*/g) || []).length;
+function lessonStatus(i){ return store.done[i] || {}; }
+
+/* ---------- list ---------- */
+function renderList(){
+  $("#brand").innerHTML = `<span class="eyebrow">CEFR Writing · ${esc(LEVEL.cefr)}</span><h1>${esc(LEVEL.name)} Writing</h1><p>${esc(LEVEL.intro)}</p>`;
+  const nEx = LESSONS.reduce((s, L) => s + L.ex.length, 0);
+  let h = `<dl class="overview"><div><dt>Darslar</dt><dd>${LESSONS.length} / ${LEVEL.planned}</dd></div><div><dt>Mashqlar</dt><dd>${nEx} ta</dd></div><div><dt>Yozish hajmi</dt><dd>${esc(LEVEL.words)}</dd></div><div><dt>Imtihon bilan bogʻliq</dt><dd>${esc(LEVEL.exam)}</dd></div></dl>`;
+  h += `<div class="howto"><div><span class="n">1</span><p style="margin:0"><b>Dars</b><span>Qoida oʻzbekcha tushuntiriladi, toʻgʻri va notoʻgʻri misollar bilan.</span></p></div><div><span class="n">2</span><p style="margin:0"><b>Mashqlar</b><span>Avtomatik tekshiriladi, har bir javob izohlanadi.</span></p></div><div><span class="n">3</span><p style="margin:0"><b>Yozish</b><span>Oʻzingiz yozasiz, soʻz sanagich va tekshiruvlar yordam beradi, soʻng namuna bilan solishtirasiz.</span></p></div></div>`;
+  for (const b of LEVEL.bands){
+    h += `<section class="band"><div class="bandh"><h2>${esc(b.name)}</h2><span class="rng">${b.from}–${b.to}-darslar</span><p>${esc(b.desc)}</p></div><div class="grid">`;
+    for (let i = b.from - 1; i < b.to; i++){
+      const L = LESSONS[i];
+      if (!L){ h += `<div class="lcard" style="cursor:default;border-style:dashed;background:transparent"><span class="tn">${String(i+1).padStart(2,"0")}</span><span class="tt" style="color:var(--muted);font-weight:500">Tez orada</span></div>`; continue; }
+      const st = lessonStatus(i);
+      const ex = st.total ? `<i class="${st.score/st.total >= .8 ? "ok" : ""}">Mashq ${st.score}/${st.total}</i>` : `<i>Mashq —</i>`;
+      const wr = st.written ? `<i class="ok">✔ Yozildi</i>` : `<i>Yozish —</i>`;
+      h += `<button class="lcard" data-i="${i}"><span class="tn">${String(i+1).padStart(2,"0")}</span><span class="tt">${esc(L.title)}</span><span class="tu">${esc(L.uz)}</span><span class="st">${ex}${wr}</span></button>`;
+    }
+    h += `</div></section>`;
+  }
+  $("#main").innerHTML = h;
+  $("#main").querySelectorAll(".lcard[data-i]").forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+  $("#bar").hidden = true;
+}
+
+/* ---------- lesson ---------- */
+function openLesson(i, t){ cur = i; tab = t || 0; checked = false; for (const k in answers) delete answers[k]; view = "lesson"; stopTimer(); render(); window.scrollTo(0, 0); }
+window.openLesson = openLesson;
+function setTab(t){ tab = t; render(); const tb = $(".tabs"); if (tb) tb.scrollIntoView({block:"start"}); }
+window.setTab = setTab;
+function renderLesson(){
+  const L = LESSONS[cur];
+  $("#brand").innerHTML = "";
+  let h = `<div class="tvhead"><button class="back" id="bk">← Barcha darslar</button>${cur > 0 ? `<button class="back" id="pv">‹ Oldingi</button>` : ""}${cur < LESSONS.length - 1 ? `<button class="back" id="nx">Keyingi ›</button>` : ""}<h2><span class="mono">${String(cur+1).padStart(2,"0")}</span>${esc(L.title)}</h2><div class="sub">${esc(L.uz)}</div></div>`;
+  const nT = L.task.parts.length;
+  h += `<div class="tabs" role="tablist">${["Dars","Mashqlar","Yozish"].map((n, k) => `<button class="tab" role="tab" aria-selected="${tab === k}" data-t="${k}"><span class="n">${k+1}</span>${n}${k === 1 ? ` <span class="cnt">${L.ex.length}</span>` : ""}${k === 2 && nT > 1 ? ` <span class="cnt">${nT}</span>` : ""}</button>`).join("")}</div>`;
+  h += `<div id="pane"></div>`;
+  $("#main").innerHTML = h;
+  $("#bk").onclick = () => { view = "list"; stopTimer(); render(); window.scrollTo(0, 0); };
+  if ($("#pv")) $("#pv").onclick = () => openLesson(cur - 1);
+  if ($("#nx")) $("#nx").onclick = () => openLesson(cur + 1);
+  $("#main").querySelectorAll(".tab").forEach(b => b.onclick = () => setTab(+b.dataset.t));
+  if (tab === 0) renderTheory(L); else if (tab === 1) renderEx(L); else renderWrite(L);
+}
+
+/* theory */
+function renderTheory(L){
+  let h = `<article class="sheet">`;
+  for (const b of L.theory){
+    h += `<section class="tb">`;
+    if (b.h) h += `<h3>${b.h}</h3>`;
+    if (b.p) h += `<p>${b.p}</p>`;
+    if (b.ex) h += `<ul class="exs">${b.ex.map(e => `<li class="${e[0] ? "y" : "x"}"><span class="mk">${e[0] ? "✔" : "✘"}</span><span><span class="en">${e[1]}</span>${e[2] ? `<span class="uz">${e[2]}</span>` : ""}</span></li>`).join("")}</ul>`;
+    if (b.tbl) h += `<div class="tblw"><table class="tbl"><thead><tr>${b.tbl[0].map(c => `<th>${c}</th>`).join("")}</tr></thead><tbody>${b.tbl.slice(1).map(r => `<tr>${r.map((c, k) => `<td class="${b.enCol === "all" || b.enCol === k ? "en" : ""}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+    if (b.phr) h += `<ul class="phr">${b.phr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    if (b.frame) h += `<div class="frame">${b.frame}</div>`;
+    if (b.tip) h += `<div class="tip"><b>Maslahat:</b> ${b.tip}</div>`;
+    h += `</section>`;
+  }
+  h += `</article>`;
+  $("#pane").innerHTML = h;
+  bar(`Dars: qoidani oʻqing, keyin mashq qiling`, [["Mashqlarga oʻtish →", () => setTab(1), true]]);
+}
+
+/* exercises */
+const INS = {mc:"Toʻgʻri javobni tanlang.", gap:"Boʻshliqni toʻldiring.", order:"Soʻzlarni bosib, toʻgʻri gap tuzing.", spot:"Xato soʻzni bosing.", match:"Mos keladiganini tanlang.", rewrite:"Gapni toʻgʻri qilib qayta yozing."};
+function renderEx(L){
+  let h = `<article class="sheet"><div class="qlist">`;
+  L.ex.forEach((e, n) => {
+    const A = answers[n] || (answers[n] = initAns(e, n));
+    h += `<div class="qx" data-n="${n}"><div class="qh"><span class="num">${n+1}</span><span class="ins">${esc(e.ins || INS[e.k])}</span></div><div class="qbody">${exBody(e, n, A)}${checked ? feedback(e, n, A) : ""}</div></div>`;
+  });
+  h += `</div></article>`;
+  if (checked){ const r = score(L); h = `<div class="result" id="res"><span class="big">${r.s}/${r.t}</span><p>${r.s === r.t ? "Ajoyib! Hammasi toʻgʻri. Endi yozishga oʻting." : r.s / r.t >= .8 ? "Yaxshi natija. Xatolar izohini oʻqib chiqing, keyin yozishga oʻting." : "Izohlarni oʻqing va qoidani yana bir koʻrib chiqing, keyin qayta urinib koʻring."}</p></div>` + h; }
+  $("#pane").innerHTML = h;
+  wireEx(L);
+  updBarEx(L);
+}
+function initAns(e, n){
+  if (e.k === "gap") return {v: e.a.map(() => "")};
+  if (e.k === "order") return {seq: [], order: seeded(e.w.length, n + 7 + cur * 13)};
+  if (e.k === "match") return {v: e.items.map(() => ""), order: seeded(e.items.length, n + 3 + cur * 11)};
+  return {v: e.k === "mc" ? -1 : e.k === "spot" ? -1 : ""};
+}
+function exBody(e, n, A){
+  const dis = checked ? "disabled" : "";
+  if (e.k === "mc"){
+    return (e.q ? `<div class="qtext">${e.q}</div>` : "") + `<div class="opts">${e.o.map((o, k) => {
+      const cls = checked ? (k === e.a ? "right" : (k === A.v ? "wrong" : "")) : "";
+      return `<label class="opt ${cls}"><input type="radio" name="q${n}" value="${k}" ${A.v === k ? "checked" : ""} ${dis}><span>${o}</span></label>`; }).join("")}</div>`;
+  }
+  if (e.k === "gap"){
+    let i = 0;
+    return `<div class="qtext">${e.t.replace(/<gap\/>/g, () => { const k = i++; const ok = checked ? (e.a[k].some(x => normGap(x) === normGap(A.v[k])) ? "right" : "wrong") : ""; return `<input class="gi ${ok}" data-n="${n}" data-k="${k}" value="${esc(A.v[k])}" autocomplete="off" autocapitalize="off" spellcheck="false" ${dis} aria-label="boʻshliq ${k+1}">`; })}</div>`;
+  }
+  if (e.k === "order"){
+    const used = new Set(A.seq);
+    const ok = checked ? (orderOk(e, A) ? "right" : "wrong") : "";
+    return `<div class="ans ${ok}" data-ph="Bu yerda gap paydo boʻladi" data-n="${n}">${A.seq.map((w, p) => `<button class="chip" data-n="${n}" data-rm="${p}" ${dis}>${esc(e.w[w])}</button>`).join("")}</div><div class="chips">${A.order.map(w => `<button class="chip ${used.has(w) ? "used" : ""}" data-n="${n}" data-w="${w}" ${dis}>${esc(e.w[w])}</button>`).join("")}</div>`;
+  }
+  if (e.k === "spot"){
+    const ws = e.t.split(" ");
+    return `<div class="words">${ws.map((w, k) => { let c = A.v === k ? "sel" : ""; if (checked){ if (k === e.bad) c = A.v === k ? "right" : "miss"; else if (A.v === k) c = "wrong"; } return `<button class="wd ${c}" data-n="${n}" data-k="${k}" ${dis}>${esc(w)}</button>`; }).join("")}</div>`;
+  }
+  if (e.k === "match"){
+    const opts = A.order.map(k => `<option value="${k}">${esc(e.items[k][1])}</option>`).join("");
+    return e.items.map((it, k) => { const ok = checked ? (String(A.v[k]) === String(k) ? "right" : "wrong") : ""; return `<div class="mrow"><span class="ml">${it[0]}</span><select class="mi ${ok}" data-n="${n}" data-k="${k}" ${dis}><option value="">— tanlang —</option>${opts}</select></div>`; }).join("");
+  }
+  if (e.k === "rewrite"){
+    const ok = checked ? (e.a.some(x => norm(x) === norm(A.v)) ? "right" : "wrong") : "";
+    return `<div class="qtext">${esc(e.t)}</div><textarea class="ri ${ok}" rows="2" data-n="${n}" autocomplete="off" autocapitalize="off" spellcheck="false" ${dis} aria-label="javob">${esc(A.v)}</textarea>`;
+  }
+  return "";
+}
+const orderOk = (e, A) => e.a.some(x => norm(x) === norm(A.seq.map(w => e.w[w]).join(" ")));
+function isRight(e, A){
+  if (e.k === "mc") return A.v === e.a;
+  if (e.k === "gap") return e.a.every((acc, k) => acc.some(x => normGap(x) === normGap(A.v[k])));
+  if (e.k === "order") return orderOk(e, A);
+  if (e.k === "spot") return A.v === e.bad;
+  if (e.k === "match") return e.items.every((_, k) => String(A.v[k]) === String(k));
+  if (e.k === "rewrite") return e.a.some(x => norm(x) === norm(A.v));
+}
+function isAnswered(e, A){
+  if (e.k === "gap") return A.v.every(x => x.trim());
+  if (e.k === "order") return A.seq.length > 0;
+  if (e.k === "match") return A.v.every(x => x !== "");
+  if (e.k === "rewrite") return A.v.trim().length > 0;
+  return A.v !== -1;
+}
+function feedback(e, n, A){
+  const ok = isRight(e, A);
+  let right = "";
+  if (e.k === "mc") right = e.o[e.a];
+  else if (e.k === "gap") right = e.a.map(x => x[0]).join(" / ");
+  else if (e.k === "order" || e.k === "rewrite") right = e.a[0];
+  else if (e.k === "spot") right = `${esc(e.t.split(" ")[e.bad])} → ${e.fix}`;
+  else if (e.k === "match") right = e.items.map(it => `${it[0]} – ${it[1]}`).join("; ");
+  return `<div class="fb"><span class="ca ${ok ? "ok" : "no"}">${ok ? "✔ Toʻgʻri." : "✘ Toʻgʻri javob:"} ${ok && e.k !== "spot" ? "" : `<span class="en">${right}</span>`}</span>${e.why ? `<span>${e.why}</span>` : ""}</div>`;
+}
+function score(L){ let s = 0; L.ex.forEach((e, n) => { if (isRight(e, answers[n])) s++; }); return {s, t: L.ex.length}; }
+function wireEx(L){
+  const P = $("#pane");
+  P.querySelectorAll("input[type=radio]").forEach(r => r.onchange = () => { const n = +r.name.slice(1); answers[n].v = +r.value; updBarEx(L); });
+  P.querySelectorAll("input.gi").forEach(x => x.oninput = () => { answers[+x.dataset.n].v[+x.dataset.k] = x.value; updBarEx(L); });
+  P.querySelectorAll("textarea.ri").forEach(x => x.oninput = () => { answers[+x.dataset.n].v = x.value; updBarEx(L); });
+  P.querySelectorAll("select.mi").forEach(x => x.onchange = () => { answers[+x.dataset.n].v[+x.dataset.k] = x.value; updBarEx(L); });
+  P.querySelectorAll(".chip[data-w]").forEach(b => b.onclick = () => { const A = answers[+b.dataset.n]; A.seq.push(+b.dataset.w); reEx(L, +b.dataset.n); });
+  P.querySelectorAll(".chip[data-rm]").forEach(b => b.onclick = () => { const A = answers[+b.dataset.n]; A.seq.splice(+b.dataset.rm, 1); reEx(L, +b.dataset.n); });
+  P.querySelectorAll(".wd").forEach(b => b.onclick = () => { const A = answers[+b.dataset.n]; A.v = +b.dataset.k; reEx(L, +b.dataset.n); });
+  P.querySelectorAll("select.mi").forEach(x => { const A = answers[+x.dataset.n]; x.value = A.v[+x.dataset.k]; });
+}
+function reEx(L, n){ const q = $(`.qx[data-n="${n}"] .qbody`); q.innerHTML = exBody(L.ex[n], n, answers[n]); wireEx(L); updBarEx(L); }
+function updBarEx(L){
+  const done = L.ex.filter((e, n) => isAnswered(e, answers[n])).length;
+  if (checked){ const r = score(L); bar(`Natija: <b>${r.s} / ${r.t}</b>`, [["Qayta urinish", () => { checked = false; for (const k in answers) delete answers[k]; renderEx(L); window.scrollTo(0, 0); }], ["Yozishga oʻtish →", () => setTab(2), true]]); }
+  else bar(`<b>${done} / ${L.ex.length}</b> ta mashqqa javob berildi`, [["Tekshirish", () => doCheck(), true]]);
+}
+function doCheck(){
+  const L = LESSONS[cur]; checked = true; const r = score(L);
+  const st = store.done[cur] || {}; if (!st.total || r.s >= st.score) { st.score = r.s; st.total = r.t; } store.done[cur] = st; save();
+  renderEx(L); window.scrollTo(0, 0);
+  return r;
+}
+window.doCheck = doCheck;
+
+/* writing */
+const CONTR = /\b(i'm|you're|we're|they're|he's|she's|it's|that's|there's|what's|i've|you've|we've|they've|i'll|you'll|we'll|they'll|he'll|she'll|i'd|you'd|we'd|they'd|\w+n't)\b/gi;
+function runChecks(text, part){
+  const t = norm(text.replace(/\n/g, " \n "));
+  const out = [];
+  const wc = countWords(text);
+  const [lo, hi] = part.words;
+  out.push({ok: wc >= lo && wc <= hi, txt: `Soʻzlar soni ${lo}–${hi}`, det: `(${wc} ta)`});
+  for (const c of part.checks || []){
+    const [k, arg, label] = c.split("::");
+    if (k === "caps"){
+      const sents = text.split(/(?<=[.!?])\s+|\n+/).map(s => s.trim()).filter(s => s);
+      const bad = sents.filter(s => /^[a-z]/.test(s) && !/^i\b/.test(s)).length + ((text.match(/(^|[^A-Za-z'])i(?=[^A-Za-z']|$)/g) || []).length);
+      out.push({ok: wc > 0 && bad === 0, txt: "Har bir gap bosh harf bilan boshlanadi, «I» doim katta", det: bad ? `(${bad} ta joyda xato)` : ""});
+    } else if (k === "end"){
+      const tr = text.trim(); const lines = tr.split(/\n+/).map(s => s.trim()).filter(s => s);
+      const last = lines.length ? lines[lines.length - 1] : "";
+      const okEnd = arg === "letter" ? lines.filter((s, ix) => ix > 0 && ix < lines.length - 2 && countWords(s) > 3).every(s => /[.!?]$/.test(s)) : /[.!?]$/.test(tr);
+      out.push({ok: wc > 0 && okEnd, txt: arg === "letter" ? "Asosiy gaplar nuqta, ? yoki ! bilan tugaydi" : "Matn nuqta, ? yoki ! bilan tugaydi"});
+    } else if (k === "para"){
+      const p = text.split(/\n+/).map(s => s.trim()).filter(s => s).length;
+      out.push({ok: p >= +arg, txt: label || `Kamida ${arg} ta qator / paragraf (Enter bilan ajrating)`, det: `(${p} ta)`});
+    } else if (k === "noContr"){
+      const m = t.match(CONTR) || [];
+      out.push({ok: wc > 0 && m.length === 0, txt: "Qisqartmalar yoʻq (I'm → I am, don't → do not)", det: m.length ? `(${[...new Set(m.map(x => x.toLowerCase()))].slice(0, 4).join(", ")})` : ""});
+    } else if (k === "has" || k === "hasC"){
+      const re = new RegExp(arg, k === "hasC" ? "" : "i");
+      out.push({ok: re.test(t), txt: label});
+    } else if (k === "link"){
+      const [list, min] = arg.split("@"); const ws = list.split("|");
+      const found = ws.filter(w => new RegExp(`\\b${w.replace(/ /g, "\\s+")}\\b`, "i").test(t));
+      out.push({ok: found.length >= +(min || 1), txt: label || `Bogʻlovchilar: ${ws.join(", ")} (kamida ${min || 1} ta)`, det: found.length ? `(${found.join(", ")})` : ""});
+    }
+  }
+  return out;
+}
+function renderWrite(L){
+  const T = L.task;
+  let h = `<article class="sheet">`;
+  if (T.intro) h += `<p style="margin:0">${T.intro}</p>`;
+  T.parts.forEach((P, k) => {
+    const id = `${cur}_${k}`;
+    const val = store.drafts[id] || "";
+    h += `<section class="task" data-k="${k}">`;
+    if (T.parts.length > 1 || P.label) h += `<h3>${P.label ? `<span class="mono">${esc(P.label)}</span>` : ""}${P.title || ""}</h3>`;
+    if (P.stim) h += `<div class="stim">${P.stim}</div>`;
+    h += `<div class="prompt">${P.prompt}</div>`;
+    if (P.frame) h += `<details class="dd"><summary>Yordamchi qolip (boshlash uchun)</summary><div class="in"><div class="frame">${P.frame}</div></div></details>`;
+    h += `<div class="wbox"><textarea class="wa" data-k="${k}" placeholder="Shu yerga inglizcha yozing…" spellcheck="false" autocapitalize="sentences">${esc(val)}</textarea><div class="wmeta"><span class="wc" data-k="${k}"></span></div><ul class="checks" data-k="${k}"></ul></div>`;
+    h += `<details class="dd" data-k="${k}"><summary>Namuna javob</summary><div class="in"><div class="model">${P.model}</div>${P.modelNote ? `<p class="model note" style="margin:0;background:none;padding:0">${P.modelNote}</p>` : ""}</div></details>`;
+    h += `</section>`;
+  });
+  const selfArr = store.self[cur] || [];
+  h += `<section class="task"><h3>Oʻzingizni tekshiring</h3><p style="margin:0;color:var(--muted)">Yozib boʻlgach, namuna bilan solishtiring va har bir bandni belgilang.</p><div class="self">${T.self.map((s, i) => `<label><input type="checkbox" data-i="${i}" ${selfArr[i] ? "checked" : ""}><span>${s}</span></label>`).join("")}</div></section>`;
+  h += `</article>`;
+  $("#pane").innerHTML = h;
+  const P = $("#pane");
+  P.querySelectorAll("textarea.wa").forEach(ta => { const k = +ta.dataset.k; const upd = () => { store.drafts[`${cur}_${k}`] = ta.value; save(); updWrite(L, k); }; ta.oninput = upd; updWrite(L, k); });
+  P.querySelectorAll(".self input").forEach(cb => cb.onchange = () => { const a = store.self[cur] || []; a[+cb.dataset.i] = cb.checked; store.self[cur] = a; markWritten(L); save(); updBarW(L); });
+  if (T.minutes && !timerId){ timeLeft = T.minutes * 60; timerId = setInterval(tick, 1000); }
+  updBarW(L);
+}
+function tick(){ timeLeft--; const el = $("#tmr"); if (el){ el.textContent = fmt(timeLeft); el.classList.toggle("end", timeLeft <= 300); } if (timeLeft <= 0){ stopTimer(); alert("Vaqt tugadi! Endi namuna javob bilan solishtiring."); document.querySelectorAll("textarea.wa").forEach(t => t.readOnly = true); } }
+const fmt = s => `${String(Math.max(0, Math.floor(s / 60))).padStart(2, "0")}:${String(Math.max(0, s % 60)).padStart(2, "0")}`;
+function stopTimer(){ if (timerId){ clearInterval(timerId); timerId = null; } }
+function updWrite(L, k){
+  const P = L.task.parts[k]; const ta = document.querySelector(`textarea.wa[data-k="${k}"]`);
+  const text = ta.value; const wc = countWords(text);
+  const el = document.querySelector(`.wc[data-k="${k}"]`);
+  el.textContent = `${wc} soʻz · kerak: ${P.words[0]}–${P.words[1]}`;
+  el.className = "wc " + (wc < P.words[0] ? "low" : wc > P.words[1] ? "hi" : "ok");
+  document.querySelector(`.checks[data-k="${k}"]`).innerHTML = runChecks(text, P).map(c => `<li class="${text.trim() ? (c.ok ? "y" : "x") : ""}"><span>${c.txt} <span class="det">${c.det || ""}</span></span></li>`).join("");
+  markWritten(L); updBarW(L);
+}
+function partOk(L, k){ const P = L.task.parts[k]; const t = store.drafts[`${cur}_${k}`] || ""; const wc = countWords(t); return wc >= P.words[0]; }
+function markWritten(L){
+  const allLong = L.task.parts.every((_, k) => partOk(L, k));
+  const selfN = (store.self[cur] || []).filter(Boolean).length;
+  const st = store.done[cur] || {};
+  const w = allLong && selfN >= Math.ceil(L.task.self.length / 2);
+  if (!!st.written !== w){ st.written = w; store.done[cur] = st; save(); }
+}
+function updBarW(L){
+  const wcs = L.task.parts.map((P, k) => countWords(store.drafts[`${cur}_${k}`] || ""));
+  const tm = L.task.minutes ? `<span class="timer" id="tmr">${fmt(timerId ? timeLeft : L.task.minutes * 60)}</span> ` : "";
+  const st = store.done[cur] || {};
+  bar(`${tm}${L.task.parts.length > 1 ? wcs.map((w, k) => `${esc(L.task.parts[k].label || "")}: <b>${w}</b>`).join(" · ") : `<b>${wcs[0]}</b> soʻz`}${st.written ? " · <b style='color:var(--ok)'>✔ bajarildi</b>" : ""}`,
+    [["Namunani ochish", () => { document.querySelectorAll("details.dd[data-k]").forEach(d => d.open = true); const d = document.querySelector("details.dd[data-k]"); if (d) d.scrollIntoView({block:"center"}); }],
+     cur < LESSONS.length - 1 ? ["Keyingi dars →", () => openLesson(cur + 1), true] : ["Barcha darslar", () => { view = "list"; stopTimer(); render(); window.scrollTo(0,0); }, true]]);
+}
+
+/* bar */
+function bar(left, btns){
+  $("#bar").hidden = false; $("#barL").innerHTML = left;
+  const R = $("#barR"); R.innerHTML = "";
+  for (const [t, fn, pri] of btns){ const b = document.createElement("button"); b.className = "btn" + (pri ? " primary" : ""); b.textContent = t; b.onclick = fn; R.appendChild(b); }
+}
+function render(){
+  const au = $("#author"); if (au) au.hidden = view !== "list";
+  const am = $("#aumini"); if (am) am.hidden = view === "list";
+  $("#brand").hidden = view !== "list";
+  view === "list" ? renderList() : renderLesson();
+}
+window.__W = {answers, LESSONS, get cur(){ return cur; }, runChecks, countWords, store};
+render();
+})();
+</script>
+
+</body>
+</html>
