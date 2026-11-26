@@ -493,14 +493,37 @@
   }
 
   // -------------------- 9. MULTILEVEL SPEAKING SIMULATOR --------------------
-  let spIdx = 0, spShowModel = false, spRec = null, spAudioUrl = '', spRecording = false, spSec = 0, spTimer = null;
+  let spIdx = 0, spShowModel = false, spRec = null, spAudioUrl = '', spRecording = false, spSec = 0, spTimer = null, spLib = 'multilevel40';
+  const SP_LIBS = [
+    { id: 'multilevel40', label: '🎤 Multilevel 40 Savol', file: 'library/speaking/multilevel-40.html' },
+    { id: 'suhbat500', label: '💬 500 ta Suhbat', file: 'library/speaking/suhbat-500.html' },
+    { id: 'sim', label: '🎙️ Ovoz Yozish Lab', file: '' },
+  ];
   function renderSpeaking() {
+    const activeS = SP_LIBS.find((x) => x.id === spLib) || SP_LIBS[0];
+    const topBar = `
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
+        <div>
+          <span class="pill">🎙️ SPEAKING & JONLI MULOQOT MARKAZI</span>
+          <h3 style="margin-top:8px;font-size:21px;">${esc(activeS.label)}</h3>
+        </div>
+        ${activeS.file ? `<a class="btn btn-gold btn-sm" href="${activeS.file}" target="_blank" rel="noopener">↗ To‘liq ekranda ochish</a>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+        ${SP_LIBS.map((x) => `<button class="btn btn-sm ${x.id === spLib ? 'btn-primary' : 'btn-ghost'}" data-splib="${x.id}">${esc(x.label)}</button>`).join('')}
+      </div>
+    `;
+    if (activeS.file) {
+      stage.innerHTML = topBar + `<iframe src="${activeS.file}" title="${esc(activeS.label)}" style="width:100%;height:760px;border:1px solid var(--border);border-radius:16px;background:#fff;"></iframe>`;
+      stage.querySelectorAll('[data-splib]').forEach((b) => b.onclick = () => { spLib = b.dataset.splib; renderSpeaking(); });
+      return;
+    }
     const s = window.HT_SPEAKING[spIdx];
-    stage.innerHTML = `
+    stage.innerHTML = topBar + `
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
         <div>
           <span class="pill">${esc(s.part)}</span>
-          <h3 style="margin-top:8px;font-size:21px;">🎙️ ${esc(s.title)}</h3>
+          <h3 style="margin-top:8px;font-size:19px;">🎙️ ${esc(s.title)}</h3>
         </div>
         <div style="display:flex;gap:6px;">
           ${window.HT_SPEAKING.map((_, i) => `<button class="btn btn-sm ${i === spIdx ? 'btn-primary' : 'btn-ghost'}" data-sp="${i}">Part ${i + 1}</button>`).join('')}
@@ -517,6 +540,7 @@
       ${spAudioUrl ? `<div class="q-item"><div class="q-label">🎧 Sizning yozgan ovozingiz:</div><audio controls src="${spAudioUrl}" style="width:100%;"></audio></div>` : ''}
       ${spShowModel ? `<div class="fb-box ok"><b>⭐ Band 8.0 Namuna javob:</b><br/><br/>${esc(s.model)}</div>` : ''}
     `;
+    stage.querySelectorAll('[data-splib]').forEach((b) => b.onclick = () => { spLib = b.dataset.splib; renderSpeaking(); });
     stage.querySelectorAll('[data-sp]').forEach((b) => b.onclick = () => { spIdx = Number(b.dataset.sp); spShowModel = false; spAudioUrl = ''; if (spTimer) clearInterval(spTimer); spSec = 0; renderSpeaking(); });
     stage.querySelector('#sp-mod-btn').onclick = () => { spShowModel = !spShowModel; renderSpeaking(); };
     stage.querySelector('#sp-say').onclick = () => speak(s.model, 0.94);
@@ -1021,6 +1045,10 @@
         <button class="btn btn-ghost btn-sm" id="fc-say">🔊 Talaffuz</button>
         <button class="btn ${isDone ? 'btn-primary' : 'btn-gold'} btn-sm" id="fc-done">${isDone ? '✅ Yodlangan' : '☐ Yodladim (+10 XP)'}</button>
         <button class="btn btn-primary btn-sm" id="fc-next">Keyingi →</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--border);">
+        <a class="btn btn-gold btn-sm" href="library/vocab/iboralar-30.html" target="_blank" rel="noopener">🗣️ Kundalik Iboralar (30+ & Test)</a>
+        <a class="btn btn-ghost btn-sm" href="library/vocab/kunlik-450.html" target="_blank" rel="noopener">📘 450 Kunlik Lug‘at Darslari</a>
       </div>
     `;
     stage.querySelector('#fc-card').onclick = () => { fcFlip = !fcFlip; sfx('tap'); renderFlashcards(); };

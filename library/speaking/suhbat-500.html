@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>500 ta suhbat: savol va javoblar</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --text:#1c1f2a; --muted:#6b7280; --accent:#4f46e5; --accent2:#e0e7ff; --green:#047857; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#111318; --card:#1b1e27; --text:#eef0f6; --muted:#9aa0b0; --accent:#8b8bff; --accent2:#2a2d45; --green:#34d399; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--text); }
+  header { position:sticky; top:0; z-index:5; background:var(--bg); padding:12px 14px 8px; border-bottom:1px solid var(--accent2); }
+  h1 { font-size:18px; margin:0 0 8px; }
+  .row { display:flex; gap:8px; }
+  input[type=search] { flex:1; padding:10px 12px; border-radius:10px; border:1px solid var(--accent2); background:var(--card); color:var(--text); font-size:15px; }
+  button.toggle { padding:10px 12px; border-radius:10px; border:0; background:var(--accent); color:#fff; font-size:13px; cursor:pointer; white-space:nowrap; }
+  .chips { display:flex; gap:6px; overflow-x:auto; padding:8px 0 2px; scrollbar-width:none; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:none; padding:6px 11px; border-radius:999px; background:var(--accent2); color:var(--text); font-size:13px; border:0; cursor:pointer; }
+  .chip.active { background:var(--accent); color:#fff; }
+  main { padding:12px 14px 40px; max-width:760px; margin:0 auto; }
+  h2 { font-size:16px; margin:20px 0 8px; color:var(--accent); }
+  .item { background:var(--card); border-radius:14px; padding:12px 14px; margin-bottom:10px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .num { font-size:11px; color:var(--muted); }
+  .q { font-weight:600; font-size:16px; margin:2px 0; }
+  .uz { font-size:13px; color:var(--muted); margin-bottom:6px; }
+  .a { font-size:15px; color:var(--green); cursor:pointer; }
+  .hide-answers .a { filter:blur(7px); user-select:none; }
+  .hide-answers .a.show { filter:none; user-select:auto; }
+  .speak { float:right; background:none; border:0; font-size:18px; cursor:pointer; }
+  .empty { text-align:center; color:var(--muted); padding:30px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>💬 500 ta suhbat: savol va javoblar</h1>
+  <div class="row">
+    <input type="search" id="search" placeholder="Qidirish (inglizcha yoki o'zbekcha)...">
+    <button class="toggle" id="toggle">Javobni yashirish</button>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+<main id="list"></main>
+<footer style="max-width:760px;margin:20px auto 70px;padding:14px 16px;text-align:center;font-size:13px;color:var(--muted);border-top:1px solid var(--accent2);">
+  <div style="font-weight:700;color:var(--text);margin-bottom:6px;">Muallif: Qosimov Husanboy Madaminjon o‘g‘li • Husanboy Teacher (Enzo Academy)</div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:6px;">
+    <a href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600;">✈ Telegram: @Qosimov_Xusanboy</a>
+    <a href="https://www.instagram.com/xusanboy__qosimov" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600;">📷 Instagram: @xusanboy__qosimov</a>
+    <a href="tel:+998889977746" style="color:var(--accent);text-decoration:none;font-weight:600;">📞 +998 88 997 77 46</a>
+  </div>
+  <div>© 2026 Qosimov Husanboy Madaminjon o‘g‘li. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<script>
+const RAW = `
+## Greetings | Salomlashish
+How are you? | I'm fine, thank you. And you? | Qalaysiz?
+What's your name? | My name is Ali. | Ismingiz nima?
+Nice to meet you. | Nice to meet you too. | Tanishganimdan xursandman.
+Where are you from? | I'm from Uzbekistan. | Siz qayerdansiz?
+How old are you? | I'm twenty-two years old. | Yoshingiz nechada?
+What do you do? | I'm a student. | Nima ish qilasiz?
+How's it going? | Pretty good, thanks. | Ishlar qalay?
+What's up? | Not much. Just relaxing. | Nima yangilik?
+Long time no see! | Yes, it's been ages! | Ancha vaqt bo'ldi ko'rishmadik!
+Where do you live? | I live in Tashkent. | Qayerda yashaysiz?
+Can you introduce yourself? | Sure. I'm Ali, and I study English. | O'zingizni tanishtira olasizmi?
+How do you spell your name? | A-L-I. | Ismingiz qanday yoziladi?
+What languages do you speak? | I speak Uzbek, Russian and English. | Qaysi tillarda gapirasiz?
+Are you married? | No, I'm single. | Turmush qurganmisiz?
+What's your phone number? | It's 90 123 45 67. | Telefon raqamingiz nechchi?
+Good morning! How did you sleep? | Very well, thanks. | Xayrli tong! Qanday uxladingiz?
+How was your day? | It was busy but good. | Kuningiz qanday o'tdi?
+Have we met before? | I don't think so. | Avval uchrashganmidik?
+Let me introduce my friend. | Hi! Nice to meet you. | Do'stimni tanishtiray.
+Do you mind if I sit here? | Not at all. Go ahead. | Shu yerga o'tirsam bo'ladimi?
+What are you up to these days? | I'm preparing for an exam. | Shu kunlarda nima bilan bandsiz?
+How's your family? | They're all doing well. | Oilangiz qalay?
+Take care! | You too. See you soon! | O'zingizni asrang!
+See you tomorrow. | See you! Have a great evening. | Ertagacha.
+It was great talking to you. | Same here. Let's keep in touch. | Siz bilan suhbat yaxshi bo'ldi.
+
+## Family | Oila
+Do you have any siblings? | Yes, I have one brother and one sister. | Aka-ukangiz yoki opa-singlingiz bormi?
+How many people are in your family? | There are five of us. | Oilangizda necha kishi bor?
+What does your father do? | He's a doctor. | Otangiz nima ish qiladi?
+What does your mother do? | She's a teacher. | Onangiz nima ish qiladi?
+Are you the oldest child? | No, I'm the youngest. | Siz katta farzandmisiz?
+Do you live with your parents? | Yes, I do. | Ota-onangiz bilan yashaysizmi?
+Do you have any children? | Yes, I have two kids. | Farzandlaringiz bormi?
+How old is your brother? | He's eighteen. | Akangiz/ukangiz necha yoshda?
+What's your sister like? | She's kind and funny. | Opangiz/singlingiz qanday inson?
+Do you get along with your family? | Yes, we're very close. | Oilangiz bilan inoq yashaysizmi?
+Who do you look like? | I look like my mother. | Kimga o'xshaysiz?
+Do you have a big family? | Yes, we have a big family. | Oilangiz katta mi?
+Where do your grandparents live? | They live in a village. | Buvi-bobongiz qayerda yashaydi?
+How often do you visit your relatives? | Every weekend. | Qarindoshlaringizni qanchalik tez-tez ko'rgani borasiz?
+Do you have any cousins? | Yes, ten of them! | Amakivachchalaringiz bormi?
+What's your favorite family tradition? | Having dinner together on Fridays. | Sevimli oilaviy odatingiz qaysi?
+Is your family close? | Yes, we always help each other. | Oilangiz inoqmi?
+Who cooks at home? | My mother does. | Uyda kim ovqat pishiradi?
+Do you spend time with your family? | Yes, every evening. | Oilangiz bilan vaqt o'tkazasizmi?
+When is your mother's birthday? | It's in May. | Onangizning tug'ilgan kuni qachon?
+Are you close to your grandparents? | Yes, I love them a lot. | Buvi-bobongiz bilan yaqinmisiz?
+Do you want to have kids someday? | Yes, maybe two. | Kelajakda farzand ko'rishni xohlaysizmi?
+Who is the funniest person in your family? | My uncle. He tells great jokes. | Oilangizda eng kulgili odam kim?
+What do you do together as a family? | We watch movies and eat out. | Oilangiz bilan nima qilasiz?
+Is your family supportive? | Yes, they always support me. | Oilangiz sizni qo'llab-quvvatlaydimi?
+
+## Daily Routine | Kundalik tartib
+What time do you wake up? | I wake up at six. | Soat nechada uyg'onasiz?
+What do you do in the morning? | I brush my teeth and have breakfast. | Ertalab nima qilasiz?
+What time do you go to work? | I leave home at eight. | Ishga soat nechada ketasiz?
+How do you get to work? | I take the bus. | Ishga qanday borasiz?
+When do you have lunch? | Around one o'clock. | Tushlikni qachon qilasiz?
+What time do you finish work? | At five in the afternoon. | Ishni soat nechada tugatasiz?
+What do you do after work? | I go to the gym. | Ishdan keyin nima qilasiz?
+What time do you go to bed? | Usually around eleven. | Soat nechada uxlaysiz?
+Are you a morning person? | No, I'm a night owl. | Siz ertalabki odammisiz?
+Do you have breakfast every day? | Yes, I never skip it. | Har kuni nonushta qilasizmi?
+How long does it take you to get ready? | About thirty minutes. | Tayyorlanishga qancha vaqt ketadi?
+What's your typical day like? | I study, work, and relax in the evening. | Odatiy kuningiz qanday o'tadi?
+Do you cook dinner at home? | Yes, most days. | Kechki ovqatni uyda pishirasizmi?
+What do you do on weekends? | I meet my friends. | Dam olish kunlari nima qilasiz?
+Do you use an alarm clock? | Yes, I set two alarms. | Budilnikdan foydalanasizmi?
+How do you relax after a long day? | I listen to music. | Uzoq kundan keyin qanday dam olasiz?
+What time do you usually get home? | Around six. | Uyga odatda soat nechada kelasiz?
+Do you take a nap in the afternoon? | Sometimes, for twenty minutes. | Tushdan keyin uxlaysizmi?
+Do you exercise every day? | Three times a week. | Har kuni mashq qilasizmi?
+What's the first thing you do in the morning? | I drink a glass of water. | Ertalab birinchi nima qilasiz?
+How do you spend your evenings? | I read or watch series. | Kechqurunlarni qanday o'tkazasiz?
+Are you always on time? | I try to be. | Doim o'z vaqtida kelasizmi?
+What's your favorite time of day? | Early morning. It's so quiet. | Kunning sevimli vaqti qaysi?
+Do you have a busy schedule? | Yes, I'm always on the go. | Jadvalingiz bandmi?
+What do you do before bed? | I check my phone and read a little. | Uxlashdan oldin nima qilasiz?
+
+## Food & Restaurant | Ovqat va restoran
+What's your favorite food? | I love plov. | Sevimli taomingiz nima?
+Are you hungry? | Yes, I'm starving. | Ochmisiz?
+Can I see the menu, please? | Of course. Here you are. | Menyuni ko'rsam bo'ladimi?
+What would you like to order? | I'll have the chicken soup. | Nima buyurtma qilasiz?
+Do you want something to drink? | Just water, please. | Biror narsa ichasizmi?
+Is this dish spicy? | A little bit. | Bu taom achchiqmi?
+Can I have the bill, please? | Sure. Cash or card? | Hisobni olib kelsangiz.
+Do you like cooking? | Yes, I cook every weekend. | Ovqat pishirishni yoqtirasizmi?
+What do you usually have for breakfast? | Eggs and tea. | Nonushtada odatda nima yeysiz?
+Are you allergic to anything? | Yes, I'm allergic to nuts. | Biror narsaga allergiyangiz bormi?
+How would you like your steak? | Medium, please. | Bifshteksni qanday pishirib beray?
+Is service included? | Yes, it's included in the bill. | Xizmat haqi hisobga kiritilganmi?
+What do you recommend? | The grilled fish is great. | Nimani tavsiya qilasiz?
+Could I get a table for two? | Certainly. Follow me. | Ikki kishilik stol bormi?
+Do you eat meat? | No, I'm a vegetarian. | Go'sht yeysizmi?
+What's in this salad? | Tomatoes, cucumbers, and olive oil. | Bu salatda nima bor?
+Can I take this to go? | Sure, I'll pack it for you. | Buni olib ketsam bo'ladimi?
+How does it taste? | It's delicious! | Mazasi qanday?
+Would you like some dessert? | Yes, a piece of cake, please. | Shirinlik xohlaysizmi?
+Do you prefer tea or coffee? | Tea, with lemon. | Choy yoki kofe?
+What's the specialty of this restaurant? | Their kebab is famous. | Bu restoranning mashhur taomi nima?
+Could you bring more bread? | Right away. | Yana non olib kelsangiz.
+Is there a vegetarian option? | Yes, we have several. | Vegetarian taom bormi?
+I'm full. I can't eat any more. | Okay, let me clear the plates. | To'ydim, boshqa yeya olmayman.
+Who's paying? | Let's split the bill. | Kim to'laydi?
+
+## Shopping | Xarid
+How much is this? | It's twenty dollars. | Bu qancha turadi?
+Do you have this in a larger size? | Let me check for you. | Buning kattaroq o'lchami bormi?
+Can I try this on? | The fitting room is over there. | Buni kiyib ko'rsam bo'ladimi?
+Do you accept credit cards? | Yes, we do. | Plastik kartani qabul qilasizmi?
+Is there a discount? | Yes, it's thirty percent off. | Chegirma bormi?
+It's too expensive. | I can give you a small discount. | Bu juda qimmat.
+Do you have a cheaper one? | Yes, this one is cheaper. | Arzonroq bormi?
+Can I return this? | Yes, within fourteen days. | Buni qaytarsam bo'ladimi?
+Where can I find shoes? | On the second floor. | Poyabzalni qayerdan topaman?
+What time do you open? | We open at nine. | Soat nechada ochasiz?
+What time do you close? | We close at ten. | Soat nechada yopasiz?
+Do you have this in blue? | Sorry, only in black. | Buning ko'k rangi bormi?
+Can I pay in cash? | Of course. | Naqd to'lasam bo'ladimi?
+Could I have a bag, please? | Sure. It's free. | Paket bersangiz.
+Does it fit you? | It's a little tight. | O'lcham to'g'ri keldimi?
+I'm just looking, thanks. | Let me know if you need help. | Shunchaki qarayapman, rahmat.
+Where is the checkout? | Right over there. | Kassa qayerda?
+Is this on sale? | Yes, until Sunday. | Bu chegirmadami?
+Can you wrap it as a gift? | Sure, no problem. | Sovg'a qilib o'rab bering.
+Do you have a receipt? | Yes, here you go. | Chekingiz bormi?
+What's the price of this phone? | It's three hundred dollars. | Bu telefon narxi qancha?
+Is it in stock? | Yes, we have it. | Omborda bormi?
+How long is the warranty? | One year. | Kafolat qancha muddatga?
+Do you deliver? | Yes, within two days. | Yetkazib berasizmi?
+I'll take it. | Great choice! | Buni olaman.
+
+## Travel & Directions | Sayohat va yo'l
+Excuse me, where is the station? | Go straight and turn left. | Kechirasiz, bekat qayerda?
+How far is it from here? | About ten minutes on foot. | Bu yerdan qancha masofa?
+Can you show me on the map? | Sure. We're here. | Xaritada ko'rsatib bera olasizmi?
+Is there a bank nearby? | Yes, next to the pharmacy. | Yaqin atrofda bank bormi?
+How can I get to the airport? | Take bus number five. | Aeroportga qanday boraman?
+Where can I buy a ticket? | At the ticket office. | Chiptani qayerdan olaman?
+How much is a ticket to Samarkand? | It's forty thousand sum. | Samarqandga chipta qancha?
+What time does the train leave? | At 7:30 in the morning. | Poyezd soat nechada ketadi?
+Is this seat taken? | No, it's free. | Bu o'rindiq bandmi?
+Does this bus go to the center? | Yes, it does. | Bu avtobus markazga boradimi?
+Where should I get off? | At the next stop. | Qayerda tushishim kerak?
+I'm lost. Can you help me? | Of course. Where are you going? | Adashib qoldim. Yordam bera olasizmi?
+Which way is the museum? | It's on your right. | Muzey qaysi tomonda?
+Can I walk there? | Yes, it's close. | U yerga piyoda borsam bo'ladimi?
+Where is the nearest metro station? | Two blocks from here. | Eng yaqin metro qayerda?
+How long does the trip take? | About three hours. | Safar qancha davom etadi?
+Could you call a taxi for me? | Sure, just a moment. | Menga taksi chaqirib bera olasizmi?
+Take me to this address, please. | Okay, no problem. | Meni shu manzilga olib boring.
+Where do you want to travel? | I'd love to visit Turkey. | Qayerga sayohat qilmoqchisiz?
+Have you ever been abroad? | Yes, I've been to Dubai. | Chet elda bo'lganmisiz?
+Do you prefer traveling by plane or train? | By train. It's more relaxing. | Samolyot yoki poyezdda sayohatni afzal ko'rasizmi?
+Is it a one-way or return ticket? | Return, please. | Bir tomonlama yoki qaytish chiptasi?
+Where can I rent a car? | There's an office near the station. | Mashinani qayerdan ijaraga olaman?
+Turn right at the traffic light. | Got it. Thank you! | Svetoforda o'ngga buriling.
+It's about five kilometers away. | That's not far. | U taxminan besh kilometr uzoqlikda.
+
+## Hobbies | Qiziqishlar
+What are your hobbies? | I like reading and swimming. | Qiziqishlaringiz nimalar?
+What do you do in your free time? | I play football with friends. | Bo'sh vaqtingizda nima qilasiz?
+Do you like sports? | Yes, I love tennis. | Sportni yoqtirasizmi?
+What kind of music do you like? | Pop and classical. | Qanday musiqani yoqtirasiz?
+Can you play any instruments? | I play the guitar. | Biror cholg'u asbobida chala olasizmi?
+What's your favorite movie? | I love comedies. | Sevimli filmingiz qaysi?
+How often do you go to the cinema? | Once a month. | Kinoga qanchalik tez-tez borasiz?
+Do you like reading books? | Yes, especially novels. | Kitob o'qishni yoqtirasizmi?
+Who is your favorite singer? | I like Shahzoda. | Sevimli qo'shiqchingiz kim?
+Do you play video games? | Sometimes, on weekends. | Video o'yin o'ynaysizmi?
+Do you like drawing? | Yes, but I'm not good at it. | Rasm chizishni yoqtirasizmi?
+How long have you been learning English? | For two years. | Ingliz tilini qancha vaqtdan beri o'rganyapsiz?
+Do you go jogging? | Yes, every morning. | Yugurasizmi?
+What's your favorite sport? | Football, of course. | Sevimli sport turingiz qaysi?
+Do you enjoy cooking? | Yes, it relaxes me. | Pazandalikni yoqtirasizmi?
+Do you like taking photos? | Yes, I post them online. | Rasmga olishni yoqtirasizmi?
+Which TV series are you watching? | I'm watching a new drama. | Qaysi serialni ko'ryapsiz?
+Do you collect anything? | I collect coins. | Biror narsa yig'asizmi?
+Do you like dancing? | Yes, I love it. | Raqsga tushishni yoqtirasizmi?
+What do you like to do on holidays? | I travel with my family. | Bayramlarda nima qilishni yoqtirasiz?
+Are you into fitness? | Yes, I go to the gym. | Fitnesga qiziqasizmi?
+Have you ever tried yoga? | Yes, it was relaxing. | Yoga qilib ko'rganmisiz?
+Do you prefer indoor or outdoor activities? | Outdoor ones. | Uy ichidagi yoki ochiq havodagi mashg'ulotni afzal ko'rasizmi?
+Do you like gardening? | Yes, I grow flowers. | Bog'dorchilikni yoqtirasizmi?
+What's your favorite podcast? | I listen to English learning podcasts. | Sevimli podkastingiz qaysi?
+
+## Work | Ish
+Where do you work? | I work at a bank. | Qayerda ishlaysiz?
+What's your job? | I'm an accountant. | Kasbingiz nima?
+How long have you worked there? | For three years. | U yerda qancha vaqtdan beri ishlaysiz?
+Do you like your job? | Yes, it's interesting. | Ishingiz yoqadimi?
+What are your working hours? | From nine to six. | Ish vaqtingiz qanday?
+Do you work from home? | Twice a week. | Uydan ishlaysizmi?
+Is your boss friendly? | Yes, he's very supportive. | Boshlig'ingiz samimiymi?
+What are you responsible for? | I manage customer support. | Nima uchun javobgarsiz?
+Are you looking for a new job? | Yes, I want a better position. | Yangi ish qidiryapsizmi?
+Can you send me your CV? | Sure, I'll email it today. | Rezyumengizni yubora olasizmi?
+Why do you want this job? | I want to grow professionally. | Nima uchun bu ishni xohlaysiz?
+What are your strengths? | I'm organized and a quick learner. | Kuchli tomonlaringiz qaysilar?
+What is your salary? | I'd prefer not to say. | Maoshingiz qancha?
+Do you have any work experience? | Yes, two years in sales. | Ish tajribangiz bormi?
+When can you start? | I can start next Monday. | Qachon ishni boshlay olasiz?
+Do you work in a team? | Yes, we are five people. | Jamoada ishlaysizmi?
+Are you busy right now? | A little. What's up? | Hozir bandmisiz?
+I have a meeting at three. | Okay, I'll see you after that. | Soat uchda yig'ilishim bor.
+Could you help me with this task? | Sure, no problem. | Bu vazifada menga yordam bera olasizmi?
+When is the deadline? | It's on Friday. | Muddat qachon tugaydi?
+Did you finish the report? | Almost. I need an hour. | Hisobotni tugatdingizmi?
+I'm taking a day off tomorrow. | Okay, enjoy your day! | Ertaga dam olaman.
+How's work going? | It's stressful but fine. | Ish qanday ketyapti?
+Do you have a business card? | Yes, here you are. | Vizitkangiz bormi?
+Let's schedule a meeting. | How about Wednesday? | Uchrashuv belgilaylik.
+
+## Study | O'qish
+What do you study? | I study economics. | Nimani o'qiyapsiz?
+Which university do you go to? | I go to the National University. | Qaysi universitetda o'qiysiz?
+What year are you in? | I'm in my second year. | Nechanchi kursdasiz?
+What's your favorite subject? | Math. | Sevimli faningiz qaysi?
+Do you have an exam tomorrow? | Yes, I need to study tonight. | Ertaga imtihoningiz bormi?
+How do you prepare for exams? | I make notes and revise. | Imtihonga qanday tayyorlanasiz?
+Is English difficult for you? | Grammar is hard, but speaking is fun. | Ingliz tili siz uchun qiyinmi?
+Why are you learning English? | I want to study abroad. | Nega ingliz tilini o'rganyapsiz?
+Do you take extra classes? | Yes, English courses. | Qo'shimcha darsga qatnaysizmi?
+Can you explain this again? | Of course. Let me repeat. | Buni yana tushuntirib bera olasizmi?
+What does this word mean? | It means "happy." | Bu so'z nimani anglatadi?
+How do you pronounce this word? | It's pronounced like this. | Bu so'z qanday talaffuz qilinadi?
+Could you speak more slowly? | Sure, no problem. | Sekinroq gapira olasizmi?
+Do you have any homework? | Yes, two exercises. | Uy vazifangiz bormi?
+Did you pass the test? | Yes, I got a good grade! | Testdan o'tdingizmi?
+What are you going to major in? | Computer science. | Qaysi yo'nalishda o'qimoqchisiz?
+Who is your teacher? | Mr. Karimov. He's great. | O'qituvchingiz kim?
+Do you study alone or in a group? | In a group. It's more fun. | Yolg'iz yoki guruhda o'qiysizmi?
+How many languages are you learning? | Just English for now. | Nechta til o'rganyapsiz?
+Do you want to take IELTS? | Yes, next year. | IELTS topshirmoqchimisiz?
+How many hours do you study daily? | About two hours. | Kuniga necha soat o'qiysiz?
+What's your goal? | To speak English fluently. | Maqsadingiz nima?
+Can I borrow your notes? | Sure, here you go. | Konspektingizni olib tursam bo'ladimi?
+Do you read English books? | Yes, short stories. | Inglizcha kitob o'qiysizmi?
+Can you check my homework? | Yes, send it to me. | Uy vazifamni tekshirib bera olasizmi?
+
+## Health | Salomatlik
+How are you feeling today? | Not so good. I have a headache. | Bugun o'zingizni qanday his qilyapsiz?
+What's wrong? | I have a sore throat. | Nima bo'ldi?
+Do you have a fever? | Yes, a little. | Isitmangiz bormi?
+I need to see a doctor. | Let's make an appointment. | Shifokorga ko'rinishim kerak.
+Where does it hurt? | My stomach hurts. | Qayeringiz og'riyapti?
+How long have you been sick? | Since yesterday. | Qachondan beri kasalsiz?
+Take this medicine twice a day. | Okay, thank you, doctor. | Bu dorini kuniga ikki marta iching.
+Are you allergic to any medicine? | No, I'm not. | Biror dorigaga allergiyangiz bormi?
+Where is the nearest pharmacy? | Around the corner. | Eng yaqin dorixona qayerda?
+I have a cold. | Drink hot tea and rest. | Shamollab qoldim.
+I feel dizzy. | Sit down and drink some water. | Boshim aylanyapti.
+I think I need some rest. | Yes, you should sleep more. | Menimcha, dam olishim kerak.
+Do you smoke? | No, I never have. | Chekasizmi?
+How often do you exercise? | Three times a week. | Qanchalik tez-tez sport qilasiz?
+Do you eat healthy food? | I try to eat fruit and vegetables. | Sog'lom ovqatlanasizmi?
+How much water do you drink? | About two liters a day. | Qancha suv ichasiz?
+I have a toothache. | You should visit a dentist. | Tishim og'riyapti.
+Get well soon! | Thank you so much! | Tezroq tuzalib keting!
+Do you sleep well? | Not really. I wake up often. | Yaxshi uxlaysizmi?
+I need to lose some weight. | A walk every day can help. | Ozishim kerak.
+Call an ambulance! | I'm calling right now. | Tez yordam chaqiring!
+I have a bad cough. | Have you taken any medicine? | Qattiq yo'talyapman.
+Is it serious? | No, it's nothing serious. | Bu jiddiymi?
+Do you have health insurance? | Yes, through my company. | Sog'liq sug'urtangiz bormi?
+Take care of yourself. | I will. Thanks. | O'zingizga qarang.
+
+## Weather | Ob-havo
+What's the weather like today? | It's sunny and warm. | Bugun ob-havo qanday?
+Is it going to rain? | Yes, take an umbrella. | Yomg'ir yog'adimi?
+It's freezing outside! | Wear a warm coat. | Tashqarida juda sovuq!
+What's your favorite season? | Spring. Everything is blooming. | Sevimli fasl qaysi?
+Do you like snow? | Yes, I love it. | Qorni yoqtirasizmi?
+It's so hot today. | Let's go somewhere cool. | Bugun juda issiq.
+What's the temperature? | It's about thirty degrees. | Harorat necha daraja?
+Is it windy? | Yes, very windy. | Shamolmi?
+What's the forecast for tomorrow? | Cloudy with some rain. | Ertangi ob-havo qanday?
+Do you prefer summer or winter? | Summer, I hate the cold. | Yoz yoki qishni afzal ko'rasizmi?
+It looks like it's going to rain. | Let's stay inside. | Yomg'ir yog'adiganga o'xshaydi.
+How is the weather in your city? | It's hot in summer and cold in winter. | Shahringizda ob-havo qanday?
+Is it foggy outside? | Yes, I can barely see. | Tashqarida tumanmi?
+It's a beautiful day, isn't it? | Yes, perfect for a walk. | Ajoyib kun, shunday emasmi?
+Did you get wet in the rain? | Yes, I forgot my umbrella. | Yomg'irda ho'l bo'ldingizmi?
+What do you wear in winter? | A coat, a hat, and gloves. | Qishda nima kiyasiz?
+Do you like autumn? | Yes, the colors are beautiful. | Kuzni yoqtirasizmi?
+It's getting dark. | Yes, let's go home. | Qorong'i tushyapti.
+Is it humid today? | Yes, it feels sticky. | Bugun nam havomi?
+The weather is changing. | I hope it gets warmer. | Ob-havo o'zgaryapti.
+Does it snow a lot where you live? | Only a little. | Siz yashaydigan joyda ko'p qor yog'adimi?
+What's the best season to visit? | Autumn is the best. | Tashrif uchun eng yaxshi fasl qaysi?
+There's a storm coming. | Let's get inside. | Bo'ron kelyapti.
+It's a lovely evening. | Shall we walk in the park? | Ajoyib oqshom.
+I love sunny days. | Me too. They make me happy. | Quyoshli kunlarni yaxshi ko'raman.
+
+## Home | Uy
+Where do you live? Is it an apartment? | Yes, a two-bedroom apartment. | Qayerda yashaysiz? Kvartirami?
+How many rooms are there? | Three rooms and a kitchen. | Nechta xona bor?
+Do you like your neighborhood? | Yes, it's quiet and safe. | Mahallangiz yoqadimi?
+Do you rent or own your home? | I rent it. | Uyingiz ijarami yoki o'zingizniki?
+How much is the rent? | Three hundred dollars a month. | Ijara haqi qancha?
+Which floor do you live on? | The fifth floor. | Nechanchi qavatda yashaysiz?
+Is there an elevator? | Yes, it works fine. | Lift bormi?
+What's your favorite room? | The living room. | Sevimli xonangiz qaysi?
+Do you have a balcony? | Yes, with a nice view. | Balkoningiz bormi?
+Could you show me around? | Sure, come in. | Uyni ko'rsatib bera olasizmi?
+Do you have a garden? | A small one. | Bog'ingiz bormi?
+Who cleans the house? | We all share the chores. | Uyni kim tozalaydi?
+Is the apartment furnished? | Yes, fully furnished. | Kvartira jihozlanganmi?
+Do you live alone? | No, with my roommate. | Yolg'iz yashaysizmi?
+The Wi-Fi isn't working. | Let me restart the router. | Wi-Fi ishlamayapti.
+Could you turn on the light? | Sure. | Chiroqni yoqib bera olasizmi?
+Can you open the window? | It's a bit stuffy in here. | Derazani ochib bera olasizmi?
+What's your address? | I live on Navoi Street. | Manzilingiz qanday?
+How long have you lived here? | For five years. | Bu yerda qancha vaqtdan beri yashaysiz?
+Do you have any pets? | Yes, a cat. | Uy hayvoningiz bormi?
+Would you like to come over? | Yes, I'd love to. | Mehmonga kelasizmi?
+Make yourself at home. | Thank you for having me. | O'zingizni uyingizdagidek his qiling.
+Is it far from the city center? | About twenty minutes by bus. | Shahar markazidan uzoqmi?
+What do you need to fix? | The tap is leaking. | Nimani ta'mirlash kerak?
+I'm moving next month. | Where to? | Kelgusi oy ko'chib o'taman.
+
+## Technology | Texnologiya
+Do you use social media? | Yes, Instagram and Telegram. | Ijtimoiy tarmoqlardan foydalanasizmi?
+What's your Wi-Fi password? | I'll write it down for you. | Wi-Fi parolingiz nima?
+My phone is dead. | Here, use my charger. | Telefonim o'chib qoldi.
+Can I charge my phone here? | Yes, the socket is there. | Telefonimni shu yerda zaryadlasam bo'ladimi?
+What phone do you have? | I have an iPhone. | Qanday telefoningiz bor?
+How much time do you spend online? | About four hours a day. | Internetda qancha vaqt o'tkazasiz?
+Can you send me the link? | Sure, I'll message you. | Havolani yubora olasizmi?
+My laptop is very slow. | Try restarting it. | Noutbukim juda sekin.
+Do you use any learning apps? | Yes, I use a vocabulary app. | O'quv ilovalaridan foydalanasizmi?
+Did you get my message? | Yes, I'll reply soon. | Xabarimni oldingizmi?
+Can you take a photo of us? | Of course. Smile! | Bizni rasmga olib bera olasizmi?
+Could you share the file with me? | Sure, check your email. | Faylni menga ulashing.
+Is the internet down? | Yes, it's not working. | Internet o'chganmi?
+Do you shop online? | Yes, quite often. | Onlayn xarid qilasizmi?
+How do I connect to the Wi-Fi? | Choose the network and enter the password. | Wi-Fi'ga qanday ulanaman?
+What do you use your computer for? | Mostly for study and work. | Kompyuteringizdan nima uchun foydalanasiz?
+Can you recommend a good app? | Try this one. It's free. | Yaxshi ilovani tavsiya qila olasizmi?
+I forgot my password. | You can reset it by email. | Parolimni unutdim.
+Are you online right now? | Yes, text me anytime. | Hozir onlaynmisiz?
+Did you download the update? | Not yet. | Yangilanishni yuklab oldingizmi?
+Do you prefer calling or texting? | Texting. It's faster. | Qo'ng'iroq qilishni yoki yozishni afzal ko'rasizmi?
+Can you hear me clearly? | Yes, loud and clear. | Meni aniq eshityapsizmi?
+My screen is frozen. | Hold the power button. | Ekranim qotib qoldi.
+Can I use your phone for a minute? | Sure, go ahead. | Telefoningizdan bir daqiqa foydalansam bo'ladimi?
+Technology makes life easier. | I agree with you. | Texnologiya hayotni osonlashtiradi.
+
+## Friends & Feelings | Do'stlik va hissiyotlar
+Are you happy today? | Yes, I got good news! | Bugun xursandmisiz?
+You look tired. | Yes, I didn't sleep well. | Charchagandek ko'rinasiz.
+What's wrong? You look sad. | I'm just having a bad day. | Nima bo'ldi? Xafa ko'rinasiz.
+Are you angry with me? | No, I'm not. | Mendan xafamisiz?
+I'm so excited! | Why? What happened? | Juda hayajondaman!
+I'm a little nervous. | Don't worry. You'll do great. | Biroz xavotirdaman.
+Who is your best friend? | My childhood friend, Jasur. | Eng yaqin do'stingiz kim?
+How long have you known each other? | Since school. | Qancha vaqtdan beri tanishsizlar?
+What do you like about him? | He's honest and funny. | Unda nimasi yoqadi?
+Do you trust your friends? | Yes, with everything. | Do'stlaringizga ishonasizmi?
+Can I tell you a secret? | Of course. I won't tell anyone. | Sizga sir aytsam bo'ladimi?
+I'm sorry for being late. | It's okay. Don't worry. | Kechikkanim uchun uzr.
+Thank you for your help. | You're welcome! | Yordamingiz uchun rahmat.
+I miss you. | I miss you too. | Sizni sog'indim.
+Congratulations! | Thank you so much! | Tabriklayman!
+I'm proud of you. | That means a lot to me. | Sizdan faxrlanaman.
+Don't give up! | I won't. Thanks for believing in me. | Taslim bo'lmang!
+Are you feeling better? | Yes, much better now. | O'zingizni yaxshiroq his qilyapsizmi?
+Cheer up! | I'll try. Thanks. | Ko'nglingizni ko'taring!
+Can I ask you a favor? | Sure. What is it? | Sizdan iltimos qilsam bo'ladimi?
+You're a good listener. | Thanks. I care about you. | Siz yaxshi tinglovchisiz.
+I'm so bored. | Let's go out and do something. | Juda zerikdim.
+Do you want to hang out this weekend? | Sure! Where shall we go? | Dam olish kunlari birga vaqt o'tkazamizmi?
+I feel lonely sometimes. | Call me anytime. | Ba'zan o'zimni yolg'iz his qilaman.
+You made my day! | Aw, thank you! | Kayfiyatimni ko'tardingiz!
+
+## Airport & Hotel | Aeroport va mehmonxona
+May I see your passport? | Here it is. | Pasportingizni ko'rsam bo'ladimi?
+Where is the check-in counter? | Over there, on the left. | Ro'yxatdan o'tish joyi qayerda?
+Do you have any luggage? | Just one suitcase. | Yukingiz bormi?
+Which gate is my flight? | Gate number twelve. | Reysim qaysi eshikdan?
+Is the flight delayed? | Yes, by one hour. | Reys kechikdimi?
+Can I have a window seat? | Sure, let me check. | Deraza yonidagi o'rindiq bersangiz.
+What's the purpose of your visit? | Tourism. | Tashrif maqsadingiz nima?
+How long will you stay? | For one week. | Qancha vaqt qolasiz?
+Do you have anything to declare? | No, nothing. | Deklaratsiya qiladigan narsangiz bormi?
+Where is the baggage claim? | Downstairs. | Yuk olish joyi qayerda?
+I have a reservation. | What's the name, please? | Menda bron bor.
+Do you have any free rooms? | Yes, for how many nights? | Bo'sh xonalar bormi?
+How much is a room per night? | Fifty dollars with breakfast. | Bir kechalik xona narxi qancha?
+What time is check-out? | At twelve noon. | Chiqish vaqti soat nechada?
+Is breakfast included? | Yes, from seven to ten. | Nonushta kiritilganmi?
+Could I have a wake-up call at seven? | Certainly. | Soat yettida uyg'otib qo'ying.
+The air conditioner doesn't work. | I'll send someone right away. | Konditsioner ishlamayapti.
+Can I get extra towels? | Of course. | Qo'shimcha sochiq bera olasizmi?
+Is there free Wi-Fi? | Yes, the password is on the card. | Bepul Wi-Fi bormi?
+Could you keep my luggage? | Yes, until evening. | Yukimni saqlab tura olasizmi?
+Can I extend my stay? | Yes, for another night. | Turish muddatimni uzaytirsam bo'ladimi?
+Where can I exchange money? | At the bank or exchange office. | Pulni qayerda almashtirsam bo'ladi?
+Is there a shuttle to the city? | Yes, every thirty minutes. | Shaharga shuttle bormi?
+I missed my flight. | Let me find another one for you. | Reysimga kechikdim.
+Have a nice flight! | Thank you! | Yaxshi parvoz tilayman!
+
+## Phone & Social Media | Telefon va ijtimoiy tarmoq
+Hello, who is calling? | This is Ali. | Alo, kim qo'ng'iroq qilyapti?
+Can I speak to Mr. Karimov? | Hold on, please. | Karimov bilan gaplashsam bo'ladimi?
+I'll call you back. | Okay, talk to you later. | Sizga qayta qo'ng'iroq qilaman.
+Sorry, I can't hear you. | Let me move to a quieter place. | Kechirasiz, sizni eshitmayapman.
+Could you repeat that, please? | Sure. I said tomorrow at ten. | Takrorlab bera olasizmi?
+Can I leave a message? | Of course. | Xabar qoldirsam bo'ladimi?
+The line is busy. | Try again in a few minutes. | Liniya band.
+What's your Instagram username? | It's @ali_english. | Instagramdagi nomingiz nima?
+Can I follow you? | Sure, follow me back! | Sizga obuna bo'lsam bo'ladimi?
+I liked your post. | Thanks! I appreciate it. | Postingizni yoqtirdim.
+How many followers do you have? | About five thousand. | Nechta obunachingiz bor?
+Do you post stories every day? | Almost every day. | Har kuni storis joylaysizmi?
+Send me a voice message. | Okay, I'll record it now. | Menga ovozli xabar yuboring.
+I'll text you the address. | Great, thanks. | Manzilni yozib yuboraman.
+Did you see my story? | Yes, it was hilarious! | Storisimni ko'rdingizmi?
+Can you tag me in the photo? | Sure, give me a second. | Meni rasmda belgilab qo'ying.
+Let's do a video call. | Give me five minutes. | Video qo'ng'iroq qilaylik.
+My phone is on silent. | That's why you didn't answer. | Telefonim ovozsiz rejimda.
+You have a missed call. | Oh, I'll call back. | Sizda javobsiz qo'ng'iroq bor.
+Please leave a comment. | Okay, I'll write one. | Iltimos, izoh qoldiring.
+Do you make videos? | Yes, I make English reels. | Video tayyorlaysizmi?
+Which platform do you use the most? | Instagram. | Qaysi platformadan ko'proq foydalanasiz?
+Share this post with your friends. | Good idea! | Bu postni do'stlaringizga ulashing.
+What time is good for a call? | After six, if that works. | Qo'ng'iroq uchun qaysi vaqt qulay?
+Can I send you a message? | Yes, go ahead. | Sizga xabar yozsam bo'ladimi?
+
+## Plans | Rejalar
+What are you doing this weekend? | I'm visiting my grandparents. | Dam olish kunlari nima qilasiz?
+What are your plans for tomorrow? | I'm going to study English. | Ertangi rejalaringiz qanday?
+Where do you see yourself in five years? | Working abroad. | Besh yildan keyin o'zingizni qayerda ko'rasiz?
+What are you going to do after graduation? | I'm going to find a job. | Bitirgandan keyin nima qilasiz?
+Do you have any plans for summer? | Yes, I'm going to the sea. | Yozga rejalaringiz bormi?
+Are you free tonight? | Yes, what do you have in mind? | Bugun kechqurun bandmisiz?
+Let's meet at six. | Sounds good. | Soat oltida uchrashaylik.
+Where shall we meet? | In front of the cinema. | Qayerda uchrashamiz?
+What do you want to be in the future? | I want to be a teacher. | Kelajakda kim bo'lmoqchisiz?
+Are you going to buy a car? | Maybe next year. | Mashina sotib olmoqchimisiz?
+What's your dream? | To travel around the world. | Orzuingiz nima?
+Will you come to the party? | Yes, I'll be there. | Ziyofatga kelasizmi?
+What time will you arrive? | Around seven. | Soat nechada yetib kelasiz?
+Are you going to study abroad? | I hope so. | Chet elda o'qimoqchimisiz?
+Do you have any goals for this year? | Yes, to pass IELTS. | Bu yil uchun maqsadlaringiz bormi?
+When is your next holiday? | In December. | Keyingi ta'tilingiz qachon?
+Shall we have dinner together? | Great idea! | Birga kechki ovqat qilamizmi?
+What are you going to wear? | Probably a dress. | Nima kiymoqchisiz?
+Will you be home tomorrow? | No, I'll be at work. | Ertaga uyda bo'lasizmi?
+I'm thinking about changing my job. | That's a big decision. | Ishimni almashtirishni o'ylayapman.
+Do you want to start your own business? | Yes, someday. | O'z biznesingizni boshlamoqchimisiz?
+How will you celebrate your birthday? | With a small party. | Tug'ilgan kuningizni qanday nishonlaysiz?
+I'll call you tomorrow. | Okay, I'll wait for your call. | Ertaga qo'ng'iroq qilaman.
+Are you planning to move? | Not yet. | Ko'chib o'tishni rejalashtiryapsizmi?
+Let's make a plan. | Okay, let's do it. | Reja tuzaylik.
+
+## Past | O'tmish
+What did you do yesterday? | I stayed home and studied. | Kecha nima qildingiz?
+Where did you go last weekend? | I went to the mountains. | O'tgan dam olish kunlari qayerga bordingiz?
+Did you have a good time? | Yes, it was amazing. | Yaxshi vaqt o'tkazdingizmi?
+When did you start learning English? | Two years ago. | Ingliz tilini qachon o'rgana boshladingiz?
+Have you ever been to London? | No, never. | Londonda bo'lganmisiz?
+What was your last holiday like? | It was relaxing. | Oxirgi ta'tilingiz qanday o'tdi?
+Where were you born? | I was born in Fergana. | Qayerda tug'ilgansiz?
+What was your childhood like? | Happy and full of games. | Bolaligingiz qanday edi?
+Did you enjoy school? | Yes, I loved it. | Maktabni yoqtirarmidingiz?
+Have you ever won a prize? | Yes, in a school contest. | Biror sovrin yutganmisiz?
+What did you eat for lunch? | Soup and salad. | Tushlikda nima yedingiz?
+What was the best day of your life? | My graduation day. | Hayotingizdagi eng yaxshi kun qaysi?
+Did you watch the match last night? | Yes, it was exciting! | Kecha o'yinni ko'rdingizmi?
+Have you ever eaten sushi? | Yes, I loved it. | Hech sushi yeganmisiz?
+I lost my keys yesterday. | Did you find them? | Kecha kalitlarimni yo'qotdim.
+What happened? | I missed the bus. | Nima bo'ldi?
+Have you read this book? | Yes, twice. | Bu kitobni o'qiganmisiz?
+When did you last see him? | Last month. | Uni oxirgi marta qachon ko'rdingiz?
+How did you learn to swim? | My father taught me. | Suzishni qanday o'rgandingiz?
+Did you do your homework? | Yes, I finished it. | Uy vazifasini qildingizmi?
+I've never tried skiing. | You should try it once! | Hech chang'i uchib ko'rmaganman.
+What was your first job? | I worked in a shop. | Birinchi ishingiz qanday edi?
+Did you sleep well last night? | Not really. | Kecha yaxshi uxladingizmi?
+I had a great time at the party. | I'm glad to hear that. | Ziyofatda juda yaxshi vaqt o'tkazdim.
+I'll never forget that day. | It must have been special. | Bu kunni hech qachon unutmayman.
+
+## Opinions | Fikr bildirish
+What do you think about it? | I think it's a great idea. | Bu haqda nima deb o'ylaysiz?
+Do you agree with me? | Yes, I totally agree. | Men bilan rozimisiz?
+I don't agree with you. | Why not? | Men siz bilan rozi emasman.
+In my opinion, it's too risky. | I see your point. | Mening fikrimcha, bu juda xavfli.
+Do you like this idea? | Yes, it makes sense. | Bu g'oya yoqdimi?
+Which one do you prefer? | I prefer the second one. | Qaysi birini afzal ko'rasiz?
+What's your opinion? | I'm not sure yet. | Sizning fikringiz qanday?
+That's a good point. | Thanks for saying that. | Bu yaxshi fikr.
+You're absolutely right. | Thank you for understanding. | Siz mutlaqo haqsiz.
+I'm not sure about that. | Let's think about it again. | Bunga ishonchim komil emas.
+It depends. | On what? | Bunga bog'liq.
+Could you give me an example? | For example, my own experience. | Misol keltira olasizmi?
+Is it worth it? | Yes, definitely. | Bunga arziydimi?
+Do you think it's true? | I doubt it. | Sizningcha, bu rostmi?
+What would you do in my place? | I'd talk to him directly. | Mening o'rnimda nima qilardingiz?
+Which is better, A or B? | Both are good, but I like A. | Qaysi yaxshiroq, A yoki B?
+I have mixed feelings about it. | That's understandable. | Bu haqda aralash his-tuyg'ulardaman.
+That makes sense. | I'm glad you see it that way. | Bu mantiqli.
+Honestly, I don't like it. | Why? What's wrong? | Rostini aytsam, bu menga yoqmaydi.
+Let's agree to disagree. | Fair enough. | Har kim o'z fikrida qolaylik.
+I couldn't agree more. | Great minds think alike! | Yuz foiz roziman.
+What's the best way to learn English? | Speak every day. | Ingliz tilini o'rganishning eng yaxshi yo'li qaysi?
+Do you think English is important? | Absolutely. It opens many doors. | Ingliz tili muhim deb o'ylaysizmi?
+I have a different view. | Please tell me more. | Mening fikrim boshqacha.
+Let me think about it. | Take your time. | Bir o'ylab ko'ray.
+
+## Useful Phrases | Foydali iboralar
+Excuse me. | Yes? How can I help you? | Kechirasiz.
+I'm sorry. | That's okay. | Uzr.
+I don't understand. | Let me explain it again. | Tushunmadim.
+Could you repeat that? | Sure. | Takrorlab bera olasizmi?
+Could you speak slower? | Of course. | Sekinroq gapirsangiz.
+How do you say this in English? | You say "thank you." | Buni inglizcha qanday aytiladi?
+What does this mean? | It means "welcome." | Bu nimani anglatadi?
+Can you help me? | Sure. What do you need? | Menga yordam bera olasizmi?
+I don't speak English very well. | Don't worry. You're doing great. | Men inglizchani yaxshi bilmayman.
+Do you speak Uzbek? | A little bit. | O'zbekcha bilasizmi?
+Where is the restroom? | Down the hall. | Hojatxona qayerda?
+What time is it? | It's half past four. | Soat necha bo'ldi?
+Can I have some water? | Sure. Here you go. | Bir stakan suv bersangiz.
+Please wait a moment. | No problem. | Iltimos, bir oz kuting.
+I need help. | What happened? | Menga yordam kerak.
+I lost my wallet. | Let's call the police. | Hamyonimni yo'qotib qo'ydim.
+That's fine with me. | Great, then it's settled. | Menga ma'qul.
+No problem. | Thank you so much. | Muammo yo'q.
+Never mind. | Are you sure? | Zarari yo'q.
+Just a second. | Take your time. | Bir soniya.
+I'll be right back. | Okay, I'll wait. | Hozir qaytaman.
+Is everything okay? | Yes, all good. | Hammasi joyidami?
+Good luck! | Thank you! | Omad tilayman!
+Have a nice day! | You too! | Kuningiz xayrli o'tsin!
+Thanks for everything. | My pleasure. | Hamma narsa uchun rahmat.
+`;
+
+const cats = [];
+RAW.split('\n').forEach(line => {
+  line = line.trim();
+  if (!line) return;
+  if (line.startsWith('## ')) {
+    const [en, uz] = line.slice(3).split('|').map(s => s.trim());
+    cats.push({ en, uz, items: [] });
+  } else {
+    const [q, a, uz] = line.split('|').map(s => s.trim());
+    cats[cats.length - 1].items.push({ q, a, uz });
+  }
+});
+let n = 0;
+cats.forEach(c => c.items.forEach(i => i.n = ++n));
+
+const list = document.getElementById('list');
+const chips = document.getElementById('chips');
+const search = document.getElementById('search');
+const toggle = document.getElementById('toggle');
+let active = -1;
+
+function esc(s) { return s.replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch])); }
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.9;
+  speechSynthesis.speak(u);
+}
+
+function render() {
+  const term = search.value.trim().toLowerCase();
+  let html = '', shown = 0;
+  cats.forEach((c, ci) => {
+    if (active !== -1 && active !== ci) return;
+    const items = c.items.filter(i => !term || (i.q + ' ' + i.a + ' ' + i.uz).toLowerCase().includes(term));
+    if (!items.length) return;
+    html += `<h2>${esc(c.en)} · ${esc(c.uz)}</h2>`;
+    items.forEach(i => {
+      shown++;
+      html += `<div class="item"><button class="speak" data-t="${esc(i.q + ' ' + i.a)}" title="Tinglash">🔊</button>
+        <div class="num">#${i.n}</div><div class="q">${esc(i.q)}</div><div class="uz">${esc(i.uz)}</div>
+        <div class="a">${esc(i.a)}</div></div>`;
+    });
+  });
+  list.innerHTML = html || '<div class="empty">Hech narsa topilmadi</div>';
+}
+
+chips.innerHTML = '<button class="chip active" data-i="-1">Hammasi (500)</button>' +
+  cats.map((c, i) => `<button class="chip" data-i="${i}">${esc(c.uz)}</button>`).join('');
+
+chips.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  active = +b.dataset.i;
+  chips.querySelectorAll('.chip').forEach(x => x.classList.toggle('active', x === b));
+  render(); window.scrollTo(0, 0);
+});
+search.addEventListener('input', render);
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('hide-answers');
+  toggle.textContent = document.body.classList.contains('hide-answers') ? 'Javobni ko\'rsatish' : 'Javobni yashirish';
+});
+list.addEventListener('click', e => {
+  const sp = e.target.closest('.speak');
+  if (sp) { speak(sp.dataset.t); return; }
+  const a = e.target.closest('.a');
+  if (a) a.classList.toggle('show');
+});
+render();
+</script>
+
+<!-- Husanboy Teacher Back Home Pill -->
+<style>
+.ht-back-pill{position:fixed;left:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:rgba(12,16,28,.92);color:#F6E3B4;border:1px solid rgba(212,175,55,.45);font:700 13px/1 system-ui,-apple-system,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(10px);transition:transform .2s,border-color .2s}
+.ht-back-pill:hover{transform:translateY(-2px);border-color:#F6E3B4}
+</style>
+<a class="ht-back-pill" href="../../index.html" title="Husanboy Teacher asosiy saytiga qaytish">← Husanboy Teacher</a>
+
+</body>
+</html>

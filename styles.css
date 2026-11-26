@@ -320,6 +320,38 @@ header, main, footer { position: relative; z-index: 2; }
   border: 1px solid rgba(251, 191, 36, 0.45); color: var(--gold-soft);
 }
 
+/* Author 3D Luxury Profile */
+.author-3d-card {
+  display: grid; grid-template-columns: 230px 1fr; gap: 28px; align-items: center;
+  border-color: rgba(251,191,36,0.34);
+  background: linear-gradient(155deg, rgba(16,24,46,0.92), rgba(7,12,24,0.96));
+}
+.author-portrait-wrap {
+  position: relative; width: 210px; height: 260px; margin: 0 auto; border-radius: 24px; padding: 4px;
+  background: conic-gradient(from 0deg, #d97706, #fef08a, #10b981, #fbbf24, #d97706);
+  box-shadow: 0 22px 54px rgba(0,0,0,0.6), 0 0 38px rgba(251,191,36,0.22);
+}
+.author-portrait-wrap img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  border-radius: 20px; display: block; background: #0b1120;
+}
+.author-contacts { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+.author-chip {
+  display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text);
+  font-size: 13px; font-weight: 700; transition: all .2s;
+}
+.author-chip:hover { border-color: var(--gold); background: rgba(251,191,36,0.12); color: #fde68a; transform: translateY(-2px); }
+
+/* Program Flagship Cards */
+.prog-meta { font-size: 11px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 6px; display: inline-block; }
+.prog-card { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; height: 100%; }
+
+@media (max-width: 720px) {
+  .author-3d-card { grid-template-columns: 1fr; text-align: center; }
+  .author-contacts { justify-content: center; }
+}
+
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
