@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Husanboy Teacher — Barcha uchun Ochiq CEFR & Multilevel Platforma</title>
-  <meta name="description" content="Husanboy Teacher — O‘zbekistondagi barcha o‘quvchilar uchun bepul CEFR, Multilevel va IELTS ochiq mashqlar (Map, Dictation, Listening, Reading, Writing, Speaking, 12 Zamon, Noto‘g‘ri Fe’llar) hamda 450 kunlik A1–C1 Shaxsiy Kabinet." />
-  <meta name="keywords" content="Husanboy Teacher, CEFR, Multilevel, IELTS, ingliz tili, bepul mashqlar, dictation, listening, reading, 12 zamon, notogri fellar, Enzo Academy" />
-  <meta name="theme-color" content="#04091a" />
+  <title>Husanboy Teacher — 3D Ochiq CEFR, Multilevel & IELTS Platforma</title>
+  <meta name="description" content="Husanboy Teacher — O‘zbekistondagi eng yirik bepul CEFR, Multilevel va IELTS ochiq mashqlar markazi: 17 ta to‘liq Reading & Writing kutubxonasi, Map, Dictation, Listening, 3D Flashcards, Error Spotting va 450 kunlik A1–C1 Shaxsiy Kabinet (QR-Login)." />
+  <meta name="keywords" content="Husanboy Teacher, CEFR, Multilevel, IELTS, ingliz tili, bepul reading, writing, dictation, listening, 12 zamon, Enzo Academy" />
+  <meta name="theme-color" content="#030712" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Husanboy Teacher" />
-  <meta property="og:title" content="Husanboy Teacher — Ochiq CEFR & Multilevel Platforma" />
-  <meta property="og:description" content="12 ta bepul interaktiv CEFR/Multilevel bo‘limi + iPhone/Kompyuter Shaxsiy Kabinet (QR-Login)." />
+  <meta property="og:title" content="Husanboy Teacher — 3D Ochiq CEFR, Multilevel & IELTS Platforma" />
+  <meta property="og:description" content="14 ta bepul interaktiv bo‘lim + 17 ta to‘liq IELTS/CEFR Reading & Writing kutubxonasi + iPhone/Kompyuter Shaxsiy Kabinet (QR-Login)." />
   <meta property="og:image" content="./app-icon.png" />
   <meta property="og:type" content="website" />
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -20,86 +20,88 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <canvas id="bg-3d" aria-hidden="true"></canvas>
+
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top">
-        <span class="brand-badge">HT</span>
+        <img class="brand-logo" src="./app-icon.png" alt="Husanboy Teacher" />
         <span>Husanboy Teacher</span>
       </a>
       <nav class="nav-links">
-        <a href="#practice">Ochiq Mashqlar</a>
-        <a href="#ecosystem">Ilova & Ota-ona Boti</a>
-        <a href="#enroll">Bepul 1-Dars</a>
+        <a href="#practice">14 ta Mashq</a>
+        <a href="#results">Natijalar</a>
+        <a href="#ecosystem">Ilova & Bot</a>
+        <a href="#faq">FAQ</a>
       </nav>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <a class="btn btn-gold btn-sm" href="./cabinet/index.html">🎓 Shaxsiy Kabinet (QR)</a>
-        <a class="btn btn-primary btn-sm" href="#enroll">🎁 Bepul 1-dars</a>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span class="xp-hud" id="xp-hud" title="Sizning mashq XP va darajangiz">⚡ 0 XP • 🌱 Yangi</span>
+        <button class="sfx-toggle" id="sfx-toggle" type="button" title="Ovoz effektlari">🔊</button>
+        <a class="btn btn-gold btn-sm" href="./cabinet/index.html">🎓 Kabinet (QR)</a>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO -->
+    <!-- 3D HERO -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="pill">🌐 BARCHA UCHUN OCHIQ • LOGINSIZ • 100% BEPUL MASHQLAR</span>
-          <h1>Ingliz tili, <span>CEFR & Multilevel</span> ochiq mashq maydonchasi</h1>
+          <span class="pill">✨ 100% BEPUL • LOGINSIZ • 14 BO‘LIM + 17 KUTUBXONA</span>
+          <h1>Ingliz tili, <span>CEFR, Multilevel & IELTS</span> 3D Akademiyasi</h1>
           <p>
-            Ro‘yxatdan o‘tmasdan hoziroq <b>Multilevel Map Labeling</b>, <b>Dictation</b>, <b>Listening</b>,
-            <b>CEFR Reading</b>, <b>Daraja testi</b>, <b>Noto‘g‘ri fe’llar</b> va <b>12 Zamon</b> bo‘yicha bepul mashq qiling!
+            Ro‘yxatdan o‘tmasdan hoziroq <b>250+ IELTS & CEFR Reading</b>, <b>6 darajali Writing</b>,
+            <b>Map Labeling</b>, <b>Dictation</b>, <b>3D Flashcards</b>, <b>Xatoni Top</b> va <b>15 daq Mini-Mock</b>
+            mashqlarida XP yig‘ib darajangizni oshiring!
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#practice">🚀 Hoziroq mashq boshlash</a>
             <a class="btn btn-gold" href="./cabinet/index.html">📱 Shaxsiy Kabinet (Login / QR)</a>
-            <a class="btn btn-ghost" href="#practice" onclick="window.HT_SELECT_TAB('placement')">🧪 Daraja testi</a>
-            <a class="btn btn-ghost" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona boti</a>
+            <a class="btn btn-ghost" href="#practice" onclick="window.HT_SELECT_TAB('placement')">🧪 2 daq Daraja Testi</a>
           </div>
           <div class="stats-row">
-            <div class="stat-box"><b>A1 → C1</b><span>450 kunlik tizim</span></div>
-            <div class="stat-box"><b>100%</b><span>Ochiq & Bepul bo‘lim</span></div>
-            <div class="stat-box"><b>15 daq</b><span>Ota-ona nazorati</span></div>
+            <div class="stat-box"><b>A1 → C1</b><span>450 kunlik oflayn kurs</span></div>
+            <div class="stat-box"><b>17 ta</b><span>IELTS & CEFR kutubxona</span></div>
+            <div class="stat-box"><b>15 daq</b><span>Ota-ona jonli nazorati</span></div>
           </div>
         </div>
 
-        <div class="card">
-          <div style="font-size:12px;font-weight:800;color:#6ee7b7;margin-bottom:10px;">✨ HUSANBOY TEACHER EKOTIZIMI</div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div class="q-item" style="margin:0;">
-              <b>🗺️ Multilevel Map & Listening</b>
-              <div style="font-size:13px;color:var(--muted);margin-top:3px;">Interaktiv xarita, chalg‘ituvchilar (distractors) va ovozli mashqlar.</div>
+        <div class="tilt-wrap">
+          <div class="hero-3d-card tilt-card" data-tilt>
+            <div class="emblem-3d-ring">
+              <img class="emblem-3d-img" src="./app-icon.png" alt="Husanboy Teacher 3D Emblem" />
             </div>
-            <div class="q-item" style="margin:0;">
-              <b>📱 450 kunlik Oflayn Android Ilova</b>
-              <div style="font-size:13px;color:var(--muted);margin-top:3px;">A1–C1 darslar, Shadowing, Dictation, Grammar Surf va AI Erkin Suhbat.</div>
-            </div>
-            <div class="q-item" style="margin:0;">
-              <b>🛡️ Ota-onalar Nazorat Boti</b>
-              <div style="font-size:13px;color:var(--muted);margin-top:3px;">15 daqiqa o‘yin/platforma ogohlantirishi, guruh reytingi va rasmiy to‘lov cheki.</div>
+            <div style="font-size:12px;font-weight:900;letter-spacing:0.16em;color:var(--gold-soft);">HUSANBOY TEACHER • IELTS & CEFR</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px;">Ilm • Intizom • Yorug‘ Kelajak</div>
+            <div class="wod-box" id="wod-box">
+              <div style="font-size:11px;font-weight:900;color:#6ee7b7;letter-spacing:0.08em;">✨ BUGUNGI IELTS / CEFR SO‘ZI</div>
+              <div id="wod-content" style="margin-top:6px;">Yuklanmoqda...</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- OPEN PRACTICE HUB -->
+    <!-- 14 INTERACTIVE OPEN PRACTICE HUB -->
     <section id="practice" class="section">
       <div class="container">
         <div class="sec-head">
-          <h2>🎯 Ochiq CEFR & Multilevel Mashq Markazi</h2>
-          <p>Istalgan bo‘limni tanlang — barchasi bepul, loginsiz va ovozli (TTS) tekshiruv bilan ishlaydi.</p>
+          <h2>🎯 Ochiq CEFR, Multilevel & IELTS Mashq Markazi</h2>
+          <p>Har bir bajarilgan mashq uchun <b>⚡ XP</b> va studiya ovoz effekti olasiz — istalgan bo‘limni tanlab boshlang!</p>
         </div>
 
         <div class="tabs" id="hub-tabs">
-          <button class="tab-btn active" data-tab="map">🗺️ Map Mashqlari</button>
+          <button class="tab-btn active" data-tab="reading">📖 CEFR & IELTS Reading (11)</button>
+          <button class="tab-btn" data-tab="writing">📝 Writing Kutubxonasi (6)</button>
+          <button class="tab-btn" data-tab="map">🗺️ Map Mashqlari</button>
           <button class="tab-btn" data-tab="dictation">✍️ CEFR Dictation</button>
-          <button class="tab-btn" data-tab="listening">🎧 Multilevel Listening</button>
-          <button class="tab-btn" data-tab="reading">📖 CEFR Reading</button>
-          <button class="tab-btn" data-tab="writing">📝 Writing Lab</button>
+          <button class="tab-btn" data-tab="listening">🎧 Listening</button>
           <button class="tab-btn" data-tab="speaking">🎙️ Speaking</button>
-          <button class="tab-btn" data-tab="placement">🧪 Daraja Testi</button>
-          <button class="tab-btn" data-tab="mock">⏱ 15 daq Mini-Mock</button>
+          <button class="tab-btn" data-tab="errors">🧩 Xatoni Top!</button>
+          <button class="tab-btn" data-tab="flashcards">🃏 3D Flashcards</button>
           <button class="tab-btn" data-tab="sprint">🎮 Word Sprint (60s)</button>
+          <button class="tab-btn" data-tab="mock">⏱ 15 daq Mini-Mock</button>
+          <button class="tab-btn" data-tab="placement">🧪 Daraja Testi</button>
           <button class="tab-btn" data-tab="calc">🧮 Ball Kalkulyatori</button>
           <button class="tab-btn" data-tab="verbs">⚡ Noto‘g‘ri Fe’llar</button>
           <button class="tab-btn" data-tab="tenses">🧭 12 Zamon</button>
@@ -109,51 +111,78 @@
       </div>
     </section>
 
-    <!-- APP & PARENT BOT SHOWCASE -->
-    <section id="ecosystem" class="section">
+    <!-- STUDENT RESULTS & PARENT REVIEWS -->
+    <section id="results" class="section">
       <div class="container">
         <div class="sec-head">
-          <h2>📱 To‘liq Tizim: Mobil Ilova + Ota-ona Boti</h2>
-          <p>O‘quvchilarimiz uchun 450 kunlik to‘liq oflayn ilova va ota-onalar uchun 100% shaffof Telegram nazorati.</p>
+          <h2>🏆 O‘quvchilarimiz Natijalari va Ota-onalar Ishonchi</h2>
+          <p>Har kuni 15 daqiqa tizimli mashq + ota-ona nazorati = kafolatlangan B2, C1 va IELTS natijalari.</p>
         </div>
         <div class="grid-3">
-          <div class="card">
-            <div style="font-size:32px;">📱</div>
-            <h3 style="margin:8px 0 6px;">Husanboy Teacher Ilovasi</h3>
-            <p style="font-size:14px;color:var(--muted);">A1–C1 barcha darslar internetsiz, Grammar Surf o‘yini, Shadowing, Dictation, Yo‘lda eshitish, Lug‘at daftari va AI Erkin Suhbat.</p>
-          </div>
-          <div class="card">
-            <div style="font-size:32px;">🛡️</div>
-            <h3 style="margin:8px 0 6px;">15 Daqiqa O‘qish Intizomi</h3>
-            <p style="font-size:14px;color:var(--muted);">Farzandingiz dars qilmasdan o‘yin yoki YouTube/TikTok’da 15 daqiqa o‘tirsa, Telegramingizga darhol jonli ogohlantirish keladi.</p>
-          </div>
-          <div class="card">
-            <div style="font-size:32px;">🧾</div>
-            <h3 style="margin:8px 0 6px;">Ota-ona Paneli & Rasmiy Chek</h3>
-            <p style="font-size:14px;color:var(--muted);">Guruh reytingi, haftalik hisobot, «Kechki ovqatda 1 ta savol», «Maqtash (+10 XP)» va avtomatik rasmiy to‘lov cheki.</p>
-          </div>
+          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
+            <span class="result-badge">🎓 CEFR C1 • 68 / 75 BALL</span>
+            <h3 style="margin-bottom:6px;">100% DTM Imtiyozi</h3>
+            <p style="font-size:14px;color:var(--muted);">«450 kunlik oflayn ilova va har kunlik Listening + Dictation mashqlari tufayli 6 oyda B1 dan C1 ga chiqdim!»</p>
+          </div></div>
+          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
+            <span class="result-badge">🌍 IELTS 7.5 • READING 8.5</span>
+            <h3 style="margin-bottom:6px;">Tizimli Tayyorgarlik</h3>
+            <p style="font-size:14px;color:var(--muted);">«Saytdagi 50+ IELTS Reading matnlari va Writing Band 8.0 namunalari imtihonda eng katta yordam berdi.»</p>
+          </div></div>
+          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
+            <span class="result-badge">🛡️ OTA-ONA FIKRI</span>
+            <h3 style="margin-bottom:6px;">Xotirjam Nazorat</h3>
+            <p style="font-size:14px;color:var(--muted);">«Telegram bot har kuni farzandim dars qilganini va 15 daqiqa o‘yinga chalg‘isa darhol xabar beradi — ajoyib tizim!»</p>
+          </div></div>
         </div>
       </div>
     </section>
 
-    <!-- VIDEO SHOWCASE -->
+    <!-- ECOSYSTEM BENTO -->
+    <section id="ecosystem" class="section">
+      <div class="container">
+        <div class="sec-head">
+          <h2>📱 To‘liq Ekotizim: Android Ilova + iPhone/PC Kabinet + Bot</h2>
+          <p>Bitta akkaunt bilan telefonda, iPhone’da va kompyuterda (QR-kod orqali) kelgan joyingizdan davom eting.</p>
+        </div>
+        <div class="grid-3">
+          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
+            <div style="font-size:34px;">📱</div>
+            <h3 style="margin:10px 0 6px;">450 Kunlik Oflayn Ilova</h3>
+            <p style="font-size:14px;color:var(--muted);">19,000+ oflayn MP3 audio, Grammar Surf o‘yini, Shadowing, Dictation, 20 ta Signature SFX va AI Erkin Suhbat.</p>
+          </div></div>
+          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
+            <div style="font-size:34px;">💻</div>
+            <h3 style="margin:10px 0 6px;">QR-Kod bilan Kompyuter & iPhone</h3>
+            <p style="font-size:14px;color:var(--muted);">Telefoningiz bilan QR-kodni skanerlang — kompyuterda 1 soniyada aynan kelgan darsingizdan davom etasiz!</p>
+          </div></div>
+          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
+            <div style="font-size:34px;">🛡️</div>
+            <h3 style="margin:10px 0 6px;">Ota-onalar Nazorat Boti</h3>
+            <p style="font-size:14px;color:var(--muted);">15 daqiqa chalg‘ish ogohlantirishi, guruh reytingi, «Maqtash (+10 XP)», o‘z vaqtida to‘lov bonusi va rasmiy chek.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO THEATER -->
     <section id="video" class="section">
       <div class="container">
-        <div class="card" style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:center;" id="video-card">
+        <div class="card" style="display:grid;grid-template-columns:1fr 330px;gap:26px;align-items:center;border-color:rgba(251,191,36,0.32);" id="video-card">
           <div>
             <span class="pill">🎬 OTA-ONALAR UCHUN 2 DAQIQALIK TAQDIMOT</span>
-            <h2 style="margin:12px 0 10px;font-size:28px;">Ilovamiz va Ota-ona Nazorat Boti qanday ishlaydi?</h2>
-            <p style="color:var(--muted);font-size:15px;margin-bottom:18px;">
+            <h2 style="margin:14px 0 10px;font-size:30px;">Ilovamiz va Ota-ona Boti qanday ishlaydi?</h2>
+            <p style="color:var(--muted);font-size:15px;margin-bottom:20px;">
               Ushbu 2 daqiqalik videoda farzandingizning telefonini o‘qish intizomiga bo‘ysundiradigan to‘liq tizim —
               <b>15 daqiqalik o‘yin/platforma ogohlantirishi</b>, <b>Bosh Panel</b>, <b>Guruh reytingi</b> va <b>Rasmiy to‘lov cheki</b>ni ko‘rasiz.
             </p>
             <div style="display:flex;flex-wrap:wrap;gap:10px;">
               <a class="btn btn-primary" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona botiga ulanish</a>
-              <a class="btn btn-ghost" href="#enroll">🎁 Bepul 1-sinov darsi</a>
+              <a class="btn btn-gold" href="./cabinet/index.html">🎓 Shaxsiy Kabinet</a>
             </div>
           </div>
           <div style="display:flex;justify-content:center;">
-            <video controls playsinline preload="metadata" style="width:100%;max-width:300px;border-radius:20px;border:2px solid rgba(52,211,153,0.45);background:#000;box-shadow:0 20px 50px rgba(0,0,0,0.5);">
+            <video controls playsinline preload="metadata" style="width:100%;max-width:300px;border-radius:22px;border:2px solid rgba(251,191,36,0.48);background:#000;box-shadow:0 24px 60px rgba(0,0,0,0.65);">
               <source src="media/taqdimot.mp4" type="video/mp4" />
             </video>
           </div>
@@ -163,15 +192,15 @@
 
     <!-- FAQ -->
     <section id="faq" class="section">
-      <div class="container" style="max-width:780px;">
+      <div class="container" style="max-width:800px;">
         <div class="sec-head" style="text-align:center;">
           <h2>❓ Ko‘p Beriladigan Savollar (FAQ)</h2>
           <p>Ota-onalar va o‘quvchilar eng ko‘p so‘raydigan savollarga aniq javoblar.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <details class="card" style="padding:16px 20px;cursor:pointer;">
-            <summary style="font-weight:800;font-size:15px;">📱 «Husanboy Teacher» ilovasi internetsiz ham ishlaydimi?</summary>
-            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Ha! A1 dan C1 darajagacha barcha 450 kunlik darslar, 19 500+ audio fayl, Grammar Surf o‘yini, Yo‘lda eshitish va Lug‘at daftari 100% internetsiz ishlaydi.</p>
+            <summary style="font-weight:800;font-size:15px;">📱 «Husanboy Teacher» ilovasi internetsiz va iPhone’da ishlaydimi?</summary>
+            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Ha! Android ilovada barcha 450 kunlik darslar va 19,000+ audio 100% internetsiz ishlaydi. iPhone va kompyuterda esa saytdagi «Shaxsiy Kabinet» orqali (Safari’da Bosh ekranga qo‘shib) haqiqiy ilovadek foydalanish mumkin.</p>
           </details>
           <details class="card" style="padding:16px 20px;cursor:pointer;">
             <summary style="font-weight:800;font-size:15px;">🤖 Ota-onalar nazorat botiga qanday ulanaman?</summary>
@@ -183,7 +212,7 @@
           </details>
           <details class="card" style="padding:16px 20px;cursor:pointer;">
             <summary style="font-weight:800;font-size:15px;">🎁 1-sinov darsi rostdan ham bepulmi?</summary>
-            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Ha, mutlaqo bepul! Yuqoridagi formani to‘ldiring yoki <a href="https://t.me/sakinatim_bol" target="_blank" style="color:#6ee7b7;">@sakinatim_bol</a> ga yozing — darajangiz aniqlanib, mos guruhga taklif qilinasiz.</p>
+            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Ha, mutlaqo bepul! Pastdagi formani to‘ldiring yoki <a href="https://t.me/sakinatim_bol" target="_blank" style="color:#6ee7b7;">@sakinatim_bol</a> ga yozing — darajangiz aniqlanib, mos guruhga taklif qilinasiz.</p>
           </details>
         </div>
       </div>
@@ -192,8 +221,9 @@
     <!-- ENROLLMENT FORM -->
     <section id="enroll" class="section">
       <div class="container">
-        <div class="card" style="max-width:680px;margin:0 auto;border-color:rgba(16,185,129,0.45);">
-          <h2 style="margin-bottom:6px;">🎁 Bepul 1-Sinov Darsiga Yoziling</h2>
+        <div class="card" style="max-width:680px;margin:0 auto;border-color:rgba(16,185,129,0.5);">
+          <span class="pill" style="margin-bottom:10px;">🎁 BEPUL SINOV DARSI</span>
+          <h2 style="margin-bottom:6px;">Bepul 1-Sinov Darsiga Yoziling</h2>
           <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">Ma’lumotingizni kiriting — arizangiz to‘g‘ridan-to‘g‘ri ustozning Telegramiga tayyor holda yuboriladi.</p>
           <form id="enroll-form" style="display:flex;flex-direction:column;gap:10px;">
             <input class="input-box" id="en-name" required placeholder="Ism-familiyangiz (masalan: Ali Valiyev)" />
@@ -211,15 +241,17 @@
     </section>
   </main>
 
+  <div id="xp-toast" aria-live="polite"></div>
+
   <footer>
     <div class="container">
-      <div style="margin-bottom:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
+      <div style="margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:18px;">
         <a href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">📢 @xusanboy_teacher</a>
         <a href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona Boti</a>
         <a href="https://t.me/sakinatim_bol" target="_blank" rel="noopener">👨‍🏫 Qabul (@sakinatim_bol)</a>
         <a href="https://instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">📸 Instagram</a>
       </div>
-      <div>© 2026 Husanboy Teacher • Barcha uchun ochiq ingliz tili va CEFR/Multilevel platformasi</div>
+      <div>© 2026 Husanboy Teacher • 3D Ochiq CEFR, Multilevel & IELTS Platformasi</div>
     </div>
   </footer>
 
@@ -229,6 +261,7 @@
   <script src="data/writing_speaking.js"></script>
   <script src="data/sprint_mock.js"></script>
   <script src="data/reference.js"></script>
+  <script src="data/extra_modules.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -872,12 +872,267 @@
     stage.querySelectorAll('[data-spgo]').forEach((b) => b.onclick = () => {
       const picked = spgOpts[Number(b.dataset.spgo)];
       spgTotal++;
-      if (picked.ok) { spgScore++; spgFlash = `✅ To‘g‘ri! (${spgCur.en})`; saveSprintBest(spgScore); }
-      else { const right = spgOpts.find((x) => x.ok); spgFlash = `❌ ${spgCur.en} = ${right ? right.text : ''}`; }
+      if (picked.ok) { spgScore++; spgFlash = `✅ To‘g‘ri! (${spgCur.en})`; saveSprintBest(spgScore); addXp(5, 'Word Sprint'); }
+      else { const right = spgOpts.find((x) => x.ok); spgFlash = `❌ ${spgCur.en} = ${right ? right.text : ''}`; sfx('wrong'); }
       pickNextSprintWord();
       renderWordSprint();
     });
   }
+
+  // -------------------- XP ENGINE + SIGNATURE F-MAJOR MARIMBA SFX --------------------
+  let sfxOn = (function () { try { return localStorage.getItem('ht_site_sfx') !== '0'; } catch (_) { return true; } })();
+  let sfxCtx = null;
+  function sfx(kind) {
+    if (!sfxOn) return;
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!sfxCtx) sfxCtx = new AC();
+      if (sfxCtx.state === 'suspended') sfxCtx.resume().catch(() => {});
+      const tone = (f, d, v, delay) => {
+        const t = sfxCtx.currentTime + delay;
+        const o = sfxCtx.createOscillator(), g = sfxCtx.createGain();
+        o.type = kind === 'wrong' ? 'triangle' : 'sine';
+        o.frequency.setValueAtTime(f, t);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(v, t + 0.008);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+        o.connect(g); g.connect(sfxCtx.destination);
+        o.start(t); o.stop(t + d + 0.02);
+      };
+      if (kind === 'ok') { tone(523.25, 0.16, 0.09, 0); tone(698.46, 0.24, 0.10, 0.07); }
+      else if (kind === 'win') { tone(349.23, 0.16, 0.09, 0); tone(523.25, 0.18, 0.10, 0.08); tone(698.46, 0.28, 0.11, 0.16); tone(1046.5, 0.35, 0.08, 0.24); }
+      else if (kind === 'wrong') { tone(240, 0.12, 0.08, 0); tone(190, 0.14, 0.07, 0.08); }
+      else { tone(523.25, 0.05, 0.04, 0); }
+    } catch (_) {}
+  }
+
+  let xpToastTimer = null;
+  function getXp() { try { return Number(localStorage.getItem('ht_site_xp') || '0') || 0; } catch (_) { return 0; } }
+  function rankOf(xp) { return xp >= 350 ? '🏆 IELTS Legend' : xp >= 150 ? '🔥 CEFR Master' : xp >= 50 ? '📘 Bilimdon' : '🌱 Yangi'; }
+  function updateXpHud() {
+    const el = document.getElementById('xp-hud');
+    if (el) { const xp = getXp(); el.textContent = `⚡ ${xp} XP • ${rankOf(xp)}`; }
+  }
+  function addXp(pts, label) {
+    const next = getXp() + pts;
+    try { localStorage.setItem('ht_site_xp', String(next)); } catch (_) {}
+    updateXpHud();
+    sfx(pts >= 15 ? 'win' : 'ok');
+    const toast = document.getElementById('xp-toast');
+    if (toast) {
+      toast.textContent = `⚡ +${pts} XP${label ? ' • ' + label : ''} (${rankOf(next)})`;
+      toast.classList.add('show');
+      if (xpToastTimer) clearTimeout(xpToastTimer);
+      xpToastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+  }
+
+  const sfxBtn = document.getElementById('sfx-toggle');
+  if (sfxBtn) {
+    sfxBtn.textContent = sfxOn ? '🔊' : '🔇';
+    sfxBtn.onclick = () => {
+      sfxOn = !sfxOn;
+      try { localStorage.setItem('ht_site_sfx', sfxOn ? '1' : '0'); } catch (_) {}
+      sfxBtn.textContent = sfxOn ? '🔊' : '🔇';
+      if (sfxOn) sfx('ok');
+    };
+  }
+  updateXpHud();
+
+  // -------------------- 13. ERROR SPOTTING (XATONI TOP!) --------------------
+  let errIdx = 0, errPick = null;
+  function renderErrors() {
+    const list = window.HT_ERROR_SPOTTING || [];
+    const cur = list[errIdx % list.length];
+    const ok = errPick !== null && errPick === cur.wrong;
+    stage.innerHTML = `
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;">
+        <div>
+          <span class="pill">🧩 CEFR GRAMMAR TRAP • ${(errIdx % list.length) + 1} / ${list.length}</span>
+          <h3 style="margin-top:8px;font-size:21px;">🧩 Xato yozilgan so‘zni bosing!</h3>
+        </div>
+        <button class="btn btn-primary btn-sm" id="err-next">Keyingi gap →</button>
+      </div>
+      <div class="q-item" style="text-align:center;padding:24px 16px;">
+        <div class="err-sentence">
+          ${cur.words.map((w, i) => {
+            let cls = 'err-word';
+            if (errPick !== null) {
+              if (i === cur.wrong) cls += ' right';
+              else if (i === errPick) cls += ' wrong';
+            }
+            return `<button class="${cls}" data-ew="${i}">${esc(w)}</button>`;
+          }).join('')}
+        </div>
+        ${errPick !== null ? `
+          <div class="fb-box ${ok ? 'ok' : 'no'}" style="text-align:left;max-width:640px;margin:14px auto 0;">
+            <b>${ok ? '✅ Barakalla! Xatoni aniq topdingiz (+10 XP)!' : '❌ Xato so‘z: «' + esc(cur.words[cur.wrong]) + '»'}</b><br/>
+            <b>To‘g‘ri gap:</b> ${esc(cur.fix)} <button class="btn btn-ghost btn-sm" id="err-say" style="margin-left:6px;">🔊</button><br/>
+            <i>📌 Qoida: ${esc(cur.exp)}</i>
+          </div>
+        ` : `<div style="font-size:13px;color:var(--muted);">Yuqoridagi gapdagi bitta grammatik xato so‘zni bosib toping.</div>`}
+      </div>
+    `;
+    stage.querySelectorAll('[data-ew]').forEach((b) => b.onclick = () => {
+      if (errPick !== null) return;
+      errPick = Number(b.dataset.ew);
+      if (errPick === cur.wrong) addXp(10, 'Xatoni Top');
+      else sfx('wrong');
+      renderErrors();
+    });
+    const sayB = stage.querySelector('#err-say');
+    if (sayB) sayB.onclick = () => speak(cur.fix, 0.92);
+    stage.querySelector('#err-next').onclick = () => { errIdx = (errIdx + 1) % list.length; errPick = null; sfx('tap'); renderErrors(); };
+  }
+
+  // -------------------- 14. 3D FLIP FLASHCARDS --------------------
+  let fcIdx = 0, fcFlip = false;
+  function getFcDone() { try { return JSON.parse(localStorage.getItem('ht_fc_done') || '[]'); } catch (_) { return []; } }
+  function renderFlashcards() {
+    const list = window.HT_FLASHCARDS || [];
+    const cur = list[fcIdx % list.length];
+    const done = getFcDone();
+    const isDone = done.includes(cur.en);
+    stage.innerHTML = `
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;">
+        <div>
+          <span class="pill">🃏 3D INTERAKTIV KARTOCHKALAR • ${done.length} / ${list.length} YODLANDI</span>
+          <h3 style="margin-top:8px;font-size:21px;">🃏 Phrasal Verbs & Idioms (B1–C1)</h3>
+        </div>
+        <span style="font-size:13px;color:var(--gold);font-weight:800;">${(fcIdx % list.length) + 1} / ${list.length}</span>
+      </div>
+      <div class="flip-scene">
+        <div class="flip-card ${fcFlip ? 'is-flipped' : ''}" id="fc-card">
+          <div class="flip-face">
+            <span class="result-badge">${esc(cur.tag)}</span>
+            <div style="font-size:30px;font-weight:900;color:#fff;margin:8px 0;">${esc(cur.en)}</div>
+            <div style="font-size:13px;color:var(--muted);">Tarjimasini ko‘rish uchun kartochkani bosing ↻</div>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="result-badge">🇺🇿 TARJIMA VA MISOL</span>
+            <div style="font-size:23px;font-weight:900;color:var(--gold-soft);margin:6px 0 10px;">${esc(cur.uz)}</div>
+            <div style="font-size:14.5px;color:#e2e8f0;max-width:420px;">💬 «${esc(cur.ex)}»</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;">
+        <button class="btn btn-ghost btn-sm" id="fc-prev">← Oldingi</button>
+        <button class="btn btn-ghost btn-sm" id="fc-say">🔊 Talaffuz</button>
+        <button class="btn ${isDone ? 'btn-primary' : 'btn-gold'} btn-sm" id="fc-done">${isDone ? '✅ Yodlangan' : '☐ Yodladim (+10 XP)'}</button>
+        <button class="btn btn-primary btn-sm" id="fc-next">Keyingi →</button>
+      </div>
+    `;
+    stage.querySelector('#fc-card').onclick = () => { fcFlip = !fcFlip; sfx('tap'); renderFlashcards(); };
+    stage.querySelector('#fc-say').onclick = () => speak(fcFlip ? cur.ex : cur.en, 0.9);
+    stage.querySelector('#fc-done').onclick = () => {
+      const next = isDone ? done.filter((x) => x !== cur.en) : [...done, cur.en];
+      try { localStorage.setItem('ht_fc_done', JSON.stringify(next)); } catch (_) {}
+      if (!isDone) addXp(10, 'Flashcard yodlandi');
+      renderFlashcards();
+    };
+    stage.querySelector('#fc-prev').onclick = () => { fcFlip = false; fcIdx = (fcIdx - 1 + list.length) % list.length; sfx('tap'); renderFlashcards(); };
+    stage.querySelector('#fc-next').onclick = () => { fcFlip = false; fcIdx = (fcIdx + 1) % list.length; sfx('tap'); renderFlashcards(); };
+  }
+
+  // -------------------- ✨ WORD OF THE DAY (3D HERO CARD) --------------------
+  (function initWordOfDay() {
+    const box = document.getElementById('wod-content');
+    const list = window.HT_WORD_OF_DAY || [];
+    if (!box || !list.length) return;
+    const dayIdx = Math.floor(Date.now() / 86400000) % list.length;
+    const w = list[dayIdx];
+    box.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+        <div><b style="font-size:19px;color:#fff;">${esc(w.en)}</b> <span style="font-size:12px;color:var(--gold-soft);">${esc(w.ipa)}</span></div>
+        <button class="btn btn-ghost btn-sm" id="wod-say" type="button" style="min-height:30px;padding:0 10px;">🔊</button>
+      </div>
+      <div style="font-size:13.5px;color:#a7f3d0;font-weight:700;margin-top:3px;">🇺🇿 ${esc(w.uz)}</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-top:4px;">💬 «${esc(w.ex)}»</div>
+    `;
+    const btn = document.getElementById('wod-say');
+    if (btn) btn.onclick = () => speak(`${w.en}. ${w.ex}`, 0.9);
+  })();
+
+  // -------------------- 3D PERSPECTIVE TILT CARDS --------------------
+  document.querySelectorAll('[data-tilt]').forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      const rx = (0.5 - y) * 11;
+      const ry = (x - 0.5) * 13;
+      card.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
+      card.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
+      card.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  });
+
+  // -------------------- 3D CELESTIAL INTERACTIVE BACKGROUND CANVAS --------------------
+  (function init3DCanvas() {
+    const cv = document.getElementById('bg-3d');
+    if (!cv) return;
+    const c = cv.getContext('2d');
+    let W = 0, H = 0, mx = 0, my = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.4);
+    const stars = Array.from({ length: 75 }, () => ({
+      x: (Math.random() - 0.5) * 2,
+      y: (Math.random() - 0.5) * 2,
+      z: Math.random() * 1.4 + 0.2,
+      r: Math.random() * 1.6 + 0.5,
+      gold: Math.random() > 0.65,
+    }));
+    function resize() {
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = Math.floor(W * dpr); cv.height = Math.floor(H * dpr);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('pointermove', (e) => {
+      mx = (e.clientX / Math.max(1, W) - 0.5) * 2;
+      my = (e.clientY / Math.max(1, H) - 0.5) * 2;
+    });
+    let t = 0;
+    function frame() {
+      requestAnimationFrame(frame);
+      if (document.hidden) return;
+      t += 0.004;
+      c.clearRect(0, 0, W, H);
+
+      // Subtle 3D orbital golden rings
+      c.save();
+      c.translate(W * 0.72 + mx * 18, H * 0.26 + my * 14);
+      c.strokeStyle = 'rgba(251, 191, 36, 0.09)';
+      c.lineWidth = 1.2;
+      c.beginPath();
+      c.ellipse(0, 0, 210, 74, t * 0.6, 0, Math.PI * 2);
+      c.stroke();
+      c.strokeStyle = 'rgba(16, 185, 129, 0.09)';
+      c.beginPath();
+      c.ellipse(0, 0, 165, 58, -t * 0.8 + 0.9, 0, Math.PI * 2);
+      c.stroke();
+      c.restore();
+
+      // 3D depth starfield
+      for (const s of stars) {
+        s.z -= 0.0012;
+        if (s.z <= 0.15) { s.z = 1.6; s.x = (Math.random() - 0.5) * 2; s.y = (Math.random() - 0.5) * 2; }
+        const px = W * 0.5 + (s.x / s.z) * (W * 0.55) + mx * (28 / s.z);
+        const py = H * 0.5 + (s.y / s.z) * (H * 0.55) + my * (22 / s.z);
+        if (px < -10 || px > W + 10 || py < -10 || py > H + 10) continue;
+        const alpha = Math.min(0.85, (1.6 - s.z) * 0.6);
+        c.fillStyle = s.gold ? `rgba(253, 230, 138, ${alpha.toFixed(2)})` : `rgba(186, 230, 253, ${alpha.toFixed(2)})`;
+        c.beginPath();
+        c.arc(px, py, s.r / s.z, 0, Math.PI * 2);
+        c.fill();
+      }
+    }
+    requestAnimationFrame(frame);
+  })();
 
   function renderTab(name) {
     stopSpeak();
@@ -889,6 +1144,8 @@
     else if (name === 'reading') renderReading();
     else if (name === 'writing') renderWriting();
     else if (name === 'speaking') renderSpeaking();
+    else if (name === 'errors') renderErrors();
+    else if (name === 'flashcards') renderFlashcards();
     else if (name === 'mock') renderMiniMock();
     else if (name === 'sprint') renderWordSprint();
     else if (name === 'placement') renderPlacement();
@@ -898,8 +1155,8 @@
   }
 
   window.HT_SELECT_TAB = renderTab;
-  tabBtns.forEach((b) => b.onclick = () => renderTab(b.dataset.tab));
-  renderTab('map');
+  tabBtns.forEach((b) => b.onclick = () => { sfx('tap'); renderTab(b.dataset.tab); });
+  renderTab('reading');
 
   // Enrollment form -> Telegram
   document.getElementById('enroll-form').onsubmit = function (e) {
