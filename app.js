@@ -936,12 +936,21 @@
   function rankOf(xp) { return xp >= 350 ? '🏆 IELTS Legend' : xp >= 150 ? '🔥 CEFR Master' : xp >= 50 ? '📘 Bilimdon' : '🌱 Yangi'; }
   function updateXpHud() {
     const el = document.getElementById('xp-hud');
-    if (el) { const xp = getXp(); el.textContent = `⚡ ${xp} XP • ${rankOf(xp)}`; }
+    const xp = getXp();
+    if (el) el.textContent = `⚡ ${xp} XP • ${rankOf(xp)}`;
+    const fill = document.getElementById('xp-bar-fill');
+    if (fill) {
+      const pct = Math.min(100, Math.max(8, ((xp % 150) / 150) * 100));
+      fill.style.width = (xp >= 350 ? 100 : pct) + '%';
+    }
   }
   function addXp(pts, label) {
     const next = getXp() + pts;
     try { localStorage.setItem('ht_site_xp', String(next)); } catch (_) {}
     updateXpHud();
+    if (typeof window.HT_COSMOS_ON_XP === 'function') {
+      try { window.HT_COSMOS_ON_XP(pts, label, next); } catch (_) {}
+    }
     sfx(pts >= 15 ? 'win' : 'ok');
     const toast = document.getElementById('xp-toast');
     if (toast) {
@@ -963,6 +972,9 @@
     };
   }
   updateXpHud();
+  window.HT_SFX = sfx;
+  window.HT_ADD_XP = addXp;
+  window.HT_SFX_ON = () => sfxOn;
 
   // -------------------- 13. ERROR SPOTTING (XATONI TOP!) --------------------
   let errIdx = 0, errPick = null;
@@ -1065,6 +1077,7 @@
 
   // -------------------- ✨ WORD OF THE DAY (3D HERO CARD) --------------------
   (function initWordOfDay() {
+    if (window.HT_COSMOS_ACTIVE) return;
     const box = document.getElementById('wod-content');
     const list = window.HT_WORD_OF_DAY || [];
     if (!box || !list.length) return;
@@ -1101,6 +1114,7 @@
 
   // -------------------- 3D CELESTIAL INTERACTIVE BACKGROUND CANVAS --------------------
   (function init3DCanvas() {
+    if (window.HT_COSMOS_ACTIVE) return;
     const cv = document.getElementById('bg-3d');
     if (!cv) return;
     const c = cv.getContext('2d');
@@ -1187,12 +1201,15 @@
   renderTab('reading');
 
   // Enrollment form -> Telegram
-  document.getElementById('enroll-form').onsubmit = function (e) {
-    e.preventDefault();
-    const name = document.getElementById('en-name').value.trim();
-    const phone = document.getElementById('en-phone').value.trim();
-    const course = document.getElementById('en-course').value;
-    const text = `Assalomu alaykum! Saytdan bepul 1-sinov darsiga yozilmoqchiman:\n👤 Ism: ${name}\n📞 Tel: ${phone}\n🎓 Yo‘nalish: ${course}`;
-    window.open('https://t.me/sakinatim_bol?text=' + encodeURIComponent(text), '_blank', 'noopener');
-  };
+  const enrollForm = document.getElementById('enroll-form');
+  if (enrollForm && !window.HT_COSMOS_ACTIVE) {
+    enrollForm.onsubmit = function (e) {
+      e.preventDefault();
+      const name = document.getElementById('en-name').value.trim();
+      const phone = document.getElementById('en-phone').value.trim();
+      const course = document.getElementById('en-course').value;
+      const text = `Assalomu alaykum! Saytdan bepul 1-sinov darsiga yozilmoqchiman:\n👤 Ism: ${name}\n📞 Tel: ${phone}\n🎓 Yo‘nalish: ${course}`;
+      window.open('https://t.me/sakinatim_bol?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    };
+  }
 })();
