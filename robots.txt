@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /cabinet/kurs/
+Disallow: /cabinet/kids/
 
-Sitemap: https://qosimovxusanboy141-dev.github.io/husanboy-teacher/sitemap.xml
+Sitemap: https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/sitemap.xml

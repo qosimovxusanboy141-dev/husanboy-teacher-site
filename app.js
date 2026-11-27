@@ -380,36 +380,129 @@
     }
   }
 
-  function downloadCertPng(studentName, levelLabel, scoreText) {
+  function loadImgSafe(src) {
+    return new Promise((resolve) => {
+      const im = new Image();
+      im.onload = () => resolve(im);
+      im.onerror = () => resolve(null);
+      im.src = src;
+    });
+  }
+
+  async function downloadCertPng(studentName, levelLabel, scoreText) {
+    const [photoImg, qrImg] = await Promise.all([
+      loadImgSafe('./teacher-photo.jpg'),
+      loadImgSafe('./site-qr.png')
+    ]);
     const c = document.createElement('canvas');
     c.width = 1080; c.height = 1350;
     const ctx = c.getContext('2d');
+
+    // 1. Deep 3D Cosmic Background
     const g = ctx.createLinearGradient(0, 0, 1080, 1350);
-    g.addColorStop(0, '#04091a'); g.addColorStop(0.55, '#0B2A4A'); g.addColorStop(1, '#064e3b');
+    g.addColorStop(0, '#030613'); g.addColorStop(0.5, '#0b1e3d'); g.addColorStop(1, '#042f2e');
     ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1350);
-    ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 10; ctx.strokeRect(48, 48, 984, 1254);
+
+    // Subtle cosmic golden nebula glow
+    const rg = ctx.createRadialGradient(540, 420, 40, 540, 420, 520);
+    rg.addColorStop(0, 'rgba(251, 191, 36, 0.22)');
+    rg.addColorStop(0.55, 'rgba(16, 185, 129, 0.08)');
+    rg.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = rg; ctx.fillRect(0, 0, 1080, 1350);
+
+    // Star specks
+    for (let i = 0; i < 65; i++) {
+      const sx = (i * 173) % 1020 + 30;
+      const sy = (i * 293) % 1290 + 30;
+      ctx.fillStyle = i % 3 === 0 ? 'rgba(253, 230, 138, 0.55)' : 'rgba(226, 232, 240, 0.35)';
+      ctx.beginPath(); ctx.arc(sx, sy, (i % 3) + 1.2, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Royal Double Gold Border
+    ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 8; ctx.strokeRect(42, 42, 996, 1266);
+    ctx.strokeStyle = 'rgba(253, 230, 138, 0.35)'; ctx.lineWidth = 2; ctx.strokeRect(58, 58, 964, 1234);
+
+    // Header
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#6ee7b7'; ctx.font = 'bold 36px system-ui, sans-serif';
-    ctx.fillText('HUSANBOY TEACHER • OPEN CEFR PLATFORM', 540, 170);
-    ctx.fillStyle = '#fbbf24'; ctx.font = '900 68px system-ui, sans-serif';
-    ctx.fillText('DARAJA SERTIFIKATI', 540, 285);
-    ctx.font = '130px system-ui, sans-serif'; ctx.fillText('🎓', 540, 460);
+    ctx.fillStyle = '#6ee7b7'; ctx.font = '800 30px system-ui, sans-serif';
+    ctx.fillText('🪐 HUSANBOY TEACHER • 3D KOINOT AKADEMIYASI', 540, 145);
+    ctx.fillStyle = '#fbbf24'; ctx.font = '900 66px system-ui, sans-serif';
+    ctx.fillText('RASMIY SERTIFIKAT', 540, 235);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '600 26px system-ui, sans-serif';
+    ctx.fillText('CEFR • MULTILEVEL • IELTS OCHIQ PLATFORMASI', 540, 285);
+
+    // Trophy & Student Name
+    ctx.font = '104px system-ui, sans-serif'; ctx.fillText('🏆', 540, 415);
+    ctx.fillStyle = '#94a3b8'; ctx.font = '700 26px system-ui, sans-serif';
+    ctx.fillText('USHBU SERTIFIKAT SOHIBI:', 540, 478);
     ctx.fillStyle = '#ffffff'; ctx.font = '900 56px system-ui, sans-serif';
-    ctx.fillText(studentName.slice(0, 28), 540, 600);
-    ctx.fillStyle = '#fde68a'; ctx.font = 'bold 46px system-ui, sans-serif';
-    ctx.fillText(levelLabel, 540, 690);
-    ctx.fillStyle = 'rgba(255,255,255,0.1)'; ctx.fillRect(180, 760, 720, 170);
-    ctx.fillStyle = '#ffffff'; ctx.font = '900 54px system-ui, sans-serif';
-    ctx.fillText(`Natija: ${scoreText}`, 540, 845);
-    ctx.fillStyle = '#a7f3d0'; ctx.font = 'bold 30px system-ui, sans-serif';
-    ctx.fillText(`Sana: ${new Date().toLocaleDateString('uz-UZ')}`, 540, 905);
-    ctx.fillStyle = '#6ee7b7'; ctx.font = 'bold 32px system-ui, sans-serif';
-    ctx.fillText('📢 @xusanboy_teacher  •  🤖 @Husanboy_Teacher_Assisstant_bot', 540, 1210);
+    ctx.fillText(String(studentName || 'O‘quvchi').slice(0, 28), 540, 548);
+
+    // Level & Score Box
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.78)';
+    ctx.strokeStyle = 'rgba(52, 211, 153, 0.55)';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(120, 595, 840, 250, 28); else ctx.rect(120, 595, 840, 250);
+    ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = '#fde68a'; ctx.font = '900 44px system-ui, sans-serif';
+    ctx.fillText(levelLabel, 540, 672);
+    ctx.fillStyle = '#34d399'; ctx.font = '900 52px system-ui, sans-serif';
+    ctx.fillText(`Natija: ${scoreText}`, 540, 750);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '600 26px system-ui, sans-serif';
+    ctx.fillText(`Sana: ${new Date().toLocaleDateString('uz-UZ')}`, 540, 812);
+
+    // Bottom Viral Author + Scannable QR Strip (y = 900..1240)
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+    ctx.strokeStyle = 'rgba(251, 191, 36, 0.35)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(90, 905, 900, 330, 26); else ctx.rect(90, 905, 900, 330);
+    ctx.fill(); ctx.stroke();
+
+    // Left: Author Portrait + Credentials
+    if (photoImg) {
+      ctx.save();
+      ctx.beginPath(); ctx.arc(215, 1070, 86, 0, Math.PI * 2); ctx.closePath(); ctx.clip();
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(129, 984, 172, 172);
+      ctx.drawImage(photoImg, 129, 984, 172, 210);
+      ctx.restore();
+      ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.arc(215, 1070, 86, 0, Math.PI * 2); ctx.stroke();
+    }
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#fde68a'; ctx.font = '800 22px system-ui, sans-serif';
+    ctx.fillText('MUALLIF VA USTOZ:', 326, 1012);
+    ctx.fillStyle = '#ffffff'; ctx.font = '900 34px system-ui, sans-serif';
+    ctx.fillText('Qosimov Husanboy', 326, 1056);
+    ctx.fillStyle = '#6ee7b7'; ctx.font = '700 25px system-ui, sans-serif';
+    ctx.fillText('✈️ @xusanboy_teacher', 326, 1102);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '700 24px system-ui, sans-serif';
+    ctx.fillText('👨‍🏫 @Qosimov_Xusanboy', 326, 1142);
+    ctx.fillStyle = '#93c5fd'; ctx.font = '700 22px system-ui, sans-serif';
+    ctx.fillText('📞 +998 88 997 77 46', 326, 1180);
+
+    // Right: Scannable QR Code
+    if (qrImg) {
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(758, 945, 196, 196, 18); else ctx.rect(758, 945, 196, 196);
+      ctx.fill();
+      ctx.drawImage(qrImg, 768, 955, 176, 176);
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#fde68a'; ctx.font = '800 20px system-ui, sans-serif';
+      ctx.fillText('📱 Bepul sinab ko‘ring!', 856, 1172);
+      ctx.fillStyle = '#94a3b8'; ctx.font = '600 17px system-ui, sans-serif';
+      ctx.fillText('QR-kodni skanerlang', 856, 1198);
+    }
+
     const a = document.createElement('a');
-    a.download = `Husanboy_Teacher_Sertifikat.png`;
+    a.download = 'Husanboy_Teacher_Sertifikat.png';
     a.href = c.toDataURL('image/png');
     a.click();
   }
+  window.HT_DOWNLOAD_CERT = downloadCertPng;
 
   // -------------------- 8. MULTILEVEL & IELTS WRITING LIBRARY --------------------
   let wrIdx = 0, wrText = '', wrShowModel = false, wrTimerSec = 40 * 60, wrInterval = null, wrLib = 'multilevel';
@@ -870,10 +963,21 @@
       stage.innerHTML = `
         <span class="pill">🏁 VAQT TUGADI!</span>
         <h3 style="font-size:24px;margin:10px 0;">🏆 Natijangiz: <span style="color:#fbbf24;">${spgScore}</span> / ${spgTotal} to‘g‘ri</h3>
-        <p style="font-size:15px;color:#a7f3d0;margin-bottom:16px;">Shaxsiy rekord: <b>${getSprintBest()} ball</b></p>
+        <p style="font-size:15px;color:#a7f3d0;margin-bottom:14px;">Shaxsiy rekord: <b>${getSprintBest()} ball</b></p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center;">
+          <input class="input-box" id="spg-cert-name" style="max-width:240px;padding:8px 12px;font-size:13px;" placeholder="Sertifikat uchun ismingiz..." />
+          <button class="btn btn-gold btn-sm" id="spg-cert-dl">📜 Story / QR Sertifikat yuklab olish</button>
+        </div>
         <button class="btn btn-primary" id="spg-again">🔄 Yana o‘ynash (60s)</button>
       `;
       stage.querySelector('#spg-again').onclick = () => { spgDone = false; renderWordSprint(); };
+      const spgCertBtn = stage.querySelector('#spg-cert-dl');
+      if (spgCertBtn) {
+        spgCertBtn.onclick = () => {
+          const nm = (stage.querySelector('#spg-cert-name').value || '').trim() || 'Husanboy Teacher O‘quvchisi';
+          downloadCertPng(nm, 'Word Sprint (60 soniya)', `${spgScore} ta to‘g‘ri`);
+        };
+      }
       return;
     }
 
