@@ -3,356 +3,3147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Husanboy Teacher — 3D Ochiq CEFR, Multilevel & IELTS Platforma</title>
-  <meta name="description" content="Husanboy Teacher — O‘zbekistondagi eng yirik bepul CEFR, Multilevel va IELTS ochiq mashqlar markazi: 17 ta to‘liq Reading & Writing kutubxonasi, Map, Dictation, Listening, 3D Flashcards, Error Spotting va 450 kunlik A1–C1 Shaxsiy Kabinet (QR-Login)." />
+  <title>Husanboy Teacher — 3D Koinot CEFR, Multilevel &amp; IELTS Akademiyasi</title>
+  <meta name="description" content="Husanboy Teacher — O‘zbekistondagi eng yirik bepul 3D Koinot CEFR, Multilevel va IELTS ochiq platformasi: 14 ta interaktiv mashq, 6 ta Flagship dastur va 450 kunlik lug‘at." />
   <meta name="keywords" content="Husanboy Teacher, CEFR, Multilevel, IELTS, ingliz tili, bepul reading, writing, dictation, listening, 12 zamon, Enzo Academy" />
-  <meta name="theme-color" content="#030712" />
+  <meta name="theme-color" content="#03050c" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Husanboy Teacher" />
-  <meta property="og:title" content="Husanboy Teacher — 3D Ochiq CEFR, Multilevel & IELTS Platforma" />
-  <meta property="og:description" content="14 ta bepul interaktiv bo‘lim + 17 ta to‘liq IELTS/CEFR Reading & Writing kutubxonasi + iPhone/Kompyuter Shaxsiy Kabinet (QR-Login)." />
+  <meta property="og:title" content="Husanboy Teacher — 3D Koinot CEFR, Multilevel & IELTS Akademiyasi" />
+  <meta property="og:description" content="14 ta bepul interaktiv bo‘lim + 22 ta to‘liq IELTS/CEFR kutubxona + Shaxsiy Kabinet (QR-Login)." />
   <meta property="og:image" content="./app-icon.png" />
   <meta property="og:type" content="website" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" type="image/png" href="./app-icon.png" />
   <link rel="apple-touch-icon" href="./app-icon.png" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <canvas id="bg-3d" aria-hidden="true"></canvas>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
 
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#top">
-        <img class="brand-logo" src="./app-icon.png" alt="Husanboy Teacher" />
+  <style>
+    /* ==========================================================================
+       GETLAYERS AI ULTRA — SPATIAL CINEMA & FROSTED OBSIDIAN DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --bg: #02040a;
+      --glass: rgba(8, 12, 24, 0.62);
+      --glass-strong: rgba(7, 10, 21, 0.84);
+      --glass-hover: rgba(16, 23, 42, 0.78);
+      --recessed: rgba(4, 7, 16, 0.78);
+
+      --hairline: rgba(255, 255, 255, 0.1);
+      --hairline-hi: rgba(255, 255, 255, 0.22);
+      --specular: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      --blur-spatial: blur(24px) saturate(180%);
+
+      --text: #f8fafc;
+      --text-soft: #cbd5e1;
+      --muted: #8b9bb4;
+
+      --emerald: #10b981;
+      --emerald-hi: #34d399;
+      --gold: #fbbf24;
+      --gold-soft: #fde68a;
+      --sky: #38bdf8;
+      --danger: #fb7185;
+
+      /* Dynamic Theme Tokens (Default: Umid Tongi / Golden Dawn) */
+      --accent: #fbbf24;
+      --accent-rgb: 251, 191, 36;
+      --aurora-1: rgba(251, 191, 36, 0.16);
+      --aurora-2: rgba(16, 185, 129, 0.13);
+      --aurora-3: rgba(56, 189, 248, 0.11);
+      --beam-col: rgba(253, 230, 138, 0.82);
+    }
+
+    body[data-theme="nebula"] {
+      --accent: #a78bfa;
+      --accent-rgb: 167, 139, 250;
+      --aurora-1: rgba(139, 92, 246, 0.18);
+      --aurora-2: rgba(56, 189, 248, 0.14);
+      --aurora-3: rgba(236, 72, 153, 0.12);
+      --beam-col: rgba(196, 181, 253, 0.78);
+    }
+
+    body[data-theme="emerald"] {
+      --accent: #34d399;
+      --accent-rgb: 52, 211, 153;
+      --aurora-1: rgba(16, 185, 129, 0.19);
+      --aurora-2: rgba(56, 189, 248, 0.13);
+      --aurora-3: rgba(251, 191, 36, 0.09);
+      --beam-col: rgba(110, 231, 183, 0.78);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      user-select: none;
+    }
+
+    /* Deep Space Canvas + Ambient Aurora + Vignette + Film Grain */
+    .cosmos-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, #070d1f 0%, #02040a 100%);
+    }
+
+    #bg-3d {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      display: block;
+    }
+
+    .cosmos-aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(62% 46% at 50% 106%, var(--aurora-1), transparent 70%),
+        radial-gradient(46% 42% at 10% 8%, var(--aurora-2), transparent 68%),
+        radial-gradient(42% 36% at 92% 10%, var(--aurora-3), transparent 68%);
+      transition: background 0.6s ease;
+    }
+
+    .cosmos-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background: radial-gradient(ellipse 118% 96% at 50% 50%, transparent 50%, rgba(2, 4, 10, 0.65) 100%);
+    }
+
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0.024;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Typography & Utility Tokens */
+    .grad-title {
+      background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 68%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .mono-num {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Interactive Cursor Spotlight */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(
+        400px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(var(--accent-rgb), 0.14),
+        transparent 58%
+      );
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 0;
+    }
+    .spotlight-card:hover::before { opacity: 1; }
+    .spotlight-card > * { position: relative; z-index: 1; }
+
+    /* ==========================================================================
+       SAFE-ZONE TOP HUD BAR (VISIONOS / GETLAYERS ULTRA FLOATING ISLANDS)
+       ========================================================================== */
+    .hud-top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .hud-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: auto;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 14px 5px 6px;
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--specular), 0 12px 32px rgba(0, 0, 0, 0.48);
+      text-decoration: none;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    }
+    .brand:hover {
+      border-color: rgba(var(--accent-rgb), 0.5);
+      background: var(--glass-hover);
+      transform: translateY(-1px);
+    }
+
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid rgba(251, 191, 36, 0.65);
+      box-shadow: 0 0 14px rgba(251, 191, 36, 0.3);
+      background: #0b1328;
+    }
+
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.24), rgba(16, 185, 129, 0.2));
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      color: var(--gold-soft);
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.22);
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px;
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--specular), 0 12px 32px rgba(0, 0, 0, 0.42);
+    }
+
+    .f-pill {
+      border: 0;
+      background: transparent;
+      color: var(--text-soft);
+      font: 600 11.5px/1 var(--font-body);
+      padding: 7px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s, box-shadow 0.2s;
+    }
+    .f-pill:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+    .f-pill.active {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.96), rgba(16, 185, 129, 0.96));
+      color: #022c22;
+      font-weight: 800;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    /* Ultra XP & Progress Capsule */
+    .xp-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      height: 36px;
+      padding: 0 13px;
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      box-shadow: var(--specular), 0 10px 24px rgba(0, 0, 0, 0.42);
+      color: #a7f3d0;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .xp-bar-track {
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+    .xp-bar-fill {
+      height: 100%;
+      width: 8%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #10b981, #fbbf24);
+      transition: width 0.35s cubic-bezier(0.2, 0.9, 0.25, 1);
+    }
+
+    .conquered-pill {
+      color: var(--gold-soft);
+      padding-left: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hud-btn {
+      position: relative;
+      overflow: hidden;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--hairline);
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      box-shadow: var(--specular), 0 10px 24px rgba(0, 0, 0, 0.42);
+      color: var(--text);
+      font: 600 12px/1 var(--font-body);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: transform 0.16s ease, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .hud-btn:hover {
+      border-color: var(--hairline-hi);
+      background: var(--glass-hover);
+      transform: translateY(-1px);
+    }
+
+    .shimmer-cta {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-cta::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+    }
+    .shimmer-cta:hover::after { left: 145%; }
+
+    .hud-btn.gold {
+      background: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%);
+      color: #1c1002;
+      border-color: rgba(255, 255, 255, 0.4);
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 8px 24px rgba(245, 158, 11, 0.36);
+    }
+
+    .kbd {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--gold-soft);
+    }
+
+    /* ==========================================================================
+       3D SOLAR SYSTEM STAGE (FULL VIEWPORT)
+       ========================================================================== */
+    #universe-stage {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+    }
+    #universe-stage:active { cursor: grabbing; }
+
+    /* Central Living 3D Sun (Z-index = 500 for True 3D Occlusion!) */
+    .sun-core {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 148px;
+      height: 148px;
+      margin: -74px 0 0 -74px;
+      z-index: 500;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.36s cubic-bezier(0.2, 0.85, 0.25, 1);
+    }
+    .sun-core:hover { transform: scale(1.05); }
+
+    #sun-cv {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .sun-caption {
+      position: absolute;
+      top: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 5px 14px 5px 5px;
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border: 1px solid rgba(255, 236, 200, 0.2);
+      box-shadow: var(--specular), 0 10px 28px rgba(0, 0, 0, 0.52);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .sun-emblem {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(255, 236, 200, 0.55);
+      background: #0b1328;
+    }
+
+    .sun-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff8eb;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      text-align: left;
+    }
+
+    .sun-sub {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      color: rgba(253, 230, 138, 0.82);
+      margin-top: 2px;
+      text-align: left;
+    }
+
+    /* Orbiting 3D Planet Nodes & Holographic Orbit-Lock Reticle */
+    .planet-node {
+      position: absolute;
+      left: 0;
+      top: 0;
+      will-change: transform, opacity;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      padding: 4px;
+      transition: filter 0.2s ease;
+    }
+    .planet-node.dimmed { opacity: 0.12 !important; pointer-events: none; }
+
+    .planet-sphere {
+      position: relative;
+      width: var(--psize, 52px);
+      height: var(--psize, 52px);
+      border-radius: 50%;
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.25, 1), filter 0.3s ease;
+    }
+
+    .planet-cv {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* Rotating Holographic Target Reticle on Hover */
+    .orbit-reticle {
+      position: absolute;
+      inset: -11px;
+      border-radius: 50%;
+      border: 1.5px dashed var(--pcol, #fbbf24);
+      opacity: 0;
+      transform: scale(0.78) rotate(0deg);
+      transition: opacity 0.22s ease, transform 0.32s cubic-bezier(0.2, 0.9, 0.25, 1);
+      pointer-events: none;
+      box-shadow: 0 0 18px var(--pglow, rgba(251, 191, 36, 0.4));
+    }
+    .orbit-reticle::before,
+    .orbit-reticle::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pcol, #fbbf24);
+      box-shadow: 0 0 8px var(--pcol, #fbbf24);
+    }
+    .orbit-reticle::before { top: -3px; left: 50%; transform: translateX(-50%); }
+    .orbit-reticle::after  { bottom: -3px; left: 50%; transform: translateX(-50%); }
+
+    .planet-node:hover .orbit-reticle {
+      opacity: 0.95;
+      transform: scale(1) rotate(90deg);
+      animation: reticleSpin 7s linear infinite;
+    }
+    @keyframes reticleSpin {
+      from { transform: scale(1) rotate(0deg); }
+      to   { transform: scale(1) rotate(360deg); }
+    }
+
+    .planet-node:hover .planet-sphere {
+      transform: scale(1.18) translateY(-2px);
+      filter: brightness(1.18);
+    }
+
+    .planet-check {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #022c22;
+      font-size: 10.5px;
+      font-weight: 900;
+      display: none;
+      place-items: center;
+      border: 2px solid #02040a;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.85);
+      z-index: 3;
+    }
+    .planet-node.done .planet-check { display: grid; }
+
+    .planet-label {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px 4px 8px;
+      border-radius: 999px;
+      background: rgba(6, 9, 18, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 6px 18px rgba(0, 0, 0, 0.55);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      color: rgba(248, 250, 252, 0.95);
+      letter-spacing: 0.01em;
+      transition: transform 0.24s cubic-bezier(0.2, 0.9, 0.25, 1), opacity 0.2s ease, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .planet-label.label-hidden {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.92);
+      pointer-events: none;
+    }
+    .planet-node:hover .planet-label {
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
+
+    .planet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pcol, #fbbf24);
+      box-shadow: 0 0 8px var(--pcol, #fbbf24);
+      flex-shrink: 0;
+    }
+
+    .planet-node:hover .planet-label {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.36);
+      background: rgba(10, 15, 28, 0.94);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 24px rgba(0, 0, 0, 0.65), 0 0 16px var(--pglow, rgba(251,191,36,0.3));
+      color: #fff;
+    }
+
+    .planet-ico { font-size: 11.5px; }
+
+    .planet-badge {
+      font-family: var(--font-mono);
+      font-size: 8.8px;
+      font-weight: 700;
+      color: rgba(253, 230, 138, 0.88);
+      padding-left: 5px;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       FLOATING WORD OF THE DAY (#wod-box) — BOTTOM LEFT
+       ========================================================================== */
+    .wod-float {
+      position: fixed;
+      left: 20px;
+      bottom: 84px;
+      z-index: 860;
+      width: 294px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--specular), 0 20px 44px rgba(0, 0, 0, 0.58);
+      transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1), opacity 0.25s ease, border-color 0.2s;
+    }
+    .wod-float:hover { border-color: rgba(52, 211, 153, 0.38); }
+    .wod-float.collapsed {
+      transform: translateY(18px) scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       SPATIAL TELEMETRY HUD CARD — BOTTOM RIGHT (APPEARS ON PLANET HOVER)
+       ========================================================================== */
+    .telemetry-hud {
+      position: fixed;
+      right: 20px;
+      bottom: 84px;
+      z-index: 860;
+      width: 292px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      border: 1px solid rgba(var(--accent-rgb), 0.28);
+      box-shadow: var(--specular), 0 20px 44px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+      transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.2, 0.9, 0.25, 1);
+    }
+    .telemetry-hud.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ==========================================================================
+       BOTTOM COSMIC CONTROL DOCK (VISIONOS FLOATING ISLAND)
+       ========================================================================== */
+    .hud-bottom {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: var(--blur-spatial);
+      -webkit-backdrop-filter: var(--blur-spatial);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--specular), 0 18px 46px rgba(0, 0, 0, 0.68);
+      max-width: calc(100vw - 20px);
+      overflow-x: auto;
+    }
+    .hud-bottom::-webkit-scrollbar { display: none; }
+
+    .dock-btn {
+      border: 0;
+      background: transparent;
+      color: var(--text-soft);
+      font: 600 12px/1 var(--font-body);
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s, transform 0.15s, box-shadow 0.2s;
+    }
+    .dock-btn:hover { background: rgba(255, 255, 255, 0.09); color: #fff; }
+    .dock-btn.active {
+      background: linear-gradient(135deg, #fde68a, #f59e0b);
+      color: #1c1002;
+      font-weight: 800;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+    .dock-btn.constellation-on {
+      background: rgba(56, 189, 248, 0.18);
+      color: #7dd3fc;
+      box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.42);
+    }
+    .dock-btn.cta {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #022c22;
+      font-weight: 800;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .dock-sep { width: 1px; height: 20px; background: rgba(255, 255, 255, 0.12); flex-shrink: 0; margin: 0 2px; }
+
+    /* ==========================================================================
+       ULTRA HOLODECK MODAL (GETLAYERS CINEMATIC SHELL)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(2, 4, 12, 0.74);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .modal-shell {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      border-radius: 28px;
+      background: linear-gradient(168deg, rgba(13, 19, 36, 0.9), rgba(6, 9, 20, 0.96));
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 38px 100px rgba(0, 0, 0, 0.88),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 0 0 1px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      transform: scale(0.95) translateY(18px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: text;
+    }
+    .modal-backdrop.open .modal-shell {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Prismatic Top-Edge Light Beam */
+    .modal-shell::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--beam-col), transparent);
+      box-shadow: 0 0 24px 2px var(--beam-col);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--hairline);
+      background: rgba(255, 255, 255, 0.02);
+      flex-wrap: wrap;
+    }
+
+    .modal-title-wrap { display: flex; align-items: center; gap: 13px; }
+    .modal-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 21px;
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.2), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(var(--accent-rgb), 0.36);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .modal-sub { font-size: 12px; color: var(--muted); font-family: var(--font-mono); margin-top: 2px; }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-body::-webkit-scrollbar { width: 6px; }
+    .modal-body::-webkit-scrollbar-track { background: transparent; }
+    .modal-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 999px; }
+    .modal-body::-webkit-scrollbar-thumb:hover { background: rgba(var(--accent-rgb), 0.45); }
+
+    .modal-panel { display: none; }
+    .modal-panel.active { display: block; animation: panelIn 0.24s ease; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Buttons & Interactive Controls */
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 13px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font: 700 13px/1 var(--font-body);
+      text-decoration: none;
+      transition: transform 0.16s ease, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .btn:hover { transform: translateY(-1.5px); }
+    .btn:active { transform: translateY(0.5px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #022c22;
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 24px rgba(16, 185, 129, 0.34);
+    }
+    .btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 12px 28px rgba(16, 185, 129, 0.48); }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #fde68a, #f59e0b);
+      color: #1c1002;
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 8px 24px rgba(245, 158, 11, 0.34);
+    }
+    .btn-gold:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 12px 28px rgba(245, 158, 11, 0.5); }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.045);
+      color: #e2e8f0;
+      border-color: var(--hairline);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--hairline-hi);
+      color: #fff;
+    }
+    .btn-sm { min-height: 35px; padding: 0 13px; font-size: 12px; border-radius: 10px; }
+
+    /* Sleek Segmented Tab Bar */
+    .tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 6px;
+      padding: 6px;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: rgba(4, 7, 16, 0.66);
+      border: 1px solid var(--hairline);
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex-shrink: 0;
+      padding: 9px 14px;
+      border-radius: 11px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font: 600 12px/1 var(--font-body);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.2s;
+    }
+    .tab-btn:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.95), rgba(16, 185, 129, 0.95));
+      color: #022c22;
+      font-weight: 800;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .map-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; align-items: start; }
+
+    /* 3D Tilt GetLayers Cards */
+    .c-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(165deg, rgba(20, 29, 54, 0.58), rgba(9, 13, 25, 0.84));
+      border: 1px solid var(--hairline);
+      box-shadow: var(--specular), 0 14px 32px rgba(0, 0, 0, 0.35);
+      transform-style: preserve-3d;
+      transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .c-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: var(--specular), 0 20px 42px rgba(0, 0, 0, 0.48);
+    }
+
+    .q-item {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--hairline);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      margin-bottom: 12px;
+    }
+    .q-label { font-weight: 700; font-size: 14px; margin-bottom: 10px; line-height: 1.45; }
+    .opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .opt-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--hairline);
+      background: rgba(15, 22, 42, 0.84);
+      color: #e2e8f0;
+      font: 600 12.5px/1 var(--font-body);
+      cursor: pointer;
+      transition: border-color 0.16s, background 0.16s, transform 0.12s;
+    }
+    .opt-btn:hover { border-color: rgba(56, 189, 248, 0.55); background: rgba(24, 34, 62, 0.95); transform: translateY(-1px); }
+    .opt-btn.selected { background: rgba(56, 189, 248, 0.2); border-color: rgba(56, 189, 248, 0.75); color: #fff; font-weight: 700; }
+    .opt-btn.right { background: linear-gradient(135deg, #34d399, #10b981); color: #022c22; border-color: transparent; font-weight: 800; }
+    .opt-btn.wrong { background: linear-gradient(135deg, #fb7185, #e11d48); color: #fff; border-color: transparent; font-weight: 800; }
+
+    /* Real app.js Module UI Compatibility (Pills, Error Spotting, 3D Flashcards, Tables, Selects) */
+    .pill, .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--gold-soft);
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    select.input-box option { background: #0a1020; color: #f8fafc; }
+    .err-sentence { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px; }
+    .err-word {
+      padding: 8px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--hairline);
+      background: rgba(15, 23, 42, 0.85);
+      color: #f8fafc;
+      font: 700 15px/1.2 var(--font-body);
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.18s, background 0.18s;
+    }
+    .err-word:hover { border-color: rgba(251, 191, 36, 0.6); transform: translateY(-2px); background: rgba(30, 41, 74, 0.95); }
+    .err-word.right { background: linear-gradient(135deg, #34d399, #10b981); color: #022c22; border-color: transparent; }
+    .err-word.wrong { background: linear-gradient(135deg, #fb7185, #e11d48); color: #fff; border-color: transparent; }
+
+    .flip-scene { perspective: 1100px; max-width: 520px; height: 220px; margin: 14px auto 0; }
+    .flip-scene .flip-card {
+      position: relative; width: 100%; height: 100%; cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.2, 0.85, 0.25, 1);
+    }
+    .flip-scene .flip-card.is-flipped { transform: rotateY(180deg); }
+
+    .tbl-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--hairline);
+      background: rgba(6, 10, 22, 0.72);
+    }
+    .tbl-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl-wrap th, .tbl-wrap td { padding: 10px 13px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+    .tbl-wrap th { color: var(--gold-soft); font-weight: 800; background: rgba(255, 255, 255, 0.04); font-size: 12px; letter-spacing: 0.03em; }
+    .tbl-wrap tr:hover td { background: rgba(255, 255, 255, 0.03); }
+    .map-layout svg { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--hairline); background: #070d1d; }
+
+    .fb-box { margin-top: 10px; padding: 11px 14px; border-radius: 12px; font-size: 13px; line-height: 1.45; }
+    .fb-box.ok { background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(52, 211, 153, 0.38); color: #a7f3d0; }
+    .fb-box.no { background: rgba(251, 113, 133, 0.14); border: 1px solid rgba(251, 113, 133, 0.38); color: #fecdd3; }
+
+    .passage, .audio-bar {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--recessed);
+      border: 1px solid var(--hairline);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      margin-bottom: 14px;
+      line-height: 1.62;
+      font-size: 13.8px;
+    }
+    .audio-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 14px;
+      background: var(--recessed);
+      border: 1px solid var(--hairline);
+      color: #fff;
+      font: 500 14px/1.45 var(--font-body);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-box:focus {
+      border-color: rgba(52, 211, 153, 0.65);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    /* 3D Flip Flashcards */
+    .flip-card { perspective: 1000px; height: 146px; cursor: pointer; }
+    .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.55s cubic-bezier(0.2, 0.85, 0.25, 1); transform-style: preserve-3d; }
+    .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-face {
+      position: absolute; inset: 0; backface-visibility: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+      padding: 16px; border-radius: 18px;
+      background: linear-gradient(165deg, rgba(22, 32, 60, 0.86), rgba(10, 15, 30, 0.94));
+      border: 1px solid var(--hairline);
+      box-shadow: var(--specular);
+    }
+    .flip-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(165deg, rgba(6, 78, 59, 0.78), rgba(4, 47, 46, 0.92));
+      border-color: rgba(52, 211, 153, 0.42);
+    }
+
+    /* Author Profile inside Modal */
+    .author-grid { display: grid; grid-template-columns: 204px 1fr; gap: 24px; align-items: center; }
+    .author-img {
+      width: 204px;
+      height: 234px;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1.5px solid rgba(251, 191, 36, 0.55);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.6), 0 0 24px rgba(251, 191, 36, 0.14);
+      background: #0b1328;
+    }
+    .author-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid var(--hairline);
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .author-chip:hover {
+      border-color: rgba(251, 191, 36, 0.5);
+      color: var(--gold-soft);
+      background: rgba(251, 191, 36, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .prog-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--gold-soft);
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.26);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    /* Spotlight Command Palette (⌘K) */
+    .cmd-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 12vh 16px 16px;
+      background: rgba(2, 4, 12, 0.74);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s;
+    }
+    .cmd-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .cmd-box {
+      width: 100%;
+      max-width: 560px;
+      border-radius: 22px;
+      background: rgba(10, 15, 28, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--specular), 0 32px 80px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cmd-backdrop.open .cmd-box { transform: scale(1); }
+
+    .cmd-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 18px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .cmd-head input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      outline: none;
+      color: #fff;
+      font: 500 15px/1.3 var(--font-body);
+    }
+    .cmd-list { max-height: 340px; overflow-y: auto; padding: 8px; }
+    .cmd-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-soft);
+      font: 600 13.5px/1.2 var(--font-body);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .cmd-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--hairline);
+      color: #fff;
+    }
+
+    /* XP Toast */
+    #xp-toast {
+      position: fixed;
+      top: 72px;
+      right: 20px;
+      z-index: 1300;
+      padding: 10px 16px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #022c22;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.42);
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    #xp-toast.show { opacity: 1; transform: translateY(0); }
+
+    /* Warp Flash Overlay */
+    .warp-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 950;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(253, 230, 138, 0.28), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.26s ease;
+    }
+    .warp-flash.active { opacity: 1; }
+
+    /* Holographic Orbital Telemetry Grid & Camera Mode Indicator */
+    .cosmos-grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 64px 64px, 128px 128px, 128px 128px;
+      mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 35%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 35%, transparent 100%);
+    }
+
+    /* Ultra Pro Quick-Launch Mission Bar inside Modal */
+    .mission-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.12), rgba(16, 185, 129, 0.08));
+      border: 1px solid rgba(var(--accent-rgb), 0.28);
+      font-size: 12.5px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1040px) {
+      .filter-pills, .telemetry-hud { display: none; }
+      .grid-2, .grid-3, .map-layout, .author-grid { grid-template-columns: 1fr !important; }
+      .author-img { margin: 0 auto; }
+    }
+
+    @media (max-width: 768px) {
+      .hud-top { padding: 8px 10px; flex-wrap: nowrap; gap: 4px; }
+      .hud-group { gap: 4px; flex-wrap: nowrap; min-width: 0; }
+      .brand { padding: 3px; gap: 0; flex-shrink: 0; }
+      .brand-logo { width: 28px; height: 28px; }
+      .brand span, .brand-tag, .xp-bar-track, .conquered-pill, #music-btn { display: none; }
+      .xp-capsule { height: 32px; padding: 0 8px; font-size: 10.5px; white-space: nowrap; max-width: 126px; overflow: hidden; text-overflow: ellipsis; }
+      .hud-btn { height: 32px; padding: 0 8px; font-size: 12.5px; flex-shrink: 0; }
+      .hud-btn .lbl, .hud-btn .kbd { display: none; }
+      .planet-badge { display: none; }
+      .planet-label { padding: 3px 8px 3px 6px; font-size: 10px; }
+      .sun-core { width: 88px; height: 88px; margin: -44px 0 0 -44px; }
+      .sun-emblem { width: 22px; height: 22px; }
+      .sun-title { font-size: 10.5px; }
+      .sun-sub { font-size: 8.5px; }
+      .sun-caption { top: calc(100% + 8px); padding: 4px 10px 4px 4px; gap: 6px; }
+      .wod-float { left: 10px; right: 10px; width: auto; bottom: 68px; }
+      .hud-bottom { bottom: 10px; padding: 5px 6px; gap: 3px; max-width: calc(100vw - 16px); }
+      .dock-btn { padding: 7px 10px; font-size: 11px; flex-shrink: 0; }
+      .modal-head { padding: 14px 16px; }
+      .modal-body { padding: 14px; }
+    }
+  </style>
+</head>
+<body data-theme="dawn">
+  <div class="cosmos-bg" aria-hidden="true"></div>
+  <canvas id="bg-3d" aria-hidden="true"></canvas>
+  <div class="cosmos-grid-overlay" aria-hidden="true"></div>
+  <div class="cosmos-aurora" aria-hidden="true"></div>
+  <div class="cosmos-vignette" aria-hidden="true"></div>
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="warp-flash" id="warp-flash" aria-hidden="true"></div>
+
+  <!-- ================= TOP SAFE-ZONE HUD ================= -->
+  <header class="hud-top">
+    <div class="hud-group">
+      <a class="brand" href="#top" onclick="resetCamera();return false;">
+        <img class="brand-logo" src="./app-icon.png" alt="Husanboy Teacher" onerror="this.onerror=null;this.src='https://placehold.co/64x64/0b1328/fbbf24?text=HT';" />
         <span>Husanboy Teacher</span>
+        <span class="brand-tag">ULTRA MAX</span>
       </a>
-      <nav class="nav-links">
-        <a href="#programs">🏆 Dasturlar</a>
-        <a href="#practice">14 ta Mashq</a>
-        <a href="#author">👨‍🏫 Ustoz</a>
-        <a href="#results">Natijalar</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-        <span class="xp-hud" id="xp-hud" title="Sizning mashq XP va darajangiz">⚡ 0 XP • 🌱 Yangi</span>
-        <button class="sfx-toggle" id="sfx-toggle" type="button" title="Ovoz effektlari">🔊</button>
-        <a class="btn btn-gold btn-sm" href="./cabinet/index.html">🎓 Kabinet (QR)</a>
+      <div class="filter-pills" id="filter-pills" role="tablist" aria-label="Sayyoralar filtri">
+        <button class="f-pill active" data-filter="all" onclick="setFilter('all')">🌌 Barchasi (18)</button>
+        <button class="f-pill" data-filter="flagship" onclick="setFilter('flagship')">🏆 Dasturlar (6)</button>
+        <button class="f-pill" data-filter="practice" onclick="setFilter('practice')">🎯 Mashqlar (14)</button>
+        <button class="f-pill" data-filter="academy" onclick="setFilter('academy')">👨‍🏫 Akademiya</button>
       </div>
+    </div>
+
+    <div class="hud-group">
+      <button class="hud-btn" type="button" onclick="openCmd()" title="Tezkor qidiruv (Ctrl+K)">🔍 <span class="lbl">Qidiruv</span> <span class="kbd">⌘K</span></button>
+      <div class="xp-capsule" title="Sizning XP, darajangiz va zabt etilgan sayyoralar">
+        <span id="xp-hud">⚡ 0 XP • 🌱 Yangi</span>
+        <div class="xp-bar-track"><div class="xp-bar-fill" id="xp-bar-fill"></div></div>
+        <span class="conquered-pill" id="conquered-hud">🪐 0/18</span>
+      </div>
+      <button class="hud-btn" id="theme-btn" type="button" onclick="cycleTheme()" title="Koinot mavzusini almashtirish">🌅</button>
+      <button class="hud-btn" id="music-btn" type="button" onclick="toggleAmbient()" title="Kosmik fon musiqasi">🎵</button>
+      <button class="hud-btn" id="sfx-toggle" type="button" title="Ovoz effektlari">🔊</button>
+      <a class="hud-btn gold shimmer-cta" href="./cabinet/index.html">🎓 <span class="lbl">Kabinet (QR)</span></a>
     </div>
   </header>
 
-  <main id="top">
-    <!-- 3D HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
+  <!-- ================= 3D SOLAR SYSTEM STAGE ================= -->
+  <main id="universe-stage" aria-label="3D Koinot Akademiyasi">
+    <!-- Central Living 3D Sun -->
+    <div class="sun-core" id="sun-core" onclick="pulseSun()" title="Bosib ilhom va +5 XP oling">
+      <canvas id="sun-cv" aria-hidden="true"></canvas>
+      <div class="sun-caption">
+        <img class="sun-emblem" src="./app-icon.png" alt="Husanboy Teacher Emblem" onerror="this.onerror=null;this.src='https://placehold.co/96x96/0b1328/fbbf24?text=HT';" />
         <div>
-          <span class="pill">✨ 100% BEPUL • LOGINSIZ • 14 BO‘LIM + 22 KUTUBXONA & DASTUR</span>
-          <h1>Ingliz tili, <span>CEFR, Multilevel & IELTS</span> 3D Akademiyasi</h1>
-          <p>
-            Ro‘yxatdan o‘tmasdan hoziroq <b>IELTS 8+ Dasturi</b>, <b>450 Kunlik Lug‘at</b>, <b>250+ IELTS & CEFR Reading</b>,
-            <b>6 darajali Writing</b>, <b>Multilevel Speaking 40</b>, <b>500 ta Suhbat</b> va <b>Kundalik Iboralar</b>da
-            XP yig‘ib darajangizni oshiring!
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#programs">🏆 Flagship Dasturlar</a>
-            <a class="btn btn-gold" href="./cabinet/index.html">📱 Shaxsiy Kabinet (Login / QR)</a>
-            <a class="btn btn-ghost" href="#practice">🎯 14 ta Mashq</a>
-          </div>
-          <div class="stats-row">
-            <div class="stat-box"><b>450 kun</b><span>Kunlik lug‘at & A1–C1</span></div>
-            <div class="stat-box"><b>22 ta</b><span>To‘liq ochiq kutubxona</span></div>
-            <div class="stat-box"><b>500+</b><span>Suhbat, Speaking & Test</span></div>
-          </div>
-        </div>
-
-        <div class="tilt-wrap">
-          <div class="hero-3d-card tilt-card" data-tilt>
-            <div class="emblem-3d-ring">
-              <img class="emblem-3d-img" src="./app-icon.png" alt="Husanboy Teacher 3D Emblem" />
-            </div>
-            <div style="font-size:12px;font-weight:900;letter-spacing:0.16em;color:var(--gold-soft);">HUSANBOY TEACHER • IELTS & CEFR</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:4px;">Ilm • Intizom • Yorug‘ Kelajak</div>
-            <div class="wod-box" id="wod-box">
-              <div style="font-size:11px;font-weight:900;color:#6ee7b7;letter-spacing:0.08em;">✨ BUGUNGI IELTS / CEFR SO‘ZI</div>
-              <div id="wod-content" style="margin-top:6px;">Yuklanmoqda...</div>
-            </div>
-          </div>
+          <div class="sun-title">CEFR A1 → C1</div>
+          <div class="sun-sub" id="sun-quote">✨ IELTS 8+ • 450 KUN</div>
         </div>
       </div>
-    </section>
+    </div>
+    <!-- 18 Orbiting Planets mounted by JS -->
+  </main>
 
-    <!-- FLAGSHIP OPEN PROGRAMS & LIBRARIES -->
-    <section id="programs" class="section">
-      <div class="container">
-        <div class="sec-head">
-          <h2>🏆 Flagship Ochiq Dasturlar va Maxsus Kutubxonalar</h2>
-          <p>Loginsiz, 100% bepul va to‘liq interaktiv — har bir dastur alohida keng ekranda ochiladi.</p>
+  <!-- ================= FLOATING WORD OF THE DAY (#wod-box) ================= -->
+  <aside class="wod-float spotlight-card" id="wod-box" aria-label="Bugungi IELTS va CEFR so‘zi">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;">
+      <span class="mono-num" style="font-size:10px;font-weight:700;color:#6ee7b7;letter-spacing:0.08em;">✨ BUGUNGI IELTS / CEFR SO‘ZI</span>
+      <div style="display:flex;gap:8px;">
+        <button type="button" onclick="nextWod()" style="background:none;border:0;color:var(--gold-soft);font-size:12px;font-weight:800;cursor:pointer;" title="Keyingi so‘z">↻</button>
+        <button type="button" onclick="toggleWod()" style="background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;" title="Yashirish">✕</button>
+      </div>
+    </div>
+    <div id="wod-content">Yuklanmoqda...</div>
+  </aside>
+
+  <!-- ================= SPATIAL TELEMETRY HUD (BOTTOM RIGHT) ================= -->
+  <aside class="telemetry-hud" id="telemetry-hud" aria-hidden="true">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;">
+      <span class="mono-num" id="tel-orbit" style="font-size:10px;font-weight:700;color:var(--gold-soft);letter-spacing:0.08em;">ORBITA 01 • +15 XP</span>
+      <span class="mono-num" id="tel-status" style="font-size:10px;font-weight:700;color:#38bdf8;">● KASHF ETILMAGAN</span>
+    </div>
+    <div id="tel-title" style="font-family:var(--font-display);font-size:16px;font-weight:700;color:#fff;margin-bottom:4px;">Sayyora</div>
+    <div id="tel-desc" style="font-size:12px;color:var(--text-soft);line-height:1.45;">Sayyorani ochish uchun bosing.</div>
+  </aside>
+
+  <!-- ================= BOTTOM COSMIC CONTROL DOCK ================= -->
+  <nav class="hud-bottom" aria-label="Koinot boshqaruvi">
+    <button class="dock-btn active" id="mode-solar" onclick="setOrbitMode('solar')">☀️ Quyosh Tizimi</button>
+    <button class="dock-btn" id="mode-sphere" onclick="setOrbitMode('sphere')">🌐 Sfera</button>
+    <button class="dock-btn" id="mode-spiral" onclick="setOrbitMode('spiral')">🧬 Spiral</button>
+    <button class="dock-btn constellation-on" id="constellation-btn" onclick="toggleConstellation()" title="Yulduz turkumi lazer tarmog‘i">✨ Turkum</button>
+    <span class="dock-sep"></span>
+    <button class="dock-btn" id="pause-btn" onclick="togglePause()" title="Orbitani to‘xtatish/davom ettirish">⏸️</button>
+    <button class="dock-btn" onclick="adjustZoom(-0.14)" title="Uzoqlashtirish">➖</button>
+    <button class="dock-btn" onclick="adjustZoom(0.14)" title="Yaqinlashtirish">➕</button>
+    <button class="dock-btn" onclick="resetCamera()" title="Kamerani tiklash">🎯 Markaz</button>
+    <button class="dock-btn" onclick="toggleWod()" title="Bugungi so‘z">✨ So‘z</button>
+    <span class="dock-sep"></span>
+    <button class="dock-btn cta shimmer-cta" onclick="openPlanet('enroll')">🎁 Bepul 1-Dars</button>
+  </nav>
+
+  <!-- ================= ULTRA HOLODECK MODAL ================= -->
+  <div class="modal-backdrop" id="modal-backdrop" onclick="if(event.target===this) closeModal()">
+    <div class="modal-shell spotlight-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head">
+        <div class="modal-title-wrap">
+          <div class="modal-icon" id="modal-icon">🪐</div>
+          <div>
+            <div class="modal-title grad-title" id="modal-title">Sayyora</div>
+            <div class="modal-sub" id="modal-sub">Husanboy Teacher • 3D Koinot Akademiyasi</div>
+          </div>
         </div>
-        <div class="grid-3">
-          <div class="tilt-wrap"><div class="card tilt-card prog-card" data-tilt style="border-color:rgba(251,191,36,0.4);">
-            <div>
-              <span class="prog-meta">🎓 IELTS 8+ TO‘LIQ DASTUR</span>
-              <h3 style="margin-bottom:6px;">IELTS 8+ Dasturi · Teacher Husanboy</h3>
-              <p style="font-size:13.5px;color:var(--muted);">Reading, Writing, Listening va Speaking bo‘yicha to‘liq Band 8+ strategiya, misollar va interaktiv topshiriqlar.</p>
-            </div>
-            <a class="btn btn-gold btn-sm" href="library/ielts/ielts-8-plus.html">🚀 Dasturni ochish</a>
-          </div></div>
-
-          <div class="tilt-wrap"><div class="card tilt-card prog-card" data-tilt style="border-color:rgba(16,185,129,0.4);">
-            <div>
-              <span class="prog-meta">📘 450 KUNLIK LUG‘AT KURSI</span>
-              <h3 style="margin-bottom:6px;">Kunlik Lug‘at Darslari (450 kun)</h3>
-              <p style="font-size:13.5px;color:var(--muted);">A1 dan C1 gacha 450 kunlik tizimli so‘z boyligi, kontekstli misollar, talaffuz va yodlash mashqlari.</p>
-            </div>
-            <a class="btn btn-primary btn-sm" href="library/vocab/kunlik-450.html">📘 Lug‘atni ochish</a>
-          </div></div>
-
-          <div class="tilt-wrap"><div class="card tilt-card prog-card" data-tilt>
-            <div>
-              <span class="prog-meta">🎤 MULTILEVEL SPEAKING • TAYMERLI</span>
-              <h3 style="margin-bottom:6px;">Multilevel Speaking: 40 Savol</h3>
-              <p style="font-size:13.5px;color:var(--muted);">Part 1.1, Part 1.2 (2 rasm), Part 2 va Part 3 bo‘yicha tayyor namunalar, bog‘lovchi iboralar va real imtihon taymeri.</p>
-            </div>
-            <a class="btn btn-primary btn-sm" href="library/speaking/multilevel-40.html">🎤 Speakingni boshlash</a>
-          </div></div>
-
-          <div class="tilt-wrap"><div class="card tilt-card prog-card" data-tilt>
-            <div>
-              <span class="prog-meta">💬 JONLI MULOQOT • AUDIO TTS</span>
-              <h3 style="margin-bottom:6px;">500 ta Suhbat: Savol va Javoblar</h3>
-              <p style="font-size:13.5px;color:var(--muted);">20 ta kundalik mavzu (sayohat, ish, o‘qish, restoran, aeroport…) — audio talaffuz va javobni yashirib mashq qilish rejimi.</p>
-            </div>
-            <a class="btn btn-ghost btn-sm" href="library/speaking/suhbat-500.html">💬 500 suhbatni ochish</a>
-          </div></div>
-
-          <div class="tilt-wrap"><div class="card tilt-card prog-card" data-tilt>
-            <div>
-              <span class="prog-meta">🗣️ EVERYDAY ENGLISH • 3D KARTOCHKA</span>
-              <h3 style="margin-bottom:6px;">Kundalik Ingliz Iboralari (30+)</h3>
-              <p style="font-size:13.5px;color:var(--muted);">Native speaker’lar har kuni ishlatadigan tabiiy iboralar, 3D kartochkalar, audio va tezkor test bilan.</p>
-            </div>
-            <a class="btn btn-ghost btn-sm" href="library/vocab/iboralar-30.html">🗣️ Iboralarni ochish</a>
-          </div></div>
-
-          <div class="tilt-wrap"><div class="card tilt-card prog-card" data-tilt>
-            <div>
-              <span class="prog-meta">✍️ MULTILEVEL WRITING • 12 MOCK</span>
-              <h3 style="margin-bottom:6px;">Enzo Writing — Multilevel</h3>
-              <p style="font-size:13.5px;color:var(--muted);">Noldan C1 gacha: Task 1.1, Task 1.2, Part 2, avto-tekshiruv, iboralar banki va 60 daqiqalik Mock imtihonlar.</p>
-            </div>
-            <a class="btn btn-gold btn-sm" href="library/writing/multilevel.html">✍️ Writing kursini ochish</a>
-          </div></div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <button class="btn btn-ghost btn-sm" type="button" onclick="stepPlanet(-1)" title="Oldingi sayyora (←)">← Oldingi</button>
+          <button class="btn btn-ghost btn-sm" type="button" onclick="stepPlanet(1)" title="Keyingi sayyora (→)">Keyingi →</button>
+          <button class="btn btn-ghost btn-sm" type="button" onclick="closeModal()" aria-label="Yopish">✕</button>
         </div>
       </div>
-    </section>
 
-    <!-- 14 INTERACTIVE OPEN PRACTICE HUB -->
-    <section id="practice" class="section">
-      <div class="container">
-        <div class="sec-head">
-          <h2>🎯 Ochiq CEFR, Multilevel & IELTS Mashq Markazi</h2>
-          <p>Har bir bajarilgan mashq uchun <b>⚡ XP</b> va studiya ovoz effekti olasiz — istalgan bo‘limni tanlab boshlang!</p>
+      <div class="modal-body">
+        <!-- PANEL 1: ALL 14 PRACTICE TABS (#hub-tabs + #hub-stage) -->
+        <div class="modal-panel" id="panel-practice">
+          <div class="mission-strip">
+            <span>🚀 <b>CEFR &amp; IELTS Interaktiv Laboratoriya:</b> Har bir to‘g‘ri javob uchun <b>+15..+25 XP</b> va sayyorani zabt etish unvoni beriladi.</span>
+            <span class="mono-num" style="color:var(--gold-soft);font-weight:700;">14 TA BO‘LIM • JONLI AUDIO</span>
+          </div>
+          <div class="tabs" id="hub-tabs">
+            <button class="tab-btn active" data-tab="reading">📖 CEFR &amp; IELTS Reading (11)</button>
+            <button class="tab-btn" data-tab="writing">📝 Writing Kutubxonasi (6)</button>
+            <button class="tab-btn" data-tab="map">🗺️ Map Mashqlari</button>
+            <button class="tab-btn" data-tab="dictation">✍️ CEFR Dictation</button>
+            <button class="tab-btn" data-tab="listening">🎧 Listening</button>
+            <button class="tab-btn" data-tab="speaking">🎙️ Speaking</button>
+            <button class="tab-btn" data-tab="errors">🧩 Xatoni Top!</button>
+            <button class="tab-btn" data-tab="flashcards">🃏 3D Flashcards</button>
+            <button class="tab-btn" data-tab="sprint">🎮 Word Sprint (60s)</button>
+            <button class="tab-btn" data-tab="mock">⏱ 15 daq Mini-Mock</button>
+            <button class="tab-btn" data-tab="placement">🧪 Daraja Testi</button>
+            <button class="tab-btn" data-tab="calc">🧮 Ball Kalkulyatori</button>
+            <button class="tab-btn" data-tab="verbs">⚡ Noto‘g‘ri Fe’llar</button>
+            <button class="tab-btn" data-tab="tenses">🧭 12 Zamon</button>
+          </div>
+          <div id="hub-stage">Yuklanmoqda...</div>
         </div>
 
-        <div class="tabs" id="hub-tabs">
-          <button class="tab-btn active" data-tab="reading">📖 CEFR & IELTS Reading (11)</button>
-          <button class="tab-btn" data-tab="writing">📝 Writing Kutubxonasi (6)</button>
-          <button class="tab-btn" data-tab="map">🗺️ Map Mashqlari</button>
-          <button class="tab-btn" data-tab="dictation">✍️ CEFR Dictation</button>
-          <button class="tab-btn" data-tab="listening">🎧 Listening</button>
-          <button class="tab-btn" data-tab="speaking">🎙️ Speaking</button>
-          <button class="tab-btn" data-tab="errors">🧩 Xatoni Top!</button>
-          <button class="tab-btn" data-tab="flashcards">🃏 3D Flashcards</button>
-          <button class="tab-btn" data-tab="sprint">🎮 Word Sprint (60s)</button>
-          <button class="tab-btn" data-tab="mock">⏱ 15 daq Mini-Mock</button>
-          <button class="tab-btn" data-tab="placement">🧪 Daraja Testi</button>
-          <button class="tab-btn" data-tab="calc">🧮 Ball Kalkulyatori</button>
-          <button class="tab-btn" data-tab="verbs">⚡ Noto‘g‘ri Fe’llar</button>
-          <button class="tab-btn" data-tab="tenses">🧭 12 Zamon</button>
-        </div>
-
-        <div class="card" id="hub-stage">Yuklanmoqda...</div>
-      </div>
-    </section>
-
-    <!-- AUTHOR / TEACHER HUSANBOY 3D PROFILE -->
-    <section id="author" class="section">
-      <div class="container">
-        <div class="tilt-wrap">
-          <div class="card tilt-card author-3d-card" data-tilt>
-            <div class="author-portrait-wrap">
-              <img src="./teacher-photo.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li — Husanboy Teacher" />
+        <!-- PANEL 2: FLAGSHIP PROGRAMS LAUNCHPAD (ALL 6 LIBRARY LINKS) -->
+        <div class="modal-panel" id="panel-flagship">
+          <div id="flagship-focus" class="c-card spotlight-card" style="margin-bottom:16px;border-color:rgba(251,191,36,0.34);"></div>
+          <div class="mono-num" style="font-size:11.5px;font-weight:700;color:var(--gold-soft);letter-spacing:0.06em;margin-bottom:12px;">🏆 BARCHA 6 TA FLAGSHIP OCHIQ DASTURLAR (100% BEPUL • LOGINSIZ)</div>
+          <div class="grid-3">
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+              <div>
+                <span class="prog-meta">🎓 IELTS 8+ DASTUR</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">IELTS 8+ Dasturi · Teacher Husanboy</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">Reading, Writing, Listening va Speaking Band 8+ strategiyalari.</p>
+              </div>
+              <a class="btn btn-gold btn-sm shimmer-cta" href="library/ielts/ielts-8-plus.html">🚀 Dasturni ochish</a>
             </div>
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+              <div>
+                <span class="prog-meta">📘 450 KUNLIK LUG‘AT</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">Kunlik Lug‘at Darslari (450 kun)</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">A1 dan C1 gacha 450 kunlik tizimli so‘z boyligi va talaffuz.</p>
+              </div>
+              <a class="btn btn-primary btn-sm shimmer-cta" href="library/vocab/kunlik-450.html">📘 Lug‘atni ochish</a>
+            </div>
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+              <div>
+                <span class="prog-meta">🎤 SPEAKING • TAYMERLI</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">Multilevel Speaking: 40 Savol</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">Part 1.1, 1.2 (2 rasm), Part 2 va Part 3 tayyor namunalar.</p>
+              </div>
+              <a class="btn btn-primary btn-sm shimmer-cta" href="library/speaking/multilevel-40.html">🎤 Boshlash</a>
+            </div>
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+              <div>
+                <span class="prog-meta">💬 AUDIO TTS</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">500 ta Suhbat: Savol &amp; Javob</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">20 ta kundalik mavzu — audio va javobni yashirib mashq qilish.</p>
+              </div>
+              <a class="btn btn-ghost btn-sm" href="library/speaking/suhbat-500.html">💬 Ochish</a>
+            </div>
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+              <div>
+                <span class="prog-meta">🗣️ 3D KARTOCHKA</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">Kundalik Ingliz Iboralari (30+)</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">Native speaker’lar har kuni ishlatadigan tabiiy iboralar.</p>
+              </div>
+              <a class="btn btn-ghost btn-sm" href="library/vocab/iboralar-30.html">🗣️ Ochish</a>
+            </div>
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+              <div>
+                <span class="prog-meta">✍️ 12 MOCK</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">Enzo Writing — Multilevel</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">Noldan C1 gacha: Task 1.1, 1.2, Part 2 va 60 daq Mock imtihonlar.</p>
+              </div>
+              <a class="btn btn-gold btn-sm shimmer-cta" href="library/writing/multilevel.html">✍️ Ochish</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: AUTHOR PROFILE (USTOZ HUSANBOY) -->
+        <div class="modal-panel" id="panel-author">
+          <div class="c-card spotlight-card author-grid" style="border-color:rgba(251,191,36,0.3);">
+            <img class="author-img" src="./teacher-photo.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li" onerror="this.onerror=null;this.src='https://placehold.co/400x456/0b1328/fbbf24?text=Husanboy+Teacher';" />
             <div>
-              <span class="pill" style="margin-bottom:10px;">👨‍🏫 PLATFORMANING MUALLIFI VA USTOZ</span>
-              <h2 style="font-size:28px;margin-bottom:6px;">Qosimov Husanboy Madaminjon o‘g‘li</h2>
-              <div style="font-size:14px;font-weight:800;color:var(--gold-soft);margin-bottom:12px;">Husanboy Teacher • Enzo Academy asoschisi • IELTS & CEFR Multilevel ustoz</div>
-              <p style="font-size:14.5px;color:var(--muted);line-height:1.7;">
+              <span class="prog-meta">👨‍🏫 PLATFORMANING MUALLIFI VA USTOZ</span>
+              <h2 class="grad-title" style="font-family:var(--font-display);font-size:26px;margin-bottom:6px;">Qosimov Husanboy Madaminjon o‘g‘li</h2>
+              <div style="font-size:13.5px;font-weight:700;color:var(--gold-soft);margin-bottom:10px;">Husanboy Teacher • Enzo Academy asoschisi • IELTS &amp; CEFR Multilevel ustoz</div>
+              <p style="font-size:14px;color:var(--text-soft);line-height:1.68;margin-bottom:16px;">
                 O‘zbekistonda o‘quvchilar va ota-onalar uchun <b>450 kunlik oflayn ingliz tili ilovasi</b>,
-                <b>15 daqiqalik ota-ona nazorati boti</b> hamda ushbu <b>bepul 3D IELTS & CEFR ochiq platforma</b> muallifi.
-                Maqsad — har bir o‘quvchiga tizimli intizom, zamonaviy texnologiya va kuchli natija berish.
+                <b>15 daqiqalik ota-ona nazorati boti</b> hamda ushbu <b>bepul 3D Koinot IELTS &amp; CEFR ochiq platforma</b> muallifi.
               </p>
-              <div class="author-contacts">
-                <a class="author-chip" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">✈️ Telegram: @Qosimov_Xusanboy</a>
-                <a class="author-chip" href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">📢 Kanal: @xusanboy_teacher</a>
-                <a class="author-chip" href="https://www.instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">📸 Instagram: @xusanboy__qosimov</a>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <a class="author-chip" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">✈️ @Qosimov_Xusanboy</a>
+                <a class="author-chip" href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">📢 @xusanboy_teacher</a>
+                <a class="author-chip" href="https://www.instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">📸 Instagram</a>
                 <a class="author-chip" href="tel:+998889977746">📞 +998 88 997 77 46</a>
-                <a class="author-chip" href="https://t.me/sakinatim_bol" target="_blank" rel="noopener">🎓 Kursga yozilish: @sakinatim_bol</a>
+                <a class="author-chip" href="https://t.me/sakinatim_bol" target="_blank" rel="noopener">🎓 Qabul (@sakinatim_bol)</a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- STUDENT RESULTS & PARENT REVIEWS -->
-    <section id="results" class="section">
-      <div class="container">
-        <div class="sec-head">
-          <h2>🏆 O‘quvchilarimiz Natijalari va Ota-onalar Ishonchi</h2>
-          <p>Har kuni 15 daqiqa tizimli mashq + ota-ona nazorati = kafolatlangan B2, C1 va IELTS natijalari.</p>
-        </div>
-        <div class="grid-3">
-          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
-            <span class="result-badge">🎓 CEFR C1 • 68 / 75 BALL</span>
-            <h3 style="margin-bottom:6px;">100% DTM Imtiyozi</h3>
-            <p style="font-size:14px;color:var(--muted);">«450 kunlik oflayn ilova va har kunlik Listening + Dictation mashqlari tufayli 6 oyda B1 dan C1 ga chiqdim!»</p>
-          </div></div>
-          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
-            <span class="result-badge">🌍 IELTS 7.5 • READING 8.5</span>
-            <h3 style="margin-bottom:6px;">Tizimli Tayyorgarlik</h3>
-            <p style="font-size:14px;color:var(--muted);">«Saytdagi 50+ IELTS Reading matnlari va Writing Band 8.0 namunalari imtihonda eng katta yordam berdi.»</p>
-          </div></div>
-          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
-            <span class="result-badge">🛡️ OTA-ONA FIKRI</span>
-            <h3 style="margin-bottom:6px;">Xotirjam Nazorat</h3>
-            <p style="font-size:14px;color:var(--muted);">«Telegram bot har kuni farzandim dars qilganini va 15 daqiqa o‘yinga chalg‘isa darhol xabar beradi — ajoyib tizim!»</p>
-          </div></div>
-        </div>
-      </div>
-    </section>
+        <!-- PANEL 4: RESULTS, ECOSYSTEM, VIDEO & FAQ -->
+        <div class="modal-panel" id="panel-results">
+          <div class="grid-3" style="margin-bottom:16px;">
+            <div class="c-card spotlight-card tilt-card"><span class="prog-meta">🎓 CEFR C1 • 68 / 75</span><h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">100% DTM Imtiyozi</h3><p style="font-size:13px;color:var(--muted);line-height:1.55;">«450 kunlik oflayn ilova va har kunlik Listening + Dictation tufayli 6 oyda B1 dan C1 ga chiqdim!»</p></div>
+            <div class="c-card spotlight-card tilt-card"><span class="prog-meta">🌍 IELTS 7.5 • R 8.5</span><h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">Tizimli Tayyorgarlik</h3><p style="font-size:13px;color:var(--muted);line-height:1.55;">«Saytdagi 50+ IELTS Reading matnlari va Writing Band 8.0 namunalari eng katta yordam berdi.»</p></div>
+            <div class="c-card spotlight-card tilt-card"><span class="prog-meta">🛡️ OTA-ONA FIKRI</span><h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">Xotirjam Nazorat</h3><p style="font-size:13px;color:var(--muted);line-height:1.55;">«Telegram bot 15 daqiqa o‘yinga chalg‘isa darhol xabar beradi — ajoyib tizim!»</p></div>
+          </div>
 
-    <!-- ECOSYSTEM BENTO -->
-    <section id="ecosystem" class="section">
-      <div class="container">
-        <div class="sec-head">
-          <h2>📱 To‘liq Ekotizim: Android Ilova + iPhone/PC Kabinet + Bot</h2>
-          <p>Bitta akkaunt bilan telefonda, iPhone’da va kompyuterda (QR-kod orqali) kelgan joyingizdan davom eting.</p>
-        </div>
-        <div class="grid-3">
-          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
-            <div style="font-size:34px;">📱</div>
-            <h3 style="margin:10px 0 6px;">450 Kunlik Oflayn Ilova</h3>
-            <p style="font-size:14px;color:var(--muted);">19,000+ oflayn MP3 audio, Grammar Surf o‘yini, Shadowing, Dictation, 20 ta Signature SFX va AI Erkin Suhbat.</p>
-          </div></div>
-          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
-            <div style="font-size:34px;">💻</div>
-            <h3 style="margin:10px 0 6px;">QR-Kod bilan Kompyuter & iPhone</h3>
-            <p style="font-size:14px;color:var(--muted);">Telefoningiz bilan QR-kodni skanerlang — kompyuterda 1 soniyada aynan kelgan darsingizdan davom etasiz!</p>
-          </div></div>
-          <div class="tilt-wrap"><div class="card tilt-card" data-tilt>
-            <div style="font-size:34px;">🛡️</div>
-            <h3 style="margin:10px 0 6px;">Ota-onalar Nazorat Boti</h3>
-            <p style="font-size:14px;color:var(--muted);">15 daqiqa chalg‘ish ogohlantirishi, guruh reytingi, «Maqtash (+10 XP)», o‘z vaqtida to‘lov bonusi va rasmiy chek.</p>
-          </div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VIDEO THEATER -->
-    <section id="video" class="section">
-      <div class="container">
-        <div class="card" style="display:grid;grid-template-columns:1fr 330px;gap:26px;align-items:center;border-color:rgba(251,191,36,0.32);" id="video-card">
-          <div>
-            <span class="pill">🎬 OTA-ONALAR UCHUN 2 DAQIQALIK TAQDIMOT</span>
-            <h2 style="margin:14px 0 10px;font-size:30px;">Ilovamiz va Ota-ona Boti qanday ishlaydi?</h2>
-            <p style="color:var(--muted);font-size:15px;margin-bottom:20px;">
-              Ushbu 2 daqiqalik videoda farzandingizning telefonini o‘qish intizomiga bo‘ysundiradigan to‘liq tizim —
-              <b>15 daqiqalik o‘yin/platforma ogohlantirishi</b>, <b>Bosh Panel</b>, <b>Guruh reytingi</b> va <b>Rasmiy to‘lov cheki</b>ni ko‘rasiz.
-            </p>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;">
-              <a class="btn btn-primary" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona botiga ulanish</a>
-              <a class="btn btn-gold" href="./cabinet/index.html">🎓 Shaxsiy Kabinet</a>
+          <div class="c-card spotlight-card grid-2" style="align-items:center;margin-bottom:16px;border-color:rgba(251,191,36,0.28);">
+            <div>
+              <span class="prog-meta">🎬 2 DAQIQALIK TAQDIMOT</span>
+              <h3 class="grad-title" style="font-family:var(--font-display);font-size:21px;margin-bottom:8px;">450 Kunlik Ilova + Ota-ona Boti</h3>
+              <p style="font-size:13.5px;color:var(--text-soft);line-height:1.6;margin-bottom:14px;">19,000+ oflayn MP3 audio, QR-Login (iPhone/PC), 15 daqiqalik chalg‘ish ogohlantirishi, guruh reytingi va rasmiy to‘lov cheki.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <a class="btn btn-primary btn-sm shimmer-cta" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona boti</a>
+                <a class="btn btn-gold btn-sm shimmer-cta" href="./cabinet/index.html">🎓 Shaxsiy Kabinet</a>
+              </div>
+            </div>
+            <div style="text-align:center;">
+              <video controls playsinline preload="metadata" poster="https://placehold.co/320x220/0b1328/fbbf24?text=2+Daqiqalik+Taqdimot" style="width:100%;max-width:290px;border-radius:16px;border:1px solid rgba(251,191,36,0.35);background:#000;">
+                <source src="media/taqdimot.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
-          <div style="display:flex;justify-content:center;">
-            <video controls playsinline preload="metadata" style="width:100%;max-width:300px;border-radius:22px;border:2px solid rgba(251,191,36,0.48);background:#000;box-shadow:0 24px 60px rgba(0,0,0,0.65);">
-              <source src="media/taqdimot.mp4" type="video/mp4" />
-            </video>
+
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <details class="c-card" style="padding:14px 18px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;">📱 Ilova internetsiz va iPhone’da ishlaydimi?</summary><p style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">Ha! Android ilova 100% internetsiz ishlaydi, iPhone/PC da esa Shaxsiy Kabinet orqali QR-kod bilan kiriladi.</p></details>
+            <details class="c-card" style="padding:14px 18px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;">🛡️ 15 daqiqalik ota-ona ogohlantirishi qanday ishlaydi?</summary><p style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">Farzandingiz darsini bajarmasdan o‘yin yoki ijtimoiy tarmoqlarda 15+ daqiqa o‘tirsa, Telegramingizga darhol hisobot boradi.</p></details>
+          </div>
+        </div>
+
+        <!-- PANEL 5: ENROLLMENT FORM (#enroll-form) -->
+        <div class="modal-panel" id="panel-enroll">
+          <div class="c-card spotlight-card" style="max-width:600px;margin:0 auto;border-color:rgba(16,185,129,0.36);">
+            <span class="prog-meta">🎁 BEPUL 1-SINOV DARSI</span>
+            <h2 class="grad-title" style="font-family:var(--font-display);font-size:24px;margin-bottom:6px;">Bepul 1-Sinov Darsiga Yoziling</h2>
+            <p style="font-size:13.5px;color:var(--muted);margin-bottom:18px;line-height:1.55;">Ma’lumotingizni kiriting — arizangiz to‘g‘ridan-to‘g‘ri ustozning Telegramiga tayyor holda yuboriladi.</p>
+            <form id="enroll-form" style="display:flex;flex-direction:column;gap:12px;">
+              <input class="input-box" id="en-name" required placeholder="Ism-familiyangiz (masalan: Ali Valiyev)" />
+              <input class="input-box" id="en-phone" required placeholder="Telefon raqamingiz (+998 90 123 45 67)" />
+              <select class="input-box" id="en-course">
+                <option value="A1–C1 General English (450 kun)">A1–C1 General English (450 kun)</option>
+                <option value="Multilevel / CEFR (B2–C1)">Multilevel / CEFR (B2–C1)</option>
+                <option value="IELTS 7.0–8.5 Tayyorgarlik">IELTS 7.0–8.5 Tayyorgarlik</option>
+                <option value="Kids English (Bolalar uchun)">Kids English (Bolalar uchun)</option>
+              </select>
+              <button type="submit" class="btn btn-primary shimmer-cta">✈️ Telegram orqali yuborish (@sakinatim_bol)</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- PANEL 6: SHAXSIY KABINET (QR LOGIN) -->
+        <div class="modal-panel" id="panel-cabinet">
+          <div class="c-card spotlight-card" style="max-width:560px;margin:0 auto;text-align:center;border-color:rgba(251,191,36,0.35);">
+            <div style="font-size:48px;margin-bottom:10px;">🎓</div>
+            <h2 class="grad-title" style="font-family:var(--font-display);font-size:24px;margin-bottom:8px;">Shaxsiy Kabinet (iPhone / PC • QR-Login)</h2>
+            <p style="font-size:14px;color:var(--text-soft);line-height:1.6;margin-bottom:20px;">
+              Telefoningiz bilan QR-kodni skanerlang va 450 kunlik darslaringizni kompyuter yoki iPhone’da aynan kelgan joyingizdan davom ettiring!
+            </p>
+            <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+              <a class="btn btn-gold shimmer-cta" href="./cabinet/index.html">🚀 Shaxsiy Kabinetga Kirish</a>
+              <a class="btn btn-ghost" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona Boti</a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <div class="container" style="max-width:800px;">
-        <div class="sec-head" style="text-align:center;">
-          <h2>❓ Ko‘p Beriladigan Savollar (FAQ)</h2>
-          <p>Ota-onalar va o‘quvchilar eng ko‘p so‘raydigan savollarga aniq javoblar.</p>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <details class="card" style="padding:16px 20px;cursor:pointer;">
-            <summary style="font-weight:800;font-size:15px;">📱 «Husanboy Teacher» ilovasi internetsiz va iPhone’da ishlaydimi?</summary>
-            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Ha! Android ilovada barcha 450 kunlik darslar va 19,000+ audio 100% internetsiz ishlaydi. iPhone va kompyuterda esa saytdagi «Shaxsiy Kabinet» orqali (Safari’da Bosh ekranga qo‘shib) haqiqiy ilovadek foydalanish mumkin.</p>
-          </details>
-          <details class="card" style="padding:16px 20px;cursor:pointer;">
-            <summary style="font-weight:800;font-size:15px;">🤖 Ota-onalar nazorat botiga qanday ulanaman?</summary>
-            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Telegramda <a href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" style="color:#6ee7b7;">@Husanboy_Teacher_Assisstant_bot</a> ga kirib <b>/start</b> bosing va farzandingiz ism-familiyasini yozing — 10 soniyada ulanadi.</p>
-          </details>
-          <details class="card" style="padding:16px 20px;cursor:pointer;">
-            <summary style="font-weight:800;font-size:15px;">🛡️ 15 daqiqalik o‘yin va platforma ogohlantirishi qanday ishlaydi?</summary>
-            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Agar farzandingiz bugungi darsini bajarmasdan o‘yinlar yoki YouTube, TikTok, Instagram kabi istalgan platformada 15+ daqiqa o‘tirsa, sizning Telegramingizga darhol aniq hisobot boradi.</p>
-          </details>
-          <details class="card" style="padding:16px 20px;cursor:pointer;">
-            <summary style="font-weight:800;font-size:15px;">🎁 1-sinov darsi rostdan ham bepulmi?</summary>
-            <p style="margin-top:10px;font-size:14px;color:var(--muted);">Ha, mutlaqo bepul! Pastdagi formani to‘ldiring yoki <a href="https://t.me/sakinatim_bol" target="_blank" style="color:#6ee7b7;">@sakinatim_bol</a> ga yozing — darajangiz aniqlanib, mos guruhga taklif qilinasiz.</p>
-          </details>
-        </div>
+  <!-- ================= SPOTLIGHT COMMAND PALETTE (⌘K) ================= -->
+  <div class="cmd-backdrop" id="cmd-backdrop" onclick="if(event.target===this) closeCmd()">
+    <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Koinot qidiruvi">
+      <div class="cmd-head">
+        <span>🔍</span>
+        <input id="cmd-input" type="text" placeholder="Sayyora, 14 mashq yoki 6 Flagship dasturdan qidiring..." oninput="renderCmd(this.value)" autocomplete="off" />
+        <span class="kbd">ESC</span>
       </div>
-    </section>
-
-    <!-- ENROLLMENT FORM -->
-    <section id="enroll" class="section">
-      <div class="container">
-        <div class="card" style="max-width:680px;margin:0 auto;border-color:rgba(16,185,129,0.5);">
-          <span class="pill" style="margin-bottom:10px;">🎁 BEPUL SINOV DARSI</span>
-          <h2 style="margin-bottom:6px;">Bepul 1-Sinov Darsiga Yoziling</h2>
-          <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">Ma’lumotingizni kiriting — arizangiz to‘g‘ridan-to‘g‘ri ustozning Telegramiga tayyor holda yuboriladi.</p>
-          <form id="enroll-form" style="display:flex;flex-direction:column;gap:10px;">
-            <input class="input-box" id="en-name" required placeholder="Ism-familiyangiz (masalan: Ali Valiyev)" />
-            <input class="input-box" id="en-phone" required placeholder="Telefon raqamingiz (+998 90 123 45 67)" />
-            <select class="input-box" id="en-course">
-              <option value="A1–C1 General English (450 kun)">A1–C1 General English (450 kun)</option>
-              <option value="Multilevel / CEFR (B2–C1)">Multilevel / CEFR (B2–C1)</option>
-              <option value="IELTS 7.0–8.5 Tayyorgarlik">IELTS 7.0–8.5 Tayyorgarlik</option>
-              <option value="Kids English (Bolalar uchun)">Kids English (Bolalar uchun)</option>
-            </select>
-            <button type="submit" class="btn btn-primary">✈️ Telegram orqali yuborish (@sakinatim_bol)</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+      <div class="cmd-list" id="cmd-list"></div>
+    </div>
+  </div>
 
   <div id="xp-toast" aria-live="polite"></div>
 
-  <footer>
-    <div class="container">
-      <div style="margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:18px;">
-        <a href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">✈️ @Qosimov_Xusanboy</a>
-        <a href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">📢 @xusanboy_teacher</a>
-        <a href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona Boti</a>
-        <a href="https://t.me/sakinatim_bol" target="_blank" rel="noopener">👨‍🏫 Qabul (@sakinatim_bol)</a>
-        <a href="https://instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">📸 Instagram</a>
-        <a href="tel:+998889977746">📞 +998 88 997 77 46</a>
-      </div>
-      <div>© 2026 Qosimov Husanboy Madaminjon o‘g‘li • Husanboy Teacher 3D Ochiq CEFR, Multilevel & IELTS Platformasi</div>
-    </div>
-  </footer>
+  <script>
+    window.HT_COSMOS_ACTIVE = true;
+    /* ==========================================================================
+       0. GETLAYERS SPOTLIGHT GLOW & 3D TILT ENGINE
+       ========================================================================== */
+    document.addEventListener('pointermove', e => {
+      const card = e.target.closest('.spotlight-card');
+      if (card) {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        card.style.setProperty('--mx', x + 'px');
+        card.style.setProperty('--my', y + 'px');
 
+        if (card.classList.contains('tilt-card')) {
+          const rx = ((y / r.height) - 0.5) * -6;
+          const ry = ((x / r.width) - 0.5) * 6;
+          card.style.transform = `perspective(700px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-2px)`;
+        }
+      }
+    }, { passive: true });
+
+    document.addEventListener('pointerout', e => {
+      const card = e.target.closest('.tilt-card');
+      if (card && !card.contains(e.relatedTarget)) {
+        card.style.transform = '';
+      }
+    }, { passive: true });
+
+    /* ==========================================================================
+       1. COSMOS DATA: 18 ORBITING PLANETS (6 FLAGSHIP + 8 PRACTICE + 4 ACADEMY)
+       ========================================================================== */
+    const PLANETS = [
+      // INNER RING — 6 FLAGSHIP PROGRAMS
+      { id: 'ielts8',    cat: 'flagship', name: 'IELTS 8+ Dasturi',     badge: 'BAND 8+', icon: '🏆', color: '#fbbf24', dark: '#92400e', glow: 'rgba(251,191,36,0.55)', size: 58, orbit: 1, speed: 0.24, xp: 25, panel: 'flagship', href: 'library/ielts/ielts-8-plus.html', desc: 'Reading, Writing, Listening va Speaking bo‘yicha to‘liq Band 8+ strategiya va topshiriqlar.' },
+      { id: 'vocab450',  cat: 'flagship', name: '450 Kunlik Lug‘at',    badge: 'A1–C1',   icon: '📘', color: '#34d399', dark: '#065f46', glow: 'rgba(16,185,129,0.55)', size: 56, orbit: 1, speed: 0.24, xp: 25, panel: 'flagship', href: 'library/vocab/kunlik-450.html', desc: 'A1 dan C1 gacha 450 kunlik tizimli so‘z boyligi, kontekstli misollar va talaffuz.' },
+      { id: 'speak40',   cat: 'flagship', name: 'Speaking: 40 Savol',   badge: 'TAYMER',  icon: '🎤', color: '#38bdf8', dark: '#075985', glow: 'rgba(56,189,248,0.5)',  size: 52, orbit: 1, speed: 0.24, xp: 20, panel: 'flagship', href: 'library/speaking/multilevel-40.html', desc: 'Part 1.1, Part 1.2 (2 rasm), Part 2 va Part 3 tayyor namunalar va real imtihon taymeri.' },
+      { id: 'suhbat500', cat: 'flagship', name: '500 ta Suhbat',        badge: 'AUDIO',   icon: '💬', color: '#a78bfa', dark: '#4c1d95', glow: 'rgba(167,139,250,0.5)', size: 50, orbit: 1, speed: 0.24, xp: 20, panel: 'flagship', href: 'library/speaking/suhbat-500.html', desc: '20 ta kundalik mavzu — audio talaffuz va javobni yashirib mashq qilish rejimi.' },
+      { id: 'iboralar',  cat: 'flagship', name: '30+ Iboralar',         badge: '3D CARD', icon: '🗣️', color: '#fb7185', dark: '#881337', glow: 'rgba(251,113,133,0.5)', size: 48, orbit: 1, speed: 0.24, xp: 20, panel: 'flagship', href: 'library/vocab/iboralar-30.html', desc: 'Native speaker’lar har kuni ishlatadigan tabiiy iboralar, 3D kartochkalar va test.' },
+      { id: 'enzowrite', cat: 'flagship', name: 'Enzo Writing',         badge: '12 MOCK', icon: '✍️', color: '#f59e0b', dark: '#78350f', glow: 'rgba(245,158,11,0.55)', size: 54, orbit: 1, speed: 0.24, xp: 25, panel: 'flagship', href: 'library/writing/multilevel.html', desc: 'Noldan C1 gacha: Task 1.1, Task 1.2, Part 2, avto-tekshiruv va 60 daq Mock imtihonlar.' },
+
+      // MIDDLE RING — 8 PRACTICE PLANETS
+      { id: 'reading',    cat: 'practice', name: 'Reading (11)',         badge: 'CEFR',    icon: '📖', color: '#10b981', dark: '#064e3b', glow: 'rgba(16,185,129,0.5)',  size: 50, orbit: 2, speed: 0.16, xp: 15, panel: 'practice', tab: 'reading', desc: 'CEFR va IELTS Reading matnlari — TRUE/FALSE/NOT GIVEN interaktiv tahlil.' },
+      { id: 'writing',    cat: 'practice', name: 'Writing Lab (6)',      badge: 'BAND',    icon: '📝', color: '#38bdf8', dark: '#0c4a6e', glow: 'rgba(56,189,248,0.5)',  size: 50, orbit: 2, speed: 0.16, xp: 20, panel: 'practice', tab: 'writing', desc: 'C1 bog‘lovchilar va jonli Band baholash laboratoriyasi.' },
+      { id: 'map',        cat: 'practice', name: 'Map & Listening',      badge: 'TTS',     icon: '🗺️', color: '#22d3ee', dark: '#155e75', glow: 'rgba(34,211,238,0.5)',  size: 48, orbit: 2, speed: 0.16, xp: 15, panel: 'practice', tab: 'map', desc: 'Interaktiv kampus xaritasi va IELTS Map distractor audio mashqlari.' },
+      { id: 'dictation',  cat: 'practice', name: 'CEFR Dictation',       badge: 'AUDIO',   icon: '🎧', color: '#818cf8', dark: '#312e81', glow: 'rgba(129,140,248,0.5)', size: 46, orbit: 2, speed: 0.16, xp: 25, panel: 'practice', tab: 'dictation', desc: '0.9x va 0.72x tezlikda eshitib yozish va avtomatik imlo tekshiruvi.' },
+      { id: 'errors',     cat: 'practice', name: 'Xatoni Top!',          badge: 'YANGI',   icon: '🧩', color: '#f472b6', dark: '#831843', glow: 'rgba(244,114,182,0.5)', size: 50, orbit: 2, speed: 0.16, xp: 15, panel: 'practice', tab: 'errors', desc: 'IELTS va CEFR imtihonlarida eng ko‘p uchraydigan grammatik tuzoqlar.' },
+      { id: 'flashcards', cat: 'practice', name: '3D Flashcards',        badge: 'YANGI',   icon: '🃏', color: '#fbbf24', dark: '#78350f', glow: 'rgba(251,191,36,0.5)',  size: 50, orbit: 2, speed: 0.16, xp: 15, panel: 'practice', tab: 'flashcards', desc: 'Audio talaffuzli 3D aylanuvchi idiomatik iboralar kartochkalari.' },
+      { id: 'sprint',     cat: 'practice', name: 'Word Sprint 60s',      badge: 'COMBO',   icon: '🎮', color: '#4ade80', dark: '#14532d', glow: 'rgba(74,222,128,0.5)',  size: 48, orbit: 2, speed: 0.16, xp: 20, panel: 'practice', tab: 'sprint', desc: '60 soniyalik tezkor so‘z boyligi o‘yini (x5 Combo tizimi bilan).' },
+      { id: 'mock',       cat: 'practice', name: 'Mini-Mock & 12 Zamon', badge: 'TEST',    icon: '⏱️', color: '#c084fc', dark: '#581c87', glow: 'rgba(192,132,252,0.5)', size: 48, orbit: 2, speed: 0.16, xp: 20, panel: 'practice', tab: 'mock', desc: '15 daqiqalik Mini-Mock, Daraja testi, Ball kalkulyatori va 12 Zamon.' },
+
+      // OUTER RING — 4 ACADEMY & ECOSYSTEM STATIONS
+      { id: 'author',  cat: 'academy', name: 'Ustoz Husanboy',    badge: 'MUALLIF',  icon: '👨‍🏫', color: '#fde68a', dark: '#92400e', glow: 'rgba(253,230,138,0.6)', size: 58, orbit: 3, speed: 0.10, xp: 10, panel: 'author', desc: 'Qosimov Husanboy — Enzo Academy asoschisi va 450 kunlik tizim muallifi.' },
+      { id: 'results', cat: 'academy', name: 'Natijalar & Video', badge: '2 DAQ',    icon: '🏅', color: '#34d399', dark: '#065f46', glow: 'rgba(52,211,153,0.5)',  size: 52, orbit: 3, speed: 0.10, xp: 10, panel: 'results', desc: 'O‘quvchilar C1 / IELTS natijalari, 2 daqiqalik taqdimot va Ota-ona boti.' },
+      { id: 'enroll',  cat: 'academy', name: 'Bepul 1-Dars',      badge: 'SOVG‘A',   icon: '🎁', color: '#fb7185', dark: '#9f1239', glow: 'rgba(251,113,133,0.55)', size: 54, orbit: 3, speed: 0.10, xp: 20, panel: 'enroll', desc: 'Bepul 1-sinov darsiga yoziling — ariza to‘g‘ridan-to‘g‘ri Telegramga ketadi.' },
+      { id: 'cabinet', cat: 'academy', name: 'Shaxsiy Kabinet',   badge: 'QR-LOGIN', icon: '🎓', color: '#38bdf8', dark: '#0369a1', glow: 'rgba(56,189,248,0.55)', size: 54, orbit: 3, speed: 0.10, xp: 15, panel: 'cabinet', desc: 'iPhone va kompyuterdan QR-kod orqali 450 kunlik darslarni davom ettiring.' }
+    ];
+
+    const SEARCH_ITEMS = [
+      ...PLANETS.map(p => ({ type: 'planet', id: p.id, icon: p.icon, title: p.name, badge: p.badge })),
+      { type: 'tab', tab: 'listening', icon: '🎧', title: 'Listening Mashqlari (Transkript)', badge: 'MASHQ' },
+      { type: 'tab', tab: 'speaking',  icon: '🎙️', title: 'Speaking Part 2 Cue Card (60s)', badge: 'MASHQ' },
+      { type: 'tab', tab: 'placement', icon: '🧪', title: 'CEFR Daraja Aniqlash Testi', badge: 'TEST' },
+      { type: 'tab', tab: 'calc',      icon: '🧮', title: 'Multilevel & IELTS Ball Kalkulyatori', badge: 'VOSITA' },
+      { type: 'tab', tab: 'verbs',     icon: '⚡', title: 'Noto‘g‘ri Fe’llar (Audio TTS)', badge: 'GRAMMAR' },
+      { type: 'tab', tab: 'tenses',    icon: '🧭', title: 'Ingliz Tili 12 Zamon Formulasi', badge: 'GRAMMAR' }
+    ];
+
+    /* ==========================================================================
+       2. STUDIO WEB AUDIO SFX & COSMIC AMBIENT SYNTH
+       ========================================================================== */
+    const SFX = {
+      on: true,
+      ctx: null,
+      ambientOn: false,
+      ambientNodes: [],
+      ensure() {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        if (!this.ctx) this.ctx = new AC();
+        if (this.ctx.state === 'suspended') this.ctx.resume().catch(() => {});
+        return this.ctx;
+      },
+      tone(f, d, type = 'sine', vol = 0.045, delay = 0) {
+        if (!this.on) return;
+        const c = this.ensure();
+        if (!c) return;
+        const t = c.currentTime + delay;
+        const o = c.createOscillator();
+        const g = c.createGain();
+        o.type = type; o.frequency.setValueAtTime(f, t);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.015);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+        o.connect(g); g.connect(c.destination);
+        o.start(t); o.stop(t + d + 0.02);
+      },
+      click() { this.tone(620, 0.06, 'triangle', 0.038); },
+      warp()  { this.tone(240, 0.18, 'sine', 0.052, 0); this.tone(480, 0.22, 'triangle', 0.042, 0.06); this.tone(720, 0.26, 'sine', 0.038, 0.12); },
+      ok()    { [523.25, 659.25, 783.99, 987.77].forEach((f, i) => this.tone(f, 0.18, 'sine', 0.048, i * 0.055)); },
+      err()   { this.tone(220, 0.14, 'triangle', 0.038, 0); this.tone(175, 0.18, 'sine', 0.032, 0.07); },
+      toggleAmbient() {
+        const c = this.ensure();
+        if (!c) return false;
+        if (this.ambientOn) {
+          this.ambientNodes.forEach(n => { try { n.stop(); } catch (_) {} });
+          this.ambientNodes = [];
+          this.ambientOn = false;
+          return false;
+        }
+        const filter = c.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 420;
+        const master = c.createGain();
+        master.gain.value = 0.032;
+        filter.connect(master);
+        master.connect(c.destination);
+        [130.81, 196.0, 246.94, 293.66].forEach(freq => {
+          const osc = c.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          osc.connect(filter);
+          osc.start();
+          this.ambientNodes.push(osc);
+        });
+        this.ambientOn = true;
+        return true;
+      }
+    };
+
+    /* ==========================================================================
+       3. XP, CONQUERED PLANETS, THEMES, SUN QUOTES & WORD OF THE DAY
+       ========================================================================== */
+    let xp = 0;
+    let conquered = new Set();
+    try {
+      xp = Number(localStorage.getItem('ht_site_xp') || localStorage.getItem('ht_cosmos_xp') || 0);
+      conquered = new Set(JSON.parse(localStorage.getItem('ht_cosmos_done') || '[]'));
+    } catch (_) {}
+
+    function rankLabel(v) {
+      if (v >= 350) return '🏆 IELTS Legend';
+      if (v >= 150) return '🔥 CEFR Master';
+      if (v >= 50)  return '📘 Bilimdon';
+      return '🌱 Yangi';
+    }
+
+    function updateProgressHUD() {
+      try { xp = Number(localStorage.getItem('ht_site_xp') || xp || 0); } catch (_) {}
+      const hud = document.getElementById('xp-hud');
+      if (hud) hud.textContent = `⚡ ${xp} XP • ${rankLabel(xp)}`;
+      const fill = document.getElementById('xp-bar-fill');
+      if (fill) {
+        const pct = Math.min(100, Math.max(8, ((xp % 150) / 150) * 100));
+        fill.style.width = (xp >= 350 ? 100 : pct) + '%';
+      }
+      const ch = document.getElementById('conquered-hud');
+      if (ch) ch.textContent = `🪐 ${conquered.size}/${PLANETS.length}`;
+    }
+
+    function addXP(pts, reason) {
+      if (typeof window.HT_ADD_XP === 'function') {
+        window.HT_ADD_XP(pts, reason);
+        updateProgressHUD();
+        return;
+      }
+      xp += pts;
+      try { localStorage.setItem('ht_site_xp', String(xp)); } catch (_) {}
+      updateProgressHUD();
+      if (pts > 0) {
+        const toast = document.getElementById('xp-toast');
+        if (toast) {
+          toast.textContent = `⚡ +${pts} XP${reason ? ' • ' + reason : ''}`;
+          toast.classList.add('show');
+          clearTimeout(toast._t);
+          toast._t = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+      }
+    }
+
+    window.HT_COSMOS_ON_XP = function (pts, reason, nextTotal) {
+      xp = Number(nextTotal || xp);
+      if (currentPlanetId) markConquered(currentPlanetId);
+      updateProgressHUD();
+    };
+
+    function markConquered(planetId) {
+      if (!planetId || conquered.has(planetId)) return;
+      conquered.add(planetId);
+      try { localStorage.setItem('ht_cosmos_done', JSON.stringify([...conquered])); } catch (_) {}
+      const node = document.querySelector(`.planet-node[data-id="${planetId}"]`);
+      if (node) node.classList.add('done');
+      updateProgressHUD();
+    }
+
+    function speak(text, rate = 0.96) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US'; u.rate = rate;
+      window.speechSynthesis.speak(u);
+    }
+
+    const THEMES = [
+      { id: 'dawn', icon: '🌅', name: 'Umid Tongi' },
+      { id: 'nebula', icon: '🌌', name: 'Nebula' },
+      { id: 'emerald', icon: '💚', name: 'Zumrad Yulduz' }
+    ];
+    let themeIdx = 0;
+    function cycleTheme() {
+      themeIdx = (themeIdx + 1) % THEMES.length;
+      document.body.dataset.theme = THEMES[themeIdx].id;
+      document.getElementById('theme-btn').textContent = THEMES[themeIdx].icon;
+      onThemeChange(THEMES[themeIdx].id);
+      SFX.click();
+    }
+
+    function toggleAmbient() {
+      const on = SFX.toggleAmbient();
+      const btn = document.getElementById('music-btn');
+      if (btn) btn.style.borderColor = on ? 'var(--emerald-hi)' : '';
+      if (btn) btn.textContent = on ? '🎶' : '🎵';
+    }
+
+    const SUN_QUOTES = [
+      '✨ IELTS 8+ • 450 KUN',
+      '🌅 HAR KUNI 15 DAQIQA',
+      '🚀 C1 SARI OLG‘A!',
+      '💎 ILM • INTIZOM • NATIJA'
+    ];
+    let quoteIdx = 0;
+    let sunCooldown = 0;
+    function pulseSun() {
+      quoteIdx = (quoteIdx + 1) % SUN_QUOTES.length;
+      document.getElementById('sun-quote').textContent = SUN_QUOTES[quoteIdx];
+      SFX.ok();
+      const now = Date.now();
+      if (now - sunCooldown > 4000) {
+        sunCooldown = now;
+        addXP(5, 'Umid nuri');
+      }
+    }
+
+    const WOD_FALLBACK = [
+      { en: 'Ubiquitous', ipa: '/juːˈbɪk.wɪ.təs/', lvl: 'C1', uz: 'Hamma joyda uchraydigan', ex: 'English has become ubiquitous across global science.' },
+      { en: 'Resilient', ipa: '/rɪˈzɪl.jənt/', lvl: 'B2+', uz: 'Chidamli, sinmas irodali', ex: 'Resilient students turn every mistake into progress.' },
+      { en: 'Meticulous', ipa: '/məˈtɪk.jə.ləs/', lvl: 'C1', uz: 'O‘ta sinchkov va tartibli', ex: 'Band 8+ essays require meticulous planning.' },
+      { en: 'Catalyst', ipa: '/ˈkæt.əl.ɪst/', lvl: 'C1', uz: 'Tezlashtiruvchi turtki', ex: 'Daily 15-minute practice is a catalyst for fluency.' }
+    ];
+    let wodIdx = Math.floor(Date.now() / 86400000);
+    function getWodList() { return (window.HT_WORD_OF_DAY && window.HT_WORD_OF_DAY.length) ? window.HT_WORD_OF_DAY : WOD_FALLBACK; }
+    function renderWod() {
+      const list = getWodList();
+      const w = list[((wodIdx % list.length) + list.length) % list.length];
+      const word = w.en || w.word || '';
+      const el = document.getElementById('wod-content');
+      if (!el) return;
+      el.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+          <div><b style="font-family:var(--font-display);font-size:17px;color:#fff;">${word}</b> <span style="font-size:11px;color:var(--muted);">${w.ipa || ''}</span></div>
+          <button type="button" class="opt-btn" style="padding:5px 9px;font-size:12px;" onclick="speak('${String(word + '. ' + (w.ex || '')).replace(/'/g, "\\'")}')">🔊</button>
+        </div>
+        <div style="font-size:12.5px;color:var(--gold-soft);font-weight:700;margin-top:4px;">🇺🇿 ${w.uz || ''} <span class="mono-num" style="color:#6ee7b7;">[${w.lvl || 'B2–C1'}]</span></div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:5px;font-style:italic;line-height:1.45;">“${w.ex || ''}”</div>`;
+    }
+    function nextWod() { wodIdx++; SFX.click(); renderWod(); }
+    function toggleWod() { document.getElementById('wod-box')?.classList.toggle('collapsed'); SFX.click(); }
+
+    /* ==========================================================================
+       4. 3D SOLAR SYSTEM ENGINE (KEPLER ORBITS, CONSTELLATION, TELEMETRY)
+       ========================================================================== */
+    const state = {
+      mode: 'solar',
+      filter: 'all',
+      paused: false,
+      constellation: true,
+      hoveredPlanet: null,
+      rotX: -0.46,
+      rotY: 0,
+      targetRotX: -0.46,
+      targetRotY: 0,
+      velY: 0,
+      zoom: 1,
+      targetZoom: 1,
+      warp: 0,
+      dragging: false,
+      dragMoved: false,
+      lastX: 0,
+      lastY: 0,
+      pinchDist: 0,
+      t: 0
+    };
+
+    const planetEls = [];
+    const stageEl = document.getElementById('universe-stage');
+
+    function showTelemetry(p) {
+      const hud = document.getElementById('telemetry-hud');
+      if (!hud) return;
+      if (!p) {
+        hud.classList.remove('visible');
+        return;
+      }
+      const done = conquered.has(p.id);
+      document.getElementById('tel-orbit').textContent = `ORBITA 0${p.orbit} • +${p.xp} XP`;
+      const st = document.getElementById('tel-status');
+      st.textContent = done ? '✓ ZABT ETILGAN' : '● KASHF ETILMAGAN';
+      st.style.color = done ? '#34d399' : '#38bdf8';
+      document.getElementById('tel-title').textContent = `${p.icon} ${p.name}`;
+      document.getElementById('tel-desc').textContent = p.desc;
+      hud.classList.add('visible');
+    }
+
+    function mountPlanets() {
+      PLANETS.forEach((p, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'planet-node' + (conquered.has(p.id) ? ' done' : '');
+        btn.dataset.id = p.id;
+        btn.style.setProperty('--pcol', p.color);
+        btn.style.setProperty('--pdark', p.dark);
+        btn.style.setProperty('--pglow', p.glow);
+        btn.style.setProperty('--psize', p.size + 'px');
+        btn.innerHTML = `
+          <div class="planet-sphere">
+            <div class="orbit-reticle"></div>
+            <canvas class="planet-cv"></canvas>
+            <span class="planet-check">✓</span>
+          </div>
+          <div class="planet-label"><span class="planet-dot"></span><span class="planet-ico">${p.icon}</span>${p.name}<span class="planet-badge">${p.badge}</span></div>`;
+
+        btn.addEventListener('mouseenter', () => {
+          state.hoveredPlanet = p;
+          showTelemetry(p);
+        });
+        btn.addEventListener('mouseleave', () => {
+          state.hoveredPlanet = null;
+          showTelemetry(null);
+        });
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          if (state.dragMoved) return;
+          openPlanet(p.id);
+        });
+
+        stageEl.appendChild(btn);
+        planetEls.push({ p, el: btn, labelEl: btn.querySelector('.planet-label'), idx, sx: 0, sy: 0, z: 0, depthScale: 1, cv: btn.querySelector('.planet-cv') });
+      });
+    }
+
+    function setFilter(cat) {
+      state.filter = cat;
+      document.querySelectorAll('#filter-pills .f-pill').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+      planetEls.forEach(({ p, el }) => {
+        el.classList.toggle('dimmed', cat !== 'all' && p.cat !== cat);
+      });
+      SFX.click();
+    }
+
+    function setOrbitMode(mode) {
+      state.mode = mode;
+      ['solar', 'sphere', 'spiral'].forEach(m => {
+        document.getElementById('mode-' + m)?.classList.toggle('active', m === mode);
+      });
+      SFX.click();
+    }
+
+    function toggleConstellation() {
+      state.constellation = !state.constellation;
+      document.getElementById('constellation-btn')?.classList.toggle('constellation-on', state.constellation);
+      SFX.click();
+    }
+
+    function togglePause() {
+      state.paused = !state.paused;
+      document.getElementById('pause-btn').textContent = state.paused ? '▶️' : '⏸️';
+      SFX.click();
+    }
+
+    function adjustZoom(delta) {
+      state.targetZoom = Math.max(0.55, Math.min(1.65, state.targetZoom + delta));
+      SFX.click();
+    }
+
+    function resetCamera() {
+      state.targetRotX = -0.42; state.targetRotY = 0; state.targetZoom = 1;
+      state.rotX = -0.42; state.rotY = 0; state.zoom = 1;
+      setFilter('all');
+      SFX.click();
+    }
+
+    stageEl.addEventListener('mousedown', e => {
+      state.dragging = true; state.dragMoved = false;
+      state.lastX = e.clientX; state.lastY = e.clientY;
+    });
+    window.addEventListener('mousemove', e => {
+      if (!state.dragging) return;
+      const dx = e.clientX - state.lastX, dy = e.clientY - state.lastY;
+      if (Math.hypot(dx, dy) > 4) state.dragMoved = true;
+      state.rotY += dx * 0.0055;
+      state.rotX = Math.max(-1.15, Math.min(1.15, state.rotX + dy * 0.0055));
+      state.targetRotY = state.rotY;
+      state.targetRotX = state.rotX;
+      state.velY = dx * 0.0008;
+      state.lastX = e.clientX; state.lastY = e.clientY;
+    });
+    window.addEventListener('mouseup', () => { state.dragging = false; });
+
+    stageEl.addEventListener('wheel', e => {
+      e.preventDefault();
+      state.targetZoom = Math.max(0.55, Math.min(1.65, state.targetZoom - e.deltaY * 0.0008));
+    }, { passive: false });
+
+    stageEl.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        state.dragging = true; state.dragMoved = false;
+        state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2) {
+        state.dragging = false;
+        state.pinchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    }, { passive: true });
+
+    stageEl.addEventListener('touchmove', e => {
+      if (e.touches.length === 1 && state.dragging) {
+        const dx = e.touches[0].clientX - state.lastX, dy = e.touches[0].clientY - state.lastY;
+        if (Math.hypot(dx, dy) > 5) state.dragMoved = true;
+        state.rotY += dx * 0.006;
+        state.rotX = Math.max(-1.15, Math.min(1.15, state.rotX + dy * 0.006));
+        state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2) {
+        const d = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        if (state.pinchDist > 0) {
+          state.targetZoom = Math.max(0.55, Math.min(1.65, state.targetZoom * (d / state.pinchDist)));
+        }
+        state.pinchDist = d;
+      }
+    }, { passive: true });
+    stageEl.addEventListener('touchend', () => { state.dragging = false; state.pinchDist = 0; });
+
+    /* ==========================================================================
+       5. FAST-BOOTING PHOTOREAL COSMOS RENDERER (60 FPS GUARANTEED)
+       ========================================================================== */
+    const cv = document.getElementById('bg-3d');
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, DPR = 1;
+
+    const Noise = (() => {
+      const p = new Uint8Array(512);
+      let seed = 20260127;
+      const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+      const perm = Array.from({ length: 256 }, (_, i) => i);
+      for (let i = 255; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+      for (let i = 0; i < 512; i++) p[i] = perm[i & 255];
+      const fade = t => t * t * t * (t * (t * 6 - 15) + 10);
+      const lerp = (t, a, b) => a + t * (b - a);
+      const grad = (h, x, y, z) => {
+        h &= 15;
+        const u = h < 8 ? x : y;
+        const v = h < 4 ? y : (h === 12 || h === 14 ? x : z);
+        return ((h & 1) ? -u : u) + ((h & 2) ? -v : v);
+      };
+      function n3(x, y, z) {
+        let X = Math.floor(x), Y = Math.floor(y), Z = Math.floor(z);
+        x -= X; y -= Y; z -= Z; X &= 255; Y &= 255; Z &= 255;
+        const u = fade(x), v = fade(y), w = fade(z);
+        const A = p[X] + Y, AA = p[A] + Z, AB = p[A + 1] + Z;
+        const B = p[X + 1] + Y, BA = p[B] + Z, BB = p[B + 1] + Z;
+        return lerp(w,
+          lerp(v, lerp(u, grad(p[AA], x, y, z), grad(p[BA], x - 1, y, z)),
+                  lerp(u, grad(p[AB], x, y - 1, z), grad(p[BB], x - 1, y - 1, z))),
+          lerp(v, lerp(u, grad(p[AA + 1], x, y, z - 1), grad(p[BA + 1], x - 1, y, z - 1)),
+                  lerp(u, grad(p[AB + 1], x, y - 1, z - 1), grad(p[BB + 1], x - 1, y - 1, z - 1))));
+      }
+      function fbm(x, y, z, oct = 4) {
+        let a = 0.5, f = 1, s = 0;
+        for (let i = 0; i < oct; i++) { s += a * n3(x * f, y * f, z * f); f *= 2.03; a *= 0.5; }
+        return s;
+      }
+      function ridged(x, y, z, oct = 4) {
+        let a = 0.5, f = 1, s = 0;
+        for (let i = 0; i < oct; i++) { const n = 1 - Math.abs(n3(x * f, y * f, z * f)); s += a * n * n; f *= 2.03; a *= 0.5; }
+        return s;
+      }
+      return { n3, fbm, ridged };
+    })();
+
+    const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+    const smooth = (a, b, v) => { const t = clamp01((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+    function ramp(stops, t, out) {
+      if (t <= stops[0][0]) { out[0] = stops[0][1]; out[1] = stops[0][2]; out[2] = stops[0][3]; return out; }
+      for (let i = 1; i < stops.length; i++) {
+        if (t <= stops[i][0]) {
+          const a = stops[i - 1], b = stops[i], k = (t - a[0]) / (b[0] - a[0]);
+          out[0] = a[1] + (b[1] - a[1]) * k; out[1] = a[2] + (b[2] - a[2]) * k; out[2] = a[3] + (b[3] - a[3]) * k;
+          return out;
+        }
+      }
+      const l = stops[stops.length - 1]; out[0] = l[1]; out[1] = l[2]; out[2] = l[3]; return out;
+    }
+
+    const SURF = {
+      earth(x, y, z, lat, o, S, landBias = 0) {
+        const e = Noise.fbm(x * 1.7 + S, y * 1.7, z * 1.7 - S, 4) + landBias;
+        const a = Math.abs(lat);
+        const sea = 0.03;
+        if (e < sea) {
+          const d = clamp01((sea - e) / 0.32);
+          ramp([[0, 38, 110, 150], [0.15, 18, 70, 120], [1, 4, 18, 52]], d, o);
+          o[3] = 255; o[4] = 0;
+        } else {
+          const h = clamp01((e - sea) / 0.42);
+          const m = Noise.fbm(x * 3 + 11, y * 3 + S, z * 3, 3) + (0.55 - a) * 0.25;
+          if (m < -0.04 && a < 0.75) ramp([[0, 196, 168, 120], [0.5, 170, 132, 86], [1, 128, 98, 66]], h, o);
+          else ramp([[0, 70, 98, 44], [0.35, 48, 78, 34], [0.65, 98, 88, 70], [1, 150, 145, 140]], h, o);
+          if (h > 0.72) { const k = smooth(0.72, 0.9, h); o[0] += (240 - o[0]) * k; o[1] += (242 - o[1]) * k; o[2] += (246 - o[2]) * k; }
+          o[3] = 0;
+          const city = Noise.n3(x * 34 + S, y * 34, z * 34);
+          o[4] = (m > -0.08 && a < 1.05 && city > 0.18) ? Math.min(255, (city - 0.18) * 900) : 0;
+        }
+        const cap = 1.22 + Noise.fbm(x * 4, y * 4 + 3, z * 4, 2) * 0.25;
+        if (a > cap) { o[0] = 236; o[1] = 241; o[2] = 247; o[3] = 0; o[4] = 0; }
+        const c = Noise.fbm(x * 2.4 + 40, y * 4.2, z * 2.4 + S, 4) + Math.cos(lat * 6) * 0.06;
+        o[5] = clamp01((c + 0.02) * 2.6) * 255;
+      },
+      terra(x, y, z, lat, o, S) { SURF.earth(x, y, z, lat, o, S + 17.3, 0.12); },
+      ocean(x, y, z, lat, o, S) {
+        SURF.earth(x, y, z, lat, o, S + 5.1, -0.16);
+        if (o[3]) { o[0] *= 0.8; o[1] *= 1.05; o[2] *= 1.1; }
+        o[5] = Math.min(255, o[5] * 1.25);
+      },
+      mars(x, y, z, lat, o, S) {
+        const e = Noise.fbm(x * 2 + S, y * 2, z * 2, 4);
+        ramp([[-0.5, 92, 42, 24], [-0.1, 150, 72, 40], [0.15, 193, 102, 60], [0.5, 220, 150, 100]], e, o);
+        const cr = Noise.ridged(x * 6, y * 6, z * 6 + S, 3);
+        const ck = 1 + (cr - 0.45) * 0.18; o[0] *= ck; o[1] *= ck; o[2] *= ck;
+        if (Math.abs(lat) > 1.36) { o[0] = 238; o[1] = 232; o[2] = 228; }
+      },
+      desert(x, y, z, lat, o, S) {
+        const e = Noise.fbm(x * 2.2 + S, y * 2.2, z * 2.2, 4);
+        ramp([[-0.4, 120, 70, 42], [0, 196, 132, 78], [0.4, 230, 182, 122]], e, o);
+      },
+      gas(x, y, z, lat, o, S, pal, bands, turb, spot) {
+        const t = Noise.fbm(x * 2 + S, y * 9, z * 2, 4);
+        const v = Math.sin(lat * bands + t * turb) * 0.5 + 0.5;
+        ramp(pal, v, o);
+        const fine = 1 + Noise.fbm(x * 7, y * 20 + S, z * 7, 2) * 0.14;
+        o[0] *= fine; o[1] *= fine; o[2] *= fine;
+        if (spot) {
+          let dl = Math.atan2(z, x) - spot[1];
+          if (dl > Math.PI) dl -= Math.PI * 2; if (dl < -Math.PI) dl += Math.PI * 2;
+          const d = (dl / spot[2]) ** 2 + ((lat - spot[0]) / spot[3]) ** 2;
+          if (d < 1.4) {
+            const k = smooth(1.4, 0.3, d);
+            o[0] += (spot[4] - o[0]) * k; o[1] += (spot[5] - o[1]) * k; o[2] += (spot[6] - o[2]) * k;
+          }
+        }
+      },
+      jupiter(x, y, z, lat, o, S)   { SURF.gas(x, y, z, lat, o, S, [[0, 150, 98, 66], [0.35, 196, 150, 108], [0.6, 228, 210, 182], [1, 242, 232, 212]], 15, 2.4, [-0.36, 1.0, 0.24, 0.11, 196, 92, 60]); },
+      saturn(x, y, z, lat, o, S)    { SURF.gas(x, y, z, lat, o, S, [[0, 186, 156, 108], [0.5, 220, 196, 146], [1, 238, 222, 182]], 18, 0.9, null); },
+      goldgiant(x, y, z, lat, o, S) { SURF.gas(x, y, z, lat, o, S, [[0, 170, 112, 48], [0.5, 222, 170, 86], [1, 248, 220, 150]], 13, 1.6, [0.3, 2.4, 0.18, 0.08, 255, 236, 200]); },
+      gaspurple(x, y, z, lat, o, S) { SURF.gas(x, y, z, lat, o, S, [[0, 78, 48, 120], [0.5, 140, 96, 176], [1, 214, 178, 226]], 12, 2.0, [-0.2, 4.0, 0.2, 0.09, 240, 220, 250]); },
+      neptune(x, y, z, lat, o, S)   { SURF.gas(x, y, z, lat, o, S, [[0, 26, 58, 160], [0.5, 44, 92, 204], [1, 76, 128, 226]], 9, 1.2, [-0.38, 2.2, 0.2, 0.09, 16, 30, 96]); },
+      uranus(x, y, z, lat, o, S)    { SURF.gas(x, y, z, lat, o, S, [[0, 140, 200, 214], [0.5, 160, 216, 226], [1, 180, 228, 234]], 7, 0.5, null); },
+      icegiant(x, y, z, lat, o, S)  { SURF.gas(x, y, z, lat, o, S, [[0, 40, 112, 168], [0.5, 70, 150, 196], [1, 128, 196, 222]], 10, 1.0, null); },
+      venus(x, y, z, lat, o, S)     { const v = Noise.fbm(x * 2 + S, y * 5, z * 2, 4); ramp([[-0.5, 176, 132, 78], [0, 222, 186, 128], [0.5, 246, 226, 182]], v, o); },
+      titan(x, y, z, lat, o, S)     { const v = Noise.fbm(x * 1.6 + S, y * 4, z * 1.6, 3); ramp([[-0.5, 150, 92, 34], [0, 204, 140, 62], [0.5, 228, 172, 96]], v * 0.6, o); },
+      io(x, y, z, lat, o, S)        { const v = Noise.fbm(x * 2.5 + S, y * 2.5, z * 2.5, 4); ramp([[-0.4, 200, 166, 70], [0, 226, 206, 104], [0.4, 240, 232, 170]], v, o); },
+      europa(x, y, z, lat, o, S)    { const v = Noise.fbm(x * 2 + S, y * 2, z * 2, 3); ramp([[-0.4, 196, 178, 156], [0.4, 236, 230, 220]], v, o); },
+      ice(x, y, z, lat, o, S)       { const v = Noise.fbm(x * 2 + S, y * 2, z * 2, 4); ramp([[-0.4, 150, 182, 210], [0, 206, 224, 240], [0.4, 246, 250, 255]], v, o); o[3] = 90; },
+      lava(x, y, z, lat, o, S) {
+        const v = Noise.fbm(x * 2 + S, y * 2, z * 2, 4);
+        ramp([[-0.4, 22, 18, 18], [0.4, 64, 52, 46]], v, o);
+        const r = Noise.ridged(x * 2.4 + S, y * 2.4, z * 2.4, 4);
+        o[4] = r > 0.62 ? Math.min(255, smooth(0.62, 0.86, r) * 300) : 0;
+        if (o[4]) { const k = o[4] / 255 * 0.6; o[0] += (255 - o[0]) * k; o[1] += (110 - o[1]) * k; o[2] += (30 - o[2]) * k; }
+      }
+    };
+
+    const LOOK = {
+      ielts8:     { type: 'saturn',    atm: [235, 214, 170, 0.35], ring: 'saturn', tilt: -0.42, spin: 0.030 },
+      vocab450:   { type: 'earth',     atm: [110, 170, 255, 0.95], tilt: 0.41, spin: 0.020, clouds: true },
+      speak40:    { type: 'neptune',   atm: [110, 160, 255, 0.85], tilt: 0.49, spin: 0.026 },
+      suhbat500:  { type: 'uranus',    atm: [170, 230, 240, 0.75], ring: 'thin', tilt: 1.1, spin: 0.022 },
+      iboralar:   { type: 'mars',      atm: [230, 160, 120, 0.35], tilt: 0.44, spin: 0.021 },
+      enzowrite:  { type: 'jupiter',   atm: [230, 210, 175, 0.35], ring: 'faint', tilt: 0.05, spin: 0.034 },
+      reading:    { type: 'terra',     atm: [120, 180, 255, 0.9],  tilt: -0.3, spin: 0.019, clouds: true },
+      writing:    { type: 'ice',       atm: [200, 230, 255, 0.35], tilt: 0.2, spin: 0.016 },
+      map:        { type: 'ocean',     atm: [100, 165, 255, 0.95], tilt: 0.25, spin: 0.017, clouds: true },
+      dictation:  { type: 'titan',     atm: [240, 170, 80, 0.95],  tilt: -0.1, spin: 0.012 },
+      errors:     { type: 'lava',      atm: [255, 110, 40, 0.3],   tilt: 0.15, spin: 0.015 },
+      flashcards: { type: 'venus',     atm: [255, 228, 175, 0.75], tilt: -0.05, spin: 0.008 },
+      sprint:     { type: 'io',        atm: [255, 240, 180, 0.1],  tilt: 0.06, spin: 0.018 },
+      mock:       { type: 'gaspurple', atm: [210, 160, 255, 0.5],  tilt: -0.3, spin: 0.028 },
+      author:     { type: 'goldgiant', atm: [255, 220, 160, 0.4],  ring: 'gold', tilt: 0.38, spin: 0.027 },
+      results:    { type: 'europa',    atm: [220, 230, 255, 0.15], tilt: 0.1, spin: 0.014 },
+      enroll:     { type: 'desert',    atm: [240, 170, 120, 0.4],  tilt: 0.33, spin: 0.02 },
+      cabinet:    { type: 'icegiant',  atm: [120, 200, 240, 0.75], ring: 'thin', tilt: -0.5, spin: 0.024 }
+    };
+
+    /* Optimized 192x96 textures: 4x faster generation with identical spherical sharpness */
+    const TEX_W = 192, TEX_H = 96;
+    function buildPlanetTexture(look, seed) {
+      const n = TEX_W * TEX_H;
+      const col = new Uint8ClampedArray(n * 3);
+      const spec = new Uint8Array(n), night = new Uint8Array(n);
+      const cloud = look.clouds ? new Uint8Array(n) : null;
+      let hasSpec = false, hasNight = false;
+      const o = [0, 0, 0, 0, 0, 0];
+      const shader = SURF[look.type];
+      for (let j = 0; j < TEX_H; j++) {
+        const lat = (0.5 - (j + 0.5) / TEX_H) * Math.PI;
+        const cl = Math.cos(lat), sl = Math.sin(lat);
+        for (let i = 0; i < TEX_W; i++) {
+          const lon = ((i + 0.5) / TEX_W) * Math.PI * 2;
+          o[3] = 0; o[4] = 0; o[5] = 0;
+          shader(cl * Math.cos(lon), sl, cl * Math.sin(lon), lat, o, seed);
+          const k = j * TEX_W + i;
+          col[k * 3] = o[0]; col[k * 3 + 1] = o[1]; col[k * 3 + 2] = o[2];
+          if (o[3]) { spec[k] = o[3]; hasSpec = true; }
+          if (o[4]) { night[k] = o[4]; hasNight = true; }
+          if (cloud) cloud[k] = o[5];
+        }
+      }
+      return { col, spec: hasSpec ? spec : null, night: hasNight ? night : null, cloud, emissive: look.type === 'lava' };
+    }
+
+    const RING_STYLE = {
+      saturn: { ri: 1.24, ro: 2.25, col: [222, 204, 168], alpha: 0.92, gap: 1.93 },
+      gold:   { ri: 1.3,  ro: 2.2,  col: [236, 200, 140], alpha: 0.85, gap: 1.86 },
+      faint:  { ri: 1.4,  ro: 1.9,  col: [190, 170, 150], alpha: 0.22, gap: 0 },
+      thin:   { ri: 1.55, ro: 1.95, col: [200, 220, 235], alpha: 0.4,  gap: 1.75 }
+    };
+    function buildRing(style, seed) {
+      const S = 256, c = document.createElement('canvas');
+      c.width = c.height = S;
+      const g = c.getContext('2d'), img = g.createImageData(S, S), d = img.data;
+      const R = S / 2, scale = style.ro;
+      for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+        const rr = Math.hypot(x + 0.5 - R, y + 0.5 - R) / R * scale;
+        if (rr < style.ri || rr > style.ro) continue;
+        const t = (rr - style.ri) / (style.ro - style.ri);
+        let a = 0.55 + 0.45 * Noise.fbm(rr * 18 + seed, 0.5, 0.5, 3) * 2;
+        a *= smooth(0, 0.06, t) * smooth(1, 0.9, t);
+        a *= 0.65 + 0.35 * Math.sin(t * 3.1);
+        if (style.gap) a *= smooth(0.0, 0.035, Math.abs(rr - style.gap));
+        a = clamp01(a) * style.alpha;
+        const shade = 0.8 + 0.25 * Noise.n3(rr * 40 + seed, 1.5, 0.3);
+        const k = (y * S + x) * 4;
+        d[k] = style.col[0] * shade; d[k + 1] = style.col[1] * shade; d[k + 2] = style.col[2] * shade; d[k + 3] = a * 255;
+      }
+      g.putImageData(img, 0, 0);
+      return c;
+    }
+
+    const INCL = 0.3;
+    function buildGeometry(N, tilt) {
+      const max = N * N;
+      const pix = new Uint32Array(max), u = new Float32Array(max), row = new Uint32Array(max);
+      const nxA = new Float32Array(max), nyA = new Float32Array(max), nzA = new Float32Array(max), aA = new Uint8Array(max);
+      const ct = Math.cos(tilt), st = Math.sin(tilt), ci = Math.cos(INCL), si = Math.sin(INCL);
+      const rot = (x, y) => [x * ct - y * st, x * st + y * ct];
+      const [Ex, Ey] = rot(1, 0);
+      const [Nx, Ny] = rot(0, -ci); const Nz = si;
+      const [Fx, Fy] = rot(0, si);  const Fz = ci;
+      let c = 0;
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+        const px = ((x + 0.5) / N) * 2 - 1, py = ((y + 0.5) / N) * 2 - 1;
+        const r = Math.sqrt(px * px + py * py);
+        const edge = (1 - r) * N * 0.5 + 0.5;
+        if (edge <= 0) continue;
+        const rc = Math.min(r, 0.9999);
+        const sx = px * (rc / (r || 1)), sy = py * (rc / (r || 1));
+        const nz = Math.sqrt(1 - sx * sx - sy * sy);
+        const lat = Math.asin(Math.max(-1, Math.min(1, sx * Nx + sy * Ny + nz * Nz)));
+        let lon = Math.atan2(sx * Ex + sy * Ey, sx * Fx + sy * Fy + nz * Fz);
+        if (lon < 0) lon += Math.PI * 2;
+        pix[c] = y * N + x;
+        u[c] = Math.min(TEX_W - 0.001, (lon / (Math.PI * 2)) * TEX_W);
+        row[c] = Math.min(TEX_H - 1, Math.floor((0.5 - lat / Math.PI) * TEX_H)) * TEX_W;
+        nxA[c] = sx; nyA[c] = sy; nzA[c] = nz;
+        aA[c] = Math.round(clamp01(edge) * 255);
+        c++;
+      }
+      return { N, count: c, pix, u, row, nx: nxA, ny: nyA, nz: nzA, a: aA };
+    }
+
+    const PDPR = Math.min(window.devicePixelRatio || 1, 2);
+    function setupPlanetRender(item) {
+      const look = LOOK[item.p.id] || { type: 'mars', atm: [200, 200, 200, 0.3], tilt: 0, spin: 0.02 };
+      item.look = look;
+      const size = item.p.size;
+      const N = Math.round(size * PDPR);
+      const box = look.ring ? size * 2.5 : size * 1.5;
+      item.boxCss = box;
+      item.cv.style.width = box + 'px';
+      item.cv.style.height = box + 'px';
+      item.cv.width = Math.round(box * PDPR);
+      item.cv.height = Math.round(box * PDPR);
+      item.cctx = item.cv.getContext('2d');
+      item.sph = document.createElement('canvas');
+      item.sph.width = item.sph.height = N;
+      item.sctx = item.sph.getContext('2d');
+      item.img = item.sctx.createImageData(N, N);
+      item.geo = buildGeometry(N, look.tilt);
+      item.phase = Math.random();
+      item.tex = buildPlanetTexture(look, item.idx * 13.37 + 3.1);
+      if (look.ring) item.ringImg = buildRing(RING_STYLE[look.ring], item.idx * 3.7);
+    }
+
+    function shadePlanet(item, Lx, Ly, Lz) {
+      const g = item.geo, T = item.tex, d = item.img.data, col = T.col;
+      const look = item.look, atm = look.atm;
+      const off = (((state.t * look.spin + item.phase) % 1) + 1) % 1 * TEX_W;
+      const coff = (((state.t * look.spin * 1.35 + item.phase * 2) % 1) + 1) % 1 * TEX_W;
+      let hx = Lx, hy = Ly, hz = Lz + 1;
+      const hl = Math.hypot(hx, hy, hz) || 1; hx /= hl; hy /= hl; hz /= hl;
+      const spec = T.spec, night = T.night, cloud = T.cloud, emis = T.emissive;
+      const AMB = 0.24;
+      const ar = atm[0], ag = atm[1], ab = atm[2], as = Math.max(0.28, atm[3]);
+      const eclipseBoost = clamp01(0.45 - Lz * 0.8);
+      for (let k = 0; k < g.count; k++) {
+        const nx = g.nx[k], ny = g.ny[k], nz = g.nz[k];
+        let uu = (g.u[k] + off) | 0; if (uu >= TEX_W) uu -= TEX_W;
+        const ti = g.row[k] + uu, t3 = ti * 3;
+        let r = col[t3], gg = col[t3 + 1], b = col[t3 + 2];
+        let ca = 0;
+        if (cloud) {
+          let cu = (g.u[k] + coff) | 0; if (cu >= TEX_W) cu -= TEX_W;
+          ca = cloud[g.row[k] + cu] / 255;
+          r += (248 - r) * ca; gg += (250 - gg) * ca; b += (255 - b) * ca;
+        }
+        const dif = nx * Lx + ny * Ly + nz * Lz;
+        let lit = dif > -0.24 ? (dif + 0.24) / 1.24 : 0;
+        lit = Math.sqrt(lit) * 0.42 + lit * 0.58;
+        // Galactic starlight fill so night sides stay lush & readable (never pitch black!)
+        const starFill = clamp01(nx * -0.35 + ny * -0.45 + nz * 0.78) * 0.28;
+        const totalLit = lit * (1 - AMB) + AMB + starFill + 0.08 * nz * nz;
+        let R = r * totalLit, G = gg * totalLit, B = b * totalLit;
+        // Subtle twilight terminator scatter
+        const tw = Math.exp(-((dif + 0.06) * 4.5) * ((dif + 0.06) * 4.5)) * 0.14 * as;
+        R += ar * tw; G += ag * tw * 0.85; B += ab * tw * 0.7;
+        if (spec && dif > -0.05) {
+          const sm = spec[ti];
+          if (sm) {
+            let s = nx * hx + ny * hy + nz * hz;
+            if (s > 0) { s *= s; s *= s; s *= s; s *= s; s *= s; s *= s; const sp = s * sm * (1 - ca) * 0.95; R += sp; G += sp * 0.96; B += sp * 0.92; }
+          }
+        }
+        if (night) {
+          const nv = night[ti];
+          if (nv) {
+            const e = emis ? nv * (0.6 + 0.4 * clamp01(0.25 - dif)) : nv * clamp01((0.12 - dif) * 3.8) * (1 - ca);
+            R += e; G += e * (emis ? 0.45 : 0.74); B += e * (emis ? 0.14 : 0.42);
+          }
+        }
+        // Real-life 360° Fresnel Atmosphere + Backlit Eclipse Crescent Halo
+        const rim = 1 - nz, rim2 = rim * rim, rim3 = rim2 * rim;
+        const sunRim = as * rim3 * clamp01(dif + 0.48) * 1.35 + as * rim * 0.14 * clamp01(dif + 0.25);
+        const eclRim = as * rim2 * eclipseBoost * 0.82;
+        const sc = sunRim + eclRim;
+        R += ar * sc; G += ag * sc; B += ab * sc;
+        const o = g.pix[k] * 4;
+        d[o] = R; d[o + 1] = G; d[o + 2] = B; d[o + 3] = g.a[k];
+      }
+      item.sctx.putImageData(item.img, 0, 0);
+    }
+
+    function drawRingHalf(c, item, front, cx, cy, bright) {
+      const look = item.look, st = RING_STYLE[look.ring];
+      const R = (item.p.size * PDPR / 2) * st.ro;
+      c.save();
+      c.translate(cx, cy);
+      c.rotate(look.tilt);
+      c.beginPath();
+      if (front) c.rect(-R * 1.1, 0, R * 2.2, R); else c.rect(-R * 1.1, -R, R * 2.2, R);
+      c.clip();
+      c.scale(1, Math.sin(INCL));
+      c.globalAlpha = bright;
+      c.drawImage(item.ringImg, -R, -R, R * 2, R * 2);
+      c.restore();
+    }
+
+    function renderPlanet(item, Lx, Ly, Lz) {
+      if (!item.tex) return;
+      shadePlanet(item, Lx, Ly, Lz);
+      const c = item.cctx, Wc = item.cv.width, cx = Wc / 2, cy = Wc / 2;
+      const rad = item.p.size * PDPR / 2;
+      c.clearRect(0, 0, Wc, Wc);
+      const ringBright = item.look.ring ? 0.3 + 0.7 * clamp01(0.55 + Lz * 0.45) : 0;
+      if (item.look.ring) drawRingHalf(c, item, false, cx, cy, ringBright);
+      const atm = item.look.atm;
+      if (atm[3] > 0.2) {
+        const lit = clamp01(0.25 + Lz * 0.4 + 0.5);
+        const ox = cx + Lx * rad * 0.12, oy = cy + Ly * rad * 0.12;
+        const gr = c.createRadialGradient(ox, oy, rad * 0.92, ox, oy, rad * 1.32);
+        gr.addColorStop(0, `rgba(${atm[0]},${atm[1]},${atm[2]},${(0.42 * atm[3] * lit).toFixed(3)})`);
+        gr.addColorStop(1, `rgba(${atm[0]},${atm[1]},${atm[2]},0)`);
+        c.fillStyle = gr;
+        c.beginPath(); c.arc(ox, oy, rad * 1.32, 0, Math.PI * 2); c.fill();
+      }
+      c.drawImage(item.sph, cx - rad, cy - rad, rad * 2, rad * 2);
+      if (item.look.ring) drawRingHalf(c, item, true, cx, cy, ringBright);
+    }
+
+    const SUN_THEMES = {
+      dawn:    { ramp: [[0, 120, 20, 0], [0.35, 214, 74, 8], [0.62, 255, 158, 40], [0.84, 255, 220, 140], [1, 255, 250, 232]], glow: [255, 176, 70],  neb: [[255, 150, 90], [90, 120, 255], [255, 90, 140]] },
+      nebula:  { ramp: [[0, 40, 10, 120], [0.35, 90, 60, 220], [0.62, 150, 140, 255], [0.84, 205, 210, 255], [1, 246, 248, 255]], glow: [150, 140, 255], neb: [[150, 90, 255], [70, 160, 255], [255, 80, 180]] },
+      emerald: { ramp: [[0, 0, 60, 30], [0.35, 10, 140, 90], [0.62, 60, 210, 150], [0.84, 170, 245, 210], [1, 240, 255, 248]], glow: [70, 230, 170],  neb: [[40, 220, 160], [60, 150, 255], [240, 200, 80]] }
+    };
+    let sunTheme = SUN_THEMES.dawn;
+    const sunCv = document.getElementById('sun-cv');
+    const sunCtx = sunCv.getContext('2d');
+    const SUN_TW = 256, SUN_TH = 128;
+    let sunTex = null, sunGeo = null, sunImg = null, sunLUT = null, sunCssR = 74;
+
+    function buildSunTexture() {
+      const t = new Float32Array(SUN_TW * SUN_TH);
+      for (let j = 0; j < SUN_TH; j++) {
+        const lat = (0.5 - (j + 0.5) / SUN_TH) * Math.PI, cl = Math.cos(lat), sl = Math.sin(lat);
+        for (let i = 0; i < SUN_TW; i++) {
+          const lon = ((i + 0.5) / SUN_TW) * Math.PI * 2;
+          const x = cl * Math.cos(lon), y = sl, z = cl * Math.sin(lon);
+          const gran = Noise.fbm(x * 24, y * 24, z * 24, 3);
+          const sup = Noise.fbm(x * 6 + 9, y * 6, z * 6, 3);
+          let v = 0.62 + gran * 0.55 + sup * 0.22;
+          const spot = Noise.fbm(x * 3.2 + 40, y * 3.2, z * 3.2, 3);
+          if (Math.abs(lat) < 0.62 && spot < -0.3) v *= 0.35 + 0.65 * smooth(-0.42, -0.3, spot);
+          const fac = Noise.ridged(x * 9, y * 9 + 5, z * 9, 2);
+          if (fac > 0.86) v += (fac - 0.86) * 1.2;
+          t[j * SUN_TW + i] = v;
+        }
+      }
+      return t;
+    }
+    function buildSunLUT() {
+      const lut = new Uint8ClampedArray(256 * 3), o = [0, 0, 0];
+      for (let i = 0; i < 256; i++) { ramp(sunTheme.ramp, i / 255, o); lut[i * 3] = o[0]; lut[i * 3 + 1] = o[1]; lut[i * 3 + 2] = o[2]; }
+      sunLUT = lut;
+    }
+    function setupSun() {
+      const css = sunCv.parentElement.clientWidth || 148;
+      sunCssR = css / 2;
+      const N = Math.round(css * PDPR);
+      sunCv.width = sunCv.height = N;
+      sunImg = sunCtx.createImageData(N, N);
+      const g = buildGeometry(N, 0.12);
+      for (let k = 0; k < g.count; k++) {
+        g.u[k] = g.u[k] / TEX_W * SUN_TW;
+        g.row[k] = Math.min(SUN_TH - 1, Math.floor((g.row[k] / TEX_W) / TEX_H * SUN_TH)) * SUN_TW;
+      }
+      sunGeo = g;
+    }
+    function renderSun(time) {
+      if (!sunTex || !sunGeo) return;
+      const g = sunGeo, d = sunImg.data, lut = sunLUT;
+      const o1 = ((time * 0.012) % 1) * SUN_TW, o2 = ((time * 0.0165 + 0.37) % 1) * SUN_TW;
+      const w = 0.5 + 0.5 * Math.sin(time * 0.6);
+      for (let k = 0; k < g.count; k++) {
+        let u1 = (g.u[k] + o1) | 0; if (u1 >= SUN_TW) u1 -= SUN_TW;
+        let u2 = (g.u[k] + o2) | 0; if (u2 >= SUN_TW) u2 -= SUN_TW;
+        const row = g.row[k];
+        const tv = sunTex[row + u1] * (0.6 + 0.4 * w) + sunTex[row + u2] * (0.4 - 0.4 * w);
+        const mu = g.nz[k];
+        const limb = 1 - 0.56 * (1 - mu) - 0.2 * (1 - mu) * (1 - mu);
+        let I = (0.34 + 0.66 * Math.min(1.2, tv)) * limb;
+        const li = Math.max(0, Math.min(255, (I * 255) | 0)) * 3;
+        const o = g.pix[k] * 4;
+        d[o] = lut[li]; d[o + 1] = lut[li + 1]; d[o + 2] = lut[li + 2]; d[o + 3] = g.a[k];
+      }
+      sunCtx.putImageData(sunImg, 0, 0);
+    }
+
+    let sky = null, skyW = 0, skyH = 0;
+    const twinkles = [];
+    function buildSky() {
+      const q = Math.min(DPR, 1.5);
+      skyW = Math.max(320, Math.ceil(Math.max(W, H) * 2.1));
+      skyH = Math.max(240, Math.ceil(H * 1.3));
+      sky = document.createElement('canvas');
+      sky.width = Math.max(1, Math.ceil(skyW * q));
+      sky.height = Math.max(1, Math.ceil(skyH * q));
+      const g = sky.getContext('2d');
+      g.scale(q, q);
+      g.fillStyle = '#01020a'; g.fillRect(0, 0, skyW, skyH);
+
+      const lw = Math.max(1, Math.ceil(skyW / 6));
+      const lh = Math.max(1, Math.ceil(skyH / 6));
+      const low = document.createElement('canvas'); low.width = lw; low.height = lh;
+      const lg = low.getContext('2d'), img = lg.createImageData(lw, lh), d = img.data;
+      const neb = sunTheme.neb;
+      const band = new Float32Array(lw);
+      for (let i = 0; i < lw; i++) {
+        const a = (i / lw) * Math.PI * 2;
+        band[i] = 0.5 + Math.sin(a + 0.9) * 0.24 + Math.sin(a * 2 + 2.1) * 0.05;
+      }
+      for (let j = 0; j < lh; j++) {
+        const v = j / lh;
+        for (let i = 0; i < lw; i++) {
+          const a = (i / lw) * Math.PI * 2;
+          const cx = Math.cos(a) * 1.6, cz = Math.sin(a) * 1.6, cy = v * 2.2;
+          const dist = (v - band[i]) / 0.13;
+          const core = Math.exp(-dist * dist);
+          const bulge = Math.exp(-(((a - 4.3) / 0.7) ** 2)) * Math.exp(-dist * dist * 0.5);
+          const cloud = Noise.fbm(cx * 2, cy * 2, cz * 2, 4);
+          let dens = core * (0.55 + cloud * 1.1) + bulge * 0.7;
+          const dust = Noise.ridged(cx * 3 + 7, cy * 3, cz * 3, 3);
+          dens *= 1 - smooth(0.45, 0.8, dust) * 0.85 * Math.exp(-dist * dist * 1.6);
+          dens = Math.max(0, dens);
+          const warm = clamp01(bulge * 1.4 + core * 0.4);
+          let r = dens * (150 + warm * 90), gg = dens * (150 + warm * 55), b = dens * (190 - warm * 40);
+          const nv = Noise.fbm(cx * 1.2 + 30, cy * 1.2, cz * 1.2, 3);
+          const nm = smooth(0.12, 0.42, nv) * 0.6;
+          const which = Noise.n3(cx * 0.6 + 5, cy * 0.6, cz * 0.6);
+          const nc = which > 0.12 ? neb[0] : which < -0.12 ? neb[1] : neb[2];
+          r += nc[0] * nm * 0.42; gg += nc[1] * nm * 0.42; b += nc[2] * nm * 0.42;
+          const k = (j * lw + i) * 4;
+          d[k] = r; d[k + 1] = gg; d[k + 2] = b; d[k + 3] = 255;
+        }
+      }
+      lg.putImageData(img, 0, 0);
+      g.save();
+      g.globalCompositeOperation = 'lighter';
+      g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+      try { g.filter = 'blur(4px)'; } catch (_) {}
+      g.globalAlpha = 0.92;
+      g.drawImage(low, 0, 0, skyW, skyH);
+      g.filter = 'none';
+      g.globalAlpha = 0.65;
+      g.drawImage(low, 0, 0, skyW, skyH);
+      g.restore();
+
+      // Distant Spiral Galaxies & Globular Star Clusters baked into Deep Space
+      const galaxies = [
+        { gx: skyW * 0.18, gy: skyH * 0.24, rx: 68, ry: 22, rot: -0.45, col: [255, 224, 175] },
+        { gx: skyW * 0.68, gy: skyH * 0.22, rx: 52, ry: 17, rot: 0.55,  col: [185, 210, 255] },
+        { gx: skyW * 0.44, gy: skyH * 0.78, rx: 60, ry: 19, rot: -0.25, col: [220, 190, 255] }
+      ];
+      galaxies.forEach(gal => {
+        g.save();
+        g.globalCompositeOperation = 'lighter';
+        g.translate(gal.gx, gal.gy);
+        g.rotate(gal.rot);
+        g.scale(1, gal.ry / gal.rx);
+        const gg = g.createRadialGradient(0, 0, 0, 0, 0, gal.rx);
+        gg.addColorStop(0, `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},0.42)`);
+        gg.addColorStop(0.28, `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},0.16)`);
+        gg.addColorStop(0.65, `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},0.04)`);
+        gg.addColorStop(1, 'rgba(0,0,0,0)');
+        g.fillStyle = gg;
+        g.beginPath(); g.arc(0, 0, gal.rx, 0, Math.PI * 2); g.fill();
+        // Spiral arms dust specks
+        for (let arm = 0; arm < 2; arm++) {
+          for (let step = 4; step < 36; step++) {
+            const ang = arm * Math.PI + step * 0.26;
+            const rad = (step / 36) * gal.rx * 0.92;
+            const sx = Math.cos(ang) * rad + (Math.random() - 0.5) * 6;
+            const sy = Math.sin(ang) * rad + (Math.random() - 0.5) * 6;
+            g.fillStyle = `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},${(0.26 * (1 - step / 40)).toFixed(2)})`;
+            g.fillRect(sx, sy, 1.4, 1.4);
+          }
+        }
+        g.restore();
+      });
+
+      const STAR_COLS = [[155, 176, 255], [170, 191, 255], [202, 215, 255], [248, 247, 255], [255, 244, 234], [255, 228, 196], [255, 204, 160]];
+      const count = Math.round(skyW * skyH / 460);
+      const bandAt = x => { const a = (x / skyW) * Math.PI * 2; return (0.5 + Math.sin(a + 0.9) * 0.24 + Math.sin(a * 2 + 2.1) * 0.05) * skyH; };
+      twinkles.length = 0;
+      for (let s = 0; s < count; s++) {
+        const x = Math.random() * skyW;
+        let y = Math.random() * skyH;
+        if (Math.random() < 0.48) y = bandAt(x) + (Math.random() + Math.random() + Math.random() - 1.5) * skyH * 0.12;
+        const m = Math.pow(Math.random(), 6.5);
+        const c = STAR_COLS[(Math.random() * STAR_COLS.length) | 0];
+        const a = 0.28 + m * 0.72 + Math.random() * 0.2;
+        const r = 0.35 + m * 1.6;
+        g.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${Math.min(1, a).toFixed(2)})`;
+        if (r < 0.7) g.fillRect(x, y, r * 1.6, r * 1.6);
+        else { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); }
+        if (m > 0.52) {
+          const gr = g.createRadialGradient(x, y, 0, x, y, r * 7.5);
+          gr.addColorStop(0, `rgba(${c[0]},${c[1]},${c[2]},0.38)`);
+          gr.addColorStop(1, `rgba(${c[0]},${c[1]},${c[2]},0)`);
+          g.fillStyle = gr; g.beginPath(); g.arc(x, y, r * 7.5, 0, Math.PI * 2); g.fill();
+        }
+        if (m > 0.22 && twinkles.length < 180) twinkles.push({ x, y, r: r * 0.95, c, tw: Math.random() * 6.28, sp: 1 + Math.random() * 2.5 });
+      }
+    }
+
+    /* Foreground Parallax Deep-Space Dust Motes & Mid-Field Star Layer */
+    const midStars = Array.from({ length: 140 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      z: 0.25 + Math.random() * 0.75,
+      r: 0.5 + Math.random() * 1.3,
+      a: 0.18 + Math.random() * 0.45,
+      hue: Math.random() > 0.5 ? '210, 225, 255' : '255, 232, 195'
+    }));
+
+    const spaceMotes = Array.from({ length: 85 }, () => ({
+      x: Math.random() * 1600,
+      y: Math.random() * 1000,
+      vx: (Math.random() - 0.5) * 14,
+      vy: -4 - Math.random() * 10,
+      r: 0.7 + Math.random() * 1.6,
+      a: 0.08 + Math.random() * 0.22
+    }));
+    let pointerPos = { x: -999, y: -999 };
+    window.addEventListener('pointermove', e => { pointerPos.x = e.clientX; pointerPos.y = e.clientY; }, { passive: true });
+
+    function skyOffset() {
+      let ox = -((state.rotY / (Math.PI * 2)) * skyW * 0.5) % skyW;
+      if (ox > 0) ox -= skyW;
+      const range = Math.max(0, skyH - H);
+      const oy = -Math.max(0, Math.min(range, range / 2 + (state.rotX + 0.42) * H * 0.18));
+      return [ox, oy];
+    }
+
+    function resizeCanvas() {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth || document.documentElement.clientWidth || 1024;
+      H = window.innerHeight || document.documentElement.clientHeight || 768;
+      cv.width = Math.max(1, Math.round(W * DPR));
+      cv.height = Math.max(1, Math.round(H * DPR));
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      buildSky();
+      setupSun();
+    }
+
+    const asteroids = Array.from({ length: 750 }, () => {
+      const t = Math.random();
+      return {
+        ang: Math.random() * Math.PI * 2,
+        rad: 0.57 + (Math.random() + Math.random()) * 0.05,
+        yOff: (Math.random() - 0.5) * 0.035 * (1 + Math.random()),
+        size: 0.35 + Math.pow(Math.random(), 4) * 1.6,
+        spd: 0.05 + Math.random() * 0.03,
+        col: t < 0.6 ? [150, 140, 128] : t < 0.85 ? [120, 108, 96] : [176, 168, 160]
+      };
+    });
+
+    let comet = { active: false, x: 0, y: 0, vx: 0, vy: 0, life: 0 };
+
+    function project3D(x, y, z) {
+      const cy = Math.cos(state.rotY), sy = Math.sin(state.rotY);
+      const x1 = x * cy - z * sy;
+      const z1 = x * sy + z * cy;
+      const cx = Math.cos(state.rotX), sx = Math.sin(state.rotX);
+      const y2 = y * cx - z1 * sx;
+      const z2 = y * sx + z1 * cx;
+      const baseScale = (W < 700 ? Math.min(W * 0.47, H * 0.42) : Math.min(W, H) * 0.44) * state.zoom;
+      const persp = 3.2 / (3.2 - z2 * 0.9);
+      return { sx: W / 2 + x1 * baseScale * persp, sy: H / 2 + y2 * baseScale * persp, z: z2, scale: persp, vx: x1, vy: y2 };
+    }
+
+    function drawOrbitRing(radius, tiltZ, highlight) {
+      const segs = 110;
+      let prev = null;
+      ctx.lineWidth = highlight ? 1.5 : 0.85;
+      for (let i = 0; i <= segs; i++) {
+        const a = (i / segs) * Math.PI * 2;
+        const p = project3D(Math.cos(a) * radius, Math.sin(a) * tiltZ, Math.sin(a) * radius);
+        if (prev) {
+          const zf = clamp01((p.z / radius) * 0.5 + 0.5);
+          ctx.strokeStyle = highlight
+            ? `rgba(253, 230, 138, ${(0.18 + zf * 0.34).toFixed(3)})`
+            : `rgba(190, 205, 235, ${(0.04 + zf * 0.11).toFixed(3)})`;
+          ctx.beginPath(); ctx.moveTo(prev.sx, prev.sy); ctx.lineTo(p.sx, p.sy); ctx.stroke();
+        }
+        prev = p;
+      }
+    }
+
+    /* Constellation Laser Network Connecting Same-Category Planets */
+    function drawConstellations(time) {
+      if (!state.constellation) return;
+      const groups = {
+        flagship: { col: '251, 191, 36', items: [] },
+        practice: { col: '52, 211, 153', items: [] },
+        academy:  { col: '56, 189, 248', items: [] }
+      };
+      for (const it of planetEls) {
+        if (state.filter !== 'all' && it.p.cat !== state.filter) continue;
+        groups[it.p.cat]?.items.push(it);
+      }
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      Object.values(groups).forEach(g => {
+        const arr = g.items;
+        if (arr.length < 2) return;
+        for (let i = 0; i < arr.length; i++) {
+          const a = arr[i];
+          const b = arr[(i + 1) % arr.length];
+          const grad = ctx.createLinearGradient(a.sx, a.sy, b.sx, b.sy);
+          grad.addColorStop(0, `rgba(${g.col}, 0.03)`);
+          grad.addColorStop(0.5, `rgba(${g.col}, 0.16)`);
+          grad.addColorStop(1, `rgba(${g.col}, 0.03)`);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.sx, a.sy);
+          ctx.lineTo(b.sx, b.sy);
+          ctx.stroke();
+
+          // Traveling light photon along the filament
+          const u = (time * 0.28 + i * 0.31) % 1;
+          const px = a.sx + (b.sx - a.sx) * u;
+          const py = a.sy + (b.sy - a.sy) * u;
+          ctx.fillStyle = `rgba(${g.col}, 0.65)`;
+          ctx.beginPath();
+          ctx.arc(px, py, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+      ctx.restore();
+    }
+
+    function drawSunLight(time) {
+      const cx = W / 2, cy = H / 2, R = sunCssR;
+      const [gr, gg, gb] = sunTheme.glow;
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      let g = ctx.createRadialGradient(cx, cy, R * 0.8, cx, cy, R * 7.2);
+      g.addColorStop(0, `rgba(${gr},${gg},${gb},0.52)`);
+      g.addColorStop(0.12, `rgba(${gr},${gg},${gb},0.22)`);
+      g.addColorStop(0.35, `rgba(${gr},${gg},${gb},0.06)`);
+      g.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R * 7.2, 0, Math.PI * 2); ctx.fill();
+
+      const rays = 64;
+      for (let i = 0; i < rays; i++) {
+        const a = (i / rays) * Math.PI * 2 + time * 0.012;
+        const n = Noise.n3(Math.cos(a) * 2.2, Math.sin(a) * 2.2, time * 0.12);
+        const len = R * (1.35 + Math.max(0, n) * 2.3 + 0.25 * Math.sin(i * 7.1));
+        const wdt = 0.036 + 0.02 * Math.sin(i * 3.3);
+        const lg = ctx.createRadialGradient(cx, cy, R * 0.95, cx, cy, len);
+        lg.addColorStop(0, `rgba(255,${Math.min(255, gg + 40)},${Math.min(255, gb + 60)},0.2)`);
+        lg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+        ctx.fillStyle = lg;
+        ctx.beginPath();
+        ctx.moveTo(cx + Math.cos(a - wdt) * R * 0.95, cy + Math.sin(a - wdt) * R * 0.95);
+        ctx.lineTo(cx + Math.cos(a) * len, cy + Math.sin(a) * len);
+        ctx.lineTo(cx + Math.cos(a + wdt) * R * 0.95, cy + Math.sin(a + wdt) * R * 0.95);
+        ctx.closePath(); ctx.fill();
+      }
+
+      g = ctx.createRadialGradient(cx, cy, R * 0.96, cx, cy, R * 1.35);
+      g.addColorStop(0, `rgba(255,${Math.min(255, gg + 50)},${Math.min(255, gb + 70)},0.75)`);
+      g.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R * 1.35, 0, Math.PI * 2); ctx.fill();
+
+      // Zodiacal Ecliptic Dust Glow aligned with camera tilt
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(state.rotY * 0.15);
+      ctx.scale(6.8, 0.34);
+      const zg = ctx.createRadialGradient(0, 0, R * 0.6, 0, 0, R * 1.45);
+      zg.addColorStop(0, `rgba(${gr},${gg},${gb},0.16)`);
+      zg.addColorStop(0.55, `rgba(${gr},${gg},${gb},0.05)`);
+      zg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+      ctx.fillStyle = zg;
+      ctx.beginPath(); ctx.arc(0, 0, R * 1.45, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      // Subtle anamorphic lens streak
+      ctx.save();
+      ctx.translate(cx, cy); ctx.scale(9.5, 0.045);
+      g = ctx.createRadialGradient(0, 0, 0, 0, 0, R * 1.25);
+      g.addColorStop(0, `rgba(${gr},${gg},${gb},0.18)`);
+      g.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, R * 1.25, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      // Cinematic Optical Lens Flare Ghosts reacting to camera rotation
+      const flareDx = Math.sin(state.rotY) * (W * 0.26);
+      const flareDy = Math.sin(state.rotX + 0.42) * (H * 0.26);
+      [
+        { t: -0.45, rad: 18, alpha: 0.08, col: '120, 200, 255' },
+        { t: -0.95, rad: 34, alpha: 0.05, col: `${gr}, ${gg}, ${gb}` },
+        { t: 0.65,  rad: 12, alpha: 0.09, col: '52, 211, 153' },
+        { t: 1.25,  rad: 26, alpha: 0.045, col: '196, 181, 253' }
+      ].forEach(fl => {
+        const fx = cx + flareDx * fl.t;
+        const fy = cy + flareDy * fl.t;
+        const fg = ctx.createRadialGradient(fx, fy, 0, fx, fy, fl.rad);
+        fg.addColorStop(0, `rgba(${fl.col}, ${fl.alpha})`);
+        fg.addColorStop(0.7, `rgba(${fl.col}, ${(fl.alpha * 0.4).toFixed(3)})`);
+        fg.addColorStop(1, `rgba(${fl.col}, 0)`);
+        ctx.fillStyle = fg;
+        ctx.beginPath(); ctx.arc(fx, fy, fl.rad, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.restore();
+    }
+
+    function onThemeChange(id) {
+      sunTheme = SUN_THEMES[id] || SUN_THEMES.dawn;
+      buildSunLUT();
+      buildSky();
+    }
+
+    let lastNow = performance.now();
+    let realTime = 0;
+    const modalBackdropEl = document.getElementById('modal-backdrop');
+    const sunCaptionEl = document.querySelector('.sun-caption');
+
+    function tick(now) {
+      const dt = Math.min(0.05, (now - lastNow) / 1000);
+      lastNow = now;
+      if (modalBackdropEl && modalBackdropEl.classList.contains('open')) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      realTime += dt;
+
+      const speedFactor = (state.paused || state.hoveredPlanet) ? 0.08 : 1;
+      state.t += dt * speedFactor;
+
+      if (!state.dragging) {
+        state.rotY += state.velY;
+        state.velY *= 0.94;
+      }
+      state.zoom += (state.targetZoom - state.zoom) * 0.14;
+      if (state.warp > 0) state.warp = Math.max(0, state.warp - dt * 2.4);
+
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = '#01020a'; ctx.fillRect(0, 0, W, H);
+      const [ox, oy] = skyOffset();
+      if (sky) {
+        ctx.drawImage(sky, ox, oy, skyW, skyH);
+        if (ox + skyW < W) ctx.drawImage(sky, ox + skyW, oy, skyW, skyH);
+      }
+
+      // Layer 2: Mid-field 3D Parallax Star Cluster
+      for (const ms of midStars) {
+        let mx = ((ms.x * W - state.rotY * 140 * ms.z) % W + W) % W;
+        let my = ((ms.y * H - (state.rotX + 0.42) * 110 * ms.z) % H + H) % H;
+        ctx.fillStyle = `rgba(${ms.hue}, ${ms.a})`;
+        ctx.beginPath();
+        ctx.arc(mx, my, ms.r * ms.z, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Layer 3: Foreground Floating Cosmic Motes with Subtle Cursor Gravity
+      for (const m of spaceMotes) {
+        m.x = (m.x + m.vx * dt + W) % W;
+        m.y = (m.y + m.vy * dt + H) % H;
+        const dx = pointerPos.x - m.x;
+        const dy = pointerPos.y - m.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > 1 && dist < 170) {
+          m.x += (dx / dist) * dt * 22;
+          m.y += (dy / dist) * dt * 22;
+        }
+        ctx.fillStyle = `rgba(253, 230, 138, ${m.a})`;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!comet.active && Math.random() < 0.003) {
+        comet = { active: true, x: Math.random() * W * 0.7, y: Math.random() * H * 0.3, vx: 9 + Math.random() * 5, vy: 3 + Math.random() * 2.5, life: 1 };
+      }
+      if (comet.active) {
+        comet.x += comet.vx; comet.y += comet.vy; comet.life -= dt * 1.4;
+        const a = Math.max(0, comet.life);
+        const gr = ctx.createLinearGradient(comet.x, comet.y, comet.x - comet.vx * 12, comet.y - comet.vy * 12);
+        gr.addColorStop(0, `rgba(235, 242, 255, ${a})`);
+        gr.addColorStop(1, 'rgba(180, 200, 255, 0)');
+        ctx.strokeStyle = gr; ctx.lineWidth = 1.3;
+        ctx.beginPath(); ctx.moveTo(comet.x, comet.y); ctx.lineTo(comet.x - comet.vx * 12, comet.y - comet.vy * 12); ctx.stroke();
+        if (comet.life <= 0) comet.active = false;
+      }
+
+      drawSunLight(realTime);
+
+      const hovOrbit = state.hoveredPlanet ? state.hoveredPlanet.orbit : 0;
+      if (state.mode === 'solar') {
+        drawOrbitRing(0.50, 0.05, hovOrbit === 1);
+        drawOrbitRing(0.83, -0.06, hovOrbit === 2);
+        drawOrbitRing(1.13, 0.08, hovOrbit === 3);
+        for (const a of asteroids) {
+          a.ang += dt * a.spd * speedFactor;
+          const p = project3D(Math.cos(a.ang) * a.rad, a.yOff, Math.sin(a.ang) * a.rad);
+          if (Math.hypot(p.sx - W / 2, p.sy - H / 2) < sunCssR * 1.02 && p.z < 0) continue;
+          const ph = 0.25 + 0.75 * clamp01(0.5 - p.z / a.rad * 0.5);
+          const s = a.size * p.scale;
+          ctx.fillStyle = `rgba(${a.col[0]},${a.col[1]},${a.col[2]},${(ph * 0.85).toFixed(2)})`;
+          ctx.fillRect(p.sx - s / 2, p.sy - s / 2, s, s);
+        }
+      }
+
+      renderSun(realTime);
+
+      const ringCounts = { 1: 6, 2: 8, 3: 4 };
+      const ringIdx = { 1: 0, 2: 0, 3: 0 };
+      let sunCaptionBlocked = false;
+      for (const item of planetEls) {
+        const { p, el, idx } = item;
+        let x = 0, y = 0, z = 0;
+        if (state.mode === 'solar') {
+          const iInRing = ringIdx[p.orbit]++;
+          const totalInRing = ringCounts[p.orbit];
+          const radius = p.orbit === 1 ? 0.50 : p.orbit === 2 ? 0.83 : 1.13;
+          const tiltY = p.orbit === 1 ? 0.05 : p.orbit === 2 ? -0.06 : 0.08;
+          const angle = (iInRing / totalInRing) * Math.PI * 2 + state.t * p.speed;
+          x = Math.cos(angle) * radius; z = Math.sin(angle) * radius; y = Math.sin(angle) * tiltY;
+        } else if (state.mode === 'sphere') {
+          const N = PLANETS.length;
+          const phi = Math.acos(1 - (2 * (idx + 0.5)) / N);
+          const theta = Math.PI * (1 + Math.sqrt(5)) * idx + state.t * 0.25;
+          const r = 0.88;
+          x = r * Math.sin(phi) * Math.cos(theta); y = r * Math.cos(phi); z = r * Math.sin(phi) * Math.sin(theta);
+        } else {
+          const frac = (idx / (PLANETS.length - 1)) * 2 - 1;
+          const angle = idx * 0.78 + state.t * 0.35;
+          const r = 0.75;
+          x = Math.cos(angle) * r; z = Math.sin(angle) * r; y = frac * 0.84;
+        }
+
+        const proj = project3D(x, y, z);
+        item.sx = proj.sx;
+        item.sy = proj.sy;
+        item.z = proj.z;
+
+        const fit = Math.max(0.58, Math.min(1, Math.min(W, H) / 820));
+        const depthScale = Math.max(0.52, Math.min(1.24, proj.scale * 0.86)) * fit;
+        item.depthScale = depthScale;
+        const depthOpacity = proj.z < -0.25 ? Math.max(0.62, 0.94 + proj.z * 0.32) : 1;
+
+        el.style.transform = `translate3d(${proj.sx.toFixed(1)}px, ${proj.sy.toFixed(1)}px, 0) translate(-50%, -50%) scale(${depthScale.toFixed(3)})`;
+        el.style.zIndex = String(Math.round(500 + proj.z * 220));
+        if (!el.classList.contains('dimmed')) el.style.opacity = depthOpacity.toFixed(2);
+
+        if (proj.z > 0 && Math.abs(proj.sx - W / 2) < 110 && Math.abs(proj.sy - (H / 2 + sunCssR + 28)) < 52) {
+          sunCaptionBlocked = true;
+        }
+
+        if (!el.classList.contains('dimmed')) {
+          let lx = -proj.vx, ly = -proj.vy, lz = -proj.z;
+          const ll = Math.hypot(lx, ly, lz) || 1;
+          renderPlanet(item, lx / ll, ly / ll, lz / ll);
+        }
+      }
+
+      if (sunCaptionEl) {
+        sunCaptionEl.style.opacity = sunCaptionBlocked ? '0.28' : '1';
+      }
+
+      // 2D Screen-Space AABB Label Collision Avoidance (Zero Overlapping Pills!)
+      const placedBoxes = [];
+      // Reserve central Sun disk so back-row labels never sit on top of the Sun
+      placedBoxes.push({ x1: W / 2 - sunCssR * 0.95, y1: H / 2 - sunCssR * 0.95, x2: W / 2 + sunCssR * 0.95, y2: H / 2 + sunCssR * 0.95 });
+      const ordered = planetEls.slice().sort((a, b) => {
+        if (state.hoveredPlanet === a.p) return -1;
+        if (state.hoveredPlanet === b.p) return 1;
+        return b.z - a.z;
+      });
+      const isCompact = W <= 768;
+      for (const item of ordered) {
+        if (!item.labelEl) continue;
+        if (item.el.classList.contains('dimmed')) {
+          item.labelEl.classList.add('label-hidden');
+          continue;
+        }
+        const isHov = state.hoveredPlanet === item.p;
+        const halfW = (isCompact ? 54 : 84) * item.depthScale;
+        const halfH = (isCompact ? 13 : 16) * item.depthScale;
+        const ly = item.sy + (item.p.size * 0.5 + 16) * item.depthScale;
+        const box = { x1: item.sx - halfW, y1: ly - halfH, x2: item.sx + halfW, y2: ly + halfH };
+        const outOfView = box.x1 < 6 || box.x2 > W - 6 || box.y1 < 58 || box.y2 > H - 64;
+        let collides = false;
+        if (!isHov) {
+          if (outOfView) collides = true;
+          else {
+            for (let j = 0; j < placedBoxes.length; j++) {
+              const b = placedBoxes[j];
+              if (box.x1 < b.x2 && box.x2 > b.x1 && box.y1 < b.y2 && box.y2 > b.y1) {
+                collides = true;
+                break;
+              }
+            }
+          }
+        }
+        item.labelEl.classList.toggle('label-hidden', collides);
+        if (!collides) placedBoxes.push(box);
+      }
+
+      drawConstellations(realTime);
+
+      requestAnimationFrame(tick);
+    }
+
+    function initRenderEngine() {
+      resizeCanvas();
+      window.addEventListener('resize', () => { clearTimeout(resizeCanvas._t); resizeCanvas._t = setTimeout(resizeCanvas, 150); });
+      window.addEventListener('load', resizeCanvas);
+      buildSunLUT();
+      sunTex = buildSunTexture();
+      planetEls.forEach(setupPlanetRender);
+    }
+
+    /* ==========================================================================
+       6. COSMIC MODAL CONTROLLER & ALL 14 PRACTICE TABS
+       ========================================================================== */
+    let currentPlanetId = null;
+    let activeTimers = [];
+    function clearTimers() {
+      activeTimers.forEach(clearInterval);
+      activeTimers = [];
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    function openPlanet(id) {
+      const p = PLANETS.find(item => item.id === id);
+      if (!p) return;
+      currentPlanetId = id;
+
+      state.warp = 1;
+      SFX.warp();
+      const wf = document.getElementById('warp-flash');
+      wf.classList.add('active');
+      setTimeout(() => wf.classList.remove('active'), 220);
+
+      document.getElementById('modal-icon').textContent = p.icon;
+      document.getElementById('modal-title').textContent = p.name;
+      document.getElementById('modal-sub').textContent = `HUSANBOY TEACHER • ${p.badge}`;
+
+      document.querySelectorAll('.modal-panel').forEach(el => el.classList.remove('active'));
+      const targetPanel = document.getElementById('panel-' + p.panel);
+      if (targetPanel) targetPanel.classList.add('active');
+
+      if (p.panel === 'practice' && p.tab) {
+        selectTab(p.tab, true);
+      } else if (p.panel === 'flagship') {
+        document.getElementById('flagship-focus').innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+            <div>
+              <span class="prog-meta">${p.icon} ${p.badge} • TANLANGAN DASTUR</span>
+              <h3 class="grad-title" style="font-family:var(--font-display);font-size:22px;margin-bottom:5px;">${p.name}</h3>
+              <p style="font-size:13.5px;color:var(--text-soft);max-width:560px;line-height:1.55;">${p.desc}</p>
+            </div>
+            <a class="btn btn-gold shimmer-cta" href="${p.href}">🚀 Hoziroq Ochish</a>
+          </div>`;
+        markConquered(p.id);
+      } else {
+        markConquered(p.id);
+      }
+
+      document.getElementById('modal-backdrop').classList.add('open');
+    }
+
+    function openPracticeTabDirect(tabId) {
+      openPlanet('reading');
+      selectTab(tabId, true);
+    }
+
+    function closeModal() {
+      clearTimers();
+      document.getElementById('modal-backdrop').classList.remove('open');
+      SFX.click();
+    }
+
+    function stepPlanet(dir) {
+      const idx = PLANETS.findIndex(p => p.id === currentPlanetId);
+      const next = PLANETS[(idx + dir + PLANETS.length) % PLANETS.length];
+      openPlanet(next.id);
+    }
+
+    function selectTab(tabId, silent) {
+      clearTimers();
+      document.querySelectorAll('#hub-tabs .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+      if (typeof window.HT_SELECT_TAB === 'function') {
+        window.HT_SELECT_TAB(tabId);
+      }
+      if (!silent) SFX.click();
+    }
+
+    /* ==========================================================================
+       7. SPOTLIGHT COMMAND PALETTE (⌘K) & BOOTSTRAP
+       ========================================================================== */
+    function openCmd() {
+      document.getElementById('cmd-backdrop').classList.add('open');
+      const inp = document.getElementById('cmd-input'); inp.value = ''; renderCmd('');
+      setTimeout(() => inp.focus(), 30);
+    }
+    function closeCmd() { document.getElementById('cmd-backdrop').classList.remove('open'); }
+    function renderCmd(q) {
+      const s = q.trim().toLowerCase();
+      const hits = SEARCH_ITEMS.filter(it => !s || it.title.toLowerCase().includes(s) || it.badge.toLowerCase().includes(s));
+      document.getElementById('cmd-list').innerHTML = hits.map(it => {
+        const action = it.type === 'planet'
+          ? `closeCmd();openPlanet('${it.id}')`
+          : `closeCmd();openPracticeTabDirect('${it.tab}')`;
+        return `
+          <button class="cmd-item" onclick="${action}">
+            <span>${it.icon} ${it.title}</span>
+            <span class="mono-num" style="font-size:11px;color:var(--gold-soft);">${it.badge}</span>
+          </button>`;
+      }).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      mountPlanets();
+      initRenderEngine();
+      renderWod();
+      updateProgressHUD();
+
+      // Auto-collapse floating WOD card on mobile so the 3D solar system breathes cleanly
+      if (window.innerWidth <= 768) {
+        document.getElementById('wod-box')?.classList.add('collapsed');
+      }
+
+      document.getElementById('sfx-toggle')?.addEventListener('click', function () {
+        SFX.on = !SFX.on;
+        this.textContent = SFX.on ? '🔊' : '🔇';
+        if (SFX.on) SFX.click();
+      });
+
+      document.getElementById('enroll-form')?.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('en-name').value.trim();
+        const phone = document.getElementById('en-phone').value.trim();
+        const course = document.getElementById('en-course').value;
+        const msg = encodeURIComponent(`Assalomu alaykum! Bepul 1-sinov darsiga yozilmoqchiman.\n👤 Ism: ${name}\n📞 Tel: ${phone}\n📚 Kurs: ${course}`);
+        SFX.ok();
+        addXP(20, 'Ariza tayyor');
+        markConquered('enroll');
+        window.open(`https://t.me/sakinatim_bol?text=${msg}`, '_blank', 'noopener');
+      });
+
+      window.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openCmd(); }
+        if (e.key === 'Escape') { closeCmd(); closeModal(); }
+        if (document.getElementById('modal-backdrop').classList.contains('open')) {
+          if (e.key === 'ArrowLeft') stepPlanet(-1);
+          if (e.key === 'ArrowRight') stepPlanet(1);
+        }
+      });
+
+      requestAnimationFrame(tick);
+
+      // Optional deep-link support (e.g. #open=reading or #open=author)
+      const hm = (location.hash || '').match(/^#open=([a-z0-9_-]+)$/i);
+      if (hm) setTimeout(() => openPlanet(hm[1]), 120);
+    });
+  </script>
+
+  <!-- Real Husanboy Teacher Data & 14-Module Interactive Engine -->
   <script src="data/maps.js"></script>
   <script src="data/dictation.js"></script>
   <script src="data/listening_reading.js"></script>
