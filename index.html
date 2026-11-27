@@ -213,14 +213,53 @@
       background: radial-gradient(ellipse 118% 96% at 50% 50%, transparent 50%, rgba(2, 4, 10, 0.65) 100%);
     }
 
-    .film-grain {
-      position: fixed;
-      inset: 0;
-      z-index: 4;
-      pointer-events: none;
-      opacity: 0.024;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    /* GetLayers AI Spring Micro-Interactions & Tactile Depression */
+    .hud-btn, .dock-btn, .f-pill, .btn, .opt-btn, .tab-btn, .cmd-item, .c-card {
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     }
+    .hud-btn:active, .dock-btn:active, .f-pill:active, .btn:active, .opt-btn:active, .tab-btn:active, .planet-node:active {
+      transform: scale(0.96);
+    }
+
+    /* GetLayers Spatial Bento Catalog inside ⌘K / 📱 Katalog */
+    .cmd-sec-title {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--gold-soft);
+      padding: 10px 8px 6px;
+      text-transform: uppercase;
+    }
+    .cmd-bento {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+      padding: 0 4px 8px;
+    }
+    .cmd-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      color: #f8fafc;
+      font: 600 12.5px/1.25 var(--font-body);
+      cursor: pointer;
+      text-align: left;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.18s, border-color 0.18s;
+    }
+    .cmd-card:hover {
+      background: rgba(255, 255, 255, 0.095);
+      border-color: rgba(251, 191, 36, 0.45);
+      transform: translateY(-2px);
+    }
+    .cmd-card:active { transform: scale(0.97); }
+    @media (max-width: 540px) { .cmd-bento { grid-template-columns: 1fr; } }
 
     /* Typography & Utility Tokens */
     .grad-title {
@@ -1369,12 +1408,21 @@
     }
 
     /* Responsive Adjustments */
-    @media (max-width: 1040px) {
+    @media (max-width: 1520px) {
+      .brand-tag, .xp-bar-track { display: none; }
+      .hud-top { padding: 12px 14px; gap: 8px; }
+    }
+    @media (max-width: 1120px) {
       .filter-pills, .telemetry-hud { display: none; }
       .grid-2, .grid-3, .map-layout, .author-grid { grid-template-columns: 1fr !important; }
       .author-img { margin: 0 auto; }
     }
 
+    @media (max-width: 860px), (hover: none) and (pointer: coarse) {
+      :root { --blur-spatial: blur(10px); }
+      .cosmos-grid-overlay { display: none; }
+      .spotlight-card::before { display: none; }
+    }
     @media (max-width: 768px) {
       .hud-top { padding: 8px 10px; flex-wrap: nowrap; gap: 4px; }
       .hud-group { gap: 4px; flex-wrap: nowrap; min-width: 0; }
@@ -1405,7 +1453,6 @@
   <div class="cosmos-grid-overlay" aria-hidden="true"></div>
   <div class="cosmos-aurora" aria-hidden="true"></div>
   <div class="cosmos-vignette" aria-hidden="true"></div>
-  <div class="film-grain" aria-hidden="true"></div>
   <div class="warp-flash" id="warp-flash" aria-hidden="true"></div>
 
   <!-- ================= TOP SAFE-ZONE HUD ================= -->
@@ -1417,20 +1464,20 @@
         <span class="brand-tag">ULTRA MAX</span>
       </a>
       <div class="filter-pills" id="filter-pills" role="tablist" aria-label="Sayyoralar filtri">
-        <button class="f-pill active" data-filter="all" onclick="setFilter('all')">🌌 Barchasi (18)</button>
-        <button class="f-pill" data-filter="flagship" onclick="setFilter('flagship')">🏆 Dasturlar (6)</button>
+        <button class="f-pill active" data-filter="all" onclick="setFilter('all')">🌌 Barchasi (19)</button>
+        <button class="f-pill" data-filter="flagship" onclick="setFilter('flagship')">🏆 Dasturlar (7)</button>
         <button class="f-pill" data-filter="practice" onclick="setFilter('practice')">🎯 Mashqlar (14)</button>
         <button class="f-pill" data-filter="academy" onclick="setFilter('academy')">👨‍🏫 Akademiya</button>
       </div>
     </div>
 
     <div class="hud-group">
-      <button class="hud-btn" type="button" onclick="openCmd()" title="Tezkor qidiruv (Ctrl+K)">🔍 <span class="lbl">Qidiruv</span> <span class="kbd">⌘K</span></button>
+      <button class="hud-btn" type="button" onclick="openCmd()" title="Barcha bo‘limlar katalogi va qidiruv (Ctrl+K)">📱 <span class="lbl">Katalog</span> <span class="kbd">⌘K</span></button>
       <div class="xp-capsule" title="Kunlik streak, XP darajangiz va zabt etilgan sayyoralar">
         <span class="streak-pill" id="streak-hud">🔥 1 kun</span>
         <span id="xp-hud">⚡ 0 XP • 🌱 Yangi</span>
         <div class="xp-bar-track"><div class="xp-bar-fill" id="xp-bar-fill"></div></div>
-        <span class="conquered-pill" id="conquered-hud">🪐 0/18</span>
+        <span class="conquered-pill" id="conquered-hud">🪐 0/19</span>
       </div>
       <button class="hud-btn" id="theme-btn" type="button" onclick="cycleTheme()" title="Koinot mavzusini almashtirish">🌅</button>
       <button class="hud-btn" id="music-btn" type="button" onclick="toggleAmbient()" title="Kosmik fon musiqasi">🎵</button>
@@ -1488,6 +1535,7 @@
     <button class="dock-btn" onclick="adjustZoom(-0.14)" title="Uzoqlashtirish">➖</button>
     <button class="dock-btn" onclick="adjustZoom(0.14)" title="Yaqinlashtirish">➕</button>
     <button class="dock-btn" onclick="resetCamera()" title="Kamerani tiklash">🎯 Markaz</button>
+    <button class="dock-btn" onclick="openCmd()" title="Barcha darslik va mashqlar ro‘yxati">📱 Katalog</button>
     <button class="dock-btn" onclick="toggleWod()" title="Bugungi so‘z">✨ So‘z</button>
     <span class="dock-sep"></span>
     <button class="dock-btn cta shimmer-cta" onclick="openPlanet('enroll')">🎁 Bepul 1-Dars</button>
@@ -1560,7 +1608,7 @@
             </div>
           </div>
           <div id="flagship-focus" class="c-card spotlight-card" style="margin-bottom:16px;border-color:rgba(251,191,36,0.34);"></div>
-          <div class="mono-num" style="font-size:11.5px;font-weight:700;color:var(--gold-soft);letter-spacing:0.06em;margin-bottom:12px;">🏆 BARCHA 6 TA FLAGSHIP OCHIQ DASTURLAR (100% BEPUL • LOGINSIZ)</div>
+          <div class="mono-num" style="font-size:11.5px;font-weight:700;color:var(--gold-soft);letter-spacing:0.06em;margin-bottom:12px;">🏆 BARCHA 7 TA FLAGSHIP OCHIQ DASTURLAR (100% BEPUL • LOGINSIZ)</div>
           <div class="grid-3">
             <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
               <div>
@@ -1577,6 +1625,14 @@
                 <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">A1 dan C1 gacha 450 kunlik tizimli so‘z boyligi va talaffuz.</p>
               </div>
               <a class="btn btn-primary btn-sm shimmer-cta" href="library/vocab/kunlik-450.html">📘 Lug‘atni ochish</a>
+            </div>
+            <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;border-color:rgba(45,212,191,0.35);">
+              <div>
+                <span class="prog-meta">🧪 450 KUNLIK TEST • 80%</span>
+                <h3 style="font-family:var(--font-display);font-size:16px;margin-bottom:6px;">450 Kunlik Lug‘at &amp; Grammatika Testi</h3>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;">A1 dan C1 gacha 450 kunlik imtihonlar tizimi (80% o‘tish bali bilan).</p>
+              </div>
+              <a class="btn btn-gold btn-sm shimmer-cta" href="library/vocab/test-450.html">🧪 Testni boshlash</a>
             </div>
             <div class="c-card spotlight-card tilt-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
               <div>
@@ -1712,6 +1768,7 @@
     <h1>Husanboy Teacher (Qosimov Husanboy) — Bepul IELTS 8+, Multilevel va CEFR Akademiyasi</h1>
     <a href="library/ielts/ielts-8-plus.html">IELTS 8+ Dasturi — Reading, Writing, Listening, Speaking</a>
     <a href="library/vocab/kunlik-450.html">450 Kunlik Ingliz Tili Lug‘at Darslari (A1–C1)</a>
+    <a href="library/vocab/test-450.html">450 Kunlik Lug‘at va Grammatika Test Tizimi (A1–C1)</a>
     <a href="library/speaking/multilevel-40.html">Multilevel Speaking 40 ta Savol va Javoblar</a>
     <a href="library/speaking/suhbat-500.html">500 ta Inglizcha Suhbat Savol va Javoblar</a>
     <a href="library/vocab/iboralar-30.html">Kundalik Ingliz Iboralari (3D Kartochkalar)</a>
@@ -1753,7 +1810,9 @@
     /* ==========================================================================
        0. GETLAYERS SPOTLIGHT GLOW & 3D TILT ENGINE
        ========================================================================== */
+    const IS_TOUCH_DEVICE = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     document.addEventListener('pointermove', e => {
+      if (IS_TOUCH_DEVICE) return;
       const card = e.target.closest('.spotlight-card');
       if (card) {
         const r = card.getBoundingClientRect();
@@ -1784,6 +1843,7 @@
       // INNER RING — 6 FLAGSHIP PROGRAMS
       { id: 'ielts8',    cat: 'flagship', name: 'IELTS 8+ Dasturi',     badge: 'BAND 8+', icon: '🏆', color: '#fbbf24', dark: '#92400e', glow: 'rgba(251,191,36,0.55)', size: 58, orbit: 1, speed: 0.24, xp: 25, panel: 'flagship', href: 'library/ielts/ielts-8-plus.html', desc: 'Reading, Writing, Listening va Speaking bo‘yicha to‘liq Band 8+ strategiya va topshiriqlar.' },
       { id: 'vocab450',  cat: 'flagship', name: '450 Kunlik Lug‘at',    badge: 'A1–C1',   icon: '📘', color: '#34d399', dark: '#065f46', glow: 'rgba(16,185,129,0.55)', size: 56, orbit: 1, speed: 0.24, xp: 25, panel: 'flagship', href: 'library/vocab/kunlik-450.html', desc: 'A1 dan C1 gacha 450 kunlik tizimli so‘z boyligi, kontekstli misollar va talaffuz.' },
+      { id: 'test450',   cat: 'flagship', name: '450 Kunlik Test',      badge: '80% EXAM', icon: '🧪', color: '#2dd4bf', dark: '#115e59', glow: 'rgba(45,212,191,0.55)', size: 54, orbit: 1, speed: 0.24, xp: 25, panel: 'flagship', href: 'library/vocab/test-450.html', desc: 'A1 dan C1 gacha 450 kunlik lug‘at va grammatika imtihonlari tizimi (80% o‘tish bali bilan).' },
       { id: 'speak40',   cat: 'flagship', name: 'Speaking: 40 Savol',   badge: 'TAYMER',  icon: '🎤', color: '#38bdf8', dark: '#075985', glow: 'rgba(56,189,248,0.5)',  size: 52, orbit: 1, speed: 0.24, xp: 20, panel: 'flagship', href: 'library/speaking/multilevel-40.html', desc: 'Part 1.1, Part 1.2 (2 rasm), Part 2 va Part 3 tayyor namunalar va real imtihon taymeri.' },
       { id: 'suhbat500', cat: 'flagship', name: '500 ta Suhbat',        badge: 'AUDIO',   icon: '💬', color: '#a78bfa', dark: '#4c1d95', glow: 'rgba(167,139,250,0.5)', size: 50, orbit: 1, speed: 0.24, xp: 20, panel: 'flagship', href: 'library/speaking/suhbat-500.html', desc: '20 ta kundalik mavzu — audio talaffuz va javobni yashirib mashq qilish rejimi.' },
       { id: 'iboralar',  cat: 'flagship', name: '30+ Iboralar',         badge: '3D CARD', icon: '🗣️', color: '#fb7185', dark: '#881337', glow: 'rgba(251,113,133,0.5)', size: 48, orbit: 1, speed: 0.24, xp: 20, panel: 'flagship', href: 'library/vocab/iboralar-30.html', desc: 'Native speaker’lar har kuni ishlatadigan tabiiy iboralar, 3D kartochkalar va test.' },
@@ -2340,6 +2400,7 @@
     const LOOK = {
       ielts8:     { type: 'saturn',    atm: [235, 214, 170, 0.35], ring: 'saturn', tilt: -0.42, spin: 0.030 },
       vocab450:   { type: 'earth',     atm: [110, 170, 255, 0.95], tilt: 0.41, spin: 0.020, clouds: true },
+      test450:    { type: 'ocean',     atm: [45, 212, 191, 0.85],  ring: 'thin', tilt: 0.28, spin: 0.022, clouds: true },
       speak40:    { type: 'neptune',   atm: [110, 160, 255, 0.85], tilt: 0.49, spin: 0.026 },
       suhbat500:  { type: 'uranus',    atm: [170, 230, 240, 0.75], ring: 'thin', tilt: 1.1, spin: 0.022 },
       iboralar:   { type: 'mars',      atm: [230, 160, 120, 0.35], tilt: 0.44, spin: 0.021 },
@@ -2358,8 +2419,14 @@
       cabinet:    { type: 'icegiant',  atm: [120, 200, 240, 0.75], ring: 'thin', tilt: -0.5, spin: 0.024 }
     };
 
-    /* Optimized 192x96 textures: 4x faster generation with identical spherical sharpness */
-    const TEX_W = 192, TEX_H = 96;
+    /* ==========================================================================
+       120 FPS MOBILE-FIRST GPU SPRITE ENGINE (ZERO PER-FRAME SUN putImageData!)
+       ========================================================================== */
+    const IS_MOBILE = (window.innerWidth <= 860) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    const TEX_W = IS_MOBILE ? 128 : 192;
+    const TEX_H = IS_MOBILE ? 64 : 96;
+    const PDPR = IS_MOBILE ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+
     function buildPlanetTexture(look, seed) {
       const n = TEX_W * TEX_H;
       const col = new Uint8ClampedArray(n * 3);
@@ -2392,7 +2459,7 @@
       thin:   { ri: 1.55, ro: 1.95, col: [200, 220, 235], alpha: 0.4,  gap: 1.75 }
     };
     function buildRing(style, seed) {
-      const S = 256, c = document.createElement('canvas');
+      const S = IS_MOBILE ? 160 : 256, c = document.createElement('canvas');
       c.width = c.height = S;
       const g = c.getContext('2d'), img = g.createImageData(S, S), d = img.data;
       const R = S / 2, scale = style.ro;
@@ -2445,12 +2512,11 @@
       return { N, count: c, pix, u, row, nx: nxA, ny: nyA, nz: nzA, a: aA };
     }
 
-    const PDPR = Math.min(window.devicePixelRatio || 1, 2);
     function setupPlanetRender(item) {
       const look = LOOK[item.p.id] || { type: 'mars', atm: [200, 200, 200, 0.3], tilt: 0, spin: 0.02 };
       item.look = look;
       const size = item.p.size;
-      const N = Math.round(size * PDPR);
+      const N = Math.max(28, Math.round(size * PDPR));
       const box = look.ring ? size * 2.5 : size * 1.5;
       item.boxCss = box;
       item.cv.style.width = box + 'px';
@@ -2466,6 +2532,7 @@
       item.phase = Math.random();
       item.tex = buildPlanetTexture(look, item.idx * 13.37 + 3.1);
       if (look.ring) item.ringImg = buildRing(RING_STYLE[look.ring], item.idx * 3.7);
+      item.lastLx = 99; item.lastLy = 99; item.lastLz = 99; item.lastSpinT = -99;
     }
 
     function shadePlanet(item, Lx, Ly, Lz) {
@@ -2493,11 +2560,9 @@
         const dif = nx * Lx + ny * Ly + nz * Lz;
         let lit = dif > -0.24 ? (dif + 0.24) / 1.24 : 0;
         lit = Math.sqrt(lit) * 0.42 + lit * 0.58;
-        // Galactic starlight fill so night sides stay lush & readable (never pitch black!)
         const starFill = clamp01(nx * -0.35 + ny * -0.45 + nz * 0.78) * 0.28;
         const totalLit = lit * (1 - AMB) + AMB + starFill + 0.08 * nz * nz;
         let R = r * totalLit, G = gg * totalLit, B = b * totalLit;
-        // Subtle twilight terminator scatter
         const tw = Math.exp(-((dif + 0.06) * 4.5) * ((dif + 0.06) * 4.5)) * 0.14 * as;
         R += ar * tw; G += ag * tw * 0.85; B += ab * tw * 0.7;
         if (spec && dif > -0.05) {
@@ -2514,7 +2579,6 @@
             R += e; G += e * (emis ? 0.45 : 0.74); B += e * (emis ? 0.14 : 0.42);
           }
         }
-        // Real-life 360° Fresnel Atmosphere + Backlit Eclipse Crescent Halo
         const rim = 1 - nz, rim2 = rim * rim, rim3 = rim2 * rim;
         const sunRim = as * rim3 * clamp01(dif + 0.48) * 1.35 + as * rim * 0.14 * clamp01(dif + 0.25);
         const eclRim = as * rim2 * eclipseBoost * 0.82;
@@ -2542,7 +2606,12 @@
     }
 
     function renderPlanet(item, Lx, Ly, Lz) {
-      if (!item.tex) return;
+      if (!item.tex) return false;
+      const dLight = Math.abs(Lx - item.lastLx) + Math.abs(Ly - item.lastLy) + Math.abs(Lz - item.lastLz);
+      const dSpin = Math.abs(state.t - item.lastSpinT);
+      if (dLight < (IS_MOBILE ? 0.085 : 0.03) && dSpin < (IS_MOBILE ? 0.55 : 0.16)) return false;
+      item.lastLx = Lx; item.lastLy = Ly; item.lastLz = Lz; item.lastSpinT = state.t;
+
       shadePlanet(item, Lx, Ly, Lz);
       const c = item.cctx, Wc = item.cv.width, cx = Wc / 2, cy = Wc / 2;
       const rad = item.p.size * PDPR / 2;
@@ -2561,6 +2630,7 @@
       }
       c.drawImage(item.sph, cx - rad, cy - rad, rad * 2, rad * 2);
       if (item.look.ring) drawRingHalf(c, item, true, cx, cy, ringBright);
+      return true;
     }
 
     const SUN_THEMES = {
@@ -2571,8 +2641,9 @@
     let sunTheme = SUN_THEMES.dawn;
     const sunCv = document.getElementById('sun-cv');
     const sunCtx = sunCv.getContext('2d');
-    const SUN_TW = 256, SUN_TH = 128;
-    let sunTex = null, sunGeo = null, sunImg = null, sunLUT = null, sunCssR = 74;
+    const SUN_TW = IS_MOBILE ? 160 : 256, SUN_TH = IS_MOBILE ? 80 : 128;
+    let sunTex = null, sunGeo = null, sunLUT = null, sunCssR = 74;
+    let sunFrames = [], lastSunFrameIdx = -1, sunCoronaCv = null;
 
     function buildSunTexture() {
       const t = new Float32Array(SUN_TW * SUN_TH);
@@ -2598,45 +2669,112 @@
       for (let i = 0; i < 256; i++) { ramp(sunTheme.ramp, i / 255, o); lut[i * 3] = o[0]; lut[i * 3 + 1] = o[1]; lut[i * 3 + 2] = o[2]; }
       sunLUT = lut;
     }
+
+    /* Pre-bake Sun Corona + 64 Coronal Rays onto ONE GPU Sprite (0 per-frame gradients!) */
+    function buildSunCorona() {
+      const R = sunCssR || 74;
+      const S = Math.ceil(R * 11);
+      const c = document.createElement('canvas');
+      c.width = c.height = S;
+      const g = c.getContext('2d');
+      const cx = S / 2, cy = S / 2;
+      const [gr, gg, gb] = sunTheme.glow;
+      g.globalCompositeOperation = 'lighter';
+
+      let rg = g.createRadialGradient(cx, cy, R * 0.8, cx, cy, R * 5.2);
+      rg.addColorStop(0, `rgba(${gr},${gg},${gb},0.54)`);
+      rg.addColorStop(0.16, `rgba(${gr},${gg},${gb},0.22)`);
+      rg.addColorStop(0.42, `rgba(${gr},${gg},${gb},0.06)`);
+      rg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+      g.fillStyle = rg; g.beginPath(); g.arc(cx, cy, R * 5.2, 0, Math.PI * 2); g.fill();
+
+      const rays = 56;
+      for (let i = 0; i < rays; i++) {
+        const a = (i / rays) * Math.PI * 2;
+        const n = Noise.n3(Math.cos(a) * 2.2, Math.sin(a) * 2.2, 0.5);
+        const len = R * (1.35 + Math.max(0, n) * 2.2 + 0.25 * Math.sin(i * 7.1));
+        const wdt = 0.036 + 0.02 * Math.sin(i * 3.3);
+        const lg = g.createRadialGradient(cx, cy, R * 0.95, cx, cy, len);
+        lg.addColorStop(0, `rgba(255,${Math.min(255, gg + 40)},${Math.min(255, gb + 60)},0.2)`);
+        lg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+        g.fillStyle = lg;
+        g.beginPath();
+        g.moveTo(cx + Math.cos(a - wdt) * R * 0.95, cy + Math.sin(a - wdt) * R * 0.95);
+        g.lineTo(cx + Math.cos(a) * len, cy + Math.sin(a) * len);
+        g.lineTo(cx + Math.cos(a + wdt) * R * 0.95, cy + Math.sin(a + wdt) * R * 0.95);
+        g.closePath(); g.fill();
+      }
+
+      rg = g.createRadialGradient(cx, cy, R * 0.96, cx, cy, R * 1.36);
+      rg.addColorStop(0, `rgba(255,${Math.min(255, gg + 50)},${Math.min(255, gb + 70)},0.78)`);
+      rg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
+      g.fillStyle = rg; g.beginPath(); g.arc(cx, cy, R * 1.36, 0, Math.PI * 2); g.fill();
+      sunCoronaCv = c;
+    }
+
+    /* Pre-bake 8 GPU Solar Surface Frames ONCE (Zero putImageData in animation loop!) */
+    function bakeSunFrames() {
+      if (!sunTex || !sunGeo || !sunLUT) return;
+      const N = sunCv.width;
+      const countFrames = IS_MOBILE ? 6 : 10;
+      sunFrames = [];
+      const g = sunGeo, lut = sunLUT;
+      for (let f = 0; f < countFrames; f++) {
+        const fc = document.createElement('canvas');
+        fc.width = fc.height = N;
+        const fctx = fc.getContext('2d');
+        const img = fctx.createImageData(N, N), d = img.data;
+        const phase = f / countFrames;
+        const o1 = phase * SUN_TW, o2 = ((phase + 0.37) % 1) * SUN_TW;
+        const w = 0.5 + 0.5 * Math.sin(phase * Math.PI * 2);
+        for (let k = 0; k < g.count; k++) {
+          let u1 = (g.u[k] + o1) | 0; if (u1 >= SUN_TW) u1 -= SUN_TW;
+          let u2 = (g.u[k] + o2) | 0; if (u2 >= SUN_TW) u2 -= SUN_TW;
+          const row = g.row[k];
+          const tv = sunTex[row + u1] * (0.6 + 0.4 * w) + sunTex[row + u2] * (0.4 - 0.4 * w);
+          const mu = g.nz[k];
+          const limb = 1 - 0.56 * (1 - mu) - 0.2 * (1 - mu) * (1 - mu);
+          const I = (0.34 + 0.66 * Math.min(1.2, tv)) * limb;
+          const li = Math.max(0, Math.min(255, (I * 255) | 0)) * 3;
+          const o = g.pix[k] * 4;
+          d[o] = lut[li]; d[o + 1] = lut[li + 1]; d[o + 2] = lut[li + 2]; d[o + 3] = g.a[k];
+        }
+        fctx.putImageData(img, 0, 0);
+        sunFrames.push(fc);
+      }
+      lastSunFrameIdx = -1;
+      renderSun(0);
+    }
+
     function setupSun() {
-      const css = sunCv.parentElement.clientWidth || 148;
+      const css = sunCv.parentElement.clientWidth || (W <= 768 ? 88 : 148);
       sunCssR = css / 2;
-      const N = Math.round(css * PDPR);
+      const N = Math.max(64, Math.round(css * PDPR));
       sunCv.width = sunCv.height = N;
-      sunImg = sunCtx.createImageData(N, N);
       const g = buildGeometry(N, 0.12);
       for (let k = 0; k < g.count; k++) {
         g.u[k] = g.u[k] / TEX_W * SUN_TW;
         g.row[k] = Math.min(SUN_TH - 1, Math.floor((g.row[k] / TEX_W) / TEX_H * SUN_TH)) * SUN_TW;
       }
       sunGeo = g;
+      buildSunCorona();
+      bakeSunFrames();
     }
+
     function renderSun(time) {
-      if (!sunTex || !sunGeo) return;
-      const g = sunGeo, d = sunImg.data, lut = sunLUT;
-      const o1 = ((time * 0.012) % 1) * SUN_TW, o2 = ((time * 0.0165 + 0.37) % 1) * SUN_TW;
-      const w = 0.5 + 0.5 * Math.sin(time * 0.6);
-      for (let k = 0; k < g.count; k++) {
-        let u1 = (g.u[k] + o1) | 0; if (u1 >= SUN_TW) u1 -= SUN_TW;
-        let u2 = (g.u[k] + o2) | 0; if (u2 >= SUN_TW) u2 -= SUN_TW;
-        const row = g.row[k];
-        const tv = sunTex[row + u1] * (0.6 + 0.4 * w) + sunTex[row + u2] * (0.4 - 0.4 * w);
-        const mu = g.nz[k];
-        const limb = 1 - 0.56 * (1 - mu) - 0.2 * (1 - mu) * (1 - mu);
-        let I = (0.34 + 0.66 * Math.min(1.2, tv)) * limb;
-        const li = Math.max(0, Math.min(255, (I * 255) | 0)) * 3;
-        const o = g.pix[k] * 4;
-        d[o] = lut[li]; d[o + 1] = lut[li + 1]; d[o + 2] = lut[li + 2]; d[o + 3] = g.a[k];
-      }
-      sunCtx.putImageData(sunImg, 0, 0);
+      if (!sunFrames.length) return;
+      const idx = Math.floor((time * 2.5) % sunFrames.length);
+      if (idx === lastSunFrameIdx) return;
+      lastSunFrameIdx = idx;
+      sunCtx.clearRect(0, 0, sunCv.width, sunCv.height);
+      sunCtx.drawImage(sunFrames[idx], 0, 0);
     }
 
     let sky = null, skyW = 0, skyH = 0;
-    const twinkles = [];
     function buildSky() {
-      const q = Math.min(DPR, 1.5);
-      skyW = Math.max(320, Math.ceil(Math.max(W, H) * 2.1));
-      skyH = Math.max(240, Math.ceil(H * 1.3));
+      const q = IS_MOBILE ? 1 : Math.min(DPR, 1.35);
+      skyW = Math.max(320, Math.ceil(Math.max(W, H) * (IS_MOBILE ? 1.6 : 2.0)));
+      skyH = Math.max(240, Math.ceil(H * 1.25));
       sky = document.createElement('canvas');
       sky.width = Math.max(1, Math.ceil(skyW * q));
       sky.height = Math.max(1, Math.ceil(skyH * q));
@@ -2644,8 +2782,9 @@
       g.scale(q, q);
       g.fillStyle = '#01020a'; g.fillRect(0, 0, skyW, skyH);
 
-      const lw = Math.max(1, Math.ceil(skyW / 6));
-      const lh = Math.max(1, Math.ceil(skyH / 6));
+      const div = IS_MOBILE ? 8 : 6;
+      const lw = Math.max(1, Math.ceil(skyW / div));
+      const lh = Math.max(1, Math.ceil(skyH / div));
       const low = document.createElement('canvas'); low.width = lw; low.height = lh;
       const lg = low.getContext('2d'), img = lg.createImageData(lw, lh), d = img.data;
       const neb = sunTheme.neb;
@@ -2662,14 +2801,14 @@
           const dist = (v - band[i]) / 0.13;
           const core = Math.exp(-dist * dist);
           const bulge = Math.exp(-(((a - 4.3) / 0.7) ** 2)) * Math.exp(-dist * dist * 0.5);
-          const cloud = Noise.fbm(cx * 2, cy * 2, cz * 2, 4);
+          const cloud = Noise.fbm(cx * 2, cy * 2, cz * 2, 3);
           let dens = core * (0.55 + cloud * 1.1) + bulge * 0.7;
-          const dust = Noise.ridged(cx * 3 + 7, cy * 3, cz * 3, 3);
+          const dust = Noise.ridged(cx * 3 + 7, cy * 3, cz * 3, 2);
           dens *= 1 - smooth(0.45, 0.8, dust) * 0.85 * Math.exp(-dist * dist * 1.6);
           dens = Math.max(0, dens);
           const warm = clamp01(bulge * 1.4 + core * 0.4);
           let r = dens * (150 + warm * 90), gg = dens * (150 + warm * 55), b = dens * (190 - warm * 40);
-          const nv = Noise.fbm(cx * 1.2 + 30, cy * 1.2, cz * 1.2, 3);
+          const nv = Noise.fbm(cx * 1.2 + 30, cy * 1.2, cz * 1.2, 2);
           const nm = smooth(0.12, 0.42, nv) * 0.6;
           const which = Noise.n3(cx * 0.6 + 5, cy * 0.6, cz * 0.6);
           const nc = which > 0.12 ? neb[0] : which < -0.12 ? neb[1] : neb[2];
@@ -2681,93 +2820,48 @@
       lg.putImageData(img, 0, 0);
       g.save();
       g.globalCompositeOperation = 'lighter';
-      g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
-      try { g.filter = 'blur(4px)'; } catch (_) {}
-      g.globalAlpha = 0.92;
-      g.drawImage(low, 0, 0, skyW, skyH);
-      g.filter = 'none';
-      g.globalAlpha = 0.65;
+      g.imageSmoothingEnabled = true;
+      g.globalAlpha = 0.95;
       g.drawImage(low, 0, 0, skyW, skyH);
       g.restore();
 
-      // Distant Spiral Galaxies & Globular Star Clusters baked into Deep Space
-      const galaxies = [
-        { gx: skyW * 0.18, gy: skyH * 0.24, rx: 68, ry: 22, rot: -0.45, col: [255, 224, 175] },
-        { gx: skyW * 0.68, gy: skyH * 0.22, rx: 52, ry: 17, rot: 0.55,  col: [185, 210, 255] },
-        { gx: skyW * 0.44, gy: skyH * 0.78, rx: 60, ry: 19, rot: -0.25, col: [220, 190, 255] }
-      ];
-      galaxies.forEach(gal => {
-        g.save();
-        g.globalCompositeOperation = 'lighter';
-        g.translate(gal.gx, gal.gy);
-        g.rotate(gal.rot);
-        g.scale(1, gal.ry / gal.rx);
-        const gg = g.createRadialGradient(0, 0, 0, 0, 0, gal.rx);
-        gg.addColorStop(0, `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},0.42)`);
-        gg.addColorStop(0.28, `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},0.16)`);
-        gg.addColorStop(0.65, `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},0.04)`);
-        gg.addColorStop(1, 'rgba(0,0,0,0)');
-        g.fillStyle = gg;
-        g.beginPath(); g.arc(0, 0, gal.rx, 0, Math.PI * 2); g.fill();
-        // Spiral arms dust specks
-        for (let arm = 0; arm < 2; arm++) {
-          for (let step = 4; step < 36; step++) {
-            const ang = arm * Math.PI + step * 0.26;
-            const rad = (step / 36) * gal.rx * 0.92;
-            const sx = Math.cos(ang) * rad + (Math.random() - 0.5) * 6;
-            const sy = Math.sin(ang) * rad + (Math.random() - 0.5) * 6;
-            g.fillStyle = `rgba(${gal.col[0]},${gal.col[1]},${gal.col[2]},${(0.26 * (1 - step / 40)).toFixed(2)})`;
-            g.fillRect(sx, sy, 1.4, 1.4);
-          }
-        }
-        g.restore();
-      });
-
-      const STAR_COLS = [[155, 176, 255], [170, 191, 255], [202, 215, 255], [248, 247, 255], [255, 244, 234], [255, 228, 196], [255, 204, 160]];
-      const count = Math.round(skyW * skyH / 460);
+      const STAR_COLS = [[155, 176, 255], [202, 215, 255], [248, 247, 255], [255, 244, 234], [255, 220, 185]];
+      const count = Math.round(skyW * skyH / (IS_MOBILE ? 780 : 480));
       const bandAt = x => { const a = (x / skyW) * Math.PI * 2; return (0.5 + Math.sin(a + 0.9) * 0.24 + Math.sin(a * 2 + 2.1) * 0.05) * skyH; };
-      twinkles.length = 0;
       for (let s = 0; s < count; s++) {
         const x = Math.random() * skyW;
         let y = Math.random() * skyH;
-        if (Math.random() < 0.48) y = bandAt(x) + (Math.random() + Math.random() + Math.random() - 1.5) * skyH * 0.12;
+        if (Math.random() < 0.48) y = bandAt(x) + (Math.random() + Math.random() - 1) * skyH * 0.14;
         const m = Math.pow(Math.random(), 6.5);
         const c = STAR_COLS[(Math.random() * STAR_COLS.length) | 0];
-        const a = 0.28 + m * 0.72 + Math.random() * 0.2;
-        const r = 0.35 + m * 1.6;
+        const a = 0.28 + m * 0.72;
+        const r = 0.35 + m * 1.5;
         g.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${Math.min(1, a).toFixed(2)})`;
-        if (r < 0.7) g.fillRect(x, y, r * 1.6, r * 1.6);
-        else { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); }
-        if (m > 0.52) {
-          const gr = g.createRadialGradient(x, y, 0, x, y, r * 7.5);
-          gr.addColorStop(0, `rgba(${c[0]},${c[1]},${c[2]},0.38)`);
-          gr.addColorStop(1, `rgba(${c[0]},${c[1]},${c[2]},0)`);
-          g.fillStyle = gr; g.beginPath(); g.arc(x, y, r * 7.5, 0, Math.PI * 2); g.fill();
-        }
-        if (m > 0.22 && twinkles.length < 180) twinkles.push({ x, y, r: r * 0.95, c, tw: Math.random() * 6.28, sp: 1 + Math.random() * 2.5 });
+        g.fillRect(x, y, r * 1.5, r * 1.5);
       }
     }
 
-    /* Foreground Parallax Deep-Space Dust Motes & Mid-Field Star Layer */
-    const midStars = Array.from({ length: 140 }, () => ({
+    const midStars = Array.from({ length: IS_MOBILE ? 36 : 110 }, () => ({
       x: Math.random(),
       y: Math.random(),
       z: 0.25 + Math.random() * 0.75,
-      r: 0.5 + Math.random() * 1.3,
-      a: 0.18 + Math.random() * 0.45,
+      r: 0.5 + Math.random() * 1.2,
+      a: 0.2 + Math.random() * 0.42,
       hue: Math.random() > 0.5 ? '210, 225, 255' : '255, 232, 195'
     }));
 
-    const spaceMotes = Array.from({ length: 85 }, () => ({
-      x: Math.random() * 1600,
-      y: Math.random() * 1000,
-      vx: (Math.random() - 0.5) * 14,
-      vy: -4 - Math.random() * 10,
-      r: 0.7 + Math.random() * 1.6,
-      a: 0.08 + Math.random() * 0.22
+    const spaceMotes = Array.from({ length: IS_MOBILE ? 16 : 60 }, () => ({
+      x: Math.random() * 1400,
+      y: Math.random() * 900,
+      vx: (Math.random() - 0.5) * 12,
+      vy: -4 - Math.random() * 9,
+      r: 0.8 + Math.random() * 1.4,
+      a: 0.1 + Math.random() * 0.2
     }));
     let pointerPos = { x: -999, y: -999 };
-    window.addEventListener('pointermove', e => { pointerPos.x = e.clientX; pointerPos.y = e.clientY; }, { passive: true });
+    if (!IS_MOBILE) {
+      window.addEventListener('pointermove', e => { pointerPos.x = e.clientX; pointerPos.y = e.clientY; }, { passive: true });
+    }
 
     function skyOffset() {
       let ox = -((state.rotY / (Math.PI * 2)) * skyW * 0.5) % skyW;
@@ -2778,7 +2872,7 @@
     }
 
     function resizeCanvas() {
-      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      DPR = IS_MOBILE ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
       W = window.innerWidth || document.documentElement.clientWidth || 1024;
       H = window.innerHeight || document.documentElement.clientHeight || 768;
       cv.width = Math.max(1, Math.round(W * DPR));
@@ -2788,13 +2882,13 @@
       setupSun();
     }
 
-    const asteroids = Array.from({ length: 750 }, () => {
+    const asteroids = Array.from({ length: IS_MOBILE ? 110 : 480 }, () => {
       const t = Math.random();
       return {
         ang: Math.random() * Math.PI * 2,
-        rad: 0.57 + (Math.random() + Math.random()) * 0.05,
-        yOff: (Math.random() - 0.5) * 0.035 * (1 + Math.random()),
-        size: 0.35 + Math.pow(Math.random(), 4) * 1.6,
+        rad: 0.62 + (Math.random() + Math.random()) * 0.045,
+        yOff: (Math.random() - 0.5) * 0.035,
+        size: 0.45 + Math.pow(Math.random(), 4) * 1.5,
         spd: 0.05 + Math.random() * 0.03,
         col: t < 0.6 ? [150, 140, 128] : t < 0.85 ? [120, 108, 96] : [176, 168, 160]
       };
@@ -2815,24 +2909,19 @@
     }
 
     function drawOrbitRing(radius, tiltZ, highlight) {
-      const segs = 110;
-      let prev = null;
+      const segs = IS_MOBILE ? 56 : 96;
       ctx.lineWidth = highlight ? 1.5 : 0.85;
+      ctx.strokeStyle = highlight ? 'rgba(253, 230, 138, 0.34)' : 'rgba(190, 205, 235, 0.085)';
+      ctx.beginPath();
       for (let i = 0; i <= segs; i++) {
         const a = (i / segs) * Math.PI * 2;
         const p = project3D(Math.cos(a) * radius, Math.sin(a) * tiltZ, Math.sin(a) * radius);
-        if (prev) {
-          const zf = clamp01((p.z / radius) * 0.5 + 0.5);
-          ctx.strokeStyle = highlight
-            ? `rgba(253, 230, 138, ${(0.18 + zf * 0.34).toFixed(3)})`
-            : `rgba(190, 205, 235, ${(0.04 + zf * 0.11).toFixed(3)})`;
-          ctx.beginPath(); ctx.moveTo(prev.sx, prev.sy); ctx.lineTo(p.sx, p.sy); ctx.stroke();
-        }
-        prev = p;
+        if (i === 0) ctx.moveTo(p.sx, p.sy);
+        else ctx.lineTo(p.sx, p.sy);
       }
+      ctx.stroke();
     }
 
-    /* Constellation Laser Network Connecting Same-Category Planets */
     function drawConstellations(time) {
       if (!state.constellation) return;
       const groups = {
@@ -2844,136 +2933,76 @@
         if (state.filter !== 'all' && it.p.cat !== state.filter) continue;
         groups[it.p.cat]?.items.push(it);
       }
-
       ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
+      ctx.lineWidth = 1;
       Object.values(groups).forEach(g => {
         const arr = g.items;
         if (arr.length < 2) return;
+        ctx.strokeStyle = `rgba(${g.col}, 0.11)`;
+        ctx.beginPath();
         for (let i = 0; i < arr.length; i++) {
-          const a = arr[i];
-          const b = arr[(i + 1) % arr.length];
-          const grad = ctx.createLinearGradient(a.sx, a.sy, b.sx, b.sy);
-          grad.addColorStop(0, `rgba(${g.col}, 0.03)`);
-          grad.addColorStop(0.5, `rgba(${g.col}, 0.16)`);
-          grad.addColorStop(1, `rgba(${g.col}, 0.03)`);
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(a.sx, a.sy);
-          ctx.lineTo(b.sx, b.sy);
-          ctx.stroke();
-
-          // Traveling light photon along the filament
-          const u = (time * 0.28 + i * 0.31) % 1;
-          const px = a.sx + (b.sx - a.sx) * u;
-          const py = a.sy + (b.sy - a.sy) * u;
-          ctx.fillStyle = `rgba(${g.col}, 0.65)`;
-          ctx.beginPath();
-          ctx.arc(px, py, 1.6, 0, Math.PI * 2);
-          ctx.fill();
+          const a = arr[i], b = arr[(i + 1) % arr.length];
+          ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy);
+        }
+        ctx.stroke();
+        if (!IS_MOBILE) {
+          ctx.fillStyle = `rgba(${g.col}, 0.6)`;
+          for (let i = 0; i < arr.length; i++) {
+            const a = arr[i], b = arr[(i + 1) % arr.length];
+            const u = (time * 0.28 + i * 0.31) % 1;
+            ctx.fillRect(a.sx + (b.sx - a.sx) * u - 1.2, a.sy + (b.sy - a.sy) * u - 1.2, 2.4, 2.4);
+          }
         }
       });
       ctx.restore();
     }
 
     function drawSunLight(time) {
-      const cx = W / 2, cy = H / 2, R = sunCssR;
-      const [gr, gg, gb] = sunTheme.glow;
+      if (!sunCoronaCv) return;
+      const cx = W / 2, cy = H / 2, S = sunCoronaCv.width;
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
-      let g = ctx.createRadialGradient(cx, cy, R * 0.8, cx, cy, R * 7.2);
-      g.addColorStop(0, `rgba(${gr},${gg},${gb},0.52)`);
-      g.addColorStop(0.12, `rgba(${gr},${gg},${gb},0.22)`);
-      g.addColorStop(0.35, `rgba(${gr},${gg},${gb},0.06)`);
-      g.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R * 7.2, 0, Math.PI * 2); ctx.fill();
-
-      const rays = 64;
-      for (let i = 0; i < rays; i++) {
-        const a = (i / rays) * Math.PI * 2 + time * 0.012;
-        const n = Noise.n3(Math.cos(a) * 2.2, Math.sin(a) * 2.2, time * 0.12);
-        const len = R * (1.35 + Math.max(0, n) * 2.3 + 0.25 * Math.sin(i * 7.1));
-        const wdt = 0.036 + 0.02 * Math.sin(i * 3.3);
-        const lg = ctx.createRadialGradient(cx, cy, R * 0.95, cx, cy, len);
-        lg.addColorStop(0, `rgba(255,${Math.min(255, gg + 40)},${Math.min(255, gb + 60)},0.2)`);
-        lg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
-        ctx.fillStyle = lg;
-        ctx.beginPath();
-        ctx.moveTo(cx + Math.cos(a - wdt) * R * 0.95, cy + Math.sin(a - wdt) * R * 0.95);
-        ctx.lineTo(cx + Math.cos(a) * len, cy + Math.sin(a) * len);
-        ctx.lineTo(cx + Math.cos(a + wdt) * R * 0.95, cy + Math.sin(a + wdt) * R * 0.95);
-        ctx.closePath(); ctx.fill();
-      }
-
-      g = ctx.createRadialGradient(cx, cy, R * 0.96, cx, cy, R * 1.35);
-      g.addColorStop(0, `rgba(255,${Math.min(255, gg + 50)},${Math.min(255, gb + 70)},0.75)`);
-      g.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R * 1.35, 0, Math.PI * 2); ctx.fill();
-
-      // Zodiacal Ecliptic Dust Glow aligned with camera tilt
-      ctx.save();
       ctx.translate(cx, cy);
-      ctx.rotate(state.rotY * 0.15);
-      ctx.scale(6.8, 0.34);
-      const zg = ctx.createRadialGradient(0, 0, R * 0.6, 0, 0, R * 1.45);
-      zg.addColorStop(0, `rgba(${gr},${gg},${gb},0.16)`);
-      zg.addColorStop(0.55, `rgba(${gr},${gg},${gb},0.05)`);
-      zg.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
-      ctx.fillStyle = zg;
-      ctx.beginPath(); ctx.arc(0, 0, R * 1.45, 0, Math.PI * 2); ctx.fill();
-      ctx.restore();
-
-      // Subtle anamorphic lens streak
-      ctx.save();
-      ctx.translate(cx, cy); ctx.scale(9.5, 0.045);
-      g = ctx.createRadialGradient(0, 0, 0, 0, 0, R * 1.25);
-      g.addColorStop(0, `rgba(${gr},${gg},${gb},0.18)`);
-      g.addColorStop(1, `rgba(${gr},${gg},${gb},0)`);
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, R * 1.25, 0, Math.PI * 2); ctx.fill();
-      ctx.restore();
-
-      // Cinematic Optical Lens Flare Ghosts reacting to camera rotation
-      const flareDx = Math.sin(state.rotY) * (W * 0.26);
-      const flareDy = Math.sin(state.rotX + 0.42) * (H * 0.26);
-      [
-        { t: -0.45, rad: 18, alpha: 0.08, col: '120, 200, 255' },
-        { t: -0.95, rad: 34, alpha: 0.05, col: `${gr}, ${gg}, ${gb}` },
-        { t: 0.65,  rad: 12, alpha: 0.09, col: '52, 211, 153' },
-        { t: 1.25,  rad: 26, alpha: 0.045, col: '196, 181, 253' }
-      ].forEach(fl => {
-        const fx = cx + flareDx * fl.t;
-        const fy = cy + flareDy * fl.t;
-        const fg = ctx.createRadialGradient(fx, fy, 0, fx, fy, fl.rad);
-        fg.addColorStop(0, `rgba(${fl.col}, ${fl.alpha})`);
-        fg.addColorStop(0.7, `rgba(${fl.col}, ${(fl.alpha * 0.4).toFixed(3)})`);
-        fg.addColorStop(1, `rgba(${fl.col}, 0)`);
-        ctx.fillStyle = fg;
-        ctx.beginPath(); ctx.arc(fx, fy, fl.rad, 0, Math.PI * 2); ctx.fill();
-      });
+      ctx.rotate(time * 0.012);
+      ctx.drawImage(sunCoronaCv, -S / 2, -S / 2);
       ctx.restore();
     }
 
     function onThemeChange(id) {
       sunTheme = SUN_THEMES[id] || SUN_THEMES.dawn;
       buildSunLUT();
+      buildSunCorona();
+      bakeSunFrames();
       buildSky();
     }
 
     let lastNow = performance.now();
     let realTime = 0;
+    let shadeCursor = 0;
+    let bootIdx = 0;
     const modalBackdropEl = document.getElementById('modal-backdrop');
+    const cmdBackdropEl = document.getElementById('cmd-backdrop');
     const sunCaptionEl = document.querySelector('.sun-caption');
 
     function tick(now) {
       const dt = Math.min(0.05, (now - lastNow) / 1000);
       lastNow = now;
-      if (modalBackdropEl && modalBackdropEl.classList.contains('open')) {
+      if ((modalBackdropEl && modalBackdropEl.classList.contains('open')) ||
+          (cmdBackdropEl && cmdBackdropEl.classList.contains('open'))) {
         requestAnimationFrame(tick);
         return;
       }
-      realTime += dt;
 
+      // Staggered non-blocking planet texture boot (3 planets per frame -> instant load!)
+      if (bootIdx < planetEls.length) {
+        const end = Math.min(planetEls.length, bootIdx + 3);
+        for (; bootIdx < end; bootIdx++) {
+          setupPlanetRender(planetEls[bootIdx]);
+          renderPlanet(planetEls[bootIdx], 0.4, -0.2, 0.88);
+        }
+      }
+
+      realTime += dt;
       const speedFactor = (state.paused || state.hoveredPlanet) ? 0.08 : 1;
       state.t += dt * speedFactor;
 
@@ -2992,45 +3021,37 @@
         if (ox + skyW < W) ctx.drawImage(sky, ox + skyW, oy, skyW, skyH);
       }
 
-      // Layer 2: Mid-field 3D Parallax Star Cluster
       for (const ms of midStars) {
-        let mx = ((ms.x * W - state.rotY * 140 * ms.z) % W + W) % W;
-        let my = ((ms.y * H - (state.rotX + 0.42) * 110 * ms.z) % H + H) % H;
+        const mx = ((ms.x * W - state.rotY * 140 * ms.z) % W + W) % W;
+        const my = ((ms.y * H - (state.rotX + 0.42) * 110 * ms.z) % H + H) % H;
         ctx.fillStyle = `rgba(${ms.hue}, ${ms.a})`;
-        ctx.beginPath();
-        ctx.arc(mx, my, ms.r * ms.z, 0, Math.PI * 2);
-        ctx.fill();
+        const s = ms.r * ms.z * 1.7;
+        ctx.fillRect(mx, my, s, s);
       }
 
-      // Layer 3: Foreground Floating Cosmic Motes with Subtle Cursor Gravity
       for (const m of spaceMotes) {
         m.x = (m.x + m.vx * dt + W) % W;
         m.y = (m.y + m.vy * dt + H) % H;
-        const dx = pointerPos.x - m.x;
-        const dy = pointerPos.y - m.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist > 1 && dist < 170) {
-          m.x += (dx / dist) * dt * 22;
-          m.y += (dy / dist) * dt * 22;
+        if (!IS_MOBILE) {
+          const dx = pointerPos.x - m.x, dy = pointerPos.y - m.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > 1 && dist < 160) { m.x += (dx / dist) * dt * 20; m.y += (dy / dist) * dt * 20; }
         }
         ctx.fillStyle = `rgba(253, 230, 138, ${m.a})`;
-        ctx.beginPath();
-        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillRect(m.x, m.y, m.r * 1.6, m.r * 1.6);
       }
 
-      if (!comet.active && Math.random() < 0.003) {
-        comet = { active: true, x: Math.random() * W * 0.7, y: Math.random() * H * 0.3, vx: 9 + Math.random() * 5, vy: 3 + Math.random() * 2.5, life: 1 };
-      }
-      if (comet.active) {
-        comet.x += comet.vx; comet.y += comet.vy; comet.life -= dt * 1.4;
-        const a = Math.max(0, comet.life);
-        const gr = ctx.createLinearGradient(comet.x, comet.y, comet.x - comet.vx * 12, comet.y - comet.vy * 12);
-        gr.addColorStop(0, `rgba(235, 242, 255, ${a})`);
-        gr.addColorStop(1, 'rgba(180, 200, 255, 0)');
-        ctx.strokeStyle = gr; ctx.lineWidth = 1.3;
-        ctx.beginPath(); ctx.moveTo(comet.x, comet.y); ctx.lineTo(comet.x - comet.vx * 12, comet.y - comet.vy * 12); ctx.stroke();
-        if (comet.life <= 0) comet.active = false;
+      if (!IS_MOBILE) {
+        if (!comet.active && Math.random() < 0.003) {
+          comet = { active: true, x: Math.random() * W * 0.7, y: Math.random() * H * 0.3, vx: 9 + Math.random() * 5, vy: 3 + Math.random() * 2.5, life: 1 };
+        }
+        if (comet.active) {
+          comet.x += comet.vx; comet.y += comet.vy; comet.life -= dt * 1.4;
+          const a = Math.max(0, comet.life);
+          ctx.strokeStyle = `rgba(225, 238, 255, ${a.toFixed(2)})`; ctx.lineWidth = 1.3;
+          ctx.beginPath(); ctx.moveTo(comet.x, comet.y); ctx.lineTo(comet.x - comet.vx * 10, comet.y - comet.vy * 10); ctx.stroke();
+          if (comet.life <= 0) comet.active = false;
+        }
       }
 
       drawSunLight(realTime);
@@ -3040,20 +3061,19 @@
         drawOrbitRing(0.50, 0.05, hovOrbit === 1);
         drawOrbitRing(0.83, -0.06, hovOrbit === 2);
         drawOrbitRing(1.13, 0.08, hovOrbit === 3);
+        ctx.fillStyle = 'rgba(165, 155, 142, 0.58)';
         for (const a of asteroids) {
           a.ang += dt * a.spd * speedFactor;
           const p = project3D(Math.cos(a.ang) * a.rad, a.yOff, Math.sin(a.ang) * a.rad);
           if (Math.hypot(p.sx - W / 2, p.sy - H / 2) < sunCssR * 1.02 && p.z < 0) continue;
-          const ph = 0.25 + 0.75 * clamp01(0.5 - p.z / a.rad * 0.5);
           const s = a.size * p.scale;
-          ctx.fillStyle = `rgba(${a.col[0]},${a.col[1]},${a.col[2]},${(ph * 0.85).toFixed(2)})`;
           ctx.fillRect(p.sx - s / 2, p.sy - s / 2, s, s);
         }
       }
 
       renderSun(realTime);
 
-      const ringCounts = { 1: 6, 2: 8, 3: 4 };
+      const ringCounts = { 1: 7, 2: 8, 3: 4 };
       const ringIdx = { 1: 0, 2: 0, 3: 0 };
       let sunCaptionBlocked = false;
       for (const item of planetEls) {
@@ -3083,6 +3103,8 @@
         item.sx = proj.sx;
         item.sy = proj.sy;
         item.z = proj.z;
+        item.vx = proj.vx;
+        item.vy = proj.vy;
 
         const fit = Math.max(0.58, Math.min(1, Math.min(W, H) / 820));
         const depthScale = Math.max(0.52, Math.min(1.24, proj.scale * 0.86)) * fit;
@@ -3096,11 +3118,19 @@
         if (proj.z > 0 && Math.abs(proj.sx - W / 2) < 110 && Math.abs(proj.sy - (H / 2 + sunCssR + 28)) < 52) {
           sunCaptionBlocked = true;
         }
+      }
 
-        if (!el.classList.contains('dimmed')) {
-          let lx = -proj.vx, ly = -proj.vy, lz = -proj.z;
+      // Staggered Round-Robin Planet Shading (skip during touch drag for pure 120Hz responsiveness!)
+      if (!(IS_MOBILE && state.dragging) && bootIdx >= planetEls.length) {
+        const budget = IS_MOBILE ? 1 : 2;
+        let shaded = 0;
+        for (let tries = 0; tries < planetEls.length && shaded < budget; tries++) {
+          const item = planetEls[shadeCursor];
+          shadeCursor = (shadeCursor + 1) % planetEls.length;
+          if (item.el.classList.contains('dimmed')) continue;
+          const lx = -item.vx, ly = -item.vy, lz = -item.z;
           const ll = Math.hypot(lx, ly, lz) || 1;
-          renderPlanet(item, lx / ll, ly / ll, lz / ll);
+          if (renderPlanet(item, lx / ll, ly / ll, lz / ll)) shaded++;
         }
       }
 
@@ -3108,9 +3138,8 @@
         sunCaptionEl.style.opacity = sunCaptionBlocked ? '0.28' : '1';
       }
 
-      // 2D Screen-Space AABB Label Collision Avoidance (Zero Overlapping Pills!)
+      // 2D Screen-Space AABB Label Collision Avoidance
       const placedBoxes = [];
-      // Reserve central Sun disk so back-row labels never sit on top of the Sun
       placedBoxes.push({ x1: W / 2 - sunCssR * 0.95, y1: H / 2 - sunCssR * 0.95, x2: W / 2 + sunCssR * 0.95, y2: H / 2 + sunCssR * 0.95 });
       const ordered = planetEls.slice().sort((a, b) => {
         if (state.hoveredPlanet === a.p) return -1;
@@ -3153,12 +3182,11 @@
     }
 
     function initRenderEngine() {
+      buildSunLUT();
+      sunTex = buildSunTexture();
       resizeCanvas();
       window.addEventListener('resize', () => { clearTimeout(resizeCanvas._t); resizeCanvas._t = setTimeout(resizeCanvas, 150); });
       window.addEventListener('load', resizeCanvas);
-      buildSunLUT();
-      sunTex = buildSunTexture();
-      planetEls.forEach(setupPlanetRender);
     }
 
     /* ==========================================================================
@@ -3279,13 +3307,33 @@
     function openCmd() {
       document.getElementById('cmd-backdrop').classList.add('open');
       const inp = document.getElementById('cmd-input'); inp.value = ''; renderCmd('');
-      setTimeout(() => inp.focus(), 30);
+      if (!IS_MOBILE) setTimeout(() => inp.focus(), 30);
     }
     function closeCmd() { document.getElementById('cmd-backdrop').classList.remove('open'); }
     function renderCmd(q) {
       const s = q.trim().toLowerCase();
-      const hits = SEARCH_ITEMS.filter(it => !s || it.title.toLowerCase().includes(s) || it.badge.toLowerCase().includes(s));
-      document.getElementById('cmd-list').innerHTML = hits.map(it => {
+      const listEl = document.getElementById('cmd-list');
+      if (!s) {
+        const mkGrid = (items) => `<div class="cmd-bento">${items.map(it => {
+          const action = it.type === 'planet'
+            ? `closeCmd();openPlanet('${it.id}')`
+            : `closeCmd();openPracticeTabDirect('${it.tab}')`;
+          return `<button class="cmd-card" onclick="${action}">
+            <span style="display:flex;align-items:center;gap:7px;"><span>${it.icon}</span><span>${it.title}</span></span>
+            <span class="mono-num" style="font-size:10px;color:var(--gold-soft);white-space:nowrap;">${it.badge}</span>
+          </button>`;
+        }).join('')}</div>`;
+        const flagships = PLANETS.filter(p => p.cat === 'flagship').map(p => ({ type: 'planet', id: p.id, icon: p.icon, title: p.name, badge: p.badge }));
+        const practices = SEARCH_ITEMS.filter(it => it.type === 'tab' || PLANETS.find(p => p.id === it.id && p.cat === 'practice'));
+        const academy = PLANETS.filter(p => p.cat === 'academy').map(p => ({ type: 'planet', id: p.id, icon: p.icon, title: p.name, badge: p.badge }));
+        listEl.innerHTML =
+          `<div class="cmd-sec-title">🏆 7 ta Flagship Ochiq Dastur</div>` + mkGrid(flagships) +
+          `<div class="cmd-sec-title">🎯 14 ta Interaktiv Laboratoriya</div>` + mkGrid(practices) +
+          `<div class="cmd-sec-title">👨‍🏫 Akademiya &amp; Shaxsiy Kabinet</div>` + mkGrid(academy);
+        return;
+      }
+      const hits = SEARCH_ITEMS.filter(it => it.title.toLowerCase().includes(s) || it.badge.toLowerCase().includes(s));
+      listEl.innerHTML = hits.map(it => {
         const action = it.type === 'planet'
           ? `closeCmd();openPlanet('${it.id}')`
           : `closeCmd();openPracticeTabDirect('${it.tab}')`;

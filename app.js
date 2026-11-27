@@ -940,7 +940,10 @@
         <h3 style="font-size:22px;margin:10px 0 6px;">🎮 60-soniyalik Word Sprint</h3>
         <p style="font-size:14px;color:var(--muted);margin-bottom:14px;">60 soniya ichida nechta inglizcha so‘z va iboraning tarjimasini to‘g‘ri topa olasiz? Shaxsiy rekordingiz avtomatik saqlanadi!</p>
         <div class="fb-box ok" style="margin-bottom:16px;">🏆 <b>Sizning shaxsiy rekordingiz:</b> <b style="color:#fbbf24;font-size:18px;">${best} ball</b></div>
-        <button class="btn btn-primary" id="spg-start">🚀 O‘yinni boshlash (60s)</button>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <button class="btn btn-primary" id="spg-start">🚀 O‘yinni boshlash (60s)</button>
+          <a class="btn btn-gold" href="library/vocab/test-450.html" target="_blank" rel="noopener">🧪 450 Kunlik Test Tizimi (80%)</a>
+        </div>
       `;
       stage.querySelector('#spg-start').onclick = () => {
         spgActive = true; spgDone = false; spgSec = 60; spgScore = 0; spgTotal = 0; spgFlash = '';
@@ -1163,7 +1166,8 @@
         <button class="btn btn-primary btn-sm" id="fc-next">Keyingi →</button>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--border);">
-        <a class="btn btn-gold btn-sm" href="library/vocab/iboralar-30.html" target="_blank" rel="noopener">🗣️ Kundalik Iboralar (30+ & Test)</a>
+        <a class="btn btn-gold btn-sm" href="library/vocab/test-450.html" target="_blank" rel="noopener">🧪 450 Kunlik Test Tizimi (80%)</a>
+        <a class="btn btn-ghost btn-sm" href="library/vocab/iboralar-30.html" target="_blank" rel="noopener">🗣️ Kundalik Iboralar (30+ & Test)</a>
         <a class="btn btn-ghost btn-sm" href="library/vocab/kunlik-450.html" target="_blank" rel="noopener">📘 450 Kunlik Lug‘at Darslari</a>
       </div>
     `;
