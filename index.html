@@ -1398,14 +1398,18 @@
     }
 
     @media (max-width: 640px) {
-      .container, .nav-inner { padding: 0 16px; }
-      .site-header { height: 56px; }
-      .brand { font-size: 14px; gap: 8px; }
-      .brand img { width: 26px; height: 26px; }
-      .nav-actions { gap: 5px; }
-      .nav-actions .btn-icon { width: 34px; height: 34px; }
-      .nav-cab-btn { height: 34px; padding: 0 10px; font-size: 12.5px; }
-      .nav-cab-btn .cab-long { display: none; }
+      .container { padding: 0 16px; }
+      .nav-inner { padding: 0 12px; gap: 6px; }
+      .site-header { height: 54px; }
+      .brand { font-size: 13.5px; gap: 6px; min-width: 0; }
+      .brand span { overflow: hidden; text-overflow: ellipsis; }
+      .brand img { width: 24px; height: 24px; }
+      .nav-actions { gap: 4px; flex-shrink: 0; }
+      .nav-actions > .btn-sm,
+      .nav-actions > .btn-icon { width: 32px; height: 32px; padding: 0; }
+      .nav-cab-btn { height: 32px; padding: 0 9px; font-size: 12px; gap: 0; }
+      .nav-cab-btn .cab-long,
+      .nav-cab-btn svg.ico { display: none; }
 
       .hero { padding: 28px 0 32px; }
       .hero-h1 { font-size: 31px; margin: 14px 0 12px; }
@@ -1724,7 +1728,7 @@
             </div>
 
             <div class="phone-video-frame">
-              <video controls playsinline preload="metadata" poster="media/taqdimot-poster.jpg">
+              <video controls playsinline preload="none" poster="media/taqdimot-poster.jpg">
                 <source src="media/taqdimot.mp4" type="video/mp4" />
               </video>
             </div>
