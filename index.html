@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/" />
   <link rel="alternate" hreflang="uz" href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/" />
   <link rel="alternate" hreflang="x-default" href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/" />
-  <meta name="theme-color" content="#ffffff" id="meta-theme-color" />
+  <meta name="theme-color" content="#fafafa" id="meta-theme-color" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Husanboy Teacher" />
 
@@ -183,7 +183,7 @@
   <link rel="apple-touch-icon" href="./app-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 
   <script>
     (function () {
@@ -198,599 +198,558 @@
 
   <style>
     /* ==========================================================================
-       GETLAYERS "BASELINE × LUMORA" EDITORIAL & SPATIAL BENTO DESIGN SYSTEM
-       100% GPU-Composited • Zero Canvas Loops • 120 FPS Mobile & Desktop
+       SWISS EDITORIAL & ARCHITECTURAL PRODUCT DESIGN SYSTEM
+       Precision 8pt Grid • Tactile Controls • Zero Emojis • Zero Oscillator SFX
        ========================================================================== */
     :root {
-      --font-sans: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-      /* Light Mode (Default — Apple / Harvard / Lumora Pearl) */
-      --bg: #ffffff;
-      --surface: #f4f5f7;
-      --surface-2: #e9ecf1;
-      --hero-grad: linear-gradient(160deg, #f3f4f7 0%, #e4e8f0 100%);
-      --card: #ffffff;
-      --glass: rgba(255, 255, 255, 0.76);
-      --glass-border: rgba(226, 230, 237, 0.9);
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --subtle-bg: #f4f4f5;
+      --subtle-hover: #e4e4e7;
+      --glass: rgba(250, 250, 250, 0.88);
 
-      --fg: #0f172a;
-      --ink: #0a0d14;
-      --navy: #082459;
-      --navy-deep: #061a40;
-      --muted: #64748b;
-      --subtle: #94a3b8;
-      --line: #e4e7ec;
-      --watermark: rgba(15, 23, 42, 0.042);
+      --ink: #09090b;
+      --fg: #27272a;
+      --muted: #52525b;
+      --faint: #71717a;
 
-      --accent: #b15f2c;
-      --accent-soft: rgba(177, 95, 44, 0.11);
-      --blue: #1d4ed8;
-      --emerald: #059669;
-      --emerald-hi: #34d399;
-      --gold: #fbbf24;
-      --gold-soft: #fde68a;
-      --border: rgba(255, 255, 255, 0.12);
+      --border: #e4e4e7;
+      --border-strong: #d4d4d8;
 
-      --shadow-sm: 0 2px 10px rgba(10, 15, 28, 0.04);
-      --shadow-md: 0 16px 40px rgba(10, 15, 28, 0.07);
-      --shadow-lg: 0 28px 64px rgba(10, 15, 28, 0.12);
-      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --brand: #1d4ed8;
+      --brand-soft: rgba(29, 78, 216, 0.08);
+      --brand-border: rgba(29, 78, 216, 0.24);
+
+      --ok: #15803d;
+      --ok-soft: #f0fdf4;
+      --ok-border: #bbf7d0;
+
+      --err: #b91c1c;
+      --err-soft: #fef2f2;
+      --err-border: #fecaca;
+
+      --btn-primary-bg: #18181b;
+      --btn-primary-fg: #fafafa;
+      --btn-primary-hover: #27272a;
+      --btn-primary-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 1px 2px rgba(9, 9, 11, 0.1);
+      --card-shadow: 0 1px 2px rgba(9, 9, 11, 0.04);
+
+      --r-sm: 8px;
+      --r-md: 10px;
+      --r-lg: 14px;
     }
 
     html[data-theme="dark"] {
-      --bg: #070b14;
-      --surface: #0e1525;
-      --surface-2: #162036;
-      --hero-grad: linear-gradient(160deg, #0c1426 0%, #070b14 100%);
-      --card: #0f1729;
-      --glass: rgba(15, 23, 41, 0.78);
-      --glass-border: rgba(255, 255, 255, 0.11);
+      --bg: #09090b;
+      --surface: #111114;
+      --subtle-bg: #18181b;
+      --subtle-hover: #27272a;
+      --glass: rgba(9, 9, 11, 0.88);
 
-      --fg: #f8fafc;
-      --ink: #f8fafc;
-      --navy: #0e1e42;
-      --navy-deep: #09132b;
-      --muted: #94a3b8;
-      --subtle: #475569;
-      --line: rgba(255, 255, 255, 0.1);
-      --watermark: rgba(255, 255, 255, 0.035);
+      --ink: #fafafa;
+      --fg: #e4e4e7;
+      --muted: #a1a1aa;
+      --faint: #71717a;
 
-      --accent: #f59e0b;
-      --accent-soft: rgba(245, 158, 11, 0.14);
-      --blue: #60a5fa;
-      --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 20px 46px rgba(0, 0, 0, 0.45);
-      --shadow-lg: 0 32px 72px rgba(0, 0, 0, 0.65);
+      --border: #27272a;
+      --border-strong: #3f3f46;
+
+      --brand: #60a5fa;
+      --brand-soft: rgba(96, 165, 250, 0.12);
+      --brand-border: rgba(96, 165, 250, 0.28);
+
+      --ok: #4ade80;
+      --ok-soft: rgba(21, 128, 61, 0.16);
+      --ok-border: rgba(74, 222, 128, 0.3);
+
+      --err: #f87171;
+      --err-soft: rgba(185, 28, 28, 0.18);
+      --err-border: rgba(248, 113, 113, 0.32);
+
+      --btn-primary-bg: #f4f4f5;
+      --btn-primary-fg: #09090b;
+      --btn-primary-hover: #ffffff;
+      --btn-primary-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.4);
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; max-width: 100%; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+    }
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: var(--font-sans);
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
       font-size: 15px;
-      line-height: 1.55;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      max-width: 100%;
-      transition: background-color 0.28s ease, color 0.28s ease;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip;
     }
+    body.modal-open { overflow: hidden; }
 
     a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font-family: inherit; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    svg.ico {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 1.65;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+    }
 
     .container {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Screen-reader / Googlebot semantic catalog */
-    .footer-catalog {
-      margin-top: 32px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      position: relative;
-      z-index: 2;
+    /* ==========================================================================
+       TACTILE PRECISION CONTROLS (BUTTONS, INPUTS, BADGES)
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 14px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 13.5px;
+      font-weight: 500;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      box-shadow: var(--card-shadow);
+      transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
     }
-    .footer-catalog-title {
+    .btn:hover {
+      background: var(--subtle-bg);
+      border-color: var(--border-strong);
+    }
+    .btn:active { transform: translateY(0.5px); }
+    .btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+    .btn-lg {
+      height: 44px;
+      padding: 0 18px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .btn-sm {
+      height: 32px;
+      padding: 0 11px;
+      font-size: 12.5px;
+      border-radius: 7px;
+    }
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+    }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-fg);
+      border-color: var(--btn-primary-bg);
+      box-shadow: var(--btn-primary-shadow);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: var(--btn-primary-hover);
+      border-color: var(--btn-primary-hover);
+      color: var(--btn-primary-fg);
+    }
+
+    .btn-brand {
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-color: var(--brand-border);
+      box-shadow: none;
+      font-weight: 600;
+    }
+    .btn-brand:hover {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+    }
+
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--fg);
+      border-color: var(--border);
+    }
+    .btn-gold {
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-color: var(--brand-border);
+      font-weight: 600;
+    }
+    .btn-gold:hover {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+    }
+
+    .badge, .pill, .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 24px;
+      padding: 0 9px;
+      border-radius: 6px;
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      background: var(--subtle-bg);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
-    .footer-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .badge-brand {
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-color: var(--brand-border);
     }
-    .footer-pills a {
-      font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.8);
-      padding: 5px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.04);
-      transition: all 0.15s;
-    }
-    .footer-pills a:hover {
-      color: #082459;
-      background: #fde68a;
-      border-color: #fde68a;
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ok);
     }
 
     /* ==========================================================================
-       1. STICKY LUMORA GLASS NAVBAR
+       1. ARCHITECTURAL TOP HEADER (STICKY HAIRLINE BAR)
        ========================================================================== */
     .site-header {
       position: sticky;
-      top: 12px;
+      top: 0;
       z-index: 900;
-      padding: 0 16px;
-      margin-top: 12px;
-    }
-    .nav-bar {
-      max-width: 1280px;
-      margin: 0 auto;
       height: 60px;
-      padding: 0 14px 0 16px;
-      border-radius: 999px;
       background: var(--glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
     }
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-weight: 700;
-      font-size: 17px;
+      font-weight: 600;
+      font-size: 15.5px;
       letter-spacing: -0.02em;
+      color: var(--ink);
+      white-space: nowrap;
       flex-shrink: 0;
     }
     .brand img {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
       object-fit: cover;
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
     }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 2px;
     }
     .nav-link {
-      padding: 8px 13px;
-      border-radius: 999px;
+      padding: 6px 12px;
+      border-radius: 7px;
       font-size: 13.5px;
       font-weight: 500;
       color: var(--muted);
-      transition: color 0.18s, background 0.18s;
+      white-space: nowrap;
+      transition: color 0.14s ease, background-color 0.14s ease;
     }
     .nav-link:hover {
-      color: var(--fg);
-      background: var(--surface);
+      color: var(--ink);
+      background: var(--subtle-bg);
     }
-
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       flex-shrink: 0;
     }
-    .xp-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      height: 36px;
-      padding: 0 12px;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--line);
+    .kbd-hint {
       font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      white-space: nowrap;
+      font-size: 10.5px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--subtle-bg);
+      border: 1px solid var(--border);
+      color: var(--faint);
     }
-    .xp-pill .streak { color: #d97706; }
-    html[data-theme="dark"] .xp-pill .streak { color: #fbbf24; }
-
-    .icon-btn {
-      height: 36px;
-      min-width: 36px;
-      padding: 0 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--fg);
-      font-size: 13.5px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-      transition: transform 0.18s var(--ease-spring), background 0.18s, border-color 0.18s;
-    }
-    .icon-btn:hover { background: var(--surface-2); }
-    .icon-btn:active { transform: scale(0.95); }
-
-    .cab-pill {
-      height: 38px;
-      padding: 0 15px;
-      border-radius: 999px;
-      background: var(--navy);
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      transition: transform 0.2s var(--ease-spring), opacity 0.2s;
-    }
-    html[data-theme="dark"] .cab-pill {
-      background: #fbbf24;
-      color: #0f172a;
-      font-weight: 700;
-    }
-    .cab-pill:hover { transform: translateY(-1px); opacity: 0.94; }
-    .cab-pill:active { transform: scale(0.96); }
-
     .menu-trigger { display: none; }
 
-    /* Mobile Full-Screen Staggered Drawer (Lumora style) */
+    /* Mobile Full-Screen Sheet (Opaque, High Z-Index — Zero Bleed) */
     .mobile-drawer {
       position: fixed;
       inset: 0;
-      z-index: 1200;
-      background: #0a0d14;
-      color: #ffffff;
-      padding: 24px;
+      z-index: 2000;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 16px 20px 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      transform: translateY(-12px);
-      transition: opacity 0.25s ease, transform 0.28s var(--ease-spring);
+      transition: opacity 0.18s ease, visibility 0.18s ease;
     }
-    .mobile-drawer.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .drawer-links { display: flex; flex-direction: column; gap: 6px; margin: auto 0; }
+    .mobile-drawer.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      margin: 16px 0 auto;
+    }
     .drawer-link {
       display: flex;
-      align-items: baseline;
-      gap: 14px;
-      padding: 14px 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      font-size: 26px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 4px;
+      border-bottom: 1px solid var(--border);
+      font-size: 17px;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
+      color: var(--ink);
     }
-    .drawer-link span { font-family: var(--font-mono); font-size: 12px; color: #fbbf24; }
+    .drawer-link span.idx {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--faint);
+      margin-right: 12px;
+    }
+    .drawer-foot {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
     /* ==========================================================================
-       2. BASELINE × LUMORA ROUNDED EDITORIAL HERO
+       2. EDITORIAL HERO SECTION
        ========================================================================== */
-    .hero-wrap {
-      padding: 14px 16px 0;
+    .hero {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border);
     }
-    .hero-surface {
-      position: relative;
-      max-width: 1320px;
-      margin: 0 auto;
-      border-radius: 32px;
-      background: var(--hero-grad);
-      border: 1px solid var(--line);
-      padding: 52px 44px 26px;
-      overflow: hidden;
-    }
-    .hero-watermark {
-      position: absolute;
-      left: 50%;
-      bottom: -24px;
-      transform: translateX(-50%);
-      font-size: clamp(68px, 13.5vw, 196px);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
-      color: var(--watermark);
-      pointer-events: none;
-      user-select: none;
-      white-space: nowrap;
-    }
-
     .hero-grid {
-      position: relative;
-      z-index: 2;
       display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      gap: 44px;
-      align-items: center;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: start;
     }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 13px;
-      border-radius: 999px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
+    .hero-grid > *, .eco-grid > *, .enroll-split > *, .catalog-grid > *, .lab-console {
+      min-width: 0;
     }
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--emerald);
-      box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.16);
-    }
-
     .hero-h1 {
-      font-size: clamp(36px, 4.4vw, 62px);
-      font-weight: 600;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
+      font-size: clamp(34px, 4.3vw, 56px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
       color: var(--ink);
-      margin-bottom: 18px;
+      margin: 18px 0 16px;
     }
     .hero-h1 em {
-      font-style: normal;
-      color: var(--accent);
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.08em;
+      letter-spacing: -0.01em;
+      color: var(--brand);
     }
-
     .hero-lead {
       font-size: 16.5px;
       color: var(--muted);
-      max-width: 560px;
-      line-height: 1.6;
-      margin-bottom: 22px;
-    }
-
-    .proof-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.62;
       margin-bottom: 26px;
     }
-    .stars { color: var(--accent); letter-spacing: 2px; font-size: 15px; }
-
-    /* Lumora Dual Pill Buttons with Circular Arrow Badge */
     .cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 28px;
     }
-    .pill-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 10px 8px 20px;
-      border-radius: 999px;
-      font-size: 14.5px;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: transform 0.24s var(--ease-spring), box-shadow 0.24s var(--ease-spring), background 0.2s;
-    }
-    .pill-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .pill-cta:active { transform: scale(0.97); }
-    .pill-cta .arr {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 15px;
-      transition: transform 0.24s var(--ease-spring);
-    }
-    .pill-cta:hover .arr { transform: rotate(-45deg); }
 
-    .pill-cta.dark {
-      background: var(--ink);
-      color: var(--bg);
-    }
-    .pill-cta.dark .arr {
-      background: var(--bg);
-      color: var(--ink);
-    }
-    .pill-cta.light {
-      background: var(--card);
-      color: var(--fg);
-      border-color: var(--line);
-    }
-    .pill-cta.light .arr {
-      background: var(--surface-2);
-      color: var(--fg);
-    }
-
-    /* Inline Editorial Word of the Day Card */
+    /* Word of the Day — Clean Architectural Card */
     .wod-card {
-      padding: 15px 18px;
-      border-radius: 20px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-sm);
+      padding: 16px 18px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
       max-width: 540px;
     }
     .wod-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 6px;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--emerald);
-      text-transform: uppercase;
+      gap: 12px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
+    .wod-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .wod-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 0;
+      background: transparent;
+      color: var(--brand);
+      font-size: 12.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .wod-next:hover { text-decoration: underline; }
 
-    /* Right Hero Column: White-Studio Portrait + Dual Floating Bento Cards */
-    .hero-visual {
+    /* Hero Right Column — Framed Portrait Card + Architectural Metrics */
+    .hero-aside {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
-    .portrait-stage {
-      position: relative;
-      border-radius: 28px;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
+    .faculty-card {
+      padding: 18px;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
       display: grid;
-      grid-template-columns: 215px 1fr;
+      grid-template-columns: 136px 1fr;
+      gap: 18px;
       align-items: center;
-      min-height: 270px;
     }
-    .hero-grid > *, .eco-grid > *, .enroll-split > *, .bento-duo > *, .container, .lab-console {
-      min-width: 0;
+    .portrait-frame {
+      padding: 4px;
+      border-radius: 10px;
+      background: var(--subtle-bg);
+      border: 1px solid var(--border);
     }
-    .video-split { display: grid; grid-template-columns: 1fr 150px; gap: 16px; align-items: center; }
-
-    html[data-theme="dark"] .portrait-stage {
-      background: #0f1729;
-      padding-left: 10px;
-    }
-    html[data-theme="dark"] .portrait-stage img {
-      border-radius: 20px;
-      height: 255px;
-    }
-    .portrait-stage img {
-      width: 215px;
-      height: 275px;
+    .portrait-frame img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       object-position: top center;
+      border-radius: 7px;
       display: block;
-      background: #ffffff;
     }
-    .portrait-meta {
-      padding: 22px 22px 22px 18px;
+    html[data-theme="dark"] .portrait-frame img {
+      filter: brightness(0.94) contrast(1.02);
     }
-    .portrait-tag {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .portrait-meta h2 {
-      font-size: 21px;
-      font-weight: 700;
+    .faculty-meta h2 {
+      font-size: 18px;
+      font-weight: 600;
       letter-spacing: -0.02em;
-      line-height: 1.2;
-      color: var(--fg);
-      margin-bottom: 6px;
+      color: var(--ink);
+      margin: 6px 0 6px;
     }
-    .portrait-meta p {
+    .faculty-meta p {
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.52;
       margin-bottom: 12px;
     }
-    .mini-tg {
+    .text-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--blue);
-    }
-
-    /* Baseline Dual Bottom-Right Bento Mini-Cards */
-    .bento-duo {
-      display: grid;
-      grid-template-columns: 1.35fr 0.85fr;
-      gap: 12px;
-    }
-    .mini-bento {
-      padding: 16px 18px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .mini-bento.navy {
-      background: var(--navy);
-      border-color: transparent;
-      color: #ffffff;
-    }
-    .carousel-ctrl {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .c-arrow {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--fg);
-      cursor: pointer;
       font-size: 13px;
-      display: grid;
-      place-items: center;
-      transition: transform 0.15s;
+      font-weight: 600;
+      color: var(--brand);
     }
-    .c-arrow:hover { background: var(--surface-2); }
-    .c-arrow:active { transform: scale(0.92); }
+    .text-link:hover { text-decoration: underline; }
 
-    .hero-statusbar {
-      position: relative;
-      z-index: 2;
-      margin-top: 32px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+    .metric-cell {
+      padding: 14px 16px;
+      border-right: 1px solid var(--border);
+    }
+    .metric-cell:last-child { border-right: 0; }
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-lbl {
       font-size: 12px;
-      font-weight: 500;
       color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.35;
     }
 
     /* ==========================================================================
-       3. SECTIONS, BENTO CARDS & LUMORA 01–07 INTERACTIVE ROWS
+       3. FULL 23-BOOK FILTERABLE CURRICULUM CATALOG (#programs)
        ========================================================================== */
     .section {
-      padding: 84px 0;
+      padding: 68px 0;
+      border-bottom: 1px solid var(--border);
     }
     .sec-head {
       display: flex;
@@ -798,1097 +757,1106 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
-    .sec-eyebrow {
+    .sec-kicker {
       font-family: var(--font-mono);
       font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
+      color: var(--brand);
+      margin-bottom: 6px;
     }
     .sec-title {
-      font-size: clamp(28px, 3.2vw, 44px);
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.08;
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.028em;
+      line-height: 1.15;
       color: var(--ink);
     }
     .sec-sub {
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--muted);
       max-width: 440px;
     }
 
-    /* Top 3 Spotlight Bento Cards (Lumora Portfolio Style) */
-    .bento-3 {
+    /* Segmented Filter Bar */
+    .filter-rail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .seg-btn {
+      height: 34px;
+      padding: 0 13px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.14s ease;
+    }
+    .seg-btn:hover {
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+    .seg-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      font-weight: 600;
+    }
+
+    .catalog-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 24px;
+      gap: 12px;
     }
-    .spot-card {
-      position: relative;
-      padding: 28px;
-      border-radius: 28px;
+    .book-card {
+      padding: 18px 20px;
+      border-radius: var(--r-md);
       background: var(--surface);
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 268px;
-      overflow: hidden;
-      transition: transform 0.28s var(--ease-spring), box-shadow 0.28s var(--ease-spring), border-color 0.22s;
+      gap: 14px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
     }
-    .spot-card:hover {
-      transform: translateY(-6px) scale(1.008);
-      box-shadow: var(--shadow-lg);
+    .book-card:hover {
+      border-color: var(--brand);
     }
-    .spot-card.featured-navy {
-      background: var(--navy);
-      color: #ffffff;
-      border-color: transparent;
-    }
-    .spot-card.featured-ink {
-      background: #0a0d14;
-      color: #ffffff;
-      border-color: rgba(255,255,255,0.1);
-    }
-    .spot-top {
+    .book-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 8px;
     }
-    .spot-badge {
+    .book-idx {
       font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 5px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.12);
+      font-size: 11.5px;
+      color: var(--faint);
+      font-variant-numeric: tabular-nums;
     }
-    .spot-card:not(.featured-navy):not(.featured-ink) .spot-badge {
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: var(--fg);
-    }
-    .spot-arrow {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #ffffff;
-      color: #0a0d14;
-      display: grid;
-      place-items: center;
+    .book-card h3 {
       font-size: 16px;
-      font-weight: 700;
-      transition: transform 0.26s var(--ease-spring);
-    }
-    .spot-card:not(.featured-navy):not(.featured-ink) .spot-arrow {
-      background: var(--ink);
-      color: var(--bg);
-    }
-    .spot-card:hover .spot-arrow { transform: rotate(45deg); }
-    .spot-card h3 {
-      font-size: 23px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    .spot-card p {
-      font-size: 14px;
-      opacity: 0.8;
-      line-height: 1.55;
-    }
-
-    /* Lumora Interactive Numbered Rows (04–07) */
-    .prog-rows {
-      border-top: 1px solid var(--line);
-    }
-    .prog-row {
-      display: grid;
-      grid-template-columns: 56px 1.2fr 1.5fr auto;
-      align-items: center;
-      gap: 18px;
-      padding: 20px 14px;
-      border-bottom: 1px solid var(--line);
-      border-radius: 18px;
-      transition: background 0.22s var(--ease-spring), padding 0.22s var(--ease-spring);
-    }
-    .prog-row:hover {
-      background: var(--surface);
-      padding-left: 24px;
-      padding-right: 20px;
-    }
-    .prog-num {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--muted);
-    }
-    .prog-name {
-      font-size: 19px;
       font-weight: 600;
       letter-spacing: -0.015em;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 5px;
+    }
+    .book-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .book-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
       color: var(--ink);
     }
-    .prog-desc {
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .prog-go {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--surface-2);
-      color: var(--fg);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      transition: transform 0.22s var(--ease-spring), background 0.2s, color 0.2s;
-    }
-    .prog-row:hover .prog-go {
-      transform: translateX(5px);
-      background: var(--ink);
-      color: var(--bg);
-    }
+    .book-card:hover .book-open { color: var(--brand); }
 
     /* ==========================================================================
-       4. STUDIO INTERACTIVE LABORATORY CONSOLE (#lab — 14 app.js MODULES)
-       Dark Studio Surface guarantees AAA contrast for all app.js interactive widgets
+       4. UNIFIED LIGHT/DARK INTERACTIVE WORKSPACE (#lab — 14 MODULES)
        ========================================================================== */
     .lab-console {
-      border-radius: 32px;
-      background: #0a1020;
-      color: #f8fafc;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: var(--shadow-lg);
-      padding: 32px;
-      --muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.12);
-      --gold: #fbbf24;
-      --gold-soft: #fde68a;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
     }
-
     .mentor-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
-      padding: 12px 16px;
-      margin-bottom: 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      padding: 14px 20px;
+      background: var(--subtle-bg);
+      border-bottom: 1px solid var(--border);
     }
     .mentor-id {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: #ffffff;
     }
     .mentor-id img {
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       object-fit: cover;
       object-position: top center;
-      border: 2px solid #fbbf24;
-      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
       flex-shrink: 0;
     }
-    .mentor-id b { font-size: 14px; font-weight: 700; display: block; line-height: 1.2; }
-    .mentor-id span { font-size: 11.5px; color: #fde68a; font-weight: 600; }
+    .mentor-id b { font-size: 13.5px; font-weight: 600; color: var(--ink); display: block; line-height: 1.2; }
+    .mentor-id span { font-size: 12px; color: var(--muted); }
     .mentor-tip {
       flex: 1;
       min-width: 240px;
       font-size: 13px;
-      color: #e2e8f0;
+      color: var(--fg);
       padding-left: 14px;
-      border-left: 2px solid #10b981;
+      border-left: 2px solid var(--brand);
     }
 
+    /* Clean Scrollbar-Free Tab Rail with Navigation Arrows */
+    .tab-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .tab-scroll-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--subtle-bg);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .tab-scroll-btn:hover { color: var(--ink); border-color: var(--border-strong); }
     .tabs {
       display: flex;
-      gap: 7px;
+      gap: 6px;
       overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      scrollbar-width: thin;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      flex: 1;
+      min-width: 0;
     }
+    .tabs::-webkit-scrollbar { display: none; }
     .tab-btn {
       flex-shrink: 0;
-      padding: 9px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      color: #cbd5e1;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.18s var(--ease-spring);
+      transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease;
     }
-    .tab-btn:hover { background: rgba(255, 255, 255, 0.1); color: #ffffff; }
+    .tab-btn:hover {
+      color: var(--ink);
+      background: var(--subtle-bg);
+    }
     .tab-btn.active {
-      background: #10b981;
-      color: #022c22;
-      border-color: transparent;
-      font-weight: 700;
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 600;
     }
 
-    /* Complete app.js Component Compatibility Styles inside .lab-console */
-    .lab-console .btn, .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-      padding: 10px 18px; border-radius: 12px; border: 1px solid transparent;
-      font-size: 13.5px; font-weight: 700; cursor: pointer; text-decoration: none;
-      transition: transform 0.18s var(--ease-spring), opacity 0.18s;
+    .lab-stage {
+      padding: 24px;
     }
-    .btn:active { transform: scale(0.96); }
-    .btn-sm { padding: 7px 13px; font-size: 12.5px; border-radius: 10px; }
-    .btn-primary { background: #10b981; color: #022c22; }
-    .btn-gold { background: #fbbf24; color: #1c1002; }
-    .btn-ghost { background: rgba(255, 255, 255, 0.07); color: #f8fafc; border-color: rgba(255, 255, 255, 0.15); }
-    .btn-ghost:hover { background: rgba(255, 255, 255, 0.13); }
 
-    .pill, .result-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em;
-      color: #fde68a; background: rgba(251, 191, 36, 0.13); border: 1px solid rgba(251, 191, 36, 0.3);
-      padding: 4px 11px; border-radius: 999px;
-    }
+    /* Interactive Exercise Primitives inside #lab (100% Light & Dark Adaptive) */
     .q-item {
-      padding: 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 12px;
+      padding: 16px 18px;
+      border-radius: var(--r-md);
+      background: var(--subtle-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
     }
-    .q-label { font-weight: 600; font-size: 14.5px; margin-bottom: 10px; color: #f8fafc; }
+    .q-label {
+      font-weight: 600;
+      font-size: 14.5px;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
     .opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
     .opt-btn {
-      padding: 9px 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(15, 23, 42, 0.9); color: #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer;
-      transition: all 0.15s;
+      padding: 8px 14px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--fg);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.14s ease, background-color 0.14s ease;
     }
-    .opt-btn:hover { border-color: #38bdf8; color: #fff; }
-    .opt-btn.selected { background: rgba(56, 189, 248, 0.22); border-color: #38bdf8; color: #fff; }
-    .opt-btn.right { background: #10b981; color: #022c22; border-color: transparent; font-weight: 800; }
-    .opt-btn.wrong { background: #e11d48; color: #fff; border-color: transparent; font-weight: 800; }
+    .opt-btn:hover { border-color: var(--brand); color: var(--ink); }
+    .opt-btn.selected {
+      background: var(--brand-soft);
+      border-color: var(--brand);
+      color: var(--brand);
+      font-weight: 600;
+    }
+    .opt-btn.right {
+      background: var(--ok-soft);
+      color: var(--ok);
+      border-color: var(--ok-border);
+      font-weight: 600;
+    }
+    .opt-btn.wrong {
+      background: var(--err-soft);
+      color: var(--err);
+      border-color: var(--err-border);
+      font-weight: 600;
+    }
 
-    .fb-box { margin-top: 10px; padding: 12px 15px; border-radius: 12px; font-size: 13.5px; }
-    .fb-box.ok { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); color: #a7f3d0; }
-    .fb-box.no { background: rgba(225, 29, 72, 0.16); border: 1px solid rgba(251, 113, 133, 0.4); color: #fecdd3; }
+    .fb-box {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: var(--r-sm);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    .fb-box.ok {
+      background: var(--ok-soft);
+      border: 1px solid var(--ok-border);
+      color: var(--ink);
+    }
+    .fb-box.no {
+      background: var(--err-soft);
+      border: 1px solid var(--err-border);
+      color: var(--ink);
+    }
 
     .passage, .audio-bar {
-      padding: 16px 18px; border-radius: 16px; background: rgba(4, 8, 18, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 14px; color: #e2e8f0;
+      padding: 14px 16px;
+      border-radius: var(--r-md);
+      background: var(--subtle-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      color: var(--fg);
     }
     .audio-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-    .input-box {
-      width: 100%; padding: 12px 15px; border-radius: 12px;
-      background: rgba(4, 8, 18, 0.85); border: 1px solid rgba(255, 255, 255, 0.16);
-      color: #ffffff; font-size: 14px; outline: none;
-    }
-    .input-box:focus { border-color: #10b981; }
-    select.input-box option { background: #0f172a; color: #fff; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .input-box, .light-input {
+      width: 100%;
+      padding: 10px 13px;
+      border-radius: var(--r-sm);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.14s ease;
+    }
+    .input-box::placeholder, .light-input::placeholder { color: var(--faint); }
+    .input-box:focus, .light-input:focus { border-color: var(--brand); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .map-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; align-items: start; }
-    .map-layout svg { width: 100%; height: auto; border-radius: 14px; background: #070d1d; }
+    .map-layout svg { width: 100%; height: auto; border-radius: var(--r-md); background: #0b1120; border: 1px solid var(--border); }
 
     .err-sentence { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px; }
     .err-word {
-      padding: 8px 13px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(15, 23, 42, 0.9); color: #fff; font-weight: 700; font-size: 15px; cursor: pointer;
+      padding: 7px 13px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 14.5px;
+      cursor: pointer;
     }
-    .err-word.right { background: #10b981; color: #022c22; }
-    .err-word.wrong { background: #e11d48; color: #fff; }
+    .err-word:hover { border-color: var(--brand); }
+    .err-word.right { background: var(--ok-soft); color: var(--ok); border-color: var(--ok-border); }
+    .err-word.wrong { background: var(--err-soft); color: var(--err); border-color: var(--err-border); }
 
-    .flip-scene { perspective: 1100px; max-width: 520px; height: 220px; margin: 14px auto 0; }
-    .flip-card { position: relative; width: 100%; height: 100%; cursor: pointer; transform-style: preserve-3d; transition: transform 0.55s var(--ease-spring); }
+    .flip-scene { perspective: 1100px; max-width: 520px; height: 210px; margin: 14px auto 0; }
+    .flip-card { position: relative; width: 100%; height: 100%; cursor: pointer; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
     .flip-card.is-flipped { transform: rotateY(180deg); }
     .flip-face {
       position: absolute; inset: 0; backface-visibility: hidden;
       display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-      padding: 18px; border-radius: 20px; background: #131d36; border: 1px solid rgba(255,255,255,0.14);
+      padding: 20px; border-radius: var(--r-lg);
+      background: var(--subtle-bg); border: 1px solid var(--border-strong); color: var(--ink);
     }
-    .flip-back { transform: rotateY(180deg); background: #064e3b; border-color: rgba(52,211,153,0.45); }
+    .flip-back {
+      transform: rotateY(180deg);
+      background: var(--ok-soft);
+      border-color: var(--ok-border);
+    }
 
-    .tbl-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); }
+    .tbl-wrap {
+      overflow-x: auto;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
     .tbl-wrap table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-    .tbl-wrap th, .tbl-wrap td { padding: 10px 13px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .tbl-wrap th { color: #fde68a; background: rgba(255,255,255,0.04); }
+    .tbl-wrap th, .tbl-wrap td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      color: var(--fg);
+    }
+    .tbl-wrap th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: var(--subtle-bg);
+    }
 
     /* ==========================================================================
-       5. BASELINE DEEP-NAVY STATS PANEL, EDITORIAL AUTHOR, RESULTS & FOOTER
+       5. AUTHOR, VIDEO DEMO, TESTIMONIALS, ENROLL & FOOTER
        ========================================================================== */
-    .stats-navy {
-      border-radius: 32px;
-      background: var(--navy);
-      color: #ffffff;
-      padding: 48px 40px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    .stat-cell {
-      padding-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-    }
-    .stat-num {
-      font-size: clamp(36px, 4.2vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .stat-lbl {
-      font-size: 13.5px;
-      color: rgba(255, 255, 255, 0.74);
-    }
-
-    /* Lumora Editorial Manifesto + Author & Video Split */
-    .manifesto {
-      font-size: clamp(24px, 3vw, 38px);
-      font-weight: 500;
-      line-height: 1.28;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      max-width: 960px;
-      margin-bottom: 44px;
-    }
-    .manifesto span { color: var(--muted); }
-
     .eco-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 20px;
+      align-items: stretch;
     }
     .surface-card {
-      padding: 32px;
-      border-radius: 28px;
+      padding: 28px;
+      border-radius: var(--r-lg);
       background: var(--surface);
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
     }
     .author-full {
       display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 26px;
+      grid-template-columns: 168px 1fr;
+      gap: 24px;
       align-items: center;
-    }
-    .author-full img {
-      width: 190px;
-      height: 235px;
-      border-radius: 22px;
-      object-fit: cover;
-      object-position: top center;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-sm);
     }
     .chip-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .link-chip {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--card);
-      border: 1px solid var(--line);
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 7px;
+      background: var(--subtle-bg);
+      border: 1px solid var(--border);
       font-size: 12.5px;
-      font-weight: 600;
-      color: var(--fg);
-      transition: transform 0.16s, border-color 0.16s;
+      font-weight: 500;
+      color: var(--ink);
+      transition: border-color 0.14s ease;
     }
-    .link-chip:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .link-chip:hover { border-color: var(--brand); color: var(--brand); }
 
-    /* Baseline Testimonials ("Loved by learners") */
+    .video-split {
+      display: grid;
+      grid-template-columns: 1fr 168px;
+      gap: 20px;
+      align-items: center;
+    }
+    .phone-video-frame {
+      width: 168px;
+      aspect-ratio: 9 / 16;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      background: #09090b;
+      box-shadow: var(--card-shadow);
+      margin: 0 auto;
+    }
+    .phone-video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .testi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 44px;
+      gap: 14px;
+      margin-bottom: 40px;
     }
     .testi-card {
-      padding: 28px;
-      border-radius: 24px;
+      padding: 22px;
+      border-radius: var(--r-md);
       background: var(--surface);
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 18px;
-    }
-    .quote-mark {
-      font-size: 38px;
-      line-height: 0.8;
-      font-weight: 800;
-      color: var(--blue);
+      gap: 16px;
     }
     .testi-foot {
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12.5px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
     }
 
-    /* Enroll + FAQ Split */
     .enroll-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      gap: 20px;
       align-items: start;
     }
-    .light-input {
-      width: 100%;
-      padding: 13px 16px;
-      border-radius: 14px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: var(--fg);
-      font-size: 14.5px;
-      outline: none;
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-    .light-input:focus { border-color: var(--blue); }
-
-    details.faq-item {
-      padding: 18px 22px;
-      border-radius: 18px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      margin-bottom: 10px;
-    }
-    details.faq-item summary {
+    .field-label {
+      font-size: 12.5px;
       font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
       color: var(--ink);
     }
+
+    details.faq-item {
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    details.faq-item summary {
+      list-style: none;
+      padding: 16px 18px;
+      font-weight: 600;
+      font-size: 14.5px;
+      cursor: pointer;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: "+";
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    details.faq-item[open] summary::after { content: "−"; }
     details.faq-item p {
-      margin-top: 10px;
-      font-size: 14px;
+      padding: 0 18px 16px;
+      font-size: 13.5px;
       color: var(--muted);
       line-height: 1.6;
     }
 
-    /* Rounded-Top Deep-Navy Footer (Baseline × Lumora) */
-    .footer-wrap {
-      padding: 20px 16px 16px;
-    }
+    /* Architectural Footer */
     .site-footer {
-      position: relative;
-      max-width: 1320px;
-      margin: 0 auto;
-      border-radius: 32px;
-      background: var(--navy-deep);
-      color: #ffffff;
-      padding: 56px 48px 36px;
-      overflow: hidden;
-    }
-    .footer-cta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      margin-bottom: 36px;
+      padding: 56px 0 40px;
+      background: var(--subtle-bg);
     }
     .footer-cols {
       display: grid;
       grid-template-columns: 1.4fr 1fr 1fr 1fr;
       gap: 28px;
-      position: relative;
-      z-index: 2;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
     }
     .footer-col h4 {
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 14px;
+      color: var(--muted);
+      margin-bottom: 12px;
     }
     .footer-col a {
       display: block;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.84);
-      padding: 5px 0;
+      font-size: 13.5px;
+      color: var(--fg);
+      padding: 4px 0;
     }
-    .footer-col a:hover { color: #fde68a; }
-    .footer-wm {
-      font-size: clamp(54px, 11vw, 156px);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
-      color: rgba(255, 255, 255, 0.05);
-      text-align: center;
-      margin-top: 34px;
-      user-select: none;
+    .footer-col a:hover { color: var(--brand); }
+
+    .footer-catalog {
+      padding-top: 24px;
+    }
+    .footer-catalog-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .footer-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .footer-pills a {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.14s ease, color 0.14s ease;
+    }
+    .footer-pills a:hover {
+      color: var(--brand);
+      border-color: var(--brand);
     }
 
-    /* ⌘K Command / Katalog Modal */
+    /* Command / Search Modal (Opaque Surface, Zero Bleed) */
     .cmd-backdrop {
-      position: fixed; inset: 0; z-index: 1300;
-      background: rgba(7, 11, 20, 0.62); backdrop-filter: blur(10px);
-      display: flex; align-items: flex-start; justify-content: center;
-      padding: 10vh 16px 16px; opacity: 0; pointer-events: none; transition: opacity 0.18s;
+      position: fixed;
+      inset: 0;
+      z-index: 2100;
+      background: rgba(9, 9, 11, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 9vh 16px 16px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.16s ease, visibility 0.16s ease;
     }
-    .cmd-backdrop.open { opacity: 1; pointer-events: auto; }
+    .cmd-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
     .cmd-box {
-      width: 100%; max-width: 620px; border-radius: 24px;
-      background: var(--card); border: 1px solid var(--line);
-      box-shadow: var(--shadow-lg); overflow: hidden;
+      width: 100%;
+      max-width: 600px;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
     }
     .cmd-head {
-      display: flex; align-items: center; gap: 10px;
-      padding: 15px 18px; border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
     }
     .cmd-head input {
-      flex: 1; border: 0; outline: none; background: transparent;
-      color: var(--fg); font-size: 15px; font-weight: 500;
+      flex: 1;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--ink);
+      font-size: 14.5px;
     }
-    .cmd-list { max-height: 62vh; overflow-y: auto; padding: 12px; }
-    .cmd-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 14px; }
+    .cmd-list { max-height: 60vh; overflow-y: auto; padding: 10px; }
+    .cmd-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
     .cmd-item {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-      padding: 11px 13px; border-radius: 14px; border: 1px solid var(--line);
-      background: var(--surface); color: var(--fg); font-size: 13px; font-weight: 600;
-      cursor: pointer; text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--subtle-bg);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
     }
-    .cmd-item:hover { border-color: var(--accent); }
-
-    #xp-toast {
-      position: fixed; bottom: 22px; right: 22px; z-index: 1400;
-      padding: 11px 18px; border-radius: 999px;
-      background: #059669; color: #ffffff; font-weight: 700; font-size: 13.5px;
-      box-shadow: var(--shadow-md); opacity: 0; transform: translateY(10px);
-      pointer-events: none; transition: opacity 0.2s, transform 0.2s;
-    }
-    #xp-toast.show { opacity: 1; transform: translateY(0); }
+    .cmd-item:hover { border-color: var(--brand); }
 
     /* ==========================================================================
-       6. MOBILE-FIRST ZERO-LAG RESPONSIVE BREAKPOINTS
+       6. RESPONSIVE BREAKPOINTS (1080px & 640px — TESTED AT 390×844)
        ========================================================================== */
     @media (max-width: 1080px) {
-      .nav-links { display: none; }
+      .nav-links, .kbd-hint { display: none; }
       .menu-trigger { display: inline-flex; }
-      .hero-grid, .eco-grid, .enroll-split { grid-template-columns: 1fr; }
-      .bento-3, .testi-grid { grid-template-columns: 1fr; }
-      .stats-navy { grid-template-columns: repeat(2, 1fr); padding: 34px 26px; }
+      .hero-grid, .eco-grid, .enroll-split { grid-template-columns: 1fr; gap: 28px; }
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: 1fr; }
       .footer-cols { grid-template-columns: repeat(2, 1fr); }
-      .prog-row { grid-template-columns: 42px 1fr auto; }
-      .prog-desc { display: none; }
     }
 
-    @media (max-width: 680px) {
-      .container { padding: 0 14px; }
-      .site-header { padding: 0 8px; top: 8px; }
-      .nav-bar { height: 52px; padding: 0 8px 0 10px; gap: 6px; }
-      .brand span, #sfx-toggle, .xp-pill { display: none; }
-      .video-split { grid-template-columns: 1fr; }
-      .nav-actions { gap: 4px; min-width: 0; }
-      .xp-pill { padding: 0 8px; font-size: 10.5px; height: 32px; max-width: 138px; overflow: hidden; }
-      #xp-hud { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 68px; }
-      .icon-btn { height: 32px; min-width: 32px; padding: 0 7px; font-size: 13px; }
-      .cab-pill { height: 32px; padding: 0 10px; font-size: 11.5px; }
+    @media (max-width: 640px) {
+      .container, .nav-inner { padding: 0 16px; }
+      .site-header { height: 56px; }
+      .brand { font-size: 14px; gap: 8px; }
+      .brand img { width: 26px; height: 26px; }
+      .nav-actions { gap: 5px; }
+      .nav-actions .btn-icon { width: 34px; height: 34px; }
+      .nav-cab-btn { height: 34px; padding: 0 10px; font-size: 12.5px; }
+      .nav-cab-btn .cab-long { display: none; }
 
-      .hero-wrap { padding: 8px 8px 0; }
-      .hero-surface { padding: 22px 16px 18px; border-radius: 22px; }
-      .eyebrow { font-size: 10px; padding: 5px 10px; white-space: normal; }
-      .hero-h1 { font-size: 31px; line-height: 1.06; }
-      .hero-lead { font-size: 14.5px; }
-      .pill-cta { width: 100%; justify-content: space-between; font-size: 13.5px; padding: 7px 9px 7px 16px; }
-      .portrait-stage { grid-template-columns: 112px 1fr; min-height: 165px; border-radius: 20px; }
-      .portrait-stage img { width: 112px; height: 170px; }
-      html[data-theme="dark"] .portrait-stage img { height: 156px; border-radius: 14px; }
-      .portrait-meta { padding: 12px; }
-      .portrait-meta h2 { font-size: 16.5px; }
-      .portrait-meta p { font-size: 11.5px; margin-bottom: 6px; }
-      .bento-duo { grid-template-columns: 1fr; }
+      .hero { padding: 28px 0 32px; }
+      .hero-h1 { font-size: 31px; margin: 14px 0 12px; }
+      .hero-lead { font-size: 14.5px; margin-bottom: 20px; }
+      .cta-row .btn-lg { width: 100%; justify-content: space-between; }
 
-      .section { padding: 48px 0; }
-      .lab-console { padding: 16px 12px; border-radius: 22px; }
-      .grid-2, .map-layout, .author-full, .cmd-grid, .footer-cols { grid-template-columns: 1fr; }
-      .author-full img { margin: 0 auto; }
-      .site-footer { padding: 32px 18px 24px; border-radius: 22px; }
+      .faculty-card { grid-template-columns: 96px 1fr; gap: 14px; padding: 14px; }
+      .faculty-meta h2 { font-size: 16px; }
+      .faculty-meta p { font-size: 12px; margin-bottom: 8px; }
+      .metric-cell { padding: 11px 10px; }
+      .metric-val { font-size: 17px; }
+      .metric-lbl { font-size: 11px; }
+
+      .section { padding: 44px 0; }
+      .catalog-grid, .grid-2, .map-layout, .author-full, .video-split, .cmd-grid, .footer-cols {
+        grid-template-columns: 1fr;
+      }
+      .author-full .portrait-frame { max-width: 156px; }
+      .surface-card { padding: 20px 16px; }
+      .lab-stage { padding: 16px 12px; }
+
+      /* Mobile-compact Irregular Verbs Table — zero horizontal clipping */
+      .verbs-table th, .verbs-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+      }
+      .verbs-table .btn-sm {
+        height: 28px;
+        padding: 0 7px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ================= 1. STICKY LUMORA GLASS NAVBAR ================= -->
+  <!-- ================= 1. ARCHITECTURAL STICKY HEADER ================= -->
   <header class="site-header">
-    <nav class="nav-bar" aria-label="Asosiy navigatsiya">
+    <nav class="nav-inner" aria-label="Asosiy navigatsiya">
       <a class="brand" href="#top">
         <img src="./app-icon.png" alt="Husanboy Teacher" />
         <span>Husanboy Teacher</span>
       </a>
 
       <div class="nav-links">
-        <a class="nav-link" href="#programs">Dasturlar (7)</a>
-        <a class="nav-link" href="#lab">Laboratoriya (14)</a>
-        <a class="nav-link" href="#author">Muallif</a>
+        <a class="nav-link" href="#programs">Kutubxona (23)</a>
+        <a class="nav-link" href="#lab">Amaliy mashqlar (14)</a>
+        <a class="nav-link" href="#author">Muallif va ilova</a>
         <a class="nav-link" href="#results">Natijalar</a>
-        <a class="nav-link" href="#enroll">Bepul 1-Dars</a>
+        <a class="nav-link" href="#enroll">Sinov darsi</a>
       </div>
 
       <div class="nav-actions">
-        <div class="xp-pill" title="Kunlik seriya va XP ballaringiz">
-          <span class="streak" id="streak-hud">🔥 1 kun</span>
-          <span>•</span>
-          <span id="xp-hud">⚡ 0 XP</span>
-        </div>
-        <button class="icon-btn" type="button" id="theme-toggle" onclick="toggleTheme()" title="Kun / Tun rejimini almashtirish">🌙</button>
-        <button class="icon-btn" type="button" id="sfx-toggle" title="Ovoz effektlari">🔊</button>
-        <button class="icon-btn" type="button" onclick="openCmd()" title="Tezkor katalog va qidiruv (Ctrl+K)">🔍</button>
-        <a class="cab-pill" href="./cabinet/index.html">🎓 Kabinet</a>
-        <button class="icon-btn menu-trigger" type="button" onclick="toggleDrawer(true)" aria-label="Menyu">≡</button>
+        <button class="btn btn-sm" type="button" onclick="openCmd()" aria-label="Qidiruv" title="Qidiruv (Ctrl+K)">
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="kbd-hint">Ctrl K</span>
+        </button>
+        <button class="btn btn-icon" type="button" id="theme-toggle" onclick="toggleTheme()" aria-label="Mavzuni almashtirish" title="Kunduzgi / Tungi rejim"></button>
+        <a class="btn btn-primary nav-cab-btn" href="./cabinet/index.html">
+          <span>Kabinet</span><span class="cab-long">ga kirish</span>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+        <button class="btn btn-icon menu-trigger" type="button" onclick="toggleDrawer(true)" aria-label="Menyu">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+        </button>
       </div>
     </nav>
   </header>
 
-  <!-- Mobile Full-Screen Staggered Drawer -->
+  <!-- Mobile Navigation Sheet -->
   <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <b style="font-size:18px;">Husanboy Teacher</b>
-      <button class="icon-btn" type="button" onclick="toggleDrawer(false)" style="background:rgba(255,255,255,0.1);color:#fff;border:0;">✕ Yopish</button>
+    <div class="drawer-top">
+      <span class="brand">
+        <img src="./app-icon.png" alt="Husanboy Teacher" />
+        <span>Husanboy Teacher</span>
+      </span>
+      <button class="btn btn-sm" type="button" onclick="toggleDrawer(false)">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        <span>Yopish</span>
+      </button>
     </div>
     <div class="drawer-links">
-      <a class="drawer-link" href="#programs" onclick="toggleDrawer(false)"><span>01</span> 7 ta Flagship Dastur</a>
-      <a class="drawer-link" href="#lab" onclick="toggleDrawer(false)"><span>02</span> 14 ta Interaktiv Mashq</a>
-      <a class="drawer-link" href="library/vocab/test-450.html"><span>03</span> 450 Kunlik Test (80%)</a>
-      <a class="drawer-link" href="#author" onclick="toggleDrawer(false)"><span>04</span> Ustoz Husanboy Qosimov</a>
-      <a class="drawer-link" href="./cabinet/index.html"><span>05</span> Shaxsiy Kabinet (QR)</a>
-      <a class="drawer-link" href="#enroll" onclick="toggleDrawer(false)"><span>06</span> Bepul 1-Sinov Darsi</a>
+      <a class="drawer-link" href="#programs" onclick="toggleDrawer(false)">
+        <span><span class="idx">01</span>Kutubxona (23 ta darslik)</span>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a class="drawer-link" href="#lab" onclick="toggleDrawer(false)">
+        <span><span class="idx">02</span>Amaliy mashqlar (14 bo‘lim)</span>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a class="drawer-link" href="library/vocab/test-450.html">
+        <span><span class="idx">03</span>450 kunlik imtihon tizimi</span>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+      </a>
+      <a class="drawer-link" href="#author" onclick="toggleDrawer(false)">
+        <span><span class="idx">04</span>Muallif va mobil ilova</span>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a class="drawer-link" href="./cabinet/index.html">
+        <span><span class="idx">05</span>Shaxsiy kabinet (Login / QR)</span>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+      </a>
+      <a class="drawer-link" href="#enroll" onclick="toggleDrawer(false)">
+        <span><span class="idx">06</span>Bepul 1-sinov darsi</span>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
     </div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.6);">✈️ @xusanboy_teacher • 👨‍🏫 @Qosimov_Xusanboy • 📞 +998 88 997 77 46</div>
+    <div class="drawer-foot">
+      <div>Telegram: @xusanboy_teacher · @Qosimov_Xusanboy</div>
+      <div>Aloqa: +998 88 997 77 46</div>
+    </div>
   </div>
 
-  <!-- ================= 2. BASELINE × LUMORA EDITORIAL HERO ================= -->
-  <section class="hero-wrap" id="top">
-    <div class="hero-surface">
-      <div class="hero-watermark" aria-hidden="true">HUSANBOY</div>
-
+  <!-- ================= 2. SWISS EDITORIAL HERO ================= -->
+  <section class="hero" id="top">
+    <div class="container">
       <div class="hero-grid">
-        <!-- Left 7-col Value Proposition -->
         <div>
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            <span>Ochiq CEFR, Multilevel &amp; IELTS Akademiyasi</span>
-          </div>
+          <span class="badge">
+            <span class="badge-dot"></span>
+            <span>Ochiq CEFR, Multilevel va IELTS platformasi</span>
+          </span>
 
           <h1 class="hero-h1">
-            Noldan C1 va <em>IELTS 8+</em> gacha — aniq tizim bilan.
+            Noldan C1 va <em>IELTS 8.0+</em> darajagacha tizimli akademik dastur.
           </h1>
 
           <p class="hero-lead">
-            23 ta to‘liq interaktiv darslik, 14 ta jonli amaliy laboratoriya va 450 kunlik lug‘at hamda imtihon tizimi. Barchasi 100% bepul, reklamasiz va telefonda chaqmoqdek tez ishlaydi.
+            Qosimov Husanboy muallifligidagi 23 ta to‘liq darslik, 14 ta interaktiv amaliy mashq hamda A1 dan C1 gacha 450 kunlik lug‘at va imtihon tizimi. Ro‘yxatdan o‘tmasdan bepul foydalaning.
           </p>
 
-          <div class="proof-row">
-            <span class="stars">★★★★★</span>
-            <span><b>23 ta ochiq darslik</b> · Ro‘yxatdan o‘tmasdan darhol boshlang</span>
-          </div>
-
           <div class="cta-row">
-            <a class="pill-cta dark" href="#lab">
-              <span>Mashqlarni boshlash (14 bo‘lim)</span>
-              <span class="arr">→</span>
+            <a class="btn btn-primary btn-lg" href="#lab">
+              <span>Amaliy mashqlarni boshlash</span>
+              <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
             </a>
-            <a class="pill-cta light" href="#programs">
-              <span>7 ta Flagship dastur</span>
-              <span class="arr">↗</span>
+            <a class="btn btn-lg" href="#programs">
+              <span>23 ta darslik katalogi</span>
+              <svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg>
             </a>
           </div>
 
-          <!-- Inline Word of the Day -->
-          <div class="wod-card" aria-label="Bugungi IELTS va CEFR so‘zi">
+          <div class="wod-card" aria-label="Kunlik akademik so‘z">
             <div class="wod-top">
-              <span>✨ Bugungi IELTS / CEFR So‘zi</span>
-              <button type="button" onclick="nextWod()" style="border:0;background:none;color:var(--accent);font-weight:800;cursor:pointer;font-size:12px;">Keyingi so‘z ↻</button>
+              <span class="wod-label">Kunlik akademik leksika</span>
+              <button class="wod-next" type="button" onclick="nextWod()">
+                <span>Keyingi so‘z</span>
+                <svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+              </button>
             </div>
-            <div id="wod-content">Yuklanmoqda...</div>
+            <div id="wod-content"></div>
           </div>
         </div>
 
-        <!-- Right 5-col White-Studio Portrait + Dual Floating Bento Cards -->
-        <div class="hero-visual">
-          <div class="portrait-stage">
-            <img src="./teacher-photo.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li" />
-            <div class="portrait-meta">
-              <span class="portrait-tag">Muallif &amp; Ustoz</span>
+        <div class="hero-aside">
+          <div class="faculty-card">
+            <div class="portrait-frame">
+              <img src="./teacher-portrait.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li" />
+            </div>
+            <div class="faculty-meta">
+              <span class="badge badge-brand">Muallif va ustoz</span>
               <h2>Qosimov Husanboy</h2>
-              <p>IELTS &amp; Multilevel ustozi, 450 kunlik oflayn ilova va 15 daqiqalik ota-ona nazorati tizimi muallifi.</p>
-              <a class="mini-tg" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">✈️ @Qosimov_Xusanboy →</a>
+              <p>IELTS va Multilevel ustozi, Enzo Academy asoschisi. 450 kunlik oflayn ilova hamda ota-ona nazorati tizimi muallifi.</p>
+              <a class="text-link" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">
+                <span>@Qosimov_Xusanboy</span>
+                <svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </a>
             </div>
           </div>
 
-          <div class="bento-duo">
-            <!-- Lumora HeroCard Interactive Switcher -->
-            <div class="mini-bento">
-              <div class="carousel-ctrl">
-                <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent);" id="hc-idx">01 / 07 • DASTUR</span>
-                <div style="display:flex;gap:5px;">
-                  <button class="c-arrow" type="button" onclick="stepHeroCard(-1)" aria-label="Oldingi">←</button>
-                  <button class="c-arrow" type="button" onclick="stepHeroCard(1)" aria-label="Keyingi">→</button>
-                </div>
-              </div>
-              <div>
-                <a id="hc-link" href="library/ielts/ielts-8-plus.html" style="font-size:16px;font-weight:700;color:var(--ink);display:block;margin-bottom:3px;">🏆 IELTS 8+ Dasturi →</a>
-                <div id="hc-desc" style="font-size:12.5px;color:var(--muted);">Reading, Writing, Listening va Speaking Band 8+ strategiyalari.</div>
-              </div>
+          <div class="metric-strip">
+            <div class="metric-cell">
+              <div class="metric-val">450 kun</div>
+              <div class="metric-lbl">A1 dan C1 gacha kunlik dastur</div>
             </div>
-
-            <!-- Baseline Deep-Navy Metric Bento -->
-            <div class="mini-bento navy">
-              <span style="font-family:var(--font-mono);font-size:10.5px;color:rgba(255,255,255,0.7);letter-spacing:0.06em;">450 KUNLIK TIZIM</span>
-              <div>
-                <div style="font-size:32px;font-weight:700;letter-spacing:-0.03em;line-height:1;">19K+</div>
-                <div style="font-size:12px;color:rgba(255,255,255,0.78);margin-top:4px;">Oflayn MP3 talaffuz va kunlik imtihonlar</div>
-              </div>
+            <div class="metric-cell">
+              <div class="metric-val">23 kitob</div>
+              <div class="metric-lbl">Ochiq darslik va mock testlar</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">19,000+</div>
+              <div class="metric-lbl">MP3 audio talaffuz bazasi</div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="hero-statusbar">
-        <span>📍 O‘zbekiston bo‘ylab ochiq ta’lim platformasi</span>
-        <span id="live-clock" style="font-family:var(--font-mono);">🕒 Toshkent vaqti</span>
-        <a href="#programs" style="font-weight:600;color:var(--ink);">Barcha bo‘limlarni ko‘rish ↓</a>
       </div>
     </div>
   </section>
 
-  <!-- ================= 3. FLAGSHIP PROGRAMS (BENTO + 04–07 ROWS) ================= -->
+  <!-- ================= 3. COMPLETE 23-BOOK FILTERABLE CATALOG ================= -->
   <section class="section" id="programs">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">• 01 — Flagship Ochiq Kutubxona</div>
-          <h2 class="sec-title">Har bir daraja uchun mukammal darsliklar</h2>
+          <div class="sec-kicker">01 / Ochiq Kutubxona</div>
+          <h2 class="sec-title">23 ta mualliflik darsligi va imtihon to‘plami</h2>
         </div>
-        <p class="sec-sub">Ro‘yxatdan o‘tish va to‘lovsiz ishlaydigan 7 ta yirik mualliflik dasturi — istalgan birini bosing va darhol boshlang.</p>
+        <p class="sec-sub">Bo‘limni tanlang va kerakli darajadagi darslikni to‘lov hamda ro‘yxatdan o‘tishsiz darhol oching.</p>
       </div>
 
-      <!-- Top 3 Bento Spotlight Cards -->
-      <div class="bento-3">
-        <a class="spot-card featured-navy" href="library/ielts/ielts-8-plus.html">
-          <div class="spot-top">
-            <span class="spot-badge">01 • BAND 8.0+</span>
-            <span class="spot-arrow">↗</span>
-          </div>
-          <div>
-            <h3>🏆 IELTS 8+ To‘liq Dasturi</h3>
-            <p>Reading, Writing, Listening va Speaking bo‘yicha Band 8+ strategiyalar, akademik leksika va real mashqlar.</p>
-          </div>
-        </a>
-
-        <a class="spot-card featured-ink" href="library/vocab/test-450.html">
-          <div class="spot-top">
-            <span class="spot-badge" style="color:#fde68a;">02 • YANGI • 80% O‘TISH</span>
-            <span class="spot-arrow">↗</span>
-          </div>
-          <div>
-            <h3>🧪 450 Kunlik Lug‘at &amp; Grammatika Testi</h3>
-            <p>A1 dan C1 gacha har bir kun va hafta bo‘yicha mukammal lug‘at hamda grammatika imtihonlari tizimi.</p>
-          </div>
-        </a>
-
-        <a class="spot-card" href="library/vocab/kunlik-450.html">
-          <div class="spot-top">
-            <span class="spot-badge">03 • A1 → C1 LUG‘AT</span>
-            <span class="spot-arrow">↗</span>
-          </div>
-          <div>
-            <h3>📘 450 Kunlik Lug‘at Darslari</h3>
-            <p>A1 dan C1 gacha kunma-kun tartiblangan minglab faol so‘zlar, jonli audio talaffuz va kontekstli misollar.</p>
-          </div>
-        </a>
+      <div class="filter-rail" id="catalog-filters" role="tablist" aria-label="Kutubxona bo‘limlari">
+        <button class="seg-btn active" type="button" data-cat="flagship">Asosiy dasturlar (7)</button>
+        <button class="seg-btn" type="button" data-cat="all">Barcha kitoblar (23)</button>
+        <button class="seg-btn" type="button" data-cat="cefr-reading">CEFR Reading (5)</button>
+        <button class="seg-btn" type="button" data-cat="ielts-reading">IELTS Reading (6)</button>
+        <button class="seg-btn" type="button" data-cat="writing">Writing (5)</button>
       </div>
 
-      <!-- Lumora Interactive Numbered Rows (04–07) -->
-      <div class="prog-rows">
-        <a class="prog-row" href="library/speaking/multilevel-40.html">
-          <span class="prog-num">04</span>
-          <span class="prog-name">🎤 Multilevel Speaking: 40 ta Imtihon Savoli</span>
-          <span class="prog-desc">Part 1.1, Part 1.2 (2 rasm tahlili), Part 2 va Part 3 taymerli namunalar</span>
-          <span class="prog-go">→</span>
-        </a>
-        <a class="prog-row" href="library/writing/multilevel.html">
-          <span class="prog-num">05</span>
-          <span class="prog-name">✍️ Enzo Writing — Multilevel (12 ta Mock Imtihon)</span>
-          <span class="prog-desc">Task 1.1, Task 1.2, Essay qoliplari, C1 namunalar va 60 daqiqalik Mock</span>
-          <span class="prog-go">→</span>
-        </a>
-        <a class="prog-row" href="library/speaking/suhbat-500.html">
-          <span class="prog-num">06</span>
-          <span class="prog-name">💬 500 ta Inglizcha Kundalik Suhbat (Audio TTS)</span>
-          <span class="prog-desc">20 ta hayotiy mavzuda tayyor savol-javoblar va eshitib mashq qilish rejimi</span>
-          <span class="prog-go">→</span>
-        </a>
-        <a class="prog-row" href="library/vocab/iboralar-30.html">
-          <span class="prog-num">07</span>
-          <span class="prog-name">🗣️ Kundalik Ingliz Iboralari (3D Kartochka &amp; Test)</span>
-          <span class="prog-desc">Native speaker’lar nutqidagi eng tabiiy idiomatik iboralar va mustahkamlash testi</span>
-          <span class="prog-go">→</span>
-        </a>
-      </div>
+      <div class="catalog-grid" id="catalog-grid"></div>
     </div>
   </section>
 
-  <!-- ================= 4. 14-MODULE INTERACTIVE LAB CONSOLE (#lab) ================= -->
-  <section class="section" id="lab" style="padding-top:20px;">
+  <!-- ================= 4. 14-MODULE INTERACTIVE WORKSPACE (#lab) ================= -->
+  <section class="section" id="lab">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">• 02 — Jonli Amaliy Laboratoriya</div>
-          <h2 class="sec-title">14 ta interaktiv mashq — bitta konsolda</h2>
+          <div class="sec-kicker">02 / Amaliy Laboratoriya</div>
+          <h2 class="sec-title">14 ta interaktiv mashq — yagona ishchi oynada</h2>
         </div>
-        <p class="sec-sub">11 ta Reading to‘plami, 6 ta Writing darajasi, xarita, diktant, speaking yozuvi va QR-kodli rasmiy sertifikat.</p>
+        <p class="sec-sub">Reading, Writing, xarita, diktant, speaking yozuvi, daraja testi va QR-kodli rasmiy sertifikat.</p>
       </div>
 
       <div class="lab-console">
         <div class="mentor-bar">
           <a class="mentor-id" href="#author">
-            <img src="./teacher-photo.jpg" alt="Qosimov Husanboy" />
+            <img src="./teacher-portrait.jpg" alt="Qosimov Husanboy" />
             <div>
-              <b>Muallif: Qosimov Husanboy</b>
-              <span>✈️ @Qosimov_Xusanboy • @xusanboy_teacher</span>
+              <b>Qosimov Husanboy</b>
+              <span>@Qosimov_Xusanboy · @xusanboy_teacher</span>
             </div>
           </a>
           <div class="mentor-tip" id="teacher-tip-text">
-            💡 <b>Ustoz maslahati:</b> Avval savollardagi kalit so‘zlarni belgilab oling — matnda ularning sinonimi javobga yetaklaydi!
+            <b>Metodik tavsiya:</b> Avval savollardagi ot va fe’l kalit so‘zlarni toping — matnda aynan ularning sinonimi javobga yetaklaydi.
           </div>
         </div>
 
-        <div class="tabs" id="hub-tabs">
-          <button class="tab-btn active" data-tab="reading">📖 CEFR &amp; IELTS Reading (11)</button>
-          <button class="tab-btn" data-tab="writing">📝 Writing Kutubxonasi (6)</button>
-          <button class="tab-btn" data-tab="map">🗺️ Map Mashqlari</button>
-          <button class="tab-btn" data-tab="dictation">✍️ CEFR Dictation</button>
-          <button class="tab-btn" data-tab="listening">🎧 Listening</button>
-          <button class="tab-btn" data-tab="speaking">🎙️ Speaking</button>
-          <button class="tab-btn" data-tab="errors">🧩 Xatoni Top!</button>
-          <button class="tab-btn" data-tab="flashcards">🃏 3D Flashcards</button>
-          <button class="tab-btn" data-tab="sprint">🎮 Word Sprint (60s)</button>
-          <button class="tab-btn" data-tab="mock">⏱ 15 daq Mini-Mock</button>
-          <button class="tab-btn" data-tab="placement">🧪 Daraja Testi</button>
-          <button class="tab-btn" data-tab="calc">🧮 Ball Kalkulyatori</button>
-          <button class="tab-btn" data-tab="verbs">⚡ Noto‘g‘ri Fe’llar</button>
-          <button class="tab-btn" data-tab="tenses">🧭 12 Zamon</button>
+        <div class="tab-bar-wrap">
+          <button class="tab-scroll-btn" type="button" onclick="scrollLabTabs(-220)" aria-label="Chapga surish">
+            <svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="tabs" id="hub-tabs">
+            <button class="tab-btn active" type="button" data-tab="reading">CEFR &amp; IELTS Reading</button>
+            <button class="tab-btn" type="button" data-tab="writing">Writing Kutubxonasi</button>
+            <button class="tab-btn" type="button" data-tab="map">Map Labeling</button>
+            <button class="tab-btn" type="button" data-tab="dictation">CEFR Dictation</button>
+            <button class="tab-btn" type="button" data-tab="listening">Listening</button>
+            <button class="tab-btn" type="button" data-tab="speaking">Speaking</button>
+            <button class="tab-btn" type="button" data-tab="errors">Grammar Traps</button>
+            <button class="tab-btn" type="button" data-tab="flashcards">Flashcards</button>
+            <button class="tab-btn" type="button" data-tab="sprint">Word Sprint (60s)</button>
+            <button class="tab-btn" type="button" data-tab="mock">15 daq Mini-Mock</button>
+            <button class="tab-btn" type="button" data-tab="placement">Daraja Testi</button>
+            <button class="tab-btn" type="button" data-tab="calc">Ball Kalkulyatori</button>
+            <button class="tab-btn" type="button" data-tab="verbs">Noto‘g‘ri Fe’llar</button>
+            <button class="tab-btn" type="button" data-tab="tenses">12 Zamon</button>
+          </div>
+          <button class="tab-scroll-btn" type="button" onclick="scrollLabTabs(220)" aria-label="O‘ngga surish">
+            <svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
         </div>
 
-        <div id="hub-stage">Yuklanmoqda...</div>
+        <div class="lab-stage" id="hub-stage">Yuklanmoqda...</div>
       </div>
     </div>
   </section>
 
-  <!-- ================= 5. BASELINE DEEP-NAVY STATS PANEL ================= -->
-  <section class="section" style="padding-top:10px;padding-bottom:20px;">
-    <div class="container">
-      <div class="stats-navy">
-        <div class="stat-cell">
-          <div class="stat-num">450</div>
-          <div class="stat-lbl">Kunlik A1 dan C1 gacha uzluksiz tizim</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">23</div>
-          <div class="stat-lbl">To‘liq ochiq interaktiv darslik va kutubxona</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">19K+</div>
-          <div class="stat-lbl">Oflayn MP3 talaffuz va mashq audiolari</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">15 daq</div>
-          <div class="stat-lbl">Ota-ona uchun avtomatik chalg‘ish nazorati</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 6. LUMORA EDITORIAL AUTHOR & ECOSYSTEM ================= -->
+  <!-- ================= 5. AUTHOR & MOBILE APP ECOSYSTEM ================= -->
   <section class="section" id="author">
-    <div class="container">
-      <div class="sec-eyebrow">• 03 — Muallif &amp; Raqamli Ekotizim</div>
-      <p class="manifesto">
-        Til o‘rganish — tartibsiz to‘rt soatlik marafon emas, <span>balki har kungi aniq rejalashtirilgan 15–30 daqiqalik intizom, jonli talaffuz va xotirjam ota-ona nazoratidir.</span>
-      </p>
-
-      <div class="eco-grid">
-        <!-- Author Full Card -->
-        <div class="surface-card author-full">
-          <img src="./teacher-photo.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li" />
-          <div>
-            <span class="portrait-tag">Asoschi va Ustoz</span>
-            <h3 style="font-size:24px;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px;color:var(--ink);">Qosimov Husanboy Madaminjon o‘g‘li</h3>
-            <p style="font-size:14px;color:var(--muted);line-height:1.6;">
-              <b>Husanboy Teacher</b> hamda <b>Enzo Academy</b> asoschisi. O‘quvchilar uchun 450 kunlik internetsiz ishlaydigan Android ilova, kompyuter/iPhone uchun QR-Kabinet va 23 ta bepul IELTS/CEFR kutubxona muallifi.
-            </p>
-            <div class="chip-wrap">
-              <a class="link-chip" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">✈️ @Qosimov_Xusanboy</a>
-              <a class="link-chip" href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">📢 @xusanboy_teacher</a>
-              <a class="link-chip" href="https://www.instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">📸 Instagram</a>
-              <a class="link-chip" href="tel:+998889977746">📞 +998 88 997 77 46</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2-Min Video + Protected Cabinet Card -->
-        <div class="surface-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:16px;">
-          <div class="video-split">
-            <div>
-              <span class="portrait-tag">2 Daqiqalik Taqdimot</span>
-              <h3 style="font-size:20px;font-weight:700;margin-bottom:6px;color:var(--ink);">450 Kunlik Ilova + Ota-ona Boti</h3>
-              <p style="font-size:13.5px;color:var(--muted);line-height:1.55;">
-                Mavjud o‘quvchilar <b>Login+Parol</b> yoki <b>QR-kod</b> bilan Kabinetga kiradi. Yangi o‘quvchilar rasmiy ilovani Telegram botdan yuklab oladilar.
-              </p>
-            </div>
-            <video controls playsinline preload="metadata" style="width:100%;border-radius:16px;border:1px solid var(--line);background:#000;">
-              <source src="media/taqdimot.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <a class="cab-pill" href="./cabinet/index.html">🔑 Shaxsiy Kabinet (Login / QR)</a>
-            <a class="link-chip" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ilovani olish (@Husanboy_Teacher_Assisstant_bot)</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 7. RESULTS, FAQ & FREE 1ST LESSON (#results & #enroll) ================= -->
-  <section class="section" id="results" style="padding-top:10px;">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">• 04 — O‘quvchilar va Ota-onalar Fikri</div>
-          <h2 class="sec-title">Haqiqiy intizom keltirgan natijalar</h2>
+          <div class="sec-kicker">03 / Muallif va Mobil Ekotizim</div>
+          <h2 class="sec-title">Kunlik intizom va shaffof ota-ona nazorati</h2>
+        </div>
+        <p class="sec-sub">Har kungi 20–30 daqiqalik aniq dastur, oflayn mobil ilova va Telegram orqali real vaqtda hisobot.</p>
+      </div>
+
+      <div class="eco-grid">
+        <div class="surface-card author-full">
+          <div class="portrait-frame">
+            <img src="./teacher-portrait.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li" />
+          </div>
+          <div>
+            <span class="badge badge-brand">Asoschi va ustoz</span>
+            <h3 style="font-size:21px;font-weight:700;letter-spacing:-0.02em;margin:8px 0 8px;color:var(--ink);">Qosimov Husanboy Madaminjon o‘g‘li</h3>
+            <p style="font-size:14px;color:var(--muted);line-height:1.6;">
+              <b>Husanboy Teacher</b> hamda <b>Enzo Academy</b> asoschisi. O‘quvchilar uchun 450 kunlik internetsiz ishlaydigan Android ilova, iPhone/kompyuter uchun QR-Kabinet hamda 23 ta ochiq IELTS va CEFR darsliklari muallifi.
+            </p>
+            <div class="chip-wrap">
+              <a class="link-chip" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">@Qosimov_Xusanboy</a>
+              <a class="link-chip" href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">@xusanboy_teacher</a>
+              <a class="link-chip" href="https://www.instagram.com/xusanboy__qosimov" target="_blank" rel="noopener">Instagram</a>
+              <a class="link-chip" href="tel:+998889977746">+998 88 997 77 46</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="surface-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:18px;">
+          <div class="video-split">
+            <div>
+              <span class="badge">Video taqdimot · 2:31</span>
+              <h3 style="font-size:19px;font-weight:700;letter-spacing:-0.02em;margin:8px 0 8px;color:var(--ink);">450 kunlik ilova va Ota-ona boti</h3>
+              <p style="font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:14px;">
+                O‘quvchi kunlik darsini bajarmasa yoki chalg‘isa, tizim ota-onaga Telegram orqali avtomatik ma’lumot yuboradi. Mavjud o‘quvchilar Login yoki QR-kod bilan kabinetga kiradilar.
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <a class="btn btn-primary btn-sm" href="./cabinet/index.html">
+                  <span>Shaxsiy kabinet</span>
+                  <svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                </a>
+                <a class="btn btn-sm" href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">
+                  <span>Ilovani olish (Telegram bot)</span>
+                  <svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="phone-video-frame">
+              <video controls playsinline preload="metadata" poster="media/taqdimot-poster.jpg">
+                <source src="media/taqdimot.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. RESULTS, ENROLLMENT & FAQ ================= -->
+  <section class="section" id="results">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-kicker">04 / Natijalar va Qabul</div>
+          <h2 class="sec-title">O‘quvchilar va ota-onalar tajribasi</h2>
         </div>
       </div>
 
       <div class="testi-grid">
         <div class="testi-card">
-          <div class="quote-mark">“</div>
-          <p style="font-size:14.5px;color:var(--fg);line-height:1.6;">450 kunlik oflayn ilova va saytdagi har kunlik Reading + Dictation mashqlari tufayli 6 oyda B1 dan C1 ga ko‘tarildim va 100% DTM imtiyozini oldim!</p>
+          <p style="font-size:14px;color:var(--fg);line-height:1.62;">“450 kunlik oflayn ilova va saytdagi har kunlik Reading hamda Dictation mashqlari bilan 6 oyda B1 dan C1 ga ko‘tarildim va OTM kirishda 100% imtiyoz oldim.”</p>
           <div class="testi-foot">
-            <span>🎓 CEFR C1 (68 / 75 ball)</span>
-            <span style="color:var(--emerald);">100% Imtiyoz</span>
+            <span>CEFR C1 · 68 / 75 ball</span>
+            <span style="color:var(--ok);">100% OTM imtiyozi</span>
           </div>
         </div>
         <div class="testi-card">
-          <div class="quote-mark">“</div>
-          <p style="font-size:14.5px;color:var(--fg);line-height:1.6;">IELTS 8+ dasturidagi Reading strategiyalari va Multilevel Writing 12 ta Mock imtihoni yordamida Reading’dan 8.5, umumiy 7.5 ball oldim.</p>
+          <p style="font-size:14px;color:var(--fg);line-height:1.62;">“IELTS 8+ darsligidagi Reading tahlillari hamda Multilevel Writing 12 ta Mock imtihoni yordamida Reading bo‘limidan 8.5, umumiy 7.5 natija qayd etdim.”</p>
           <div class="testi-foot">
-            <span>🌍 IELTS Overall 7.5</span>
-            <span style="color:var(--blue);">Reading 8.5</span>
+            <span>IELTS Academic · 7.5</span>
+            <span style="color:var(--brand);">Reading 8.5</span>
           </div>
         </div>
         <div class="testi-card">
-          <div class="quote-mark">“</div>
-          <p style="font-size:14.5px;color:var(--fg);line-height:1.6;">Farzandim darsini qilmasdan 15 daqiqa o‘yinga chalg‘isa, Telegram bot darhol menga xabar yuboradi. Ota-ona uchun bundan qulay nazorat yo‘q!</p>
+          <p style="font-size:14px;color:var(--fg);line-height:1.62;">“Farzandim darsini o‘z vaqtida tugatgani yoki chalg‘igani haqida Telegram botdan aniq xabar kelib turadi. Ota-ona uchun eng xotirjam tizim.”</p>
           <div class="testi-foot">
-            <span>🛡️ Ota-ona fikri</span>
-            <span style="color:var(--accent);">@Husanboy_Teacher_Assisstant_bot</span>
+            <span>Ota-ona fikri</span>
+            <span>@Husanboy_Teacher_Assisstant_bot</span>
           </div>
         </div>
       </div>
 
-      <!-- Enroll Form + FAQ Split -->
       <div class="enroll-split" id="enroll">
         <div class="surface-card">
-          <span class="portrait-tag">🎁 Bepul 1-Sinov Darsi</span>
-          <h3 style="font-size:26px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;color:var(--ink);">Bepul 1-sinov darsiga yoziling</h3>
-          <p style="font-size:14px;color:var(--muted);margin-bottom:18px;">Ismingiz va raqamingizni qoldiring — arizangiz to‘g‘ridan-to‘g‘ri ustozning qabul Telegramiga (@sakinatim_bol) tayyor holda boradi.</p>
+          <span class="badge badge-brand">Bepul sinov darsi</span>
+          <h3 style="font-size:22px;font-weight:700;letter-spacing:-0.02em;margin:10px 0 6px;color:var(--ink);">Bepul 1-sinov darsiga yoziling</h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:18px;">Ma’lumotlaringizni kiriting — so‘rov ustozning qabul Telegram sahifasiga (@sakinatim_bol) tayyor matn bilan yuboriladi.</p>
+
           <form id="enroll-form" style="display:flex;flex-direction:column;gap:12px;">
-            <input class="light-input" id="en-name" required placeholder="Ism-familiyangiz (masalan: Ali Valiyev)" />
-            <input class="light-input" id="en-phone" required placeholder="Telefon raqamingiz (+998 90 123 45 67)" />
-            <select class="light-input" id="en-course">
-              <option value="A1–C1 General English (450 kun)">A1–C1 General English (450 kun)</option>
-              <option value="Multilevel / CEFR (B2–C1)">Multilevel / CEFR (B2–C1)</option>
-              <option value="IELTS 7.0–8.5 Tayyorgarlik">IELTS 7.0–8.5 Tayyorgarlik</option>
-              <option value="Kids English (Bolalar uchun)">Kids English (Bolalar uchun)</option>
-            </select>
-            <button type="submit" class="pill-cta dark" style="justify-content:space-between;width:100%;">
-              <span>✈️ Telegram orqali yuborish (@sakinatim_bol)</span>
-              <span class="arr">→</span>
+            <div class="field-group">
+              <label class="field-label" for="en-name">Ism va familiya</label>
+              <input class="light-input" id="en-name" required placeholder="Ali Valiyev" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="en-phone">Telefon raqamingiz</label>
+              <input class="light-input" id="en-phone" type="tel" required placeholder="+998 90 123 45 67" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="en-course">O‘quv yo‘nalishi</label>
+              <select class="light-input" id="en-course">
+                <option value="A1–C1 General English (450 kun)">A1–C1 General English (450 kun)</option>
+                <option value="Multilevel / CEFR (B2–C1)">Multilevel / CEFR (B2–C1)</option>
+                <option value="IELTS 7.0–8.5 Tayyorgarlik">IELTS 7.0–8.5 Tayyorgarlik</option>
+                <option value="Kids English (Bolalar uchun)">Kids English (Bolalar uchun)</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:space-between;margin-top:4px;">
+              <span>Telegram orqali ariza yuborish</span>
+              <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
             </button>
           </form>
         </div>
 
         <div>
           <details class="faq-item" open>
-            <summary>📚 Saytdagi 23 ta darslik va 14 ta mashq rostdan ham bepulmi?</summary>
-            <p>Ha, ushbu ochiq platformadagi barcha IELTS 8+, Reading, Writing, Speaking, 450 kunlik lug‘at va test mashqlari barcha o‘rganuvchilar uchun 100% bepul va reklamasiz taqdim etilgan.</p>
+            <summary>Saytdagi 23 ta darslik va 14 ta mashq to‘liq bepulmi?</summary>
+            <p>Ha. Ushbu ochiq platformadagi barcha IELTS 8+, Reading, Writing, Speaking, 450 kunlik lug‘at va test mashqlari ro‘yxatdan o‘tishsiz hamda to‘liq bepul ishlaydi.</p>
           </details>
           <details class="faq-item">
-            <summary>📱 450 kunlik yopiq ilova va Shaxsiy Kabinet qanday ishlaydi?</summary>
-            <p>Rasmiy ilova @Husanboy_Teacher_Assisstant_bot orqali olinadi va Android’da 100% internetsiz ishlaydi. iPhone hamda kompyuter foydalanuvchilari esa o‘z Login/Paroli yoki QR-kod orqali Shaxsiy Kabinetda darslarni davom ettiradilar.</p>
+            <summary>450 kunlik yopiq ilova va Shaxsiy kabinet qanday ishlaydi?</summary>
+            <p>Rasmiy Android ilova @Husanboy_Teacher_Assisstant_bot orqali olinadi va internetsiz ishlaydi. Mavjud o‘quvchilar iPhone hamda kompyuterda o‘z Login/Paroli yoki QR-kod orqali Shaxsiy kabinetda kunlik darslarini bajaradilar.</p>
           </details>
           <details class="faq-item">
-            <summary>📜 QR-kodli daraja sertifikatini qanday olaman?</summary>
-            <p>Yuqoridagi Amaliy Laboratoriyadan «Daraja Testi», «Mini-Mock» yoki «Word Sprint»ni ishlang — yakunida ismingiz yozilgan, ustoz tasdiqlagan HD PNG sertifikatni bir bosishda yuklab olasiz.</p>
+            <summary>QR-kodli daraja sertifikatini qanday yuklab olaman?</summary>
+            <p>Yuqoridagi Amaliy laboratoriyadan «Daraja Testi», «15 daq Mini-Mock» yoki «Word Sprint» bo‘limini yakunlang va ismingizni yozib yuqori sifatli PNG sertifikatni yuklab oling.</p>
+          </details>
+          <details class="faq-item">
+            <summary>CEFR Multilevel B2 va C1 daraja uchun necha ball kerak?</summary>
+            <p>4 ta ko‘nikma o‘rtachasi 51–64 ball bo‘lsa B2, 65–75 ball bo‘lsa C1 daraja beriladi va OTM kirish imtihonlarida chet tilidan maksimal 100% ball taqdim etadi.</p>
           </details>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= 8. DEEP-NAVY ROUNDED FOOTER ================= -->
-  <footer class="footer-wrap">
-    <div class="site-footer">
-      <div class="footer-cta">
-        <div>
-          <div style="font-family:var(--font-mono);font-size:11px;color:#fde68a;letter-spacing:0.08em;margin-bottom:6px;">• HOZIROQ BOSHLANG</div>
-          <h2 style="font-size:clamp(26px,3.2vw,40px);font-weight:700;letter-spacing:-0.025em;">Maqsadingiz C1 yoki IELTS 8+ mi?</h2>
-        </div>
-        <a class="pill-cta" href="#enroll" style="background:#ffffff;color:#082459;">
-          <span>Bepul 1-darsga yozilish</span>
-          <span class="arr" style="background:#082459;color:#ffffff;">→</span>
-        </a>
-      </div>
-
+  <!-- ================= 7. ARCHITECTURAL FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
       <div class="footer-cols">
         <div>
-          <b style="font-size:19px;display:block;margin-bottom:8px;">Husanboy Teacher</b>
-          <p style="font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.6;">Qosimov Husanboy Madaminjon o‘g‘li muallifligidagi ochiq CEFR, Multilevel va IELTS akademiyasi.</p>
+          <span class="brand" style="margin-bottom:10px;">
+            <img src="./app-icon.png" alt="Husanboy Teacher" />
+            <span>Husanboy Teacher</span>
+          </span>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;max-width:290px;">
+            Qosimov Husanboy Madaminjon o‘g‘li muallifligidagi ochiq CEFR, Multilevel va IELTS akademiyasi.
+          </p>
         </div>
         <div class="footer-col">
-          <h4>Flagship Dasturlar</h4>
+          <h4>Asosiy dasturlar</h4>
           <a href="library/ielts/ielts-8-plus.html">IELTS 8+ Dasturi</a>
           <a href="library/vocab/test-450.html">450 Kunlik Test Tizimi</a>
           <a href="library/vocab/kunlik-450.html">450 Kunlik Lug‘at</a>
           <a href="library/speaking/multilevel-40.html">Speaking: 40 Savol</a>
         </div>
         <div class="footer-col">
-          <h4>Kutubxona</h4>
-          <a href="library/writing/multilevel.html">Enzo Writing (12 Mock)</a>
-          <a href="library/speaking/suhbat-500.html">500 ta Suhbat</a>
-          <a href="library/vocab/iboralar-30.html">Kundalik Iboralar</a>
-          <a href="./cabinet/index.html">Shaxsiy Kabinet (QR)</a>
+          <h4>Amaliy bo‘limlar</h4>
+          <a href="library/writing/multilevel.html">Multilevel Writing (12 Mock)</a>
+          <a href="library/speaking/suhbat-500.html">500 ta Kundalik Suhbat</a>
+          <a href="library/vocab/iboralar-30.html">Kundalik Ingliz Iboralari</a>
+          <a href="./cabinet/index.html">Shaxsiy Kabinet (Login / QR)</a>
         </div>
         <div class="footer-col">
-          <h4>Aloqa</h4>
-          <a href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">✈️ @Qosimov_Xusanboy</a>
-          <a href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">📢 @xusanboy_teacher</a>
-          <a href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">🤖 Ota-ona va Ilova Boti</a>
-          <a href="tel:+998889977746">📞 +998 88 997 77 46</a>
+          <h4>Bog‘lanish</h4>
+          <a href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener">Telegram: @Qosimov_Xusanboy</a>
+          <a href="https://t.me/xusanboy_teacher" target="_blank" rel="noopener">Kanal: @xusanboy_teacher</a>
+          <a href="https://t.me/Husanboy_Teacher_Assisstant_bot" target="_blank" rel="noopener">Ilova va Ota-ona Boti</a>
+          <a href="tel:+998889977746">+998 88 997 77 46</a>
         </div>
       </div>
 
       <nav class="footer-catalog" aria-label="Barcha 23 ta ochiq darsliklar xaritasi">
-        <div class="footer-catalog-title">📚 Barcha 23 ta bepul darslik va imtihonlar xaritasi (A1 → C1 &amp; IELTS 8+)</div>
+        <div class="footer-catalog-title">Barcha 23 ta ochiq darslik va imtihonlar xaritasi</div>
         <div class="footer-pills">
           <a href="library/ielts/ielts-8-plus.html">IELTS 8+ Dasturi</a>
           <a href="library/vocab/test-450.html">450 Kunlik Test Tizimi</a>
@@ -1915,36 +1883,39 @@
           <a href="library/writing/upper-intermediate.html">Writing Upper-Intermediate</a>
         </div>
       </nav>
-
-      <div class="footer-wm" aria-hidden="true">HUSANBOY</div>
     </div>
   </footer>
 
-  <!-- ⌘K Instant Katalog & Search Modal -->
+  <!-- Ctrl+K Search Modal -->
   <div class="cmd-backdrop" id="cmd-backdrop" onclick="if(event.target===this) closeCmd()">
-    <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Katalog va qidiruv">
+    <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Katalog qidiruvi">
       <div class="cmd-head">
-        <span>🔍</span>
-        <input id="cmd-input" type="text" placeholder="23 ta darslik va 14 ta mashq ichidan qidiring..." oninput="renderCmd(this.value)" autocomplete="off" />
-        <button class="icon-btn" type="button" onclick="closeCmd()" style="height:28px;font-size:12px;">ESC</button>
+        <svg class="ico" style="color:var(--muted);" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="cmd-input" type="text" placeholder="23 ta kitob va 14 ta mashq ichidan qidiring..." oninput="renderCmd(this.value)" autocomplete="off" />
+        <button class="btn btn-sm" type="button" onclick="closeCmd()">ESC</button>
       </div>
       <div class="cmd-list" id="cmd-list"></div>
     </div>
   </div>
 
-  <div id="xp-toast" aria-live="polite"></div>
-
   <script>
-    // Prevent app.js from running any background starfield canvas loop (100% pure 120 FPS scroll!)
     window.HT_COSMOS_ACTIVE = true;
 
-    /* 1. Kun / Tun (Light / Dark) Theme Switcher */
+    const SVG_SUN = '<svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+    const SVG_MOON = '<svg class="ico" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>';
+    const SVG_VOL = '<svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+    const SVG_EXT = '<svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
+
+    /* 1. Light / Dark Theme + Live Iframe Propagation */
     function syncThemeBtn() {
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
       const btn = document.getElementById('theme-toggle');
-      if (btn) btn.textContent = dark ? '☀️' : '🌙';
+      if (btn) btn.innerHTML = dark ? SVG_SUN : SVG_MOON;
       const meta = document.getElementById('meta-theme-color');
-      if (meta) meta.setAttribute('content', dark ? '#070b14' : '#ffffff');
+      if (meta) meta.setAttribute('content', dark ? '#09090b' : '#fafafa');
+      document.querySelectorAll('#hub-stage iframe').forEach(fr => {
+        try { fr.contentWindow?.postMessage({ type: 'HT_THEME', theme: dark ? 'dark' : 'light' }, '*'); } catch (_) {}
+      });
     }
     function toggleTheme() {
       const cur = document.documentElement.getAttribute('data-theme');
@@ -1955,34 +1926,70 @@
     }
 
     function toggleDrawer(open) {
-      document.getElementById('mobile-drawer')?.classList.toggle('open', !!open);
+      const el = document.getElementById('mobile-drawer');
+      if (!el) return;
+      el.classList.toggle('open', !!open);
+      el.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.classList.toggle('modal-open', !!open);
     }
 
-    /* 2. Lumora HeroCard Interactive Program Switcher (01–07) */
-    const HERO_PROGRAMS = [
-      { title: '🏆 IELTS 8+ Dasturi →', href: 'library/ielts/ielts-8-plus.html', desc: 'Reading, Writing, Listening va Speaking Band 8+ strategiyalari.' },
-      { title: '🧪 450 Kunlik Test Tizimi →', href: 'library/vocab/test-450.html', desc: 'A1 dan C1 gacha 450 kunlik lug‘at va grammatika imtihonlari (80%).' },
-      { title: '📘 450 Kunlik Lug‘at →', href: 'library/vocab/kunlik-450.html', desc: 'A1 dan C1 gacha kunlik tizimli so‘z boyligi va audio talaffuz.' },
-      { title: '🎤 Speaking: 40 Savol →', href: 'library/speaking/multilevel-40.html', desc: 'Part 1.1, Part 1.2 (2 rasm), Part 2 va Part 3 taymerli mashq.' },
-      { title: '✍️ Enzo Writing (12 Mock) →', href: 'library/writing/multilevel.html', desc: 'Task 1, Task 2, C1 namunalar va 60 daqiqalik Mock imtihonlar.' },
-      { title: '💬 500 ta Kundalik Suhbat →', href: 'library/speaking/suhbat-500.html', desc: '20 ta hayotiy mavzuda audio talaffuzli savol va javoblar.' },
-      { title: '🗣️ 30+ Ingliz Iboralari →', href: 'library/vocab/iboralar-30.html', desc: '3D aylanuvchi kartochkalar va interaktiv mustahkamlash testi.' }
+    function scrollLabTabs(dx) {
+      document.getElementById('hub-tabs')?.scrollBy({ left: dx, behavior: 'smooth' });
+    }
+
+    /* 2. Complete 23-Book Structured Curriculum Data */
+    const ALL_BOOKS = [
+      { cat: 'flagship', level: 'Band 8.0+', title: 'IELTS 8+ To‘liq Dasturi', desc: 'Reading, Writing, Listening va Speaking bo‘yicha akademik strategiya va mashqlar.', href: 'library/ielts/ielts-8-plus.html' },
+      { cat: 'flagship', level: 'A1 → C1 · 80%', title: '450 Kunlik Lug‘at va Grammatika Testi', desc: 'Har bir kun va hafta bo‘yicha 80% o‘tish ballik tizimli imtihonlar.', href: 'library/vocab/test-450.html' },
+      { cat: 'flagship', level: 'A1 → C1 · Audio', title: '450 Kunlik Ingliz Tili Lug‘at Darslari', desc: 'Kunma-kun tartiblangan faol so‘z boyligi, jonli talaffuz va misollar.', href: 'library/vocab/kunlik-450.html' },
+      { cat: 'flagship', level: 'B2–C1 Speaking', title: 'Multilevel Speaking: 40 ta Imtihon Savoli', desc: 'Part 1.1, Part 1.2 (rasm tahlili), Part 2 va Part 3 taymerli namunalar.', href: 'library/speaking/multilevel-40.html' },
+      { cat: 'flagship', level: '12 Mock Exam', title: 'Multilevel Writing (Task 1 & Task 2)', desc: 'Xat va esse qoliplari, C1 namunalar hamda 60 daqiqalik mock imtihonlar.', href: 'library/writing/multilevel.html' },
+      { cat: 'flagship', level: '20 Mavzu · Audio', title: '500 ta Inglizcha Kundalik Suhbat', desc: 'Hayotiy vaziyatlardagi tabiiy savol-javoblar va eshitib mashq qilish.', href: 'library/speaking/suhbat-500.html' },
+      { cat: 'flagship', level: 'B1–C1 Idioms', title: 'Kundalik Ingliz Iboralari (30+)', desc: 'Interaktiv kartochkalar va real nutqdagi iboralarni mustahkamlash testi.', href: 'library/vocab/iboralar-30.html' },
+
+      { cat: 'cefr-reading', level: 'CEFR A1', title: 'CEFR Reading — Starter', desc: 'Boshlang‘ich daraja uchun qisqa matnlar, lug‘at va tushunish savollari.', href: 'library/cefr-reading/starter.html' },
+      { cat: 'cefr-reading', level: 'CEFR A2', title: 'CEFR Reading — Elementary', desc: 'E’lonlar, qisqa xabarlar va kundalik mavzudagi imtihon matnlari.', href: 'library/cefr-reading/elementary.html' },
+      { cat: 'cefr-reading', level: 'CEFR A2+', title: 'CEFR Reading — Pre-Intermediate', desc: 'Multilevel Part 1–3 formatiga bosqichma-bosqich tayyorlovchi testlar.', href: 'library/cefr-reading/pre-intermediate.html' },
+      { cat: 'cefr-reading', level: 'CEFR B1', title: 'CEFR Reading — Intermediate', desc: '31 savollik to‘liq Multilevel formatidagi matnlar va dalil tahlili.', href: 'library/cefr-reading/intermediate.html' },
+      { cat: 'cefr-reading', level: 'CEFR B2–C1', title: 'CEFR Reading — Upper-Intermediate', desc: 'Yuqori ball (51–75) maqsad qilganlar uchun murakkab ilmiy-ommabop matnlar.', href: 'library/cefr-reading/upper-intermediate.html' },
+
+      { cat: 'ielts-reading', level: 'A1 · 50 Matn', title: 'Reading Comprehension — Beginner', desc: '50 ta mavzulashtirilgan boshlang‘ich matn va test savollari.', href: 'library/reading/beginner.html' },
+      { cat: 'ielts-reading', level: 'A1+ · 50 Matn', title: 'Reading Comprehension — Starter', desc: 'Tez o‘qish va asosiy g‘oyani topish ko‘nikmasi uchun 50 ta mashq.', href: 'library/reading/starter.html' },
+      { cat: 'ielts-reading', level: 'A2 · 50 Matn', title: 'Reading Comprehension — Elementary', desc: 'True / False / Not Given va savol-javob formatidagi 50 ta dars.', href: 'library/reading/elementary.html' },
+      { cat: 'ielts-reading', level: 'B1 · 50 Matn', title: 'Reading Comprehension — Pre-Intermediate', desc: 'Akademik leksika va sinonimlarni ilg‘ashga yo‘naltirilgan 50 ta matn.', href: 'library/reading/pre-intermediate.html' },
+      { cat: 'ielts-reading', level: 'B2 · 50 Matn', title: 'Reading Comprehension — Intermediate', desc: 'IELTS Reading Passage 1–2 darajasidagi 50 ta tahliliy matn.', href: 'library/reading/intermediate.html' },
+      { cat: 'ielts-reading', level: 'C1 · 50 Matn', title: 'Reading Comprehension — Upper-Intermediate', desc: 'Band 7.5–8.5 darajasidagi 50 ta murakkab akademik matnlar to‘plami.', href: 'library/reading/upper-intermediate.html' },
+
+      { cat: 'writing', level: 'Writing A1', title: 'Academic Writing — Starter', desc: 'To‘g‘ri gap qurilishi, tinish belgilari va qisqa xabarlar yozish.', href: 'library/writing/starter.html' },
+      { cat: 'writing', level: 'Writing A2', title: 'Academic Writing — Elementary', desc: 'Rasmiy va norasmiy xatlar tuzilmasi hamda bog‘lovchi vositalar.', href: 'library/writing/elementary.html' },
+      { cat: 'writing', level: 'Writing B1', title: 'Academic Writing — Pre-Intermediate', desc: 'Paragraf mantiqi, Topic Sentence va sabab-oqibat insholari.', href: 'library/writing/pre-intermediate.html' },
+      { cat: 'writing', level: 'Writing B2', title: 'Academic Writing — Intermediate', desc: 'Task 1 va Task 2 argumentatsiyasi, akademik uslub va tahlil.', href: 'library/writing/intermediate.html' },
+      { cat: 'writing', level: 'Writing C1', title: 'Academic Writing — Upper-Intermediate', desc: 'Band 8.0+ darajasidagi murakkab grammatik tuzilmalar va esse namunalari.', href: 'library/writing/upper-intermediate.html' }
     ];
-    let hcIdx = 0;
-    function stepHeroCard(dir) {
-      hcIdx = (hcIdx + dir + HERO_PROGRAMS.length) % HERO_PROGRAMS.length;
-      const p = HERO_PROGRAMS[hcIdx];
-      document.getElementById('hc-idx').textContent = `0${hcIdx + 1} / 0${HERO_PROGRAMS.length} • DASTUR`;
-      const lnk = document.getElementById('hc-link');
-      lnk.textContent = p.title;
-      lnk.href = p.href;
-      document.getElementById('hc-desc').textContent = p.desc;
+
+    function renderCatalog(cat) {
+      const grid = document.getElementById('catalog-grid');
+      if (!grid) return;
+      const items = cat === 'all' ? ALL_BOOKS : ALL_BOOKS.filter(b => b.cat === cat);
+      grid.innerHTML = items.map((b, i) => `
+        <a class="book-card" href="${b.href}">
+          <div class="book-top">
+            <span class="book-idx">${String(i + 1).padStart(2, '0')}</span>
+            <span class="badge">${b.level}</span>
+          </div>
+          <div>
+            <h3>${b.title}</h3>
+            <p>${b.desc}</p>
+          </div>
+          <span class="book-open">Darslikni ochish ${SVG_EXT}</span>
+        </a>
+      `).join('');
     }
 
-    /* 3. Word of the Day + TTS */
+    /* 3. Word of the Day */
     const WOD_FALLBACK = [
       { en: 'Ubiquitous', ipa: '/juːˈbɪk.wɪ.təs/', lvl: 'C1', uz: 'Hamma joyda uchraydigan', ex: 'English has become ubiquitous across global science.' },
-      { en: 'Resilient', ipa: '/rɪˈzɪl.jənt/', lvl: 'B2+', uz: 'Chidamli, sinmas irodali', ex: 'Resilient students turn every mistake into progress.' },
+      { en: 'Resilient', ipa: '/rɪˈzɪl.jənt/', lvl: 'B2+', uz: 'Bardoshli, sinmas irodali', ex: 'Resilient students turn every mistake into progress.' },
       { en: 'Meticulous', ipa: '/məˈtɪk.jə.ləs/', lvl: 'C1', uz: 'O‘ta sinchkov va tartibli', ex: 'Band 8+ essays require meticulous planning.' }
     ];
     let wodIdx = Math.floor(Date.now() / 86400000);
@@ -1991,7 +1998,8 @@
         if (!window.speechSynthesis) return;
         window.speechSynthesis.cancel();
         const u = new SpeechSynthesisUtterance(txt);
-        u.lang = 'en-US'; u.rate = 0.94;
+        u.lang = 'en-US';
+        u.rate = 0.94;
         window.speechSynthesis.speak(u);
       } catch (_) {}
     }
@@ -2003,129 +2011,113 @@
       if (!el) return;
       el.innerHTML = `
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <div><b style="font-size:18px;color:var(--ink);">${word}</b> <span style="font-size:12px;color:var(--muted);">${w.ipa || ''}</span></div>
-          <button type="button" class="icon-btn" style="height:30px;font-size:12px;" onclick="speakWod('${String(word + '. ' + (w.ex || '')).replace(/'/g, "\\'")}')">🔊</button>
+          <div>
+            <b style="font-size:17px;color:var(--ink);letter-spacing:-0.015em;">${word}</b>
+            <span style="font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-left:6px;">${w.ipa || ''}</span>
+          </div>
+          <button type="button" class="btn btn-sm" onclick="speakWod('${String(word + '. ' + (w.ex || '')).replace(/'/g, "\\'")}')">
+            ${SVG_VOL}<span>Talaffuz</span>
+          </button>
         </div>
-        <div style="font-size:13.5px;font-weight:700;color:var(--fg);margin-top:3px;">🇺🇿 ${w.uz || ''} <span style="font-family:var(--font-mono);font-size:11px;color:var(--emerald);">[${w.lvl || 'B2–C1'}]</span></div>
-        <div style="font-size:12.5px;color:var(--muted);margin-top:3px;font-style:italic;">“${w.ex || ''}”</div>`;
+        <div style="font-size:13.5px;font-weight:600;color:var(--fg);margin-top:6px;">${w.uz || ''} <span style="font-family:var(--font-mono);font-size:11px;color:var(--brand);margin-left:4px;">${w.lvl || 'B2–C1'}</span></div>
+        <div style="font-size:13px;color:var(--muted);margin-top:3px;">“${w.ex || ''}”</div>`;
     }
     function nextWod() { wodIdx++; renderWod(); }
 
-    /* 4. Daily Streak, Live Clock & Live Ustoz Mentor Tips */
+    /* 4. Mentor Methodological Tips */
     const TEACHER_TIPS = {
-      reading:    'Avval savollardagi ot va fe’l kalit so‘zlarni toping — matnda aynan ularning sinonimi yashiringan bo‘ladi!',
-      writing:    'Har bir paragrafni aniq Topic Sentence bilan boshlang va kamida 2 ta C1 bog‘lovchi (Furthermore, Consequently) ishlating.',
-      map:        'Xaritada birinchi nuqtani (Main Entrance) ushlab oling va "used to be / planned" kabi chalg‘ituvchi tuzoqlarga aldanmang!',
-      dictation:  '1-marta ma’noni tushunish uchun eshiting, 2-marta esa artikl (a/the) va ko‘plik (-s) qo‘shimchalariga diqqat qiling.',
-      listening:  'Spiker "however", "actually" yoki "in fact" deganda hushyor bo‘ling — haqiqiy to‘g‘ri javob aynan shundan keyin keladi!',
-      speaking:   'Javobni 1 ta qisqa gap bilan tugatmang: Sabab + Hayotiy misol qo‘shsangiz Band 7.5+ kafolatlanadi!',
-      errors:     'Ega va kesim mosligi (has/have) hamda predloglarga (despite / suggest) alohida e’tibor bering.',
-      flashcards: 'Yangi iborani ovoz chiqarib 3 marta qaytaring va o‘zingiz haqingizda 1 ta gap tuzing!',
-      sprint:     'Tezlik + aniqlik! Ikki ikkilangan variantdan birinchi esingizga kelgani ko‘pincha to‘g‘ri bo‘ladi.',
-      mock:       'Vaqt taqsimoti oltin qoidasi: bilmagan savolda 45 soniyadan ortiq ushlanib qolmang!',
-      placement:  'Test oxirida ismingizni yozib QR-kodli Rasmiy Sertifikatni yuklab oling va do‘stlaringiz bilan ulashing!',
-      calc:       'CEFR C1 (65+ ball) sizga OTM kirish imtihonlarida chet tilidan maksimal 100% ball beradi!',
-      verbs:      'Noto‘g‘ri fe’llarni qofiyadosh guruh qilib (sing-sang-sung, ring-rang-rung) yodlasangiz 3 barobar tez esda qoladi.',
-      tenses:     'Zamonni tanlashda gapdagi vaqt ko‘rsatkichiga (already, since, by 2027) qarang — u formulaning kaliti!'
+      reading:    'Avval savollardagi ot va fe’l kalit so‘zlarni toping — matnda aynan ularning sinonimi yashiringan bo‘ladi.',
+      writing:    'Har bir paragrafni aniq Topic Sentence bilan boshlang va kamida ikkita C1 bog‘lovchi (Furthermore, Consequently) ishlating.',
+      map:        'Xaritada birinchi nuqtani (Main Entrance) ushlab oling va "used to be / planned" kabi chalg‘ituvchi iboralarga e’tibor bering.',
+      dictation:  'Birinchi marta umumiy ma’noni tushunish uchun eshiting, ikkinchi marta esa artikl va ko‘plik qo‘shimchalarini tekshiring.',
+      listening:  'Spiker "however", "actually" yoki "in fact" deganda diqqatni oshiring — to‘g‘ri javob ko‘pincha shundan keyin aytiladi.',
+      speaking:   'Javobni bitta qisqa gap bilan cheklamang: fikr + sabab + qisqa hayotiy misol qolipi yuqori ball beradi.',
+      errors:     'Ega va kesim mosligi (has / have) hamda predloglarga (despite / good at) alohida e’tibor bering.',
+      flashcards: 'Yangi iborani ovoz chiqarib uch marta qaytaring va o‘zingiz haqingizda bitta gap tuzing.',
+      sprint:     'Tezlik va aniqlik muhim: ikkilangan variantlardan birinchi xotiraga kelgani ko‘pincha to‘g‘ri bo‘ladi.',
+      mock:       'Vaqt taqsimoti qoidasi: qiyin savolda 45 soniyadan ortiq ushlanib qolmang.',
+      placement:  'Test yakunida ismingizni kiritib, QR-kodli rasmiy PNG sertifikatni yuklab olishingiz mumkin.',
+      calc:       'CEFR C1 (65+ ball) OTM kirish imtihonlarida chet tilidan maksimal 100% ball beradi.',
+      verbs:      'Noto‘g‘ri fe’llarni ohangdosh guruhlarga bo‘lib (sing–sang–sung, ring–rang–rung) yodlash samaraliroq.',
+      tenses:     'Zamonni tanlashda gapdagi vaqt ko‘rsatkichiga (already, since, by 2027) tayaning.'
     };
 
-    function initDailyStreak() {
-      let streak = 1;
-      try {
-        const today = Math.floor(Date.now() / 86400000);
-        const last = Number(localStorage.getItem('ht_streak_day') || 0);
-        streak = Number(localStorage.getItem('ht_streak_cnt') || 1) || 1;
-        if (last && today - last === 1) streak += 1;
-        else if (last && today - last > 1) streak = 1;
-        localStorage.setItem('ht_streak_day', String(today));
-        localStorage.setItem('ht_streak_cnt', String(streak));
-      } catch (_) {}
-      const el = document.getElementById('streak-hud');
-      if (el) el.textContent = `🔥 ${streak} kun`;
-    }
-
-    function updateClock() {
-      const el = document.getElementById('live-clock');
-      if (!el) return;
-      try {
-        const t = new Date().toLocaleTimeString('uz-UZ', { timeZone: 'Asia/Tashkent', hour: '2-digit', minute: '2-digit' });
-        el.textContent = `🕒 Toshkent • ${t}`;
-      } catch (_) {}
-    }
-
-    window.HT_COSMOS_ON_XP = function (pts) {
-      const tipEl = document.getElementById('teacher-tip-text');
-      if (tipEl && pts > 0) {
-        tipEl.innerHTML = `🌟 <b>Barakalla! (+${pts} XP):</b> Ajoyib natija — aynan shu tempda C1 va IELTS 8+ sari davom eting! — <i>Husanboy Teacher</i>`;
-      }
-    };
-
-    /* 5. ⌘K Search & Quick Catalog */
-    const CATALOG_ITEMS = [
-      { title: '🏆 IELTS 8+ To‘liq Dasturi', badge: 'BAND 8+', href: 'library/ielts/ielts-8-plus.html' },
-      { title: '🧪 450 Kunlik Lug‘at & Grammatika Testi', badge: '80% EXAM', href: 'library/vocab/test-450.html' },
-      { title: '📘 450 Kunlik Lug‘at Darslari', badge: 'A1–C1', href: 'library/vocab/kunlik-450.html' },
-      { title: '🎤 Multilevel Speaking: 40 Savol', badge: 'SPEAKING', href: 'library/speaking/multilevel-40.html' },
-      { title: '✍️ Enzo Writing — Multilevel (12 Mock)', badge: 'WRITING', href: 'library/writing/multilevel.html' },
-      { title: '💬 500 ta Kundalik Suhbat (Audio)', badge: 'AUDIO', href: 'library/speaking/suhbat-500.html' },
-      { title: '🗣️ 30+ Kundalik Ingliz Iboralari', badge: '3D CARD', href: 'library/vocab/iboralar-30.html' },
-      { title: '📖 CEFR & IELTS Reading (11 daraja)', badge: 'LAB', tab: 'reading' },
-      { title: '📝 Writing Laboratoriyasi (6 daraja)', badge: 'LAB', tab: 'writing' },
-      { title: '🗺️ IELTS Map Labeling (Xarita)', badge: 'LAB', tab: 'map' },
-      { title: '✍️ CEFR Dictation (Eshitib yozish)', badge: 'LAB', tab: 'dictation' },
-      { title: '🧩 Xatoni Top! (Grammar Traps)', badge: 'LAB', tab: 'errors' },
-      { title: '🃏 3D Flashcards (Idioms)', badge: 'LAB', tab: 'flashcards' },
-      { title: '🎮 Word Sprint (60 soniya)', badge: 'GAME', tab: 'sprint' },
-      { title: '⏱ 15 daqiqalik Mini-Mock + Sertifikat', badge: 'MOCK', tab: 'mock' },
-      { title: '🧪 CEFR Daraja Testi + QR Sertifikat', badge: 'CERT', tab: 'placement' },
-      { title: '🧮 Multilevel & IELTS Ball Kalkulyatori', badge: 'TOOL', tab: 'calc' },
-      { title: '🎓 Shaxsiy Kabinet (Login / QR)', badge: 'CABINET', href: './cabinet/index.html' }
+    /* 5. Ctrl+K Instant Search across All 23 Books + 14 Lab Modules */
+    const LAB_SEARCH_ITEMS = [
+      { title: 'Map Labeling (Xarita mashqi)', badge: 'LAB', tab: 'map' },
+      { title: 'CEFR Dictation (Eshitib yozish)', badge: 'LAB', tab: 'dictation' },
+      { title: 'Listening (Tinglab tushunish)', badge: 'LAB', tab: 'listening' },
+      { title: 'Speaking (Ovoz yozish mashqi)', badge: 'LAB', tab: 'speaking' },
+      { title: 'Grammar Traps (Xatoni topish)', badge: 'LAB', tab: 'errors' },
+      { title: 'Flashcards (Idioms va Phrasal Verbs)', badge: 'LAB', tab: 'flashcards' },
+      { title: 'Word Sprint (60 soniyalik sinov)', badge: 'LAB', tab: 'sprint' },
+      { title: '15 daqiqalik CEFR Mini-Mock', badge: 'MOCK', tab: 'mock' },
+      { title: 'CEFR Daraja aniqlash testi + Sertifikat', badge: 'CERT', tab: 'placement' },
+      { title: 'Multilevel va IELTS Ball kalkulyatori', badge: 'TOOL', tab: 'calc' },
+      { title: 'Noto‘g‘ri fe’llar jadvali (PDF + Audio)', badge: 'REF', tab: 'verbs' },
+      { title: 'Ingliz tilidagi 12 ta zamon (PDF)', badge: 'REF', tab: 'tenses' },
+      { title: 'Shaxsiy kabinet (Login / QR)', badge: 'CABINET', href: './cabinet/index.html' }
     ];
 
     function jumpToTab(tabId) {
       closeCmd();
       if (typeof window.HT_SELECT_TAB === 'function') window.HT_SELECT_TAB(tabId);
       const tipEl = document.getElementById('teacher-tip-text');
-      if (tipEl && TEACHER_TIPS[tabId]) tipEl.innerHTML = `💡 <b>Ustoz maslahati:</b> ${TEACHER_TIPS[tabId]}`;
+      if (tipEl && TEACHER_TIPS[tabId]) tipEl.innerHTML = `<b>Metodik tavsiya:</b> ${TEACHER_TIPS[tabId]}`;
       document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' });
     }
     function openCmd() {
       document.getElementById('cmd-backdrop').classList.add('open');
-      const inp = document.getElementById('cmd-input'); inp.value = ''; renderCmd('');
+      document.body.classList.add('modal-open');
+      const inp = document.getElementById('cmd-input');
+      inp.value = '';
+      renderCmd('');
       if (window.innerWidth > 768) setTimeout(() => inp.focus(), 30);
     }
-    function closeCmd() { document.getElementById('cmd-backdrop').classList.remove('open'); }
+    function closeCmd() {
+      document.getElementById('cmd-backdrop').classList.remove('open');
+      document.body.classList.remove('modal-open');
+    }
     function renderCmd(q) {
       const s = q.trim().toLowerCase();
-      const hits = CATALOG_ITEMS.filter(it => !s || it.title.toLowerCase().includes(s) || it.badge.toLowerCase().includes(s));
+      const bookHits = ALL_BOOKS.map(b => ({ title: b.title, badge: b.level, href: b.href }));
+      const combined = [...bookHits, ...LAB_SEARCH_ITEMS];
+      const hits = combined.filter(it => !s || it.title.toLowerCase().includes(s) || it.badge.toLowerCase().includes(s));
       document.getElementById('cmd-list').innerHTML = `<div class="cmd-grid">${hits.map(it =>
         it.href
-          ? `<a class="cmd-item" href="${it.href}"><span>${it.title}</span><span style="font-family:var(--font-mono);font-size:10.5px;color:var(--accent);">${it.badge}</span></a>`
-          : `<button class="cmd-item" type="button" onclick="jumpToTab('${it.tab}')"><span>${it.title}</span><span style="font-family:var(--font-mono);font-size:10.5px;color:var(--emerald);">${it.badge}</span></button>`
+          ? `<a class="cmd-item" href="${it.href}"><span>${it.title}</span><span class="badge">${it.badge}</span></a>`
+          : `<button class="cmd-item" type="button" onclick="jumpToTab('${it.tab}')"><span>${it.title}</span><span class="badge badge-brand">${it.badge}</span></button>`
       ).join('')}</div>`;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       syncThemeBtn();
       renderWod();
-      initDailyStreak();
+      renderCatalog('flagship');
+
+      document.querySelectorAll('#catalog-filters .seg-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#catalog-filters .seg-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderCatalog(btn.dataset.cat);
+        });
+      });
+
       try {
         const qParam = new URLSearchParams(location.search).get('q');
         if (qParam && qParam.trim()) {
-          document.getElementById('cmd-backdrop').classList.add('open');
+          openCmd();
           const inp = document.getElementById('cmd-input');
           inp.value = qParam.trim();
           renderCmd(qParam.trim());
         }
       } catch (_) {}
-      updateClock();
-      setInterval(updateClock, 30000);
 
       document.querySelectorAll('#hub-tabs .tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const tabId = btn.dataset.tab;
           const tipEl = document.getElementById('teacher-tip-text');
-          if (tipEl && TEACHER_TIPS[tabId]) tipEl.innerHTML = `💡 <b>Ustoz maslahati:</b> ${TEACHER_TIPS[tabId]}`;
+          if (tipEl && TEACHER_TIPS[tabId]) tipEl.innerHTML = `<b>Metodik tavsiya:</b> ${TEACHER_TIPS[tabId]}`;
         });
       });
 
@@ -2134,8 +2126,7 @@
         const name = document.getElementById('en-name').value.trim();
         const phone = document.getElementById('en-phone').value.trim();
         const course = document.getElementById('en-course').value;
-        const msg = encodeURIComponent(`Assalomu alaykum! Bepul 1-sinov darsiga yozilmoqchiman.\n👤 Ism: ${name}\n📞 Tel: ${phone}\n📚 Kurs: ${course}`);
-        if (typeof window.HT_ADD_XP === 'function') window.HT_ADD_XP(20, 'Ariza tayyor');
+        const msg = encodeURIComponent(`Assalomu alaykum! Bepul 1-sinov darsiga yozilmoqchiman.\nIsm: ${name}\nTel: ${phone}\nYo'nalish: ${course}`);
         window.open(`https://t.me/sakinatim_bol?text=${msg}`, '_blank', 'noopener');
       });
 

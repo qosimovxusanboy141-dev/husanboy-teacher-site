@@ -1,33 +1,93 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="uz" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sahifa topilmadi — Husanboy Teacher Akademiyasi</title>
+  <title>Sahifa topilmadi (404) — Husanboy Teacher</title>
   <meta name="robots" content="noindex, follow" />
-  <link rel="icon" type="image/png" href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/app-icon.png" />
+  <link rel="icon" type="image/png" href="./app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet" />
+  <script>
+    try {
+      var t = localStorage.getItem('ht_ui_theme');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
   <style>
+    :root {
+      --bg: #fafafa; --surface: #ffffff; --border: #e4e4e7;
+      --ink: #09090b; --muted: #52525b; --brand: #1d4ed8;
+    }
+    html[data-theme="dark"] {
+      --bg: #09090b; --surface: #111114; --border: #27272a;
+      --ink: #fafafa; --muted: #a1a1aa; --brand: #60a5fa;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; color: #0b111e; min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
-    .box { max-width: 520px; width: 100%; background: #fff; border: 1px solid #e4e7ee; border-radius: 28px; padding: 36px 28px; text-align: center; box-shadow: 0 20px 50px rgba(8,36,89,0.08); }
-    .code { font-family: monospace; font-size: 13px; font-weight: 700; color: #b15f2c; background: rgba(177,95,44,0.1); padding: 5px 12px; border-radius: 999px; display: inline-block; margin-bottom: 14px; }
-    h1 { font-size: 26px; color: #082459; margin-bottom: 10px; }
-    p { font-size: 15px; color: #556075; line-height: 1.55; margin-bottom: 22px; }
-    .links { display: grid; gap: 10px; }
-    a { display: block; padding: 13px 18px; border-radius: 14px; font-weight: 700; font-size: 14.5px; text-decoration: none; background: #f4f5f7; color: #082459; border: 1px solid #e4e7ee; }
-    a.pri { background: #082459; color: #fff; border-color: #082459; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      padding: 32px 28px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .code {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--brand);
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
+    .actions { display: grid; gap: 8px; }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+    .btn:hover { border-color: var(--brand); }
+    .btn.primary {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
-  <main class="box">
-    <span class="code">404 • SAHIFA TOPILMADI</span>
-    <h1>Kechirasiz, bu manzil o‘zgargan bo‘lishi mumkin</h1>
-    <p>Husanboy Teacher platformasidagi barcha 23 ta bepul IELTS 8+ va Multilevel darsliklari hamda Shaxsiy Kabinet quyidagi sahifalarda ochiq:</p>
-    <div class="links">
-      <a class="pri" href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/">🏠 Bosh sahifaga o‘tish (23 ta darslik + 14 mashq)</a>
-      <a href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/ielts/ielts-8-plus.html">🏆 IELTS 8+ To‘liq Dasturi</a>
-      <a href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/vocab/test-450.html">🧪 450 Kunlik Lug‘at &amp; Grammatika Testi</a>
-      <a href="https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/cabinet/">🎓 O‘quvchilar Shaxsiy Kabineti (Login / QR)</a>
+  <main class="card">
+    <span class="code">404 · SAHIFA TOPILMADI</span>
+    <h1>So‘ralgan manzil mavjud emas</h1>
+    <p>Husanboy Teacher ochiq akademiyasining asosiy darsliklari va amaliy bo‘limlariga quyidagi havolalar orqali o‘tishingiz mumkin:</p>
+    <div class="actions">
+      <a class="btn primary" href="/husanboy-teacher-site/"><span>Bosh sahifaga qaytish</span><span>→</span></a>
+      <a class="btn" href="/husanboy-teacher-site/library/ielts/ielts-8-plus.html"><span>IELTS 8+ To‘liq Dasturi</span><span>↗</span></a>
+      <a class="btn" href="/husanboy-teacher-site/library/vocab/test-450.html"><span>450 Kunlik Test Tizimi</span><span>↗</span></a>
+      <a class="btn" href="/husanboy-teacher-site/cabinet/index.html"><span>Shaxsiy Kabinet (Login / QR)</span><span>↗</span></a>
     </div>
   </main>
 </body>

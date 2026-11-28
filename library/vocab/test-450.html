@@ -26,11 +26,11 @@ main{max-width:640px;margin:0 auto;padding:8px 16px}
 .btn.danger{background:#fff;color:var(--red);border-color:var(--red)}.btn:disabled{opacity:.45;cursor:not-allowed}
 .btn:focus-visible,.opt:focus-visible,.dbtn:focus-visible,.u:focus-visible,.step:focus-visible,.ans:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .big-btn{min-height:52px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stair{display:flex;align-items:flex-end;gap:6px;margin:6px 0 14px}
-.step{flex:1;height:var(--h);min-height:48px;border:2px solid var(--line);background:#fff;border-radius:10px 10px 0 0;font-family:inherit;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.stair{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:8px 0 16px}
+.step{height:52px!important;min-height:52px;border:1px solid var(--line);background:var(--card);border-radius:9px;font-family:inherit;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .step.on{background:var(--ink);color:#fff;border-color:var(--ink)}.step small{font-size:11px;opacity:.8}
 .week{margin-bottom:14px}.wh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.wh small{color:var(--muted)}
-.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}@media(min-width:520px){.days{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}}
 .dbtn{min-height:56px;border:2px solid var(--line);background:#fff;border-radius:12px;font:700 16px/1.1 system-ui,sans-serif;font-family:inherit;color:var(--ink);cursor:pointer;padding:4px}
 .dbtn small{display:block;font-size:11px;font-weight:400;color:var(--muted)}
 .dbtn.ok{border-color:var(--green);color:var(--green)}.dbtn.cur{border-color:var(--blue);background:#e8eefc}.dbtn.lock{opacity:.55}
@@ -83,28 +83,204 @@ details{border-top:1px solid var(--line);padding:6px 0}summary{cursor:pointer;fo
 <!-- HT_LIB_SEO_END -->
 </head><body>
 <!-- HT_AUTHOR_BAR_START -->
+<script>
+(function(){
+  try {
+    var sp = new URLSearchParams(location.search);
+    if (window.self !== window.top || sp.get('embed') === '1') {
+      document.documentElement.classList.add('ht-embedded');
+    }
+    var urlTheme = sp.get('theme');
+    var saved = urlTheme || localStorage.getItem('ht_ui_theme') || 'light';
+    if (saved === 'dark' || saved === 'light') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+    window.addEventListener('message', function(ev){
+      if (ev && ev.data && ev.data.type === 'HT_THEME' && (ev.data.theme === 'dark' || ev.data.theme === 'light')) {
+        document.documentElement.setAttribute('data-theme', ev.data.theme);
+      }
+    });
+  } catch (e) {}
+})();
+</script>
 <style>
-  html,body{max-width:100%;overflow-x:hidden;}
-  .author .wrap>div{min-width:0;overflow-wrap:anywhere;}
-  .ht-uni-bar{position:sticky;top:0;z-index:9998;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 12px;background:rgba(7,12,26,0.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(251,191,36,0.32);font:600 12.5px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#f8fafc;}
-  .ht-uni-back{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);color:#fde68a;text-decoration:none;font-weight:700;white-space:nowrap;}
-  .ht-uni-back:hover{background:rgba(251,191,36,0.18);}
-  .ht-uni-auth{display:inline-flex;align-items:center;gap:8px;padding:4px 11px 4px 5px;border-radius:999px;background:rgba(16,185,129,0.12);border:1px solid rgba(52,211,153,0.35);color:#ecfdf5;text-decoration:none;min-width:0;}
-  .ht-uni-auth img{width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top center;border:1.5px solid #fbbf24;background:#fff;flex-shrink:0;}
-  .ht-uni-auth b{color:#fff;font-weight:800;}
-  .ht-uni-auth span{color:#6ee7b7;font-weight:700;font-size:11.5px;}
-  @media(max-width:560px){.ht-uni-hide-sm{display:none;}.ht-uni-bar{padding:6px 10px;font-size:11.5px;}}
+  html, body { max-width: 100%; overflow-x: clip; }
+  .ht-uni-bar {
+    position: sticky;
+    top: 0;
+    z-index: 9998;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 16px;
+    background: rgba(250, 250, 250, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e4e4e7;
+    font: 500 13px/1 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    color: #09090b;
+  }
+  html[data-theme="dark"] .ht-uni-bar {
+    background: rgba(9, 9, 11, 0.92);
+    border-bottom-color: #27272a;
+    color: #fafafa;
+  }
+  .ht-uni-back, .ht-uni-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 11px;
+    border-radius: 7px;
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    color: #09090b;
+    text-decoration: none;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  html[data-theme="dark"] .ht-uni-back,
+  html[data-theme="dark"] .ht-uni-btn {
+    background: #18181b;
+    border-color: #27272a;
+    color: #fafafa;
+  }
+  .ht-uni-back:hover, .ht-uni-btn:hover { border-color: #1d4ed8; }
+  .ht-uni-right { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+  .ht-uni-auth {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 32px;
+    padding: 0 10px 0 5px;
+    border-radius: 7px;
+    border: 1px solid #e4e4e7;
+    background: #ffffff;
+    color: #09090b;
+    text-decoration: none;
+    min-width: 0;
+  }
+  html[data-theme="dark"] .ht-uni-auth {
+    background: #18181b;
+    border-color: #27272a;
+    color: #fafafa;
+  }
+  .ht-uni-auth img {
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    flex-shrink: 0;
+  }
+  .ht-uni-auth b { font-weight: 600; font-size: 12.5px; white-space: nowrap; }
+  .ht-uni-auth span { color: #71717a; font-size: 12px; white-space: nowrap; }
+
+  /* Prevent stretched/squished portrait across all subpage templates */
+  section.author img.ph, header.author img, .auth img, .author .ph img {
+    width: 76px !important;
+    height: 95px !important;
+    max-height: 95px !important;
+    aspect-ratio: 4 / 5 !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    border-radius: 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Clean embedded mode inside #lab (no duplicate top bar or duplicate author bio) */
+  html.ht-embedded #ht-uni-bar,
+  html.ht-embedded section.author,
+  html.ht-embedded header.author,
+  html.ht-embedded .auth,
+  html.ht-embedded .author,
+  html.ht-embedded #aumini {
+    display: none !important;
+  }
+
+  /* Universal Dark Mode harmonization for light-default library templates */
+  html[data-theme="dark"] {
+    --bg: #09090b;
+    --card: #111114;
+    --surface: #111114;
+    --surface2: #18181b;
+    --paper: #111114;
+    --soft: #18181b;
+    --ink: #fafafa;
+    --text: #fafafa;
+    --mut: #a1a1aa;
+    --muted: #a1a1aa;
+    --line: #27272a;
+    color-scheme: dark;
+  }
+  html[data-theme="dark"] body { background: var(--bg); color: var(--ink); }
+  html[data-theme="dark"] .col,
+  html[data-theme="dark"] .card,
+  html[data-theme="dark"] .auth,
+  html[data-theme="dark"] header.author,
+  html[data-theme="dark"] .flipc,
+  html[data-theme="dark"] .u,
+  html[data-theme="dark"] .dbtn,
+  html[data-theme="dark"] .opt:not(.sel):not(.good):not(.bad):not(.ok2):not(.no2),
+  html[data-theme="dark"] .step:not(.on) {
+    background: #111114;
+    color: #fafafa;
+    border-color: #27272a;
+  }
+  html[data-theme="dark"] input,
+  html[data-theme="dark"] select,
+  html[data-theme="dark"] textarea {
+    background: #18181b;
+    color: #fafafa;
+    border-color: #3f3f46;
+  }
+  html[data-theme="dark"] .hl { background: #18181b; }
+  html[data-theme="dark"] .ev { background: rgba(245, 158, 11, 0.12); color: #e4e4e7; }
+
+  @media (max-width: 560px) {
+    .ht-uni-hide-sm { display: none; }
+    .ht-uni-bar { padding: 0 12px; height: 46px; }
+  }
 </style>
 <div class="ht-uni-bar" id="ht-uni-bar">
-  <a class="ht-uni-back" href="../../index.html">🪐 ← 3D Koinot</a>
-  <a class="ht-uni-auth" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener" title="Muallif: Qosimov Husanboy Madaminjon o‘g‘li">
-    <img src="../../teacher-photo.jpg" alt="Qosimov Husanboy" />
-    <div><b>Husanboy Qosimov</b> <span class="ht-uni-hide-sm">• @Qosimov_Xusanboy</span></div>
+  <a class="ht-uni-back" href="../../index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    <span>Bosh sahifa</span>
   </a>
+  <div class="ht-uni-right">
+    <a class="ht-uni-auth" href="https://t.me/Qosimov_Xusanboy" target="_blank" rel="noopener" title="Muallif: Qosimov Husanboy Madaminjon o‘g‘li">
+      <img src="../../teacher-portrait.jpg" alt="Qosimov Husanboy" />
+      <b>Husanboy Qosimov</b>
+      <span class="ht-uni-hide-sm">· @Qosimov_Xusanboy</span>
+    </a>
+    <button class="ht-uni-btn" type="button" id="ht-sub-theme" aria-label="Mavzuni almashtirish">Kun / Tun</button>
+  </div>
 </div>
-<script>(function(){try{if(window.self!==window.top){var b=document.getElementById('ht-uni-bar');if(b)b.style.display='none';}}catch(e){}})();</script>
+<script>
+(function(){
+  var btn = document.getElementById('ht-sub-theme');
+  function syncLbl(){
+    if (!btn) return;
+    var d = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.textContent = d ? 'Kunduzgi' : 'Tungi';
+  }
+  if (btn) {
+    syncLbl();
+    btn.onclick = function(){
+      var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', cur);
+      try { localStorage.setItem('ht_ui_theme', cur); } catch (e) {}
+      syncLbl();
+    };
+  }
+})();
+</script>
 <!-- HT_AUTHOR_BAR_END -->
-<header class="author"><div class="wrap"><img src="../../teacher-photo.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li"><div><b>Qosimov Husanboy Madaminjon o‘g‘li</b><p>Ingliz tili o‘qituvchisi · Enzo Academy</p><p>Telegram: <a href="https://t.me/Qosimov_Xusanboy">@Qosimov_Xusanboy</a></p><p>Instagram: <a href="https://instagram.com/xusanboy__qosimov">xusanboy__qosimov</a></p><p>Tel: <a href="tel:+998889977746">+998 88 997 77 46</a></p><p class="cr">© 2026 Barcha huquqlar himoyalangan. Muallif ruxsatisiz nusxalash va tarqatish taqiqlanadi.</p></div></div></header>
+<header class="author"><div class="wrap"><img src="../../teacher-portrait.jpg" alt="Qosimov Husanboy Madaminjon o‘g‘li"><div><b>Qosimov Husanboy Madaminjon o‘g‘li</b><p>Ingliz tili o‘qituvchisi · Enzo Academy</p><p>Telegram: <a href="https://t.me/Qosimov_Xusanboy">@Qosimov_Xusanboy</a></p><p>Instagram: <a href="https://instagram.com/xusanboy__qosimov">xusanboy__qosimov</a></p><p>Tel: <a href="tel:+998889977746">+998 88 997 77 46</a></p><p class="cr">© 2026 Barcha huquqlar himoyalangan. Muallif ruxsatisiz nusxalash va tarqatish taqiqlanadi.</p></div></div></header>
 <div class="top hide" id="topbar"></div>
 <main id="main"></main>
 <div class="dock hide" id="dock"><button class="btn" id="next" type="button">Keyingisi</button></div>
@@ -225,7 +401,7 @@ function home(){
   const total=DAYS.filter((_,i)=>dayDone(i+1)).length,err=Object.keys(S.err).length;
   let h='';
   if(!S.name)h+=`<div class="card"><h2>Ismingiz nima?</h2><input class="ans" id="nm" maxlength="24" autocomplete="off" placeholder="Ism" aria-label="Ism"><button class="btn" id="svn" type="button" style="margin-top:10px">Saqlash</button></div>`;
-  h+=`<div class="hero"><p class="sub">${S.name?esc(S.name)+', ':''}bugungi vazifa</p><h1>${n}-kun</h1><p class="hint">${esc(cd.lv)} · ${cd.wk}-hafta · ${total}/450 kun bajarilgan</p><button class="btn big-btn" id="go" type="button">${dayDone(n)?'Kunni ko‘rish':'Kunni boshlash'}</button></div>`;
+  h+=`<div class="hero"><p class="sub">${S.name?esc(S.name)+', ':''}JORIY KUNLIK IMTIHON</p><h1>${n}-kun</h1><p class="hint">${esc(cd.lv)} · ${cd.wk}-hafta · ${total}/450 kun bajarilgan</p><button class="btn big-btn" id="go" type="button">${dayDone(n)?'Kunni ko‘rish':'Kunni boshlash'}</button></div>`;
   h+=`<div class="stair" aria-label="Darajalar">${LV.map(l=>{const ds=DAYS.filter(d=>d.lv===l),dn=ds.filter(d=>dayDone(d.n)).length;return`<button class="step${l===homeLv?' on':''}" type="button" data-l="${l}" style="--h:${28+LV.indexOf(l)*10}px"><b>${l}</b><small>${dn}/${ds.length}</small></button>`}).join('')}</div>`;
   const weeks=[...new Set(DAYS.filter(d=>d.lv===homeLv).map(d=>d.wk))];
   h+=`<div class="weeks">`+weeks.map(w=>{const ds=DAYS.filter(d=>d.lv===homeLv&&d.wk===w),t=ds[0].wt;

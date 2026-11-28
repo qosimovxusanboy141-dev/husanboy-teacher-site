@@ -1,6 +1,6 @@
 // Enzo Academy: oddiy service worker. Faqat ilova qobig'ini (index, js, css) keshlaydi.
 // Kurs fayllari (kurs/, kids/, audio) keshga olinmaydi va har doim tarmoqdan/brauzer keshidan keladi.
-const C = "enzo-shell-v4";
+const C = "enzo-shell-v5";
 self.addEventListener("install", () => { self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== C).map((k) => caches.delete(k)))).then(() => self.clients.claim()));

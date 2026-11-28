@@ -9,7 +9,7 @@
   var bus = null;
 
   function enabled() {
-    try { return localStorage.getItem(SFX_KEY) !== '0'; } catch (_) { return true; }
+    try { return localStorage.getItem(SFX_KEY) === '1'; } catch (_) { return false; }
   }
 
   function getBus() {
