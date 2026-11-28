@@ -1,128 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/teacher-photo.jpg</image:loc>
+      <image:title>Qosimov Husanboy Madaminjon o‘g‘li — Husanboy Teacher (IELTS 8+ &amp; CEFR Multilevel Ustoz)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/og-banner.png</image:loc>
+      <image:title>Husanboy Teacher — Bepul IELTS 8+, Multilevel va 450 Kunlik Akademiya</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/cabinet/</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/ielts/ielts-8-plus.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/vocab/test-450.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/vocab/kunlik-450.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/speaking/multilevel-40.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/multilevel.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/speaking/suhbat-500.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/vocab/iboralar-30.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/multilevel.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/starter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/elementary.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/pre-intermediate.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/intermediate.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/upper-intermediate.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/starter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/elementary.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/pre-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/pre-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/starter.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/cefr-reading/upper-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/beginner.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/starter.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/elementary.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/pre-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/pre-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/starter.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/reading/upper-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/vocab/test-450.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/elementary.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/pre-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/starter.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://qosimovxusanboy141-dev.github.io/husanboy-teacher-site/library/writing/upper-intermediate.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

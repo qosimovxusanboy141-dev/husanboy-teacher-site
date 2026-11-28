@@ -1,11 +1,12 @@
 {
-  "name": "Husanboy Teacher — CEFR & Multilevel",
+  "name": "Husanboy Teacher — IELTS 8+, Multilevel & CEFR Akademiyasi",
   "short_name": "Husanboy Teacher",
-  "description": "Barcha uchun ochiq CEFR & Multilevel mashqlar hamda 450 kunlik A1-C1 Shaxsiy Kabinet",
+  "lang": "uz",
+  "description": "Qosimov Husanboy tomonidan yaratilgan 23 ta bepul IELTS/CEFR darslik, 14 ta mashq va 450 kunlik A1–C1 Shaxsiy Kabinet",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#04091a",
-  "theme_color": "#04091a",
+  "background_color": "#ffffff",
+  "theme_color": "#082459",
   "icons": [
     {
       "src": "./app-icon.png",
