@@ -181,7 +181,7 @@ details{border-top:1px solid var(--line);padding:6px 0}summary{cursor:pointer;fo
   .ht-uni-auth span { color: #71717a; font-size: 12px; white-space: nowrap; }
 
   /* Prevent stretched/squished portrait across all subpage templates */
-  section.author img.ph, header.author img, .auth img, .author .ph img {
+  section.author img.ph, header.author img, .auth img, .author .ph img, .au img, .card.au img {
     width: 76px !important;
     height: 95px !important;
     max-height: 95px !important;
@@ -198,6 +198,8 @@ details{border-top:1px solid var(--line);padding:6px 0}summary{cursor:pointer;fo
   html.ht-embedded header.author,
   html.ht-embedded .auth,
   html.ht-embedded .author,
+  html.ht-embedded .card.au,
+  html.ht-embedded .au,
   html.ht-embedded #aumini {
     display: none !important;
   }
@@ -240,6 +242,14 @@ details{border-top:1px solid var(--line);padding:6px 0}summary{cursor:pointer;fo
   }
   html[data-theme="dark"] .hl { background: #18181b; }
   html[data-theme="dark"] .ev { background: rgba(245, 158, 11, 0.12); color: #e4e4e7; }
+  html[data-theme="dark"] .au .lbl,
+  html[data-theme="dark"] .au .tag,
+  html[data-theme="dark"] .au .ct a,
+  html[data-theme="dark"] .author li a {
+    background: #18181b !important;
+    color: #fafafa !important;
+    border-color: #3f3f46 !important;
+  }
 
   @media (max-width: 560px) {
     .ht-uni-hide-sm { display: none; }
